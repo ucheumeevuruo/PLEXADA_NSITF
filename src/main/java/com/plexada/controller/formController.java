@@ -5,10 +5,21 @@
  */
 package com.plexada.controller;
 
+import com.plexada.model.Employees;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
+
 /**
  *
  * @author SAP Training
  */
+@Controller
+@RequestMapping(path = "/account")
 public class formController {
-    
+    @RequestMapping(value = "/employee", method = RequestMethod.GET)
+    public ModelAndView showForm() {
+        return new ModelAndView("home", "employee", new Employees());
+    }
 }
