@@ -10,8 +10,8 @@
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
-    <form method="post">
-     <div class="form-group ">
+    <form method="post" action="/account/third-page">
+     <div class="form-group">
       <label class="control-label requiredField" for="Emoulment">
        Total Staff Emoulment ('&#8358;')
        <span class="asteriskField">

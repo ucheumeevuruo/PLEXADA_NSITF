@@ -10,7 +10,7 @@
  <div class="container-fluid">
   <div class="row">
    <div class="col-md-6 col-sm-6 col-xs-12">
-    <form method="post">
+    <form method="post" action="/account/fifth-page">
      <div class="form-group ">
       <label class="control-label requiredField">
        Class of Business

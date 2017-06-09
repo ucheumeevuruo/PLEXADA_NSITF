@@ -17,13 +17,14 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  *
  * @author SAP Training
  */
+
 @Configuration
 @EnableWebMvc
 public class MvcConfiguration extends WebMvcConfigurerAdapter{
     @Bean
     public ViewResolver getViewResolver() {
         InternalResourceViewResolver resolver = new InternalResourceViewResolver();
-        resolver.setPrefix("/templates/");
+        resolver.setPrefix("/templates/jsp/");
         resolver.setSuffix(".jsp");
         return resolver;
     }

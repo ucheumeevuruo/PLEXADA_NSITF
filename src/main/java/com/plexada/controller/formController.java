@@ -18,8 +18,23 @@ import org.springframework.web.servlet.ModelAndView;
 @Controller
 @RequestMapping(path = "/account")
 public class formController {
-    @RequestMapping(value = "/employee", method = RequestMethod.GET)
-    public ModelAndView showForm() {
+    @RequestMapping(value = "/", method = RequestMethod.GET)
+    public ModelAndView index() {
         return new ModelAndView("home", "employee", new Employees());
+    }
+    
+    @RequestMapping(value = "/second-page", method = RequestMethod.POST)
+    public ModelAndView showStaffEmulmentForm() {
+        return new ModelAndView("staffEmulment", "employee", new Employees());
+    }
+    
+    @RequestMapping(value = "/third-page", method = RequestMethod.POST)
+    public ModelAndView showBusinessClassForm() {
+        return new ModelAndView("businessClass", "employee", new Employees());
+    }
+    
+    @RequestMapping(value = "/fifth-page", method = RequestMethod.POST)
+    public ModelAndView showStaffInfoForm() {
+        return new ModelAndView("staffInfo", "employee", new Employees());
     }
 }
