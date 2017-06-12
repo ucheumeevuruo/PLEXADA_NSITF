@@ -12,11 +12,10 @@
     <!-- Look of this document is driven by a CSS referenced by an href attribute. See http://www.w3.org/TR/xml-stylesheet/ -->
 <link rel="StyleSheet" type="text/css" href="http://SAPTRAINING-PC:8082/resource/file%3A/C%3A/Users/SAP%2520Training/Documents/NetBeansProjects/PLEXADA_NSITF/src/main/resources/static/css/styles.css" media="screen" >
 	<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
-	<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}
-         #Next {float: right} .text-center
-		{font-family: Helvetica, Arial, Sans-Serif;
-		color: white;
-		font-size: 20px;</style>
+	<style> .bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: white !important;} .asteriskField{color: red;}
+                #Next {float: right}
+                .text-center {font-family: Helvetica, Arial, Sans-Serif; color: white; font-size: 20px;}
+        </style>
 </head>
 
 <body>
