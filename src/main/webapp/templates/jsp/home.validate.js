@@ -57,7 +57,10 @@ $(document).ready (
 			message: {
 				checkbox: "select a Business class",
 				select: "select sector categories"
-                            }
+                            },
+                            submitHandler: function(form) {
+				form.submit();
+			}
 		});
 		
 		$("#fifthpage").validate({
@@ -77,7 +80,10 @@ $(document).ready (
                                 Position: "Position is required and should be text only",
                                 StaffID: "Enter a valid Staff ID",
                                 TandC: "Please agree with the terms and conditions"
-                                }
+                                },
+                         submitHandler: function(form) {
+				form.submit();
+			}
                         }
 		);
         }
