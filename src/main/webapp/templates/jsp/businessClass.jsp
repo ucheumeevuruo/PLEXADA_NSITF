@@ -101,7 +101,15 @@
                               <option value="Aviation">
 				Aviation
 			      </option>
-                              
+                              <option value="Manufacturing">
+				Manufacturing
+			      </option>
+                              <option value="Construction">
+				Construction
+			      </option>
+                              <option value="Others">
+				Others
+			      </option>
 			  </select>
 			  <span class="help-block" id="hint_select">
 			   Press Ctrl for multiple select
@@ -111,7 +119,7 @@
 			  <label class="control-label " for="name">
 			   Others please specify
 			  </label>
-			  <input class="form-control" id="name" name="name" type="text"/>
+			  <input class="form-control" id="Other" name="Other" type="text"/>
 			  <span class="help-block" id="hint_name">
 			   Separate with comma. e.g, item1, item2
 			  </span>

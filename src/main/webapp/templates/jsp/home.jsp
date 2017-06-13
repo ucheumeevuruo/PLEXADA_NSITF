@@ -81,14 +81,13 @@
 			 </div>
 			 
 			 <div class="form-group ">
-			  <label class="control-label requiredField" for="Year">
+			  <label class="control-label requiredField" for="year">
 			   What is the year of company incorporation
 			   <span class="asteriskField">
 				*
 			   </span>
 			  </label>
-			  <select class="form-control" id="Year" name="Year" placeholder="YYYY" type="number"/>
-			  </select>
+			   <input class="form-control" id="year" name="year" type="number" min="1800" max="2017"/>
 			 </div>
 			  
 			 <div class="form-group " id="Email">

@@ -52,11 +52,15 @@ $(document).ready (
 				select: {
 					required: true,
 					minlength: 1
-				}
-			},
+				},
+                                Other: {
+                                        required: "select:Others"
+                                }
+                                },
 			message: {
 				checkbox: "select a Business class",
-				select: "select sector categories"
+				select: "select sector categories",
+                                Others: "Type in Business sector(s)"
                             },
                             submitHandler: function(form) {
 				form.submit();
