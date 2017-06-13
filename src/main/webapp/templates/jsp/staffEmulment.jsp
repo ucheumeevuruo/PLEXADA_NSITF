@@ -46,7 +46,7 @@
 			<form method="post" action="/account/third-page">
 			 <div class="form-group">
 			  <label class="control-label requiredField" for="Emoulment">
-			   Total Staff Emoulment ('&#8358;')
+			   Total Staff Emolument ('&#8358;')
 			   <span class="asteriskField">
 				*
 			   </span>

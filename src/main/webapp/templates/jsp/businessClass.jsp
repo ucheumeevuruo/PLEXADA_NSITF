@@ -43,7 +43,7 @@
         </div>
 		
 		<div class="col-md-6 col-sm-6 col-xs-12">
-			<form method="post" action="/account/fourth-page">
+			<form method="post" action="/account/fourth-page" id="thirdpage">
 			 <div class="form-group">
 			  <label class="control-label requiredField">
 			   Class of Business
@@ -98,6 +98,10 @@
 			   </span>
 			  </label>
 			  <select class="select form-control" id="select" name="select">
+                              <option value="Aviation">
+				Aviation
+			      </option>
+                              
 			  </select>
 			  <span class="help-block" id="hint_select">
 			   Press Ctrl for multiple select

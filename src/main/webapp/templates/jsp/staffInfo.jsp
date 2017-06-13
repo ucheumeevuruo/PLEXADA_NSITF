@@ -75,13 +75,13 @@
 			  <input class="form-control" id="name1" name="name1" type="text"/>
 			 </div>
 			 <div class="form-group" id="PSTN">
-			  <label class="control-label requiredField" for="text">
+			  <label class="control-label requiredField" for="Position">
 			   Position
 			   <span class="asteriskField">
 				*
 			   </span>
 			  </label>
-			  <input class="form-control" id="text" name="text" type="text"/>
+			  <input class="form-control" id="Position" name="Position" type="text"/>
 			 </div>
 			 <div class="form-group" id="SID">
 			  <label class="control-label requiredField" for="StaffID">
