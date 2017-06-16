@@ -1,0 +1,58 @@
+a.text-lowercase{
+}
+
+.nav li.active a{
+  background:white;
+  color:#4fa333;
+}
+
+.nav li.active{
+  border:none;
+}
+
+body{
+  padding-top:100px;
+}
+
+nav.navbar.navbar-default.navbar-fixed-top{
+  background:rgba(79, 163, 51, .5);
+  text-align:centre;
+  
+}
+.navbar-toggle {
+	color: white;
+	text-align:center;
+}
+.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{
+    font-family: Arial, Helvetica, sans-serif; color: black
+}
+.bootstrap-iso form button, .bootstrap-iso form button:hover{
+    color: white !important;
+} 
+.asteriskField{
+    color: red;
+}
+#MobileN { 
+    float: right;
+}
+#Email {
+    float: left;
+}
+#State {
+    clear: both; 
+    float: left
+} 
+#LGA {
+    float: right
+} 
+#Address{
+    clear: both
+} 
+#Next {
+    float: right
+} 
+.text-center {
+    font-family: Helvetica, Arial, Sans-Serif; 
+    color: white; 
+    font-size: 20px;
+}

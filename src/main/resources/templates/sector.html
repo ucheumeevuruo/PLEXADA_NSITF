@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="col-lg-4 col-md-4 col-md-offset-0">
+        <ul class="nav nav-pills nav-stacked">
+            <li><a href="#">Particulars for business </br> (for MDAs, public and private companies) &nbsp; &nbsp; &nbsp; </a></li>
+            <li><a href="#">Total Emolument </a></li>
+            <li class="active"><a href="#">Business sector categories </a></li>
+            <li><a href="#">Particulars of owner(s) of organization </br> (for  partnership &amp; sole proprietorship) &nbsp; &nbsp; &nbsp; </a></li>
+            <li><a href="#">Declaration by employer or authorised person &nbsp; &nbsp; &nbsp; </a></li>
+            <li><a href="#">Preview Registration </a></li>
+        </ul>
+    </div>
+		
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <form method="post" th:action="@{/}" th:object="${businessClass}">
+         <div class="form-group">
+          <label class="control-label requiredField">
+           Class of Business
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <div class=" ">
+           <div class="checkbox">
+                <label class="checkbox">
+                 <input name="checkbox" type="radio" value="Enterprise venture"/>
+                 Enterprise venture
+                </label>
+           </div>
+           <div class="checkbox">
+                <label class="checkbox">
+                 <input name="checkbox" type="radio" value="Partnership"/>
+                 Partnership
+                </label>
+           </div>
+           <div class="checkbox">
+                <label class="checkbox">
+                 <input name="checkbox" type="radio" value="MDA"/>
+                 MDA
+                </label>
+           </div>
+           <div class="checkbox">
+                <label class="checkbox">
+                 <input name="checkbox" type="radio" value="Public Sector"/>
+                 Public Sector
+                </label>
+           </div>
+           <div class="checkbox">
+                <label class="checkbox">
+                 <input name="checkbox" type="radio" value="PLC"/>
+                 PLC
+                </label>
+           </div>
+           <div class="checkbox">
+                <label class="checkbox">
+                 <input name="checkbox" type="radio" value="LTD"/>
+                 LTD
+                </label>
+           </div>
+          </div>
+         </div>
+         <div class="form-group ">
+          <label class="control-label requiredField" for="select">
+           Please select
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <select class="select form-control" id="select" name="select">
+              <option value="Aviation">
+                Aviation
+              </option>
+
+          </select>
+          <span class="help-block" id="hint_select">
+           Press Ctrl for multiple select
+          </span>
+         </div>
+         <div class="form-group ">
+          <label class="control-label " for="name">
+           Others please specify
+          </label>
+          <input type="text" th:field="*{name}" id="name" class="form-control" />
+          <span class="help-block" id="hint_name">
+           Separate with comma. e.g, item1, item2
+          </span>
+         </div>
+         <div class="form-group">
+          <div id="Next">
+           <button class="btn btn-primary " name="Next" type="submit">
+                Next
+           </button>
+          </div>
+         </div>
+        </form>
+    </div>
+ </div>

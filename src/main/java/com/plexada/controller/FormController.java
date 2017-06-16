@@ -5,9 +5,10 @@
  */
 package com.plexada.controller;
 
+import com.plexada.model.employee.Company;
 import com.plexada.model.employee.Employee;
-import com.plexada.model.employee.StaffEmulment;
-import com.plexada.model.employee.StaffInfo;
+import com.plexada.model.employee.Emulment;
+import com.plexada.model.employee.Sector;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
@@ -30,83 +31,120 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping(path = "/account")
 public class FormController {
     @GetMapping("")
-    public String index(HttpServletResponse response, Model model) {
-        model.addAttribute("employee", new Employee());
+    public String index(HttpServletResponse response, 
+    Model model,
+    Company employee) {
+        model.addAttribute("employee", new Company());
         return "home";
     }
     
     @PostMapping("")
-    public String indexForm(HttpServletResponse response, Model model, @ModelAttribute @Valid Employee employee, BindingResult bindingResult){
-        
-        model.addAttribute("employee", employee);
+    public String indexForm(HttpServletResponse response, 
+    Model model, 
+    @Valid @ModelAttribute Company company, 
+    BindingResult bindingResult){
         if(bindingResult.hasErrors())
         {
+            model.addAttribute("employee", company);
             return "home";
         }
-        response.addCookie(new Cookie("company", employee.getCompany()));
-        response.addCookie(new Cookie("email", employee.getEmail()));
-        response.addCookie(new Cookie("houseNo", employee.getHouseNo()));
-        response.addCookie(new Cookie("impNumber", employee.getIncNumber()));
-        response.addCookie(new Cookie("address", employee.getAddress()));
-        response.addCookie(new Cookie("tinNum", employee.getTinNum()));
-        response.addCookie(new Cookie("mobile", employee.getPhoneNumber()));
+        response.addCookie(new Cookie("company", company.getCompany()));
+        response.addCookie(new Cookie("email", company.getEmail()));
+        response.addCookie(new Cookie("house-no", company.getHouseNo()));
+        response.addCookie(new Cookie("inc-number", company.getIncNumber()));
+        response.addCookie(new Cookie("address", company.getAddress()));
+        response.addCookie(new Cookie("tin-num", company.getTinNum()));
+        response.addCookie(new Cookie("mobile", company.getPhoneNumber()));
         return "redirect:/account/second-page";
     }
     
     @GetMapping("/second-page")
     public String showStaffEmulment(HttpServletResponse response, Model model) {
-        model.addAttribute("staffEmulment", new Employee());
-        return "staffEmulment";
+        model.addAttribute("staffEmulment", new Emulment());
+        return "emulment";
     }
     
     @PostMapping("/second-page")
-    public String showStaffEmulmentForm(HttpServletResponse response, Model model, @ModelAttribute Employee staffEmulment){
-        response.addCookie(new Cookie("staffEmulment", staffEmulment.getStaffEmulment()));
-        model.addAttribute("staffEmulment", staffEmulment);
-        if(response.containsHeader(""))
+    public String showStaffEmulmentForm(HttpServletResponse response, 
+    Model model,  
+    @Valid @ModelAttribute Emulment staffEmulment, 
+    BindingResult bindingResult){
+        if(bindingResult.hasErrors())
         {
-            return "redirect:/account/third-page";
+            model.addAttribute("emulment", staffEmulment);
+            return "emulment";
         }
-        return "staffEmulment";
+        response.addCookie(new Cookie("staffEmulment", String.valueOf(staffEmulment.getStaffEmulment())));
+        return "redirect:/account/third-page";
     }
     
     @GetMapping("/third-page")
     public String showBusinessClass(HttpServletResponse response, Model model) {
-        model.addAttribute("businessClass", new Employee());
-        return "businessClass";
+        model.addAttribute("businessClass", new Sector());
+        return "sector";
     }
     
     @PostMapping("/third-page")
-    public String showBusinessClassForm(HttpServletResponse response, Model model, @ModelAttribute Employee employee) {
-        model.addAttribute("businessClass", employee);
-        return "businessClass";
+    public String showBusinessClassForm(HttpServletResponse response,
+    Model model,
+    @Valid @ModelAttribute Sector sect, 
+    BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+            model.addAttribute("businessClass", sect);
+            return "sector";
+        }
+        response.addCookie(new Cookie("type", sect.getType()));
+        response.addCookie(new Cookie("sector", sect.getSector()));
+        response.addCookie(new Cookie("other-sector", sect.getOthersSector()));
+        return "redirect:/account/fourth-page";
+    }
+    
+    @GetMapping("/fourth-page")
+    public String showOwnersParticular(HttpServletResponse response, Model model)
+    {
+        model.addAttribute("staffInfo", new Employee());
+        return "owners-particular";
     }
     
     @PostMapping("/fourth-page")
-    public String showOwnersParticularForm(HttpServletResponse response, Model model, @ModelAttribute Employee employee) {
+    public String showOwnersParticularForm(HttpServletResponse response, 
+    Model model, 
+    @ModelAttribute Company employee) {
         model.addAttribute("businessClass", employee);
-        return "businessClass";
+        return "owners-particular";
     }
     
     
     @GetMapping("/fifth-page")
     public String showStaffInfo(HttpServletResponse response, Model model) {
         model.addAttribute("staffInfo", new Employee());
-        return "staffInfo";
+        return "employee-info";
     }
     
     @PostMapping("/fifth-page")
-    public String showStaffInfoForm(HttpServletResponse response, Model model, @ModelAttribute Employee staffInfo) {
-        response.addCookie(new Cookie("firstName", staffInfo.getFirstName()));
-        response.addCookie(new Cookie("otherName", staffInfo.getOtherName()));
+    public String showStaffInfoForm(HttpServletResponse response,
+    Model model,
+    @ModelAttribute Employee staffInfo,
+    BindingResult bindingResult) {
+        if(bindingResult.hasErrors()){
+           model.addAttribute("staffInfo", staffInfo);
+           return "employee-info";
+        }
+        response.addCookie(new Cookie("first-name", staffInfo.getFirstName()));
+        response.addCookie(new Cookie("other-name", staffInfo.getOtherName()));
         response.addCookie(new Cookie("position", staffInfo.getPosition()));
-        response.addCookie(new Cookie("staffId", staffInfo.getStaffID()));
-        model.addAttribute("staffInfo", staffInfo);
-        return "staffInfo";
+        response.addCookie(new Cookie("staff-id", String.valueOf(staffInfo.getStaffID())));
+        return "redirect:/account/preview";
     }
     
-    @PostMapping("/preview")
-    public ModelAndView showPreviewForm(HttpServletRequest request) {
-        return new ModelAndView("preview", "request", request);
+    @GetMapping("/preview")
+    public String showPreviewForm(HttpServletRequest request,
+    Model model,
+    HttpServletResponse response) {
+         //At this point fooCookie is truncated 
+        for (Cookie cookie : request.getCookies()) {
+            model.addAttribute(cookie.getName(), cookie.getValue());
+        }
+        return "preview";
     }
 }

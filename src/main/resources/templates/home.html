@@ -16,7 +16,8 @@
                </span> 
               </label>
                  <input type="text" th:field="*{company}" id="company" class="form-control" />
-             </div>
+                 <label th:if="${#fields.hasErrors('company')}" th:errors="*{company}" id="company-error" class="error" for="company">Company Error.</label>
+                 </div>
              <div class="form-group ">
               <label class="control-label requiredField" for="IncorporationNumber">
                Incorporation Number
@@ -25,12 +26,14 @@
                </span>
               </label>
                  <input type="text" th:field="*{incNumber}" class="form-control" id="inc" />
+                 <label th:if="${#fields.hasErrors('incNumber')}" th:errors="*{incNumber}" id="inc-error" class="error" for="inc">Company Error.</label>
              </div>
              <div class="form-group ">
               <label class="control-label " for="TINNumber">
                TIN Number
               </label>
                  <input type="text" th:field="*{tinNum}" class="form-control" name="tin_num" id="tin_num" />
+                 <label th:if="${#fields.hasErrors('tinNum')}" th:errors="*{tinNum}" id="tin_num" class="error" for="tin_num">Company Error.</label>
              </div>
 
              <div class="form-group ">
@@ -41,6 +44,7 @@
                </span>
               </label>
               <select class="form-control" id="Year" name="Year" placeholder="YYYY" type="number">
+                  <option>2001</option>
               </select>
              </div>
 
@@ -52,6 +56,7 @@
                </span>
               </label>
                  <input type="email" th:field="*{email}" class="form-control" id="email" />
+                 <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" id="email" class="error" for="email">Company Error.</label>
              </div>
 
              <div class="form-group " id="MobileN">
@@ -62,6 +67,7 @@
                </span>
               </label>
               <input type="number" th:field="*{phoneNumber}" class="form-control" id="phone_number" />
+                 <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" id="phone_number" class="error" for="phone_number">Company Error.</label>
               </div>
 
 
@@ -109,6 +115,7 @@
                House/Block No
               </label>
               <input type="number" th:field="*{houseNo}" class="form-control" id="house_no" />
+              <label th:if="${#fields.hasErrors('houseNo')}" th:errors="*{houseNo}" id="house_no" class="error" for="house_no">Company Error.</label>
              </div>
 
               <div class="form-group ">
@@ -119,6 +126,7 @@
                </span>
               </label>
               <input type="text" th:field="*{address}" class="form-control" name="street_name" id="house_no" />
+              <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" id="street_name" class="error" for="street_name">Company Error.</label>
              </div>
 
 
