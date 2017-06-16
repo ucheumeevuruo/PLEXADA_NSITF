@@ -3,8 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.plexada;
+package com.plexada.configurations;
 
+import org.h2.server.web.WebServlet;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
@@ -20,8 +22,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  */
 
 @Configuration
-@EnableWebMvc
-public class MvcConfiguration extends WebMvcConfigurerAdapter{
+public class WebConfiguration{
     /*
     @Bean
     public ViewResolver getViewResolver() {
@@ -36,10 +37,15 @@ public class MvcConfiguration extends WebMvcConfigurerAdapter{
             DefaultServletHandlerConfigurer configurer) {
         configurer.enable();
     }  
-    
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-            registry.addResourceHandler("/resources/**")
-                    .addResourceLocations("/resources/");
-    }*/
+        registry.addResourceHandler("/css/**").addResourceLocations("classpath:/META-INF/resources/static/");
+    }
+    */
+    @Bean
+    ServletRegistrationBean h2servletRegistration(){
+        ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
+        registrationBean.addUrlMappings("/console/*");
+        return registrationBean;
+    }
 }

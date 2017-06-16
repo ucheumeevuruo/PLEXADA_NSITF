@@ -5,22 +5,35 @@
  */
 package com.plexada.model.employee;
 
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author SAP Training
  */
 public class Employee {
+    @NotNull
     private String firstName;
+    @NotNull
     private String otherName;
+    @NotNull
     private String position;
+    @NotNull
     private String staffID;
+    @NotNull
     private String company;
+    @NotNull
     private String impNumber;
+    @NotNull
     private String tinNum;
+    @NotNull
     private String email;
     private String phoneNumber;
+    @NotNull
     private String houseNo;
+    @NotNull
     private String address;
+    @NotNull
     private String staffEmulment;
     /**
      * @return the company
