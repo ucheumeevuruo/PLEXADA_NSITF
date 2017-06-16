@@ -23,7 +23,7 @@ public class Employee {
     @NotNull
     private String company;
     @NotNull
-    private String impNumber;
+    private String incNumber;
     @NotNull
     private String tinNum;
     @NotNull
@@ -43,10 +43,10 @@ public class Employee {
     }
 
     /**
-     * @return the impNumber
+     * @return the incNumber
      */
-    public String getImpNumber() {
-        return impNumber;
+    public String getIncNumber() {
+        return incNumber;
     }
 
     /**
@@ -92,10 +92,10 @@ public class Employee {
     }
 
     /**
-     * @param impNumber the impNumber to set
+     * @param incNumber the incNumber to set
      */
-    public void setImpNumber(String impNumber) {
-        this.impNumber = impNumber;
+    public void setIncNumber(String incNumber) {
+        this.incNumber = incNumber;
     }
 
     /**

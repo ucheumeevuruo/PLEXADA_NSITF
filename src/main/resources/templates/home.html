@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
+</head>
+<body>
+    <div class="container">
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->		
+        <div class="col-md-6 col-sm-6 col-xs-12">
+            <form method="post" th:action="@{/account/}" th:object="${employee}" id="registration-form">
+             <div class="form-group">
+              <label class="control-label requiredField" for="CompName">
+               Company's Name
+               <span class="asteriskField">
+                    *
+               </span> 
+              </label>
+                 <input type="text" th:field="*{company}" id="company" class="form-control" />
+             </div>
+             <div class="form-group ">
+              <label class="control-label requiredField" for="IncorporationNumber">
+               Incorporation Number
+               <span class="asteriskField">
+                    *
+               </span>
+              </label>
+                 <input type="text" th:field="*{incNumber}" class="form-control" id="inc" />
+             </div>
+             <div class="form-group ">
+              <label class="control-label " for="TINNumber">
+               TIN Number
+              </label>
+                 <input type="text" th:field="*{tinNum}" class="form-control" name="tin_num" id="tin_num" />
+             </div>
+
+             <div class="form-group ">
+              <label class="control-label requiredField" for="Year">
+               What is the year of company incorporation
+               <span class="asteriskField">
+                    *
+               </span>
+              </label>
+              <select class="form-control" id="Year" name="Year" placeholder="YYYY" type="number">
+              </select>
+             </div>
+
+             <div class="form-group " id="Email">
+              <label class="control-label requiredField" for="email">
+               Email
+               <span class="asteriskField">
+                    *
+               </span>
+              </label>
+                 <input type="email" th:field="*{email}" class="form-control" id="email" />
+             </div>
+
+             <div class="form-group " id="MobileN">
+              <label class="control-label requiredField" for="phone_number">
+               Mobile Number
+               <span class="asteriskField">
+                    *
+               </span>
+              </label>
+              <input type="number" th:field="*{phoneNumber}" class="form-control" id="phone_number" />
+              </div>
+
+
+             <div class="form-group " id="State">
+              <label class="control-label requiredField" for="State">
+               State
+               <span class="asteriskField">
+                    *
+               </span>
+              </label>
+              <select class="select form-control" id="State" name="State">
+                 <option selected="selected" value="">
+               </option>
+               <option value="Lagos">
+                    Lagos
+               </option>
+               </select>
+             </div>
+
+             <div class="form-group " id="LGA">
+              <label class="control-label requiredField" for="LocalGovernment">
+               Local Government
+               <span class="asteriskField">
+                    *
+               </span>
+              </label>
+              <select class="select form-control" id="LocalGovernment" name="LocalGovernment">
+                 <option selected="selected" value="">
+               </option>
+               <option value="Eti-Osa">
+                    Eti-Osa
+               </option>
+               </select>
+             </div>
+
+             <div class="form-group " >
+             <p id="Address"> Address 
+               <span class="asteriskField">
+                    *
+               </span> </p>
+             </div>
+
+             <div class="form-group ">
+              <label class="control-label requiredField" for="house_no">
+               House/Block No
+              </label>
+              <input type="number" th:field="*{houseNo}" class="form-control" id="house_no" />
+             </div>
+
+              <div class="form-group ">
+              <label class="control-label requiredField" for="street_name">
+               Street Name
+               <span class="asteriskField">
+                    *
+               </span>
+              </label>
+              <input type="text" th:field="*{address}" class="form-control" name="street_name" id="house_no" />
+             </div>
+
+
+             <div class="form-group" id="Next">
+              <div>
+               <button class="btn btn-primary " name="Next" type="submit">
+                    Next
+               </button>
+              </div>
+             </div>
+            </form>
+       </div>
+     </div>
+</body>
+</html>

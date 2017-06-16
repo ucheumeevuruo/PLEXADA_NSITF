@@ -46,7 +46,7 @@ public class FormController {
         response.addCookie(new Cookie("company", employee.getCompany()));
         response.addCookie(new Cookie("email", employee.getEmail()));
         response.addCookie(new Cookie("houseNo", employee.getHouseNo()));
-        response.addCookie(new Cookie("impNumber", employee.getImpNumber()));
+        response.addCookie(new Cookie("impNumber", employee.getIncNumber()));
         response.addCookie(new Cookie("address", employee.getAddress()));
         response.addCookie(new Cookie("tinNum", employee.getTinNum()));
         response.addCookie(new Cookie("mobile", employee.getPhoneNumber()));
