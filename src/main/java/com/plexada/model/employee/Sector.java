@@ -5,14 +5,22 @@
  */
 package com.plexada.model.employee;
 
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import javax.validation.constraints.NotNull;
+
 /**
  *
  * @author SAP Training
  */
-public class Sector {
+public class Sector implements Externalizable {
+    @NotNull
     private String type;
+    @NotNull
     private String sector;
-    private String othersSector;
+    private String otherSector;
     
     /**
      * @return the type
@@ -43,16 +51,30 @@ public class Sector {
     }
 
     /**
-     * @return the othersSector
+     * @return the otherSector
      */
-    public String getOthersSector() {
-        return othersSector;
+    public String getOtherSector() {
+        return otherSector;
     }
 
     /**
-     * @param othersSector the othersSector to set
+     * @param otherSector the otherSector to set
      */
-    public void setOthersSector(String othersSector) {
-        this.othersSector = othersSector;
+    public void setOtherSector(String otherSector) {
+        this.otherSector = otherSector;
+    }
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(this.type);
+        out.writeObject(this.sector);
+        out.writeObject(this.otherSector);
+    }
+
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.type = (String)in.readObject();
+        this.sector = (String)in.readObject();
+        this.otherSector = (String)in.readObject();
     }
 }

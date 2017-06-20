@@ -1,17 +1,103 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html>
+
 <head>
-    <title>TODO supply a title</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
 </head>
 <body>
-    <div>TODO write content</div>
-    Page hit counter: <b> <p th:text="${company}"></p> </b>
+<div class="container">
+    <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+    <div class="col-md-6 col-sm-6 col-xs-12">
+        <table class="table table-condensed">
+            <thead>
+                <th>
+
+                </th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>EMPLOYER NAME</td>
+                    <td th:text="${company}"></td>
+                </tr>
+                <tr>
+                    <td>INCORPORATION NUMBER</td>
+                    <td th:text="${incNumber}"></td>
+                </tr>
+                <tr>
+                    <td>TIN NUMBER</td>
+                    <td th:text="${tinNum}"></td>
+                </tr>
+                <tr>
+                    <td>E-MAIL</td>
+                    <td th:text="${email}"></td>
+                </tr>
+                <tr>
+                    <td>MOBILE NUMBER</td>
+                    <td th:text="${mobile}"></td>
+                </tr>
+                <tr>
+                    <td>CITY</td>
+                    <td th:text="${company}"></td>
+                </tr>
+                <tr>
+                    <td>LOCAL GOVERNMENT</td>
+                    <td th:text="${company}"></td>
+                </tr>
+                <tr>
+                    <td>ADDRESS</td>
+                    <td th:text="${address}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-condensed">
+            <thead>
+                <th>Total Staffs emoluments</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td th:text="${emulment}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-condensed">
+            <thead>
+                <th>Business sector categories</th>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>CLASS OF BUSINESS</td>
+                    <td th:text="${type}"></td>
+                </tr>
+                <tr>
+                    <td>Sector</td>
+                    <td th:text="${sector}"></td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-condensed">
+            <thead>
+                <td>Declaration by employer or authorised person</td>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>NAMES</td>
+                    <td th:text="${ownersFirstname}"></td>
+                </tr>
+                <tr>
+                    <td>POSITION</td>
+                    <td th:text="${ownersPosition}"></td>
+                </tr>
+                <tr>
+                    <td>Mode Of Identification</td>
+                    <td th:text="${ownersMoi}"></td>
+                </tr>
+                <tr>
+                    <td>Phone Number</td>
+                    <td th:text="${ownersMobile}"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>

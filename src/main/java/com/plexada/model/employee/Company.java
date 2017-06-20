@@ -5,10 +5,14 @@
  */
 package com.plexada.model.employee;
 
-import javax.validation.constraints.NotNull;
+import java.io.Externalizable;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
+import javax.persistence.Entity;
+import javax.persistence.Id;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
-import org.springframework.format.annotation.DateTimeFormat;
 
 //import com.journaldev.spring.form.validator.Phone;
 
@@ -16,7 +20,11 @@ import org.springframework.format.annotation.DateTimeFormat;
  *
  * @author SAP Training
  */
-public class Company {
+//@Entity
+public class Company implements Externalizable {
+
+    @Id
+    private Long id;
     @NotEmpty
     private String company;
     //@NotNull
@@ -30,8 +38,7 @@ public class Company {
     private String houseNo;
     //@NotNull
     private String address;
-    //@NotNull
-    private String staffEmulment;
+    
     /**
      * @return the company
      */
@@ -129,18 +136,32 @@ public class Company {
     public void setAddress(String address) {
         this.address = address;
     }
-    
-    /**
-     * @return the staffEmulment
-     */
-    public String getStaffEmulment() {
-        return staffEmulment;
+
+    @Override
+    public void writeExternal(ObjectOutput out) throws IOException {
+        out.writeObject(this.company);
+        out.writeObject(this.address);
+        out.writeObject(this.email);
+        out.writeObject(this.houseNo);
+        out.writeObject(this.phoneNumber);
+        out.writeObject(this.tinNum);
     }
 
-    /**
-     * @param staffEmulment the staffEmulment to set
-     */
-    public void setStaffEmulment(String staffEmulment) {
-        this.staffEmulment = staffEmulment;
+    @Override
+    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
+        this.company = (String)in.readObject();
+        this.address = (String)in.readObject();
+        this.email = (String)in.readObject();
+        this.houseNo = (String)in.readObject();
+        this.phoneNumber = (String)in.readObject();
+        this.tinNum = (String)in.readObject();
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 }
