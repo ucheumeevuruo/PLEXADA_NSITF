@@ -9,94 +9,86 @@
     <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
     <div class="col-md-6 col-sm-6 col-xs-12">
         <table class="table table-condensed">
-            <thead>
-                <th>
-
-                </th>
+            <thead class="navbar navbar-default">
+                <tr>
+                    <th colspan="2">
+                        Particulars for business(for MDAs, public and private companies)
+                    </th>
+                </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>EMPLOYER NAME</td>
-                    <td th:text="${company}"></td>
+                    <th class="text-uppercase">employer name</th>
+                    <td class="text-uppercase" th:text="${company.company}">Test</td>
                 </tr>
                 <tr>
-                    <td>INCORPORATION NUMBER</td>
-                    <td th:text="${incNumber}"></td>
+                    <th class="text-uppercase">incorporation number</th>
+                    <td class="text-uppercase" th:text="${company.incNumber}"></td>
                 </tr>
                 <tr>
-                    <td>TIN NUMBER</td>
-                    <td th:text="${tinNum}"></td>
+                    <th class="text-uppercase">tin number</th>
+                    <td class="text-uppercase" th:text="${company.tinNum}"></td>
                 </tr>
                 <tr>
-                    <td>E-MAIL</td>
-                    <td th:text="${email}"></td>
+                    <th class="text-uppercase">e-mail</th>
+                    <td class="text-uppercase" th:text="${company.email}"></td>
                 </tr>
                 <tr>
-                    <td>MOBILE NUMBER</td>
-                    <td th:text="${mobile}"></td>
+                    <th class="text-uppercase">mobile number</th>
+                    <td class="text-uppercase" th:text="${company.phoneNumber}"></td>
                 </tr>
                 <tr>
-                    <td>CITY</td>
-                    <td th:text="${company}"></td>
+                    <th class="text-uppercase">city</th>
+                    <td class="text-uppercase"></td>
                 </tr>
                 <tr>
-                    <td>LOCAL GOVERNMENT</td>
-                    <td th:text="${company}"></td>
+                    <th class="text-uppercase">local goverment</th>
+                    <td class="text-uppercase"></td>
                 </tr>
                 <tr>
-                    <td>ADDRESS</td>
-                    <td th:text="${address}"></td>
+                    <th class="text-uppercase">address</th>
+                    <td class="text-uppercase" th:text="${company.houseNo + ' ' + company.address}"></td>
+                </tr>
+                <tr>
+                    <th class="text-uppercase">year of incorporation</th>
+                    <td class="text-uppercase">test</td>
                 </tr>
             </tbody>
-        </table>
+        </table> 
         <table class="table table-condensed">
-            <thead>
-                <th>Total Staffs emoluments</th>
+            <thead class="navbar navbar-default">
+                <tr>
+                    <th colspan="2">
+                        Total Staffs Emoluments
+                    </th>
+                </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td th:text="${emulment}"></td>
+                    <td class="text-uppercase" th:text="${emulment.staffEmulment}"></td>
                 </tr>
             </tbody>
-        </table>
+        </table> 
         <table class="table table-condensed">
-            <thead>
-                <th>Business sector categories</th>
+            <thead class="navbar navbar-default">
+                <tr>
+                    <th colspan="2">
+                        Business sector categories
+                    </th>
+                </tr>
             </thead>
             <tbody>
                 <tr>
-                    <td>CLASS OF BUSINESS</td>
-                    <td th:text="${type}"></td>
+                    <th class="text-uppercase">class of business</th>
+                    <td class="text-uppercase" th:text="${sector.type}"></td>
                 </tr>
-                <tr>
-                    <td>Sector</td>
-                    <td th:text="${sector}"></td>
-                </tr>
-            </tbody>
-        </table>
-        <table class="table table-condensed">
-            <thead>
-                <td>Declaration by employer or authorised person</td>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>NAMES</td>
-                    <td th:text="${ownersFirstname}"></td>
-                </tr>
-                <tr>
-                    <td>POSITION</td>
-                    <td th:text="${ownersPosition}"></td>
-                </tr>
-                <tr>
-                    <td>Mode Of Identification</td>
-                    <td th:text="${ownersMoi}"></td>
-                </tr>
-                <tr>
-                    <td>Phone Number</td>
-                    <td th:text="${ownersMobile}"></td>
+                <tr th:switch="${sector.otherSector != null}">
+                    <th class="text-uppercase">year of incorporation</th>
+                    <td th:case="${false}" class="text-uppercase" th:text="${sector.sector + ',' + sector.otherSector}"></td>
+                    <td th:case="${true}" class="text-uppercase" th:text="${sector.sector=}"></td>
                 </tr>
             </tbody>
-        </table>
+        </table> 
     </div>
 </div>
 </body>

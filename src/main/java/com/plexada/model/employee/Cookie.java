@@ -5,8 +5,8 @@
  */
 package com.plexada.model.employee;
 
-import javax.sql.DataSource;
-import org.springframework.jdbc.core.JdbcTemplate;
+//import javax.sql.DataSource;
+//import org.springframework.jdbc.core.JdbcTemplate;
 
 /**
  *
