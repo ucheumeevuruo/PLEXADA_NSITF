@@ -7,28 +7,19 @@ package com.plexada.controller;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.plexada.model.employee.Request;
 import com.plexada.model.employee.Company;
 import com.plexada.model.employee.Employee;
 import com.plexada.model.employee.Emulment;
 import com.plexada.model.employee.OwnersParticular;
 import com.plexada.model.employee.Sector;
-import com.plexada.repositories.ProductRepository;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.security.Principal;
-import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletResponse;
+//import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-import org.apache.catalina.servlet4preview.ServletContext;
-import org.apache.catalina.servlet4preview.http.HttpServletRequest;
-import org.springframework.beans.factory.annotation.Autowired;
+//import org.apache.catalina.servlet4preview.ServletContext;
+//import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -37,16 +28,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.*;
 import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.JsonGenerationException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  *
@@ -55,8 +44,6 @@ import org.codehaus.jackson.JsonGenerationException;
 @Controller
 @RequestMapping(path = "/account")
 public class FormController {
-    //@Autowired
-    //private ProductRepository requestRepository;
     
     private final Gson gson = new Gson();
     private FileReader fileReader = null;
@@ -123,6 +110,9 @@ public class FormController {
             if(!(company instanceof Company)){
                 return "redirect:/account/";
             }
+            fileReader.close();
+            
+            fileReader = new FileReader(FILE);
             Map<String, Emulment> map = gson.fromJson(fileReader, 
                 new TypeToken<Map<String, Emulment>>(){}.getType()
             );
@@ -151,7 +141,9 @@ public class FormController {
         }
         //2. Convert object to JSON string and save into a file directly
         try (FileWriter writer = new FileWriter(FILE)) {
-            mapper.put("emulment", emulment);
+            Map<String, Emulment> map = new HashMap();
+            map.put("emulment", emulment);
+            mapper.putAll(map);
             gson.toJson(mapper, writer);
         } catch (IOException e) {
             return "emulment";
@@ -169,14 +161,17 @@ public class FormController {
             Map<String, Emulment> mapcheck = gson.fromJson(fileReader, 
                 new TypeToken<Map<String, Emulment>>(){}.getType()
             );
-            Emulment emulment = mapcheck.get("company");
+            Emulment emulment = mapcheck.get("emulment");
             if(!(emulment instanceof Emulment)){
                 return "redirect:/account/second-page";
             }
+            fileReader.close();
+            
+            fileReader = new FileReader(FILE);
             Map<String, Sector> map = gson.fromJson(fileReader, 
                 new TypeToken<Map<String, Sector>>(){}.getType()
             );
-            sect = map.get("emulment");
+            sect = map.get("sector");
             if(!(sect instanceof Sector)){
                 sect = new Sector();
             }
@@ -219,14 +214,17 @@ public class FormController {
             Map<String, Sector> mapcheck = gson.fromJson(fileReader, 
                 new TypeToken<Map<String, Sector>>(){}.getType()
             );
-            Sector sect = mapcheck.get("company");
+            Sector sect = mapcheck.get("sector");
             if(!(sect instanceof Sector)){
                 return "redirect:/account/third-page";
             }
+            fileReader.close();
+            
+            fileReader = new FileReader(FILE);
             Map<String, OwnersParticular> map = gson.fromJson(fileReader, 
                 new TypeToken<Map<String, OwnersParticular>>(){}.getType()
             );
-            particular = map.get("emulment");
+            particular = map.get("particular");
             if(!(particular instanceof OwnersParticular)){
                 particular = new OwnersParticular();
             }
@@ -270,14 +268,17 @@ public class FormController {
             Map<String, OwnersParticular> mapcheck = gson.fromJson(fileReader, 
                 new TypeToken<Map<String, OwnersParticular>>(){}.getType()
             );
-            OwnersParticular particular = mapcheck.get("company");
+            OwnersParticular particular = mapcheck.get("particular");
             if(!(particular instanceof OwnersParticular)){
                 return "redirect:/account/third-page";
             }
+            fileReader.close();
+            
+            fileReader = new FileReader(FILE);
             Map<String, Employee> map = gson.fromJson(fileReader, 
                 new TypeToken<Map<String, Employee>>(){}.getType()
             );
-            employee = map.get("emulment");
+            employee = map.get("employee");
             if(!(employee instanceof Employee)){
                 employee = new Employee();
             }
@@ -313,10 +314,20 @@ public class FormController {
     @GetMapping("/preview")
     public String showPreviewForm(HttpServletRequest request,
     Model model,
-    ServletContext servletContext,
     HttpServletResponse response) {
-        for (Cookie cookie : request.getCookies()) {
-            model.addAttribute(cookie.getName(), cookie.getValue());
+        try {
+            // 1. JSON to Java object, read it from a file.
+            fileReader = new FileReader(FILE);
+            mapper = gson.fromJson(fileReader,
+                new TypeToken<Map<String, Object>>(){}.getType()
+            );
+           model.addAttribute("company", mapper.get("company"));
+           model.addAttribute("emulment", mapper.get("emulment"));
+           model.addAttribute("sector", mapper.get("sector"));
+           model.addAttribute("particular", mapper.get("particular"));
+           model.addAttribute("employee", mapper.get("employee"));
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "preview";
     }
@@ -325,42 +336,17 @@ public class FormController {
     String saveRequest(Principal principal, 
     @ModelAttribute Employee request, 
     Model model) {
-        // Set UserId to Request Field USER_ID
-        //Users user = usersRepository.findOneByInitialName(principal.getName());
-        Request requestObj = new Request();
-        
-        // Set Additional Request Fields
-        /*
-        requestObj.company().setCompany(company);
-        requestObj.company().setIncNumber(incNumber);
-        requestObj.company().setTinNum(tinNum);
-        requestObj.company().setEmail(email);
-        requestObj.company().setPhoneNumber(phoneNumber);
-        requestObj.company().setHouseNo(houseNo);
-        requestObj.company().setAddress(address);
-        requestObj.emulment().setStaffEmulment(Integer.MAX_VALUE);
-        requestObj.sector().setType(type);
-        requestObj.sector().setSector(sector);
-        requestObj.sector().setOtherSector(otherSector);
-        requestObj.particular().setFirstName(firstName);
-        requestObj.particular().setLastName(lastName);
-        requestObj.particular().setPosition(position);
-        requestObj.particular().setModeOfId(modeOfId);*/
-        // Save Request Object
-        //requestRepository.save(requestObj);
-        
-        Object obj = null;
         try {
-            FileInputStream fileIn = null;
-            fileIn = new FileInputStream("C:\\Temp\\page5.txt");
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            obj = in.readObject();
-            in.close();
-            fileIn.close();
+            // Set UserId to Request Field USER_ID
+            //Users user = usersRepository.findOneByInitialName(principal.getName());
+            // 1. JSON to Java object, read it from a file.
+            fileReader = new FileReader(FILE);
+            Map<String, Company> company = gson.fromJson(fileReader,
+                    new TypeToken<Map<String, Company>>(){}.getType()
+            );
+            //this.employeeService.save(company.get("company"));
         } catch (FileNotFoundException ex) {
-            obj = new Employee();
-        } catch (IOException | ClassNotFoundException ex) {
-            obj = new Employee();
+            Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "requests";
     }

@@ -9,8 +9,9 @@ import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+//import javax.persistence.*;
+//import javax.persistence.Id;
+//import javax.persistence.Table;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -21,9 +22,11 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author SAP Training
  */
 //@Entity
+//@Table(name="USER")  
 public class Company implements Externalizable {
 
-    @Id
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
     private String company;
