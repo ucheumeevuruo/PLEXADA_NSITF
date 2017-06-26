@@ -43,12 +43,13 @@
                     *
                </span>
               </label>
-              <select class="form-control" id="Year" name="Year" placeholder="YYYY" type="number">
+              <select class="form-control" id="Year" name="Year" type="number">
                   <option>2001</option>
               </select>
              </div>
 
-             <div class="form-group " id="Email">
+             <div class="row">
+             <div class="form-group col-xs-6" id="Email">
               <label class="control-label requiredField" for="email">
                Email
                <span class="asteriskField">
@@ -59,19 +60,20 @@
                  <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" id="email" class="error" for="email">Company Error.</label>
              </div>
 
-             <div class="form-group " id="MobileN">
+             <div class="form-group col-xs-6" id="MobileN">
               <label class="control-label requiredField" for="phone_number">
                Mobile Number
                <span class="asteriskField">
                     *
                </span>
               </label>
-              <input type="number" th:field="*{phoneNumber}" class="form-control" id="phone_number" />
+              <input type="tel" th:field="*{phoneNumber}" class="form-control" id="phone_number" />
                  <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" id="phone_number" class="error" for="phone_number">Company Error.</label>
               </div>
+              </div>
 
-
-             <div class="form-group " id="State">
+             <div class="row">
+             <div class="form-group col-xs-6" id="State">
               <label class="control-label requiredField" for="State">
                State
                <span class="asteriskField">
@@ -87,7 +89,7 @@
                </select>
              </div>
 
-             <div class="form-group " id="LGA">
+             <div class="form-group col-xs-6" id="LGA">
               <label class="control-label requiredField" for="LocalGovernment">
                Local Government
                <span class="asteriskField">
@@ -102,7 +104,9 @@
                </option>
                </select>
              </div>
+            </div>
 
+                 
              <div class="form-group " >
              <p id="Address"> Address 
                <span class="asteriskField">
@@ -129,20 +133,9 @@
               <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" id="street_name" class="error" for="street_name">Company Error.</label>
              </div>
 
-                <div class="btn-group" role="group">
-				  <button type="button" data-toggle="dropdown" value="1" class="btn btn-default btn-sm dropdown-toggle">
-					Option 1 <span class="caret"></span>
-				  </button>
-				  <ul class="dropdown-menu">
-					<li><a href="#" data-value="1">Option 1</a></li>
-					<li><a href="#" data-value="2">Option 2</a></li>
-					<li><a href="#" data-value="3">Option 3</a></li>
-				  </ul>
-				</div> 
-
              <div class="form-group" id="Next">
               <div>
-               <button class="btn btn-primary " name="Next" type="submit">
+               <button class="btn btn-success pull-right" name="Next" type="submit">
                     Next
                </button>
               </div>
@@ -151,22 +144,7 @@
        </div>
      </div>
     
-    <script type="text/javascript">
-$(document).ready(function(){
-    $('.dropdown-menu a').on('click', dropdownToggle);
-    
-    function dropdownToggle() {
-    // select the main dropdown button element
-    var dropdown = $(this).parent().parent().prev();
 
-    // change the CONTENT of the button based on the content of selected option
-    dropdown.html($(this).html() + '&nbsp;</i><span class="caret"></span>');
-
-    // change the VALUE of the button based on the data-value property of selected option
-    dropdown.val($(this).prop('data-value'));
-}
-});
-</script>
 
 </body>
 </html>

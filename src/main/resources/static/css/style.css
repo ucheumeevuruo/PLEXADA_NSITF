@@ -1,0 +1,54 @@
+.nav > li{
+  border-bottom:1px solid #eee;
+}
+
+.nav li.active a, .nav > li.active > a:hover, .nav > li.active > a:focus{
+  background:#eee;
+  color:#238C00;
+  border-right:4px solid #238C00;
+}
+
+.nav li.active{
+  border:none;
+}
+
+body{
+  padding-top:150px;
+}
+
+ul.nav.nav-pills.nav-stacked > li{
+}
+
+nav.navbar.navbar-default.navbar-fixed-top{
+  background:rgba(35, 140, 0, 0.8);
+}
+
+nav.navbar.navbar-default.navbar-fixed-top{
+  height:80px;
+}
+
+a.navbar-brand.navbar-link{
+  border-bottom-style:solid;
+}
+
+.nav > li > a{
+  color:#aaa;
+}
+
+.nav > li > a:hover{
+  background:inherit;
+}
+
+.nav > li{
+  border-right:4px solid #EEE;
+}
+
+.nav > li + li{
+  border-radius:0px;
+  margin:0px;
+}
+
+.sidebar {
+    margin-right: 50px
+}
+

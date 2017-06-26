@@ -9,7 +9,8 @@
     <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
     <div class="col-lg-7 col-md-7 col-sm-12">
         <form method="post" th:action="@{/account/fifth-page}" th:object="${staffInfo}" id="firstpage">
-         <div class="form-group" id="FName">
+         <div class="row">
+         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" id="FName">
           <label class="control-label requiredField" for="name">
            First Name
            <span class="asteriskField">
@@ -19,7 +20,7 @@
           <input type="text" th:field="*{firstName}" id="first-name" class="form-control" />
           <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" id="firstName-error" class="error" for="firstName"></label>
          </div>
-         <div class="form-group" id="OtherN">
+         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" id="OtherN">
           <label class="control-label requiredField" for="name1">
            Other Names
            <span class="asteriskField">
@@ -29,7 +30,10 @@
           <input type="text" th:field="*{otherName}" id="other-name" class="form-control" />
           <label th:if="${#fields.hasErrors('otherName')}" th:errors="*{otherName}" id="otherName-error" class="error" for="otherName"></label>
          </div>
-         <div class="form-group" id="PSTN">
+         </div>
+             
+         <div class="row">
+         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" id="PSTN">
           <label class="control-label requiredField" for="Position">
            Position
            <span class="asteriskField">
@@ -39,7 +43,7 @@
           <input type="text" th:field="*{position}" id="position" class="form-control" />
           <label th:if="${#fields.hasErrors('position')}" th:errors="*{position}" id="position-error" class="error" for="position"></label>
          </div>
-         <div class="form-group" id="SID">
+         <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6" id="SID">
           <label class="control-label requiredField" for="StaffID">
            Staff ID
            <span class="asteriskField">
@@ -48,6 +52,7 @@
           </label>
           <input type="text" th:field="*{staffID}" id="StaffID" class="form-control" />
           <label th:if="${#fields.hasErrors('staffID')}" th:errors="*{staffID}" id="staffID-error" class="error" for="staffID"></label>
+         </div>
          </div>
          <div class="form-group">
           <!-- <label class="control-label requiredField">
@@ -98,7 +103,7 @@
            <div class="checkbox" id="TandC">
                 <label class="checkbox">
                     <input th:field="*{agreement}" type="checkbox" value="I agree" />
-                    I agree to NSITF Terms and Conditions and certify that the above particulars are correct
+                    I agree to NSITF <a href="#" class="asteriskField">Terms and Conditions</a> and certify that the above particulars are correct
                 </label>
            </div>
           </div>
@@ -106,12 +111,12 @@
         <div class="form-group">
             <div>
 
-                <span id="Buttons"> 
-                      <button class="btn btn-primary " name="Back" type="submit">
+                <span id="Buttons" class="pull-right"> 
+                      <button class="btn btn-success " name="Back" type="submit">
                           Back
                       </button>
 
-                      <button class="btn btn-primary " name="Next" type="submit">
+                      <button class="btn btn-success " name="Next" type="submit">
                            Next
                       </button> 
                 </span>

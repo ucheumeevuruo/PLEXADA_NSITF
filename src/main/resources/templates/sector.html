@@ -7,7 +7,7 @@
 <div class="container">		
     <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
     <div class="col-md-6 col-sm-6 col-xs-12">
-        <form method="post" th:action="@{/account/third-page}" th:object="${businessClass}">
+        <form method="post" th:action="@{/account/third-page}" th:object="${businessClass}" id="thirdpage">
         <div class="form-group">
             <label class="control-label requiredField">
                 Class of Business
@@ -16,39 +16,39 @@
                 </span>
             </label>
             <div class="">
-               <div class="checkbox">
+               <div class="checkbox" id="checkbox">
                    <label class="checkbox">
+                       <input type="radio" th:field="*{type}" id="type" value="Enterprise venture"/>
                       Enterprise venture
                    </label>
-                   <input type="radio" th:field="*{type}" id="type" class="form-control" value="Enterprise venture"/>
                </div>
                <div class="checkbox">
                    <label class="checkbox">
+                       <input type="radio" th:field="*{type}" id="type" value="Partnership"/>
                        Partnership
                    </label>
-                   <input type="radio" th:field="*{type}" id="type" class="form-control" value="Partnership"/>
                </div>
                <div class="checkbox">
                    <label class="checkbox">
-                        <input type="radio" th:field="*{type}" id="type" class="form-control" value="MDA"/>
+                        <input type="radio" th:field="*{type}" id="type" value="MDA"/>
                         MDA
                    </label>
                </div>
                <div class="checkbox">
                    <label class="checkbox">
-                       <input type="radio" th:field="*{type}" id="type" class="form-control" value="Public Sector" />
+                       <input type="radio" th:field="*{type}" id="type" value="Public Sector" />
                        Public Sector
                    </label>
                </div>
                <div class="checkbox">
                    <label class="checkbox">
-                       <input type="radio" th:field="*{type}" id="type" class="form-control" value="PLC" />
+                       <input type="radio" th:field="*{type}" id="type" value="PLC" />
                        PLC
                    </label>
                </div>
                <div class="checkbox">
                    <label class="checkbox">
-                       <input type="radio" th:field="*{type}" id="type" class="form-control" value="LTD" />
+                       <input type="radio" th:field="*{type}" id="type" value="LTD" />
                        LTD
                    </label>
                </div>
@@ -79,9 +79,9 @@
           Separate with comma. e.g, item1, item2
          </span>
         </div>
-        <div class="form-group">
+        <div class="form-group pull-right">
          <div id="Next">
-          <button class="btn btn-primary " name="Next" type="submit">
+          <button class="btn btn-success " name="Next" type="submit">
                Next
           </button>
          </div>

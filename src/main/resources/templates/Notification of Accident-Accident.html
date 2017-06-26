@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>page</title>
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+	<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
+	<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;}.bootstrap-iso .form-control:focus { border-color: #4fa333;  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6);} .asteriskField{color: red;}
+			.comp-title {
+					    width: 100%;
+						padding: 10px 20px;
+						background: #f5f5f5;
+						margin-left: -10px;
+						border-bottom: #DDD 3px solid;
+						margin-bottom: 0;
+						font-weight: bold;
+						color: #444;
+						}
+			.dependant {border-bottom: #cccccc 1px solid;
+						border-top: #cccccc 1px solid;
+						padding: 10px 20px;
+						line-height: 1.6;
+						font-weight: bold;
+			}
+	</style>
+
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+			<h3 class="text-center"> NOTIFICATION OF ACCIDENT/ OCCUPATIONAL DISEASE/ DEATH </h3>
+                <div class="navbar-header">
+                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+                </div>
+                <div class="collapse navbar-collapse" id="navcol-1"></div>
+            </div>
+        </nav>
+    </div>
+    <div class="container">
+        <div class="col-lg-4 col-md-4 col-md-offset-0">
+            <ul class="nav nav-pills nav-stacked">
+                <li><a href="#">Employee Details &nbsp; &nbsp; &nbsp; </a></li>
+                <li class="active"><a href="#">Accident </a></li>
+                <li><a href="#">Attestation </a></li>
+            </ul>
+        </div>
+		
+		<div class="bootstrap-iso">
+		 <div class="container-fluid">
+		  <div class="row">
+		   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+			   <div class="pull-right">
+			   <button class="btn btn-link" name="submit" type="submit">
+				Home
+			   </button>
+			   <button class="btn btn-link" name="submit" type="submit">
+				Logout
+			   </button> </div> <br /> <br />
+		   <p class="comp-title"> ACCIDENTS </P>
+			<br />
+			
+			<form method="post" action="" id="AccidentNotification2">
+			 <div class="form-group ">
+			 <span class="asteriskField">
+				*
+			   </span>
+			  <label class="control-label requiredField" for="DOA">
+			   Date of Accident
+			  </label>
+			  <input class="form-control" id="DOA" name="DOA" type="date"/>
+			 </div>
+			 
+			 <div class="row">
+			 <div class="form-group col-md-6">
+			  <label class="control-label requiredField" for="TOA">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Time of Accidents (hh:mm:(AM/PM))
+			  </label>
+			  <input class="form-control " id="TOA" name="TOA" type="time"/>
+			 </div>
+			 </div>
+			 
+			 <div class="form-group ">
+			  <label class="control-label requiredField" for="POA">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Place of Accident
+			  </label>
+			  <input class="form-control" id="POA" name="POA" type="text"/>
+			 </div>
+			 
+			 <div class="row">
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="State">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   State
+			  </label>
+			  <select class="select form-control" id="State" name="State">
+			   <option value="First Choice">
+				First Choice
+			   </option>
+			  </select>
+			 </div>
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="LGA">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Local Government
+			  </label>
+			  <select class="select form-control" id="LGA" name="LGA">
+			   <option value="First Choice">
+				First Choice
+			   </option>
+			  </select>
+			 </div>
+			 </div>
+			 
+			 <div class="form-group ">
+			  <label class="control-label requiredField" for="Reportdate">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Date Employee reported accident
+			  </label>
+			  <input class="form-control" id="Reportdate" name="Reportdate" type="date"/>
+			 </div>
+			 
+			 <div class="row">
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="Reporttime">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Time of Report
+			  </label>
+			  <input class="form-control" id="Reporttime" name="Reporttime" type="time"/>
+			 </div>
+			 </div>
+			 
+			 <div class="form-group ">
+			  <label class="control-label requiredField" for="message">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   What task was the employee performing at the time of accident? (Please provide a description)
+			  </label>
+			  <textarea class="form-control" cols="40" id="message" name="message" rows="7"></textarea>
+			 </div>
+			 <div class="form-group ">
+			  <label class="control-label requiredField" for="message1">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   State the nature of injury sustained
+			  </label>
+			  <textarea class="form-control" cols="40" id="message1" name="message1" rows="7"></textarea>
+			 </div>
+			 
+			 <div class="form-group" id="div_radio">
+			  <label class="control-label requiredField" for="radio">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Was the accident in the course of his/her work?
+			  </label>
+			  <div class="">
+			   <label class="radio-inline">
+				<input name="radio" type="radio" value="Yes"/>
+				Yes
+			   </label>
+			   <label class="radio-inline">
+				<input name="radio" type="radio" value="No"/>
+				No
+			   </label>
+			  </div>
+			 </div>
+			 
+			 <div class="form-group" id="div_radio1">
+			  <label class="control-label requiredField" for="radio1">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Was first aid given in this case?
+			  </label>
+			  <div class="">
+			   <label class="radio-inline">
+				<input name="radio1" type="radio" value="Yes"/>
+				Yes
+			   </label>
+			   <label class="radio-inline">
+				<input name="radio1" type="radio" value="No"/>
+				No
+			   </label>
+			  </div>
+			 </div> <br />
+			 
+			 <span> Medical Praactitioner who treated Employee </span>
+			 <br /> <br /> 
+			 <div class="row">
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			 
+			  <label class="control-label requiredField" for="fname">
+			   <span class="asteriskField">
+				*
+			   </span>
+			   First Name
+			  </label>
+			  <input class="form-control" id="fname" name="fname" type="text"/>
+			 </div>
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="Lname">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Last Name
+			  </label>
+			  <input class="form-control" id="Lname" name="Lname" type="text"/>
+			 </div>
+			 </div>
+			 
+			 <div class="form-group ">
+			  <label class="control-label requiredField" for="Practicenum">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Practice Number
+			  </label>
+			  <input class="form-control" id="Practicenum" name="Practicenum" type="text"/>
+			 </div>
+			 
+			 <div class="row">
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="workmnth">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Number of days per month worked by Employee
+			  </label>
+			  <input class="form-control" id="workmnth" name="workmnth" type="number" min="0" max="31"/>
+			 </div>
+			 </div>
+			 
+			 <div class="form-group ">
+			  <label class="control-label requiredField" for="ceasedate">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Date on which employee ceased work due to accident
+			  </label>
+			  <input class="form-control" id="ceasedate" name="ceasedate" type="date"/>
+			 </div>
+			 
+			 <div class="form-group" id="div_radio2">
+			  <label class="control-label requiredField" for="radio2">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Did the employee complete his/her shift on the day that he/she ceased work?
+			  </label>
+			  <div class="">
+			   <label class="radio-inline">
+				<input name="radio2" type="radio" value="Yes"/>
+				Yes
+			   </label>
+			   <label class="radio-inline">
+				<input name="radio2" type="radio" value="No"/>
+				No
+			   </label>
+			  </div>
+			  
+			 </div>
+			 <div class="form-group ">
+			  <label class="control-label requiredField" for="resumedate">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Date on which the employee resumed work?
+			  </label>
+			  <input class="form-control" id="resumedate" name="resumedate" type="date"/>
+			 </div>
+			 
+			 If the Employee will be off duty for an extended period, an interim Medical Report must be submitted regularly
+			 
+			  <br /> <br />
+			 <div class="form-group" id="div_radio3">
+			  <label class="control-label requiredField" for="radio3">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Did the Employee die in the accident?
+			  </label>
+			  <div class="">
+			   <label class="radio-inline">
+				<input name="radio3" type="radio" value="Yes"/>
+				Yes
+			   </label>
+			   <label class="radio-inline">
+				<input name="radio3" type="radio" value="No"/>
+				No
+			   </label>
+			  </div>
+			 </div><br />
+			 
+			 <p class="comp-title"> REGISTERED DEPENDANT IF ANY </P>
+			 <br />
+			 
+			 <div class="row">
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="NKfname">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Next of Kin First Name
+			  </label>
+			  <input class="form-control" id="NKfname" name="NKfname" type="text"/>
+			 </div>
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="NKLname">
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Next of Kin Last Name
+			  </label>
+			  <input class="form-control" id="NKLname" name="NKLname" type="text"/>
+			 </div>
+			 </div>
+			 
+			 <span class="asteriskField"> <i> Specify at least one dependant </i> </span>
+			 <br /> <br /> 
+			 
+			 <p class="dependant"> 
+			   <span class="asteriskField">
+				*
+			   </span> DEPENDANT 1 </p>
+			 <br />
+			 
+			 <div class="form-group ">
+			  <label class="control-label requiredField" for="DFname">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   First Name
+			  </label>
+			  <input class="form-control" id="DFname" name="DFname" type="text"/>
+			 </div>
+			 
+			 <div class="row">
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label " for="DMname">
+			   Middle Name
+			  </label>
+			  <input class="form-control" id="DMname" name="DMname" type="text"/>
+			 </div>
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="DLname">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Last Name
+			  </label>
+			  <input class="form-control" id="DLname" name="DLname" type="text"/>
+			 </div>
+			 </div>
+			 
+			 <div class="form-group ">
+			  <label class="control-label requiredField" for="DOB">
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Date of Birth
+			  </label>
+			  <input class="form-control " id="DOB" name="DOB" type="date"/>
+			 </div>
+			 <div class="form-group">
+			 
+			  <br />
+			  <p class="dependant"> DEPENDANT 2 </p>
+			  <br />
+			 
+			 <div class="form-group ">
+			  <label class="control-label " for="DFname2">
+			   First Name
+			  </label>
+			  <input class="form-control" id="DFname2" name="DFname2" type="text"/>
+			 </div>
+			  <div class="row">
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label " for="DMname2">
+			   Middle Name
+			  </label>
+			  <input class="form-control" id="DMname2" name="DMname2" type="text"/>
+			 </div>
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="DLname2">
+			  
+			   <span class="asteriskField">
+				*
+			   </span>
+			   Last Name
+			  </label>
+			  <input class="form-control" id="DLname2" name="DLname2" type="text"/>
+			 </div>
+			 </div>
+			 <div class="form-group ">
+			  <label class="control-label " for="DOB2">
+			   Date of Birth
+			  </label>
+			  <input class="form-control" id="DOB2" name="DOB2" type="date"/>
+			 </div>
+			 <div class="form-group">
+			 
+			  <br />
+			  <p class="dependant"> DEPENDANT 3 </p>
+			  <br />
+			 
+			 <div class="form-group ">
+			  <label class="control-label " for="DFname3">
+			   First Name
+			  </label>
+			  <input class="form-control" id="DFname3" name="DFname3" type="text"/>
+			 </div>
+			 <div class="row">
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label " for="DMname3">
+			   Middle Name
+			  </label>
+			  <input class="form-control" id="DMname3" name="DMname3" type="text"/>
+			 </div>
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="DLname3">
+			   Last Name
+			  </label>
+			  <input class="form-control" id="DLname3" name="DLname3" type="text"/>
+			 </div>
+			 </div>
+			 
+			 <div class="form-group ">
+			  <label class="control-label " for="DOB3">
+			   Date of Birth
+			  </label>
+			  <input class="form-control" id="DOB3" name="DOB3" type="date"/>
+			 </div>
+			 <div class="form-group">	
+			 
+			  <br />
+			  <p class="dependant">DEPENDANT 4</p>
+			  <br />
+			 
+			 <div class="form-group ">
+			  <label class="control-label " for="DFname4">
+			   First Name
+			  </label>
+			  <input class="form-control" id="DFname4" name="DFname4" type="text"/>
+			 </div>
+			  <div class="row">
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label " for="DMname4">
+			   Middle Name
+			  </label>
+			  <input class="form-control" id="DMname4" name="DMname4" type="text"/>
+			 </div>
+			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			  <label class="control-label requiredField" for="DLname4">
+			   Last Name
+			  </label>
+			  <input class="form-control" id="DLname4" name="DLname4" type="text"/>
+			 </div>
+			 </div>
+			 <div class="form-group ">
+			  <label class="control-label " for="DOB4">
+			   Date of Birth
+			  </label>
+			  <input class="form-control" id="DOB4" name="DOB4" type="date"/>
+			 </div>
+			 <div class="form-group">
+			 
+			  <div class="pull-right">
+			   <button class="btn btn-success " name="submit" type="submit">
+				Next
+			   </button>
+			  </div>
+			 </div>
+			</form>
+		   </div>
+		  </div>
+		 </div>
+		</div>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
+</body>
+
+</html>
