@@ -1,4 +1,4 @@
-<!--
+
 $(document).ready(function(){
     $("select").change(function(){
         $(this).find("option:selected").each(function(){
@@ -12,4 +12,3 @@ $(document).ready(function(){
         });
     }).change();
 }); 
--->

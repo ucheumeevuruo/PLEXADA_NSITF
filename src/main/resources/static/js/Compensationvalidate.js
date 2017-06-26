@@ -2,7 +2,7 @@ $(document).ready (
 	function () {
 	$("#employerDetails1").validate({
                     rules: {
-						select: "required"
+						select: "required",
 						Compensation: "required",
 						fname: "required",
 						lname: "required",
@@ -18,20 +18,11 @@ $(document).ready (
 						dob: {
 							required: true
 							}
-						dfname2: 
-						dmname2:
-						dlname2:
-						dfname3:
-						dmname3:
-						dlname3:
-						dfname4:
-						dmname4:
-						dlname4:
 					},
 					
 					messages: {
-						select: 
-						Compensation: 
+						select: "",
+						Compensation: "",
 						fname: "Please enter your First Name",
 						lname: "Please enter your Last Name",
 						EmpID: "Enter a valid Employee ID",
@@ -40,43 +31,35 @@ $(document).ready (
 						spouseno: "Please select number of spouse",
 						chno: "Please select number of children",
 						chage: "Please select age range of children",
-						Address: "This value is required"
+						Address: "This value is required",
 						dfname: "Please enter Dependant's First Name",
 						dlname: "Please enter Dependant's Last Name",
-						dob: "Please select date",
-						dfname2: 
-						dmname2:
-						dlname2:
-						dfname3:
-						dmname3:
-						dlname3:
-						dfname4:
-						dmname4:
-						dlname4:
+						dob: "Please select date"
 					},
 					
 					submitHandler: function(form) {
 						form.submit();
-					},
+					}
+                    });
 					
 	$("#healthStatus2").validate({
                     rules: {
 						div_radio: {
 							required: true
 							},
-						dateofinjury: "required"
-						dateoftreat: "required"
-						Hospital: "required"
-						HouseNumber: "required"
-						StreetNumber: "required"
+						dateofinjury: "required",
+						dateoftreat: "required",
+						Hospital: "required",
+						HouseNumber: "required",
+						StreetNumber: "required",
 						State: {
 							required: true
-							}
+							},
 						LGA: {
 							required: true
-							}
-						SPname: "required"
-						SPname1: "required"
+							},
+						SPname: "required",
+						SPname1: "required",
 						PracticeNum: "required"
 					},
 						
@@ -96,11 +79,12 @@ $(document).ready (
 					 
 					submitHandler: function(form) {
 						form.submit();
-					},
+					}
+                    });
 					
 	$("#attachments4").validate({
                     rules: {
-						div_radio: "required"
+						div_radio: "required",
 						fileToUpload1: {
 							required: true,
 							accept: "png|jpe?g|gif",
@@ -121,7 +105,10 @@ $(document).ready (
 						
 					submitHandler: function(form) {
 						form.submit();
-					},
+					}
+                    });
+                     }
+);
 
 					
 						

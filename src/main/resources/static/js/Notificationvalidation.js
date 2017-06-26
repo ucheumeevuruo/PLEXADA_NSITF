@@ -72,7 +72,8 @@ $(document).ready (
 						DLname: "required",
 						DOB: {
 							required: true
-							},
+							}
+                                      },
 							
 					messages: {
 						DOA: "Please select date",
@@ -82,8 +83,8 @@ $(document).ready (
 						LGA: "Please select a Local government area by States",
 						Reportdate: "Please select a date",
 						Reporttime: "Please select time",
-						message1: 
-						message: 
+						message1: "",
+						message: "",
 						div_radio: "Please make a choice",
 						div_radio1: "Please make a choice",
 						fname: "Please enter Practitioner's First Name",
@@ -125,7 +126,7 @@ $(document).ready (
 					messages: {
 						Signature: "File must be JPG, GIF or PNG, less than 1MB",
 						Stamp: "File must be JPG, GIF or PNG, less than 1MB",
-						name: "Please enter Full Name"
+						name: "Please enter Full Name",
 						div_checkbox: "Please agree with the terms and conditions"
 					},
 					

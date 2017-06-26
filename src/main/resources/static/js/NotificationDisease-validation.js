@@ -37,7 +37,7 @@ $(document).ready (
 						LGA: {
 							required: true
 							},
-						COD: "required"
+						COD: "required",
 						Disdate: "required",
 						Diagdate: "required",
 						Length: "required",
@@ -58,20 +58,21 @@ $(document).ready (
 						DLname: "required",
 						DOB: {
 							required: true
-							},
+							}
+                            },
 							
 					messages: {
 						WorkNature: "Please specify nature of work",
 						DiseaseNature: "Please specify nature of disease",
 						State: "Please select a state",
 						LGA: "Please select a Local government area by States",
-						COD: "Please specify Suspected Cause of Disease"
+						COD: "Please specify Suspected Cause of Disease",
 						Disdate: "Please select a date",
 						Diagdate: "Please select a date",
-						Length: 
+						Length: "",
 						Ceasedate: "Please select a date",
 						Resumedate: "Please select a date",
-						Numday: 
+						Numday: "",
 						fname: "Please enter Practitioner's First Name",
 						Lname: "Please enter Practitioner's Last Name",
 						Practicenum: "This value is required",
@@ -108,7 +109,7 @@ $(document).ready (
 					messages: {
 						Signature: "File must be JPG, GIF or PNG, less than 1MB",
 						Stamp: "File must be JPG, GIF or PNG, less than 1MB",
-						name: "Please enter Full Name"
+						name: "Please enter Full Name",
 						div_checkbox: "Please agree with the terms and conditions"
 					},
 					
