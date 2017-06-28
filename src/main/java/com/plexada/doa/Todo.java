@@ -14,7 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import java.time.ZonedDateTime;
-import org.hibernate.annotations.Type;
+//import org.hibernate.annotations.Type;
  
 @Entity
 @Table(name = "todos")
@@ -25,14 +25,14 @@ public class Todo implements Serializable {
     private Long id;
  
     @Column(name = "creation_time", nullable = false)
-    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
+    //@Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
     private ZonedDateTime creationTime;
  
     @Column(name = "description", length = 500)
     private String description;
  
     @Column(name = "modification_time")
-    @Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
+    //@Type(type = "org.jadira.usertype.dateandtime.threeten.PersistentZonedDateTime")
     private ZonedDateTime modificationTime;
  
     @Column(name = "title", nullable = false, length = 100)
