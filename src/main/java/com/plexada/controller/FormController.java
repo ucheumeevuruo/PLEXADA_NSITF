@@ -40,7 +40,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import org.springframework.web.bind.annotation.PathVariable;
+import com.plexada.build.NavLinks;
 
 /**
  *
@@ -62,6 +62,9 @@ public class FormController {
     
     private final JsonObjectRepository repo = new JsonObjectRepository();
     
+    private final NavLinks links = new NavLinks();
+    private final String header = "REGISTRATION OF EMPLOYERS";
+    
     @GetMapping("")
     public String index(HttpServletResponse response, 
     Model model) {
@@ -79,6 +82,8 @@ public class FormController {
         } catch (IOException | NullPointerException ex) {
             company = new Company();
         }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links.registrationSidebarLinks());
         model.addAttribute("states", state.findAll());
         model.addAttribute("locals", local.findByObjectId(0));
         model.addAttribute("employee", company);
@@ -91,6 +96,8 @@ public class FormController {
     @ModelAttribute @Valid Company company, 
     BindingResult bindingResult) throws IOException, FileNotFoundException{
         if(bindingResult.hasErrors()){
+            model.addAttribute("header", header);
+            model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("states", state.findAll());
             model.addAttribute("locals", local.findByObjectId(0));
             model.addAttribute("employee", company);
@@ -125,6 +132,8 @@ public class FormController {
         } catch (IOException | NullPointerException ex) {
             emulment = new Emulment();
         }
+        model.addAttribute("header", "REGISTRATION OF EMPLOYERS");
+        model.addAttribute("links", links.registrationSidebarLinks());
         model.addAttribute("emulment", emulment);
         return "emulment";
     }
@@ -135,6 +144,8 @@ public class FormController {
     @ModelAttribute @Valid Emulment emulment, 
     BindingResult bindingResult){
         if(bindingResult.hasErrors()){
+            model.addAttribute("header", header);
+            model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("emulment", emulment);
             return "emulment";
         }
@@ -169,6 +180,8 @@ public class FormController {
         } catch (IOException | NullPointerException ex) {
             sect = new Sector();
         }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links.registrationSidebarLinks());
         model.addAttribute("businessClass", sect);
         return "sector";
     }
@@ -179,6 +192,8 @@ public class FormController {
     @ModelAttribute @Valid Sector sect, 
     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
+            model.addAttribute("header", header);
+            model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("businessClass", sect);
             return "sector";
         }
@@ -215,6 +230,8 @@ public class FormController {
         } catch (IOException | NullPointerException ex) {
             particular = new OwnersParticular();
         }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links.registrationSidebarLinks());
         model.addAttribute("particular", particular);
         return "owners-particular";
     }
@@ -225,6 +242,8 @@ public class FormController {
     @ModelAttribute OwnersParticular particular,
     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
+            model.addAttribute("header", header);
+            model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("particular", particular);
             return "owners-particular";
         }
@@ -264,6 +283,8 @@ public class FormController {
         } catch (IOException | NullPointerException ex) {
             employee = new Employee();
         }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links.registrationSidebarLinks());
         model.addAttribute("staffInfo", employee);
         return "employee-info";
     }
@@ -274,8 +295,10 @@ public class FormController {
     @ModelAttribute Employee staffInfo,
     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
-           model.addAttribute("staffInfo", staffInfo);
-           return "employee-info";
+            model.addAttribute("header", header);
+            model.addAttribute("links", links.registrationSidebarLinks());
+            model.addAttribute("staffInfo", staffInfo);
+            return "employee-info";
         }
         //2. Convert object to JSON string and save into a file directly
         try {
@@ -306,6 +329,8 @@ public class FormController {
             Company company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             States states = state.findByObjectId(Integer.parseInt(company.getState()));
             company.setState(states.getName());
+            model.addAttribute("header", header);
+            model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("company", company);
             model.addAttribute("emulment", repo.findByObjectId("emulment"));
             model.addAttribute("sector", repo.findByObjectId("sector"));

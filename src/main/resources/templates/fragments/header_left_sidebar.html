@@ -13,7 +13,7 @@ and open the template in the editor.
         <div th:fragment="navbar">
             <nav class="navbar navbar-default navbar-fixed-top">
                 <div class="container-fluid">
-                            <h3 class="text-center"> REGISTRATION OF EMPLOYERS </h3>
+                    <h3 class="text-center" th:text="${header}">Title</h3>
                     <div class="navbar-header">
                         <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1">
                             <span class="sr-only">Toggle navigation</span>
@@ -27,12 +27,9 @@ and open the template in the editor.
             </nav>
             <div class="col-lg-4 col-md-4 sidebar">
                 <ul class="nav nav-pills nav-stacked affix">
-                    <li><a href="/account/">Particulars for business <br /> (for MDAs, public and private companies) &nbsp; &nbsp; &nbsp; </a></li>
-                    <li><a href="/account/second-page">Total Emolument </a></li>
-                    <li><a href="/account/third-page">Business sector categories </a></li>
-                    <li><a href="/account/fourth-page">Particulars of owner(s) of organization  <br /> (for  partnership &amp; sole proprietorship) &nbsp; &nbsp; &nbsp; </a></li>
-                    <li><a href="/account/fifth-page">Declaration by employer or authorized person &nbsp; &nbsp; &nbsp; </a></li>
-                    <li><a href="/account/preview">Preview Registration </a></li>
+                    <li th:each="link : ${links}">
+                        <a th:href="${link.href}" th:text="${link.value}"></a>
+                    </li>
                 </ul>
             </div>
         </div>
