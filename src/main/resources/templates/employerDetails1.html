@@ -2,394 +2,373 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-	<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;}.bootstrap-iso .form-control:focus { border-color: #4fa333;  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6);} .asteriskField{color: red;}
-			.comp-title {
-					    width: 100%;
-						padding: 10px 20px;
-						background: #f5f5f5;
-						margin-left: -10px;
-						border-bottom: #DDD 3px solid;
-						margin-bottom: 0;
-						font-weight: bold;
-						color: #444;
-						}
-			.dependant {border-bottom: #cccccc 1px solid;
-						border-top: #cccccc 1px solid;
-						padding: 10px 20px;
-						line-height: 1.6;
-						font-weight: bold;
-			}
-			.text-center {color: white}
-			</style>
-
+   <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
 </head>
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-			<h3 class="text-center"> CLAIM FOR COMPENSATION </h3>
-                <div class="navbar-header">
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <small>
+                <i> 
+                    Fields with 
+                    <span class="asteriskField">
+                        *
+                    </span> are compulsory 
+                </i> 
+            </small>
+            <button class="btn btn-link pull-right" name="submit" type="submit">
+                Logout
+            </button>
+            <button class="btn btn-link pull-right" name="submit" type="submit">
+                Home
+            </button>
+            <br />
+            <br />
+            <p class="comp-title"> 
+                EMPLOYEE DETAILS 
+            </P>
+            <br /> 
+            <br />
+            <form method="post" action="/" id="employerDetails1">
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="select">
+                            <span class="asteriskField">
+                                 *
+                            </span>
+                            Notification Code
+                        </label>
+                        <select class="select form-control" id="select" name="select">
+                            <option selected="selected" value="">
+                            </option>
+                            <option value="fffffffffffffffffffffffffffffffff">
+                                fffffffffffffffffffffffffffffffff
+                            </option>
+                        </select>
+                    </div>
                 </div>
-                <div class="collapse navbar-collapse" id="navcol-1"></div>
-            </div>
-        </nav>
-    </div>
-    <div class="container">
-        <div class="col-lg-4 col-md-4 col-md-offset-0">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Employer and Employee details &nbsp; &nbsp; &nbsp; </a></li>
-                <li><a href="#">Health Status and Provider </a></li>
-                <li><a href="#">Details of Treatment Bill </a></li>
-                <li><a href="#">Attachments &nbsp; &nbsp; &nbsp; </a></li>
-                <li><a href="#">Bank Details and Attestation &nbsp; &nbsp; &nbsp; </a></li>
-            </ul>
-        </div>
-		<div class="bootstrap-iso">
-			 <div class="container-fluid">
-			  <div class="row">
-			   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-			   <small> <i> Fields with <span class="asteriskField">*</span> are compulsory </i> </small>
-			   <button class="btn btn-link pull-right" name="submit" type="submit">
-					Logout
-				   </button>
-			   <button class="btn btn-link pull-right" name="submit" type="submit">
-					Home
-				   </button>
-			   <br /><br />
-			   <p class="comp-title"> EMPLOYEE DETAILS </P>
-			   <br /> <br />
-				<form method="post" action="/" id="employerDetails1">
-				<div class="row">
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="select">
-				   <span class="asteriskField">
-					*
-				   </span>
-				   Notification Code
-				  </label>
-				  <select class="select form-control" id="select" name="select">
-				   <option selected="selected" value="">
-				   </option>
-				   <option value="fffffffffffffffffffffffffffffffff">
-					fffffffffffffffffffffffffffffffff
-				   </option>
-				  </select>
-				 </div>
-				 </div>
 				 
-				 <div class="form-group ">
-				  <label class="control-label requiredField">
-				   <span class="asteriskField">
-					*
-				   </span>
-				   Compensation Claim
-				  </label>
-				  <div class="">
-				   <div class="radio" id="Compensation"> 
-					<label class="radio">
-					 <input name="radio" type="radio" value="Accident"/>
-					 Accident
-					</label>
-				   </div>
-				   <div class="radio">
-					<label class="radio">
-					 <input name="radio" type="radio" value="Occupational Disease"/>
-					 Occupational Disease
-					</label>
-				   </div>
-				   <div class="radio">
-					<label class="radio">
-					 <input name="radio" type="radio" value="Death"/>
-					 Death
-					</label>
-				   </div>
-				  </div>
-				 </div>
-				 <div class="form-group ">
-				  <label class="control-label " for="fname">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   First Name
-				  </label>
-				  <input class="form-control" id="fname" name="fname" type="text"/>
-				 </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField">
+                        <span class="asteriskField">
+                             *
+                        </span>
+                        Compensation Claim
+                    </label>
+                    <div class="">
+                        <div class="radio" id="Compensation"> 
+                            <label class="radio">
+                                <input name="radio" type="radio" value="Accident"/>
+                                Accident
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label class="radio">
+                                <input name="radio" type="radio" value="Occupational Disease"/>
+                                Occupational Disease
+                            </label>
+                        </div>
+                        <div class="radio">
+                            <label class="radio">
+                                <input name="radio" type="radio" value="Death"/>
+                                Death
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="fname">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        First Name
+                    </label>
+                    <input class="form-control" id="fname" name="fname" type="text"/>
+                </div>
 				 
-				 <div class="row">
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label " for="mname">
-				   Middle Name
-				  </label>
-				  <input class="form-control" id="mname" name="mname" type="text"/>
-				 </div>
-				
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="mname">
+                            Middle Name
+                        </label>
+                        <input class="form-control" id="mname" name="mname" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="lname">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Last Name
+                        </label>
+                        <input class="form-control" id="lname" name="lname" type="text"/>
+                    </div>
+                </div>
 				 
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="lname">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   Last Name
-				  </label>
-				  <input class="form-control" id="lname" name="lname" type="text"/>
-				 </div>
-				 </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="EmpID">
+                            NSITF Employee ID
+                        </label>
+                        <input class="form-control" id="EmpID" name="EmpID" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="StaffId">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Staff Identification Number
+                        </label>
+                        <input class="form-control" id="StaffId" name="StaffId" type="text"/>
+                    </div>
+                </div>
 				 
-				 <div class="row">
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label " for="EmpID">
-				   NSITF Employee ID
-				  </label>
-				  <input class="form-control" id="EmpID" name="EmpID" type="text"/>
-				 </div>
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="StaffId">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   Staff Identification Number
-				  </label>
-				  <input class="form-control" id="StaffId" name="StaffId" type="text"/>
-				 </div>
-				 </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="mstat">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Marital Status
+                        </label>
+                        <select class="select form-control" id="mstat" name="mstat">
+                            <option value="Single">
+                                Single
+                            </option>
+                            <option value="Married">
+                                Married
+                            </option>
+                            <option value="Divorced">
+                                Divorced
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="spouseno">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Number of Spouses
+                        </label>
+                        <select class="select form-control" id="spouseno" name="spouseno">
+                            <option value="0">
+                                 0
+                            </option>
+                            <option value="1">
+                                 1
+                            </option>
+                            <option value="2">
+                                 2
+                            </option>
+                            <option value="3">
+                                 3
+                            </option>
+                            <option value="4">
+                                 4
+                            </option>
+                            <option value="5">
+                                 5
+                            </option>
+                            <option value="6">
+                                 6
+                            </option>
+                        </select>
+                    </div>
+                </div>
 				 
-				 <div class="row">
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="mstat">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   Marital Status
-				  </label>
-				  <select class="select form-control" id="mstat" name="mstat">
-				   <option value="Single">
-					Single
-				   </option>
-				   <option value="Married">
-					Married
-				   </option>
-				   <option value="Divorced">
-					Divorced
-				   </option>
-				  </select>
-				 </div>
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="spouseno">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   Number of Spouses
-				  </label>
-				  <select class="select form-control" id="spouseno" name="spouseno">
-				   <option value="0">
-					0
-				   </option>
-				   <option value="1">
-					1
-				   </option>
-				   <option value="2">
-					2
-				   </option>
-				   <option value="3">
-					3
-				   </option>
-				   <option value="4">
-					4
-				   </option>
-				   <option value="5">
-					5
-				   </option>
-				   <option value="6">
-					6
-				   </option>
-				  </select>
-				 </div>
-				 </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="chno">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Number of Children
+                        </label>
+                        <select class="select form-control" id="chno" name="chno">
+                            <option value="0">
+                                 0
+                            </option>
+                            <option value="1">
+                                 1
+                            </option>
+                            <option value="2">
+                                 2
+                            </option>
+                            <option value="3">
+                                 3
+                            </option>
+                            <option value="4">
+                                 4
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="chage">
+                            <span class="asteriskField">
+                                  *
+                            </span>
+                            Age of Children (years)
+                        </label>
+                        <select class="select form-control" id="chage" name="chage">
+                            <option value="0 - 12">
+                                 0 - 12
+                            </option>
+                            <option value="12 - 21">
+                                 12 - 21
+                            </option>
+                        </select>
+                    </div>
+                </div>
 				 
-				 <div class="row">
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="chno">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   Number of Children
-				  </label>
-				  <select class="select form-control" id="chno" name="chno">
-				   <option value="0">
-					0
-				   </option>
-				   <option value="1">
-					1
-				   </option>
-				   <option value="2">
-					2
-				   </option>
-				   <option value="3">
-					3
-				   </option>
-				   <option value="4">
-					4
-				   </option>
-				  </select>
-				 </div>
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="chage">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   Age of Children (years)
-				  </label>
-				  <select class="select form-control" id="chage" name="chage">
-				   <option value="0 - 12">
-					0 - 12
-				   </option>
-				   <option value="12 - 21">
-					12 - 21
-				   </option>
-				  </select>
-				 </div>
-				 </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="Address">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Address
+                    </label>
+                    <input class="form-control" id="Address" name="Address" type="text"/>
+                </div>
+                <p class="comp-title"> 
+                    REGISTERED DEPENDANT IF ANY 
+                </P>
+                <br />
+                <small> 
+                    <i> 
+                        Specify at list one Dependant
+                    </i> 
+                </small>
+                <br />
+                <br />
 				 
-				 <div class="form-group ">
-				  <label class="control-label requiredField" for="Address">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   Address
-				  </label>
-				  <input class="form-control" id="Address" name="Address" type="text"/>
-				 </div>
-				 <p class="comp-title"> REGISTERED DEPENDANT IF ANY </P>
-				 <br />
-				 <small> <i> Specify at list one Dependant </i> </small>
-				 <br /><br />
-				 
-				<p class="dependant"> 
-			   <span class="asteriskField">
-				*
-			   </span> DEPENDANT 1 </p>
+                <p class="dependant"> 
+                    <span class="asteriskField">
+                        *
+                    </span> 
+                    DEPENDANT 1 
+                </p>
 			   
-				 <div class="form-group ">
-				  <label class="control-label " for="dfname">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   First Name
-				  </label>
-				  <input class="form-control" id="dfname" name="dfname" type="text"/>
-				 </div>
-				 <div class="row">
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label " for="dmname">
-				   Middle Name
-				  </label>
-				  <input class="form-control" id="dmname" name="dmname" type="text"/>
-				 </div>
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="dlname">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   Last Name
-				  </label>
-				  <input class="form-control" id="dlname" name="dlname" type="text"/>
-				 </div>
-				 </div>
+                <div class="form-group ">
+                    <label class="control-label " for="dfname">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        First Name
+                    </label>
+                    <input class="form-control" id="dfname" name="dfname" type="text"/>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="dmname">
+                            Middle Name
+                        </label>
+                        <input class="form-control" id="dmname" name="dmname" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="dlname">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Last Name
+                        </label>
+                        <input class="form-control" id="dlname" name="dlname" type="text"/>
+                    </div>
+                </div>
 				 
-				 <div class="form-group ">
-				  <label class="control-label requiredField" for="dob">
-				  <span class="asteriskField">
-					*
-				   </span>
-				   Date of birth
-				  </label>
-				  <input class="form-control" id="dob" name="dob" type="date"/>
-				 </div><br />
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="dob">
+                    <span class="asteriskField">
+                        *
+                    </span>
+                    Date of birth
+                    </label>
+                    <input class="form-control" id="dob" name="dob" type="date"/>
+                </div>
+                <br />
 				 
-				 <p class="dependant"> DEPENDANT 2 </p>
-				 <div class="form-group ">
-				  <label class="control-label " for="dfname2">
-				   First Name
-				  </label>
-				  <input class="form-control" id="dfname2" name="dfname2" type="text"/>
-				 </div>
-				 <div class="row">
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label " for="dmname2">
-				   Middle Name
-				  </label>
-				  <input class="form-control" id="dmname2" name="dmname2" type="text"/>
-				 </div>
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="dlname2">
-				   Last Name
-				  </label>
-				  <input class="form-control" id="dlname2" name="dlname2" type="text"/>
-				 </div>
-				 </div>
-				 <div class="form-group ">
-				  <label class="control-label requiredField" for="dob2">
-				   Date of birth
-				  </label>
-				  <input class="form-control" id="dob2" name="dob2" type="date"/>
-				 </div><br />
+                <p class="dependant"> 
+                    DEPENDANT 2
+                </p>
+                <div class="form-group ">
+                    <label class="control-label " for="dfname2">
+                        First Name
+                    </label>
+                    <input class="form-control" id="dfname2" name="dfname2" type="text"/>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="dmname2">
+                            Middle Name
+                        </label>
+                        <input class="form-control" id="dmname2" name="dmname2" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="dlname2">
+                            Last Name
+                        </label>
+                        <input class="form-control" id="dlname2" name="dlname2" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="dob2">
+                        Date of birth
+                    </label>
+                    <input class="form-control" id="dob2" name="dob2" type="date"/>
+                </div>
+                <br />
 				 
-				 <p class="dependant"> DEPENDANT 3 </p>
-				 <div class="form-group ">
-				  <label class="control-label " for="dfname3">
-				   First Name
-				  </label>
-				  <input class="form-control" id="dfname3" name="dfname3" type="text"/>
-				 </div>
-				 <div class="row">
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label " for="dmname3">
-				   Middle Name
-				  </label>
-				  <input class="form-control" id="dmname3" name="dmname3" type="text"/>
-				 </div>
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="dlname3">
-				   Last Name
-				  </label>
-				  <input class="form-control" id="dlname3" name="dlname3" type="text"/>
-				 </div>
-				 </div>
-				 <div class="form-group ">
-				  <label class="control-label requiredField" for="dob3">
-				   Date of birth
-				  </label>
-				  <input class="form-control" id="dob3" name="dob3" type="date"/>
-				 </div><br />
+                <p class="dependant">
+                    DEPENDANT 3 
+                </p>
+                <div class="form-group ">
+                    <label class="control-label " for="dfname3">
+                        First Name
+                    </label>
+                    <input class="form-control" id="dfname3" name="dfname3" type="text"/>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="dmname3">
+                            Middle Name
+                        </label>
+                        <input class="form-control" id="dmname3" name="dmname3" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="dlname3">
+                            Last Name
+                        </label>
+                        <input class="form-control" id="dlname3" name="dlname3" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="dob3">
+                        Date of birth
+                    </label>
+                    <input class="form-control" id="dob3" name="dob3" type="date"/>
+                </div>
+                <br />
 				 
-				 <p class="dependant"> DEPENDANT 4 </p>
-				 <div class="form-group ">
-				  <label class="control-label " for="dfname4">
-				   First Name
-				  </label>
-				  <input class="form-control" id="dfname4" name="dfname4" type="text"/>
-				 </div>
-				 <div class="row">
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label " for="dmname4">
-				   Middle Name
-				  </label>
-				  <input class="form-control" id="dmname4" name="dmname4" type="text"/>
-				 </div>
-				 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				  <label class="control-label requiredField" for="dlname4">
-				   Last Name
-				  </label>
-				  <input class="form-control" id="dlname4" name="dlname4" type="text"/>
-				 </div>
-				 </div>
+                <p class="dependant"> DEPENDANT 4 </p>
+                <div class="form-group ">
+                    <label class="control-label " for="dfname4">
+                        First Name
+                    </label>
+                    <input class="form-control" id="dfname4" name="dfname4" type="text"/>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="dmname4">
+                            Middle Name
+                        </label>
+                        <input class="form-control" id="dmname4" name="dmname4" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="dlname4">
+                            Last Name
+                        </label>
+                        <input class="form-control" id="dlname4" name="dlname4" type="text"/>
+                    </div>
+                </div>
 				 <div class="form-group ">
 				  <label class="control-label requiredField" for="dob4">
 				   Date of birth
