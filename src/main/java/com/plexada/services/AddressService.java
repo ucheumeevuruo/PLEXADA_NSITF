@@ -7,6 +7,8 @@ package com.plexada.services;
 
 import com.plexada.doa.StateMapper;
 import com.plexada.model.impl.Address;
+import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -28,8 +30,10 @@ public class AddressService{
 
     public void insert(Address address){
         String staffId = "1-FG5";
-        SQL = "insert into " + TABLE + "(row_id, CREATED_BY, addr_name, LAST_UPD, LAST_UPD_BY, ADDR, CITY, PROVINCE, STATE, COUNTRY) values (?,?,?,?,?,?,?,?,?)";
-        jdbcTemplateObject.update( SQL, "", staffId, address.getStreetName(), "sysdate", staffId, address.getStreetName(), address.getCity(), address.getProvince(), address.getState(), address.getCountry());
+        Calendar calendar = Calendar.getInstance();
+        Date date = new Date(calendar.getTime().getTime());
+        SQL = "insert into " + TABLE + "(row_id, CREATED_BY, addr_name, LAST_UPD, LAST_UPD_BY, ADDR, CITY, PROVINCE, STATE, COUNTRY) values (?,?,?,?,?,?,?,?,?,?)";
+        jdbcTemplateObject.update( SQL, "1-45PHG", staffId, address.getStreetName(), date, staffId, address.getStreetName(), address.getCity(), address.getProvince(), address.getState(), address.getCountry());
         System.out.println(SQL);
     }
     

@@ -15,14 +15,14 @@ $(document).ready(function(){
             type:"GET",
             success: function(data){
                 var json = $.parseJSON(data);
-                $("#lga option").remove();
-                $("#lga").html('<option value="" selected>Select an option</option>');
+                $("#province option").remove();
+                $("#province").html('<option value="" selected>Select an option</option>');
                 $(json).each(function(index, element) {
-                    $("#lga").append('<option>' + json[index].name + '</option>');
+                    $("#province").append('<option>' + json[index].name + '</option>');
                 });
             },
             error: function(){
-                $("#lga").html('<option value="" selected>Select an option</option>');
+                $("#province").html('<option value="" selected>Select an option</option>');
             }
         });
     });

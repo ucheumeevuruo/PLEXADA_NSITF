@@ -85,14 +85,14 @@
               </select>
              </div>
 
-             <div class="form-group " id="province">
-              <label class="control-label requiredField" for="province">
+             <div class="form-group " id="lga">
+              <label class="control-label requiredField" for="lga">
                Local Government
                <span class="asteriskField">
                     *
                </span>
               </label>
-              <select class="select form-control" id="lga" th:field="*{province}">
+              <select class="select form-control" id="province" th:field="*{province}">
                  <option selected="selected" value="">Select an option</option>
                  <option th:each="local : ${locals}" th:text="${local.name}" th:value="${local.id}">LGA</option>
                </select>
