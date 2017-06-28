@@ -1,0 +1,18 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+        <!--
+	<bean id="customerDAO" class="com.plexada.model.employee.Cookie">
+		<property name="dataSource" ref="dataSource" />
+	</bean>-->
+        <bean id="localDAO" class="com.plexada.services.ProvinceService">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+        <bean id="stateDAO" class="com.plexada.services.StateService">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+        <bean id="addressDAO" class="com.plexada.services.AddressService">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+</beans>

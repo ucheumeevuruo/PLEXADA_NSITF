@@ -55,3 +55,18 @@ a.navbar-brand.navbar-link{
 .text-center {
     color: white
 }
+
+.comp-title {
+    width: 100%;
+    padding: 10px 20px;
+    background: #f5f5f5;
+    margin-left: -10px;
+    border-bottom: #DDD 3px solid;
+    margin-bottom: 0;
+    font-weight: bold;
+    color: #444;
+    }
+    
+.text-center {
+    color: white
+    }

@@ -3,9 +3,8 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.plexada.model.employee;
+package com.plexada.build;
 
-import java.beans.PropertyChangeSupport;
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
@@ -31,6 +30,7 @@ public class Employee implements Externalizable{
     private String stamp;
     @NotEmpty
     private String upload;
+    @NotEmpty
     private String agreement;
     
     /**

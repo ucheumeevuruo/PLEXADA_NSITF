@@ -1,84 +1,45 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-	<link rel="stylesheet" href="assets/css/styles.css">
-	<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;}.bootstrap-iso .form-control:focus { border-color: #4fa333;  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6);} .asteriskField{color: red;}
-			.comp-title {
-					    width: 100%;
-						padding: 10px 20px;
-						background: #f5f5f5;
-						margin-left: -10px;
-						border-bottom: #DDD 3px solid;
-						margin-bottom: 0;
-						font-weight: bold;
-						color: #444;
-						}
-			.text-center {color: white}
-			</style>
+     <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
 </head>
-
 <body>
     <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-			<h3 class="text-center"> ECS </h3>
-                <div class="navbar-header">
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
-                </div>
-                <div class="collapse navbar-collapse" id="navcol-1"></div>
-            </div>
-        </nav>
-    </div>
-    <div class="container">
-        <div class="col-lg-4 col-md-4 col-md-offset-0">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Login into Ecs &nbsp; &nbsp; &nbsp; </a></li>
-            </ul>
-        </div>
-		
-		<div class="bootstrap-iso">
-			<div class="container-fluid">
-			<div class="row">
-			<div class="col-lg-7 col-md-7 col-md-offset-0">
-
-			<p class="comp-title"> ECS LOGIN <small> <i> (Please Enter Your ECS Code here) </i> </small> </P>
-			<br /><br />
-			
-			<form method="post">
-			 <div class="form-group ">
-			  <label class="control-label " for="username">
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+            <div class="col-lg-7 col-md-7 col-md-offset-0">
+                <p class="comp-title">
+                    ECS LOGIN 
+                    <small> 
+                        <i> 
+                            (Please Enter Your ECS Code here) 
+                        </i> 
+                    </small> 
+                </p>
+                <br />
+                <br />
+		<form method="post">
+                    <div class="form-group ">
+                        <label class="control-label " for="username">
 			   Username
-			  </label>
-			  <input class="form-control" id="username" name="username" type="text"/>
-			 </div>
-			 
-			 <br /> 
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="Password">
+                        </label>
+                        <input class="form-control" id="username" name="username" type="text"/>
+                    </div>
+                    <br /> 
+                    <div class="form-group ">
+                        <label class="control-label " for="Password">
 			   Password
-			  </label>
-			  <input class="form-control" id="Password" name="Password" type="text"/>
-			 </div>
-			 
-			 <span class="pull-right"> <a href="#"> <i> Forgot your password? </i> </a> </span> <br /><br />
-			 
-			 <div class="form-group">
-			  <div>
-			   <button class="btn btn-success pull-right" name="submit" type="submit">
-				Login
-			   </button>
-			  </div>
-			 </div>
+                        </label>
+                        <input class="form-control" id="Password" name="Password" type="text"/>
+                    </div>
+                    <span class="pull-right"> <a href="#"> <i> Forgot your password? </i> </a> </span> <br /><br />
+                    <div class="form-group pull-right">
+                        <button class="btn btn-success" name="submit" type="submit">
+                            Login
+                        </button>
+                     </div>
+                </form>
+            </div>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>

@@ -3,15 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.plexada.model.employee;
+package com.plexada.build;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
-//import javax.persistence.*;
-//import javax.persistence.Id;
-//import javax.persistence.Table;
+import com.plexada.model.impl.Address;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -23,24 +17,32 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 //@Entity
 //@Table(name="USER")  
-public class Company implements Externalizable {
+public class Company implements Address{
 
     //@Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     @NotEmpty
     private String company;
-    //@NotNull
+    @NotEmpty
     private String incNumber;
    // @NotNull
     private String tinNum;
+    @NotEmpty
+    private String incYear;
     @NotEmpty @Email 
     private String email;
     private String phoneNumber;
-    //@NotNull
+    @NotEmpty
+    private String state;
+    @NotEmpty
+    private String province;
+    @NotEmpty
     private String houseNo;
-    //@NotNull
-    private String address;
+    @NotEmpty
+    private String streetName;
+    private String city;
+    private String country;
     
     /**
      * @return the company
@@ -80,15 +82,17 @@ public class Company implements Externalizable {
     /**
      * @return the houseNo
      */
+    @Override
     public String getHouseNo() {
         return houseNo;
     }
 
     /**
-     * @return the address
+     * @return the streetName
      */
-    public String getAddress() {
-        return address;
+    @Override
+    public String getStreetName() {
+        return streetName;
     }
 
     /**
@@ -129,42 +133,102 @@ public class Company implements Externalizable {
     /**
      * @param houseNo the houseNo to set
      */
+    @Override
     public void setHouseNo(String houseNo) {
         this.houseNo = houseNo;
     }
 
     /**
-     * @param address the address to set
+     * @param streetName the streetName to set
      */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
     @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(this.company);
-        out.writeObject(this.address);
-        out.writeObject(this.email);
-        out.writeObject(this.houseNo);
-        out.writeObject(this.phoneNumber);
-        out.writeObject(this.tinNum);
+    public void setStreetName(String streetName) {
+        this.streetName = streetName;
     }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.company = (String)in.readObject();
-        this.address = (String)in.readObject();
-        this.email = (String)in.readObject();
-        this.houseNo = (String)in.readObject();
-        this.phoneNumber = (String)in.readObject();
-        this.tinNum = (String)in.readObject();
-    }
-
+    
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    /**
+     * @return the state
+     */
+    @Override
+    public String getState() {
+        return state;
+    }
+
+    /**
+     * @param state the state to set
+     */
+    @Override
+    public void setState(String state) {
+        this.state = state;
+    }
+
+    /**
+     * @return the province
+     */
+    @Override
+    public String getProvince() {
+        return province;
+    }
+
+    /**
+     * @param province the province to set
+     */
+    @Override
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    /**
+     * @return the incYear
+     */
+    public String getIncYear() {
+        return incYear;
+    }
+
+    /**
+     * @param incYear the incYear to set
+     */
+    public void setIncYear(String incYear) {
+        this.incYear = incYear;
+    }
+    
+    /**
+     * @return the city
+     */
+    @Override
+    public String getCity() {
+        return city;
+    }
+
+    /**
+     * @param city the city to set
+     */
+    @Override
+    public void setCity(String city) {
+        this.city = city;
+    }
+
+    /**
+     * @return the country
+     */
+    @Override
+    public String getCountry() {
+        return country;
+    }
+
+    /**
+     * @param country the country to set
+     */
+    @Override
+    public void setCountry(String country) {
+        this.country = country;
     }
 }

@@ -8,87 +8,97 @@
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
     <div class="col-md-6 col-sm-6 col-xs-12">
-        <table class="table table-condensed">
-            <thead class="navbar navbar-default">
-                <tr>
-                    <th colspan="2">
-                        Particulars for business(for MDAs, public and private companies)
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th class="text-uppercase">employer name</th>
-                    <td class="text-uppercase" th:text="${company.company}">Test</td>
-                </tr>
-                <tr>
-                    <th class="text-uppercase">incorporation number</th>
-                    <td class="text-uppercase" th:text="${company.incNumber}"></td>
-                </tr>
-                <tr>
-                    <th class="text-uppercase">tin number</th>
-                    <td class="text-uppercase" th:text="${company.tinNum}"></td>
-                </tr>
-                <tr>
-                    <th class="text-uppercase">e-mail</th>
-                    <td class="text-uppercase" th:text="${company.email}"></td>
-                </tr>
-                <tr>
-                    <th class="text-uppercase">mobile number</th>
-                    <td class="text-uppercase" th:text="${company.phoneNumber}"></td>
-                </tr>
-                <tr>
-                    <th class="text-uppercase">city</th>
-                    <td class="text-uppercase"></td>
-                </tr>
-                <tr>
-                    <th class="text-uppercase">local goverment</th>
-                    <td class="text-uppercase"></td>
-                </tr>
-                <tr>
-                    <th class="text-uppercase">address</th>
-                    <td class="text-uppercase" th:text="${company.houseNo + ' ' + company.address}"></td>
-                </tr>
-                <tr>
-                    <th class="text-uppercase">year of incorporation</th>
-                    <td class="text-uppercase">test</td>
-                </tr>
-            </tbody>
-        </table> 
-        <table class="table table-condensed">
-            <thead class="navbar navbar-default">
-                <tr>
-                    <th colspan="2">
-                        Total Staffs Emoluments
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="text-uppercase" th:text="${emulment.staffEmulment}"></td>
-                </tr>
-            </tbody>
-        </table> 
-        <table class="table table-condensed">
-            <thead class="navbar navbar-default">
-                <tr>
-                    <th colspan="2">
-                        Business sector categories
-                    </th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th class="text-uppercase">class of business</th>
-                    <td class="text-uppercase" th:text="${sector.type}"></td>
-                </tr>
-                <tr th:switch="${sector.otherSector != null}">
-                    <th class="text-uppercase">year of incorporation</th>
-                    <td th:case="${false}" class="text-uppercase" th:text="${sector.sector + ',' + sector.otherSector}"></td>
-                    <td th:case="${true}" class="text-uppercase" th:text="${sector.sector=}"></td>
-                </tr>
-            </tbody>
-        </table> 
+        <form method="post" th:action="@{/account/save}">
+            <table class="table table-condensed">
+                <thead class="navbar navbar-default">
+                    <tr>
+                        <th colspan="2">
+                            Particulars for business(for MDAs, public and private companies)
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="text-uppercase">employer name</th>
+                        <td class="text-uppercase" th:text="${company.company}">Test</td>
+                    </tr>
+                    <tr>
+                        <th class="text-uppercase">incorporation number</th>
+                        <td class="text-uppercase" th:text="${company.incNumber}"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-uppercase">tin number</th>
+                        <td class="text-uppercase" th:text="${company.tinNum}"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-uppercase">e-mail</th>
+                        <td class="text-uppercase" th:text="${company.email}"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-uppercase">mobile number</th>
+                        <td class="text-uppercase" th:text="${company.phoneNumber}"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-uppercase">city</th>
+                        <td class="text-uppercase" th:text="${company.state}"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-uppercase">local goverment</th>
+                        <td class="text-uppercase" th:text="${company.lga}"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-uppercase">address</th>
+                        <td class="text-uppercase" th:text="${company.houseNo + ' ' + company.address}"></td>
+                    </tr>
+                    <tr>
+                        <th class="text-uppercase">year of incorporation</th>
+                        <td class="text-uppercase">test</td>
+                    </tr>
+                </tbody>
+            </table> 
+            <table class="table table-condensed">
+                <thead class="navbar navbar-default">
+                    <tr>
+                        <th colspan="2">
+                            Total Staffs Emoluments
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="text-uppercase" th:text="${emulment.staffEmulment}"></td>
+                    </tr>
+                </tbody>
+            </table> 
+            <table class="table table-condensed">
+                <thead class="navbar navbar-default">
+                    <tr>
+                        <th colspan="2">
+                            Business sector categories
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th class="text-uppercase">class of business</th>
+                        <td class="text-uppercase" th:text="${sector.type}"></td>
+                    </tr>
+                    <tr th:switch="${sector.otherSector != null}">
+                        <th class="text-uppercase">year of incorporation</th>
+                        <td th:case="${false}" class="text-uppercase" th:text="${sector.sector + ',' + sector.otherSector}"></td>
+                        <td th:case="${true}" class="text-uppercase" th:text="${sector.sector}"></td>
+                    </tr>
+                </tbody>
+            </table> 
+            
+            <div class="form-group">
+             <div id="Next">
+              <button class="btn btn-primary " name="Next" type="submit">
+                   Next
+              </button>
+             </div>
+            </div>
+        </form>
     </div>
 </div>
 </body>

@@ -3,22 +3,22 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.plexada.model.employee;
+package com.plexada.build;
 
 import java.io.Externalizable;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectOutput;
-import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotEmpty;
 
 /**
  *
  * @author SAP Training
  */
 public class Sector implements Externalizable {
-    @NotNull
+    @NotEmpty
     private String type;
-    @NotNull
+    @NotEmpty
     private String sector;
     private String otherSector;
     

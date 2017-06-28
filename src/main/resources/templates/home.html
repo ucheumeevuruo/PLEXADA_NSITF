@@ -43,13 +43,13 @@
                     *
                </span>
               </label>
-              <select class="form-control" id="Year" name="Year" type="number">
-                  <option>2001</option>
+              <select class="form-control" id="incYear" th:field="*{incYear}" placeholder="YYYY">
+                 <option selected="selected" value="">Select an option</option>
+                  <option th:each="i:${#numbers.sequence(1900, 2030)}" th:text="${i}" th:value="${i}">Year</option>
               </select>
              </div>
 
-             <div class="row">
-             <div class="form-group col-xs-6" id="Email">
+             <div class="form-group " id="Email">
               <label class="control-label requiredField" for="email">
                Email
                <span class="asteriskField">
@@ -60,53 +60,44 @@
                  <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" id="email" class="error" for="email">Company Error.</label>
              </div>
 
-             <div class="form-group col-xs-6" id="MobileN">
+             <div class="form-group " id="MobileN">
               <label class="control-label requiredField" for="phone_number">
                Mobile Number
                <span class="asteriskField">
                     *
                </span>
               </label>
-              <input type="tel" th:field="*{phoneNumber}" class="form-control" id="phone_number" />
-                 <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" id="phone_number" class="error" for="phone_number">Company Error.</label>
-              </div>
+              <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber" />
+                 <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" id="phoneNumber" class="error" for="phone_number">Company Error.</label>
               </div>
 
-             <div class="row">
-             <div class="form-group col-xs-6" id="State">
+
+             <div class="form-group " id="State">
               <label class="control-label requiredField" for="State">
                State
                <span class="asteriskField">
                     *
                </span>
               </label>
-              <select class="select form-control" id="State" name="State">
-                 <option selected="selected" value="">
-               </option>
-               <option value="Lagos">
-                    Lagos
-               </option>
-               </select>
+              <select class="select form-control" id="state" th:field="*{state}">
+                 <option selected="selected" value="">Select an option</option>
+                 <option th:each="state : ${states}" th:text="${state.name}" th:value="${state.id}">State</option>
+              </select>
              </div>
 
-             <div class="form-group col-xs-6" id="LGA">
-              <label class="control-label requiredField" for="LocalGovernment">
+             <div class="form-group " id="province">
+              <label class="control-label requiredField" for="province">
                Local Government
                <span class="asteriskField">
                     *
                </span>
               </label>
-              <select class="select form-control" id="LocalGovernment" name="LocalGovernment">
-                 <option selected="selected" value="">
-               </option>
-               <option value="Eti-Osa">
-                    Eti-Osa
-               </option>
+              <select class="select form-control" id="lga" th:field="*{province}">
+                 <option selected="selected" value="">Select an option</option>
+                 <option th:each="local : ${locals}" th:text="${local.name}" th:value="${local.id}">LGA</option>
                </select>
              </div>
-            </div>
 
-                 
              <div class="form-group " >
              <p id="Address"> Address 
                <span class="asteriskField">
@@ -118,7 +109,7 @@
               <label class="control-label requiredField" for="house_no">
                House/Block No
               </label>
-              <input type="number" th:field="*{houseNo}" class="form-control" id="house_no" />
+              <input type="number" th:field="*{houseNo}" class="form-control" id="houseNo" />
               <label th:if="${#fields.hasErrors('houseNo')}" th:errors="*{houseNo}" id="house_no" class="error" for="house_no">Company Error.</label>
              </div>
 
@@ -129,13 +120,14 @@
                     *
                </span>
               </label>
-              <input type="text" th:field="*{address}" class="form-control" name="street_name" id="house_no" />
-              <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" id="street_name" class="error" for="street_name">Company Error.</label>
+              <input type="text" th:field="*{streetName}" class="form-control" id="streetName" />
+              <label th:if="${#fields.hasErrors('streetName')}" th:errors="*{streetName}" id="streetName" class="error" for="street_name">Company Error.</label>
              </div>
+
 
              <div class="form-group" id="Next">
               <div>
-               <button class="btn btn-success pull-right" name="Next" type="submit">
+               <button class="btn btn-primary " name="Next" type="submit">
                     Next
                </button>
               </div>
@@ -143,8 +135,5 @@
             </form>
        </div>
      </div>
-    
-
-
 </body>
 </html>
