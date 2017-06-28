@@ -1,463 +1,416 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-	<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" />
-	<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;}.bootstrap-iso .form-control:focus { border-color: #4fa333;  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6);} .asteriskField{color: red;}
-			.comp-title {
-					    width: 100%;
-						padding: 10px 20px;
-						background: #f5f5f5;
-						margin-left: -10px;
-						border-bottom: #DDD 3px solid;
-						margin-bottom: 0;
-						font-weight: bold;
-						color: #444;
-						}
-			.dependant {border-bottom: #cccccc 1px solid;
-						border-top: #cccccc 1px solid;
-						padding: 10px 20px;
-						line-height: 1.6;
-						font-weight: bold;
-			}
-			.small {color: #bbb}
-			.text-center {color: white}
-	</style>
-
+    <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
 </head>
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-			<h3 class="text-center"> NOTIFICATION OF ACCIDENT/ OCCUPATIONAL DISEASE/ DEATH </h3>
-                <div class="navbar-header">
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+        <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-link " name="submit" type="submit">
+                     Home
+                </button>
+                <button class="btn btn-link " name="submit" type="submit">
+                     Logout
+                </button> 
+            </div> 
+            <i> Field with 
+                <span class="asteriskField">
+                    *
+                </span> 
+                are compulsary 
+            </i> 
+            <br />
+            <br />
+            <p class="comp-title">
+                OCCUPATION DISEASE
+            </p>
+            <br />
+            <form method="post" action="" id="DiseaseNotification2">
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="WorkNature">
+			<span class="asteriskField">
+                             *
+                        </span>
+                        Nature of Work
+                    </label>
+                    <input class="form-control" id="WorkNature" name="WorkNature" type="text"/>
                 </div>
-                <div class="collapse navbar-collapse" id="navcol-1"></div>
-            </div>
-        </nav>
-    </div>
-    <div class="container">
-        <div class="col-lg-4 col-md-4 col-md-offset-0">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">Employee Details &nbsp; &nbsp; &nbsp; </a></li>
-                <li class="active"><a href="#">Occupation Disease </a></li>
-                <li><a href="#">Attestation </a></li>
-            </ul>
+			 
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="DiseaseNature">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Nature of Disease
+                    </label>
+                    <input class="form-control" id="DiseaseNature" name="DiseaseNature" type="text"/>
+                </div>
+			 
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="State">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            State
+                        </label>
+                        <select class="select form-control" id="State" name="State">
+                            <option value="First Choice">
+                                First Choice
+                            </option>
+                        </select>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="LGA">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Local Government
+                        </label>
+                        <select class="select form-control" id="LGA" name="LGA">
+                            <option value="First Choice">
+				First Choice
+                            </option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group "> 
+                    <label class="control-label requiredField" for="COD">
+                        <span class="asteriskField">
+                            *
+                        </span> 
+                        Suspected cause of disease 
+                        <small class="small">
+                            <i>
+                                ( State the agent(s) present in the work place and with which he/she had contact that caused the disease; see list of approved diseases and their responsible agent(s) as contained in the first schedule of the ECA for guidance )
+                            </i>
+                        </small>
+                    </label>
+                    <input class="form-control" id="COD" name="COD" type="text"/>
+                </div>
+		<div class="form-group ">
+                    <label class="control-label requiredField" for="Disdate">
+			<span class="asteriskField">
+                             *
+                        </span>
+                        Date Employee reported the disease
+                    </label>
+                    <input class="form-control" id="Disdate" name="Disdate" type="date"/>
+                </div>
+			 
+                <div class="row">
+                    <div class="form-group col-md-8">
+                        <label class="control-label requiredField" for="Reporttime">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Time Employee Reported Disease (hh:mm:(AM/PM))
+                        </label>
+                        <input class="form-control " id="Reporttime" name="Reporttime" type="time"/>
+                    </div>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="Diagdate">
+			<span class="asteriskField">
+                            *
+                        </span>
+                        Date Disease was Diagnosed
+                    </label>
+                    <input class="form-control" id="Diagdate" name="Diagdate" type="date"/>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="Length">
+                    <span class="asteriskField">
+                        *
+                    </span>
+                    Length of Disease Exposure (In months)
+                    </label>
+                    <input class="form-control" id="Length" name="Length" type="number" min="0" max="24" />
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="Ceasedate">
+                        <span class="asteriskField">
+                              *
+                        </span>
+                        Date on which employee ceased work due to injury/occupational disease
+                    </label>
+                    <input class="form-control" id="Ceasedate" name="Ceasedate" type="date"/>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="Resumedate">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Date on which the employee resumed work?
+                    </label>
+                    <input class="form-control" id="Resumedate" name="Resumedate" type="date"/>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="Numday">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Number of days per month worked by Employee
+                    </label>
+                    <input class="form-control" id="Numday" name="Numday" type="number" min="0" max="31"/>
+                </div>
+			 
+                <div class="form-group" id="div_radio3">
+                    <label class="control-label requiredField" for="radio3">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Did the Employee die in the accident?
+                    </label>
+                    <div class="">
+                        <label class="radio-inline">
+                        <input name="radio3" type="radio" value="Yes"/>
+                            Yes
+                        </label>
+                        <label class="radio-inline">
+                        <input name="radio3" type="radio" value="No"/>
+                            No
+                        </label>
+                    </div>
+                </div>
+                <br />
+			 
+                <span>
+                    Medical Praactitioner who treated Employee 
+                </span>
+                <br />
+                <br /> 
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="fname">
+                            <span class="asteriskField">
+				*
+                            </span>
+                            First Name
+                        </label>
+                        <input class="form-control" id="fname" name="fname" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="Lname">
+                            <span class="asteriskField">
+				*
+                            </span>
+                            Last Name
+                        </label>
+                        <input class="form-control" id="Lname" name="Lname" type="text"/>
+                    </div>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="Practicenum">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Practice Number
+                    </label>
+                    <input class="form-control" id="Practicenum" name="Practicenum" type="text"/>
+                </div>
+                <br />
+
+                <p class="comp-title"> REGISTERED DEPENDANT IF ANY </P>
+                <br />
+			 
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="NKfname">
+                            <span class="asteriskField">
+				*
+                            </span>
+                            Next of Kin First Name
+                        </label>
+                        <input class="form-control" id="NKfname" name="NKfname" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="NKLname">
+                            <span class="asteriskField">
+                                 *
+                            </span>
+                            Next of Kin Last Name
+                        </label>
+                        <input class="form-control" id="NKLname" name="NKLname" type="text"/>
+                    </div>
+                </div>
+			 
+                <span class="asteriskField"> 
+                    <i> 
+                        Specify at least one dependant
+                    </i>
+                </span>
+                <br /> 
+                <br /> 
+			 
+                <p class="dependant"> 
+                    <span class="asteriskField">
+                        *
+                    </span> 
+                    DEPENDANT 1 
+                </p>
+                <br />
+			 
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="DFname">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        First Name
+                    </label>
+                    <input class="form-control" id="DFname" name="DFname" type="text"/>
+                </div>
+			 
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="DMname">
+                            Middle Name
+                        </label>
+                        <input class="form-control" id="DMname" name="DMname" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="DLname">
+                            <span class="asteriskField">
+				*
+                            </span>
+                            Last Name
+                        </label>
+                        <input class="form-control" id="DLname" name="DLname" type="text"/>
+                    </div>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="DOB">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Date of Birth
+                    </label>
+                    <input class="form-control " id="DOB" name="DOB" type="date"/>
+                </div>
+                
+		<br />
+                <p class="dependant">
+                    DEPENDANT 2 
+                </p>
+                <br />
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="DFname2">
+                        First Name
+                    </label>
+                    <input class="form-control" id="DFname2" name="DFname2" type="text"/>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="DMname2">
+                         Middle Name
+                        </label>
+                        <input class="form-control" id="DMname1" name="DMname2" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="DLname2">
+                            <span class="asteriskField">
+				*
+                            </span>
+                            Last Name
+                        </label>
+                        <input class="form-control" id="DLname2" name="DLname2" type="text"/>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label class="control-label " for="DOB2">
+                     Date of Birth
+                    </label>
+                    <input class="form-control" id="DOB2" name="DOB2" type="date"/>
+                </div>
+                
+		<br />
+                <p class="dependant"> 
+                    DEPENDANT 3 
+                </p>
+                <br />
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="DFname3">
+                        First Name
+                    </label>
+                    <input class="form-control" id="DFname3" name="DFname3" type="text"/>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="DMname3">
+			   Middle Name
+                        </label>
+                        <input class="form-control" id="DMname3" name="DMname3" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="DLname3">
+			   Last Name
+                        </label>
+                        <input class="form-control" id="DLname3" name="DLname3" type="text"/>
+                    </div>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="DOB3">
+                        Date of Birth
+                    </label>
+                    <input class="form-control" id="DOB3" name="DOB3" type="date"/>
+                </div>
+                	
+		<br />
+                <p class="dependant">
+                    DEPENDANT 4
+                </p>
+                <br />
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="DFname4">
+                        First Name
+                    </label>
+                    <input class="form-control" id="DFname4" name="DFname4" type="text"/>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="DMname4">
+                            Middle Name
+                        </label>
+                        <input class="form-control" id="DMname4" name="DMname4" type="text"/>
+                   </div>
+                   <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="DLname">
+                            Last Name
+                        </label>
+                        <input class="form-control" id="DLname4" name="DLname4" type="text"/>
+                   </div>
+               </div>
+                <div class="form-group ">
+                    <label class="control-label " for="DOB4">
+                        Date of Birth
+                    </label>
+                    <input class="form-control" id="DOB4" name="DOB4" type="date"/>
+                </div> 
+                <br />
+                <div class="form-group">
+                    <div class="pull-right">
+                        <button class="btn btn-success " name="submit" type="submit">
+                             Next
+                        </button>
+                    </div>
+                </div>
+            </form>
         </div>
-		
-		<div class="bootstrap-iso">
-		 <div class="container-fluid">
-		  <div class="row">
-		   <div class="col-lg-8 col-md-8 col-sm-6 col-xs-12">
-		   <div class="pull-right">
-			   <button class="btn btn-link " name="submit" type="submit">
-				Home
-			   </button>
-			   <button class="btn btn-link " name="submit" type="submit">
-				Logout
-			   </button> 
-			</div> 
-			 <i> Field with <span class="asteriskField">*</span> are compulsary </i> <br /> <br />
-		   <p class="comp-title"> OCCUPATION DISEASE </P>
-			<br />
-			
-			<form method="post" action="" id="DiseaseNotification2">
-			
-			<div class="form-group ">
-			  <label class="control-label requiredField" for="WorkNature">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Nature of Work
-			  </label>
-			  <input class="form-control" id="WorkNature" name="WorkNature" type="text"/>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="DiseaseNature">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Nature of Disease
-			  </label>
-			  <input class="form-control" id="DiseaseNature" name="DiseaseNature" type="text"/>
-			 </div>
-			 
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="State">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   State
-			  </label>
-			  <select class="select form-control" id="State" name="State">
-			   <option value="First Choice">
-				First Choice
-			   </option>
-			  </select>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="LGA">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Local Government
-			  </label>
-			  <select class="select form-control" id="LGA" name="LGA">
-			   <option value="First Choice">
-				First Choice
-			   </option>
-			  </select>
-			 </div>
-			 </div>
-
-			<div class="form-group "> 
-			  <label class="control-label requiredField" for="COD">
-			  <span class="asteriskField">
-				*
-			   </span> Suspected cause of disease <small class="small"><i>( State the agent(s) present in the work place and with which he/she had contact that caused the disease; see list of approved diseases and their responsible agent(s) as contained in the first schedule of the ECA for guidance )</i></small>
-			   </label>
-			  <input class="form-control" id="COD" name="COD" type="text"/>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="Disdate">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Date Employee reported the disease
-			  </label>
-			  <input class="form-control" id="Disdate" name="Disdate" type="date"/>
-			 </div>
-			 
-			 <div class="row">
-			 <div class="form-group col-md-8">
-			  <label class="control-label requiredField" for="Reporttime">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Time Employee Reported Disease (hh:mm:(AM/PM))
-			  </label>
-			  <input class="form-control " id="Reporttime" name="Reporttime" type="time"/>
-			 </div>
-			 </div>
-			 
-			  <div class="form-group ">
-			  <label class="control-label requiredField" for="Diagdate">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Date Disease was Diagnosed
-			  </label>
-			  <input class="form-control" id="Diagdate" name="Diagdate" type="date"/>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="Length">
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Length of Disease Exposure (In months)
-			  </label>
-			  <input class="form-control" id="Length" name="Length" type="number" min="0" max="24" />
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="Ceasedate">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Date on which employee ceased work due to injury/occupational disease
-			  </label>
-			  <input class="form-control" id="Ceasedate" name="Ceasedate" type="date"/>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="Resumedate">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Date on which the employee resumed work?
-			  </label>
-			  <input class="form-control" id="Resumedate" name="Resumedate" type="date"/>
-			 </div>
-			 
-			  <div class="form-group ">
-			  <label class="control-label requiredField" for="Numday">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Number of days per month worked by Employee
-			  </label>
-			  <input class="form-control" id="Numday" name="Numday" type="number" min="0" max="31"/>
-			 </div>
-			 
-			 <div class="form-group" id="div_radio3">
-			  <label class="control-label requiredField" for="radio3">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Did the Employee die in the accident?
-			  </label>
-			  <div class="">
-			   <label class="radio-inline">
-				<input name="radio3" type="radio" value="Yes"/>
-				Yes
-			   </label>
-			   <label class="radio-inline">
-				<input name="radio3" type="radio" value="No"/>
-				No
-			   </label>
-			  </div>
-			 </div><br />
-			 
-			 <span> Medical Praactitioner who treated Employee </span>
-			 <br /> <br /> 
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			 
-			  <label class="control-label requiredField" for="fname">
-			   <span class="asteriskField">
-				*
-			   </span>
-			   First Name
-			  </label>
-			  <input class="form-control" id="fname" name="fname" type="text"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="Lname">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Last Name
-			  </label>
-			  <input class="form-control" id="Lname" name="Lname" type="text"/>
-			 </div>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="Practicenum">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Practice Number
-			  </label>
-			  <input class="form-control" id="Practicenum" name="Practicenum" type="text"/>
-			 </div>
-		  <br />
-
-			 
-			 <p class="comp-title"> REGISTERED DEPENDANT IF ANY </P>
-			 <br />
-			 
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="NKfname">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Next of Kin First Name
-			  </label>
-			  <input class="form-control" id="NKfname" name="NKfname" type="text"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="NKLname">
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Next of Kin Last Name
-			  </label>
-			  <input class="form-control" id="NKLname" name="NKLname" type="text"/>
-			 </div>
-			 </div>
-			 
-			 <span class="asteriskField"> <i> Specify at least one dependant </i> </span>
-			 <br /> <br /> 
-			 
-			 <p class="dependant"> 
-			   <span class="asteriskField">
-				*
-			   </span> DEPENDANT 1 </p>
-			 <br />
-			 
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="DFname">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   First Name
-			  </label>
-			  <input class="form-control" id="DFname" name="DFname" type="text"/>
-			 </div>
-			 
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label " for="DMname">
-			   Middle Name
-			  </label>
-			  <input class="form-control" id="DMname" name="DMname" type="text"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="DLname">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Last Name
-			  </label>
-			  <input class="form-control" id="DLname" name="DLname" type="text"/>
-			 </div>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="DOB">
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Date of Birth
-			  </label>
-			  <input class="form-control " id="DOB" name="DOB" type="date"/>
-			 </div>
-			 <div class="form-group">
-			 
-			  <br />
-			  <p class="dependant"> DEPENDANT 2 </p>
-			  <br />
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="DFname2">
-			   First Name
-			  </label>
-			  <input class="form-control" id="DFname2" name="DFname2" type="text"/>
-			 </div>
-			  <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label " for="DMname2">
-			   Middle Name
-			  </label>
-			  <input class="form-control" id="DMname1" name="DMname2" type="text"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="DLname2">
-			  
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Last Name
-			  </label>
-			  <input class="form-control" id="DLname2" name="DLname2" type="text"/>
-			 </div>
-			 </div>
-			 <div class="form-group ">
-			  <label class="control-label " for="DOB2">
-			   Date of Birth
-			  </label>
-			  <input class="form-control" id="DOB2" name="DOB2" type="date"/>
-			 </div>
-			 <div class="form-group">
-			 
-			  <br />
-			  <p class="dependant"> DEPENDANT 3 </p>
-			  <br />
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="DFname3">
-			   First Name
-			  </label>
-			  <input class="form-control" id="DFname3" name="DFname3" type="text"/>
-			 </div>
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label " for="DMname3">
-			   Middle Name
-			  </label>
-			  <input class="form-control" id="DMname3" name="DMname3" type="text"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="DLname3">
-			   Last Name
-			  </label>
-			  <input class="form-control" id="DLname3" name="DLname3" type="text"/>
-			 </div>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="DOB3">
-			   Date of Birth
-			  </label>
-			  <input class="form-control" id="DOB3" name="DOB3" type="date"/>
-			 </div>
-			 <div class="form-group">	
-			 
-			  <br />
-			  <p class="dependant">DEPENDANT 4</p>
-			  <br />
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="DFname4">
-			   First Name
-			  </label>
-			  <input class="form-control" id="DFname4" name="DFname4" type="text"/>
-			 </div>
-			  <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label " for="DMname4">
-			   Middle Name
-			  </label>
-			  <input class="form-control" id="DMname4" name="DMname4" type="text"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="DLname">
-			   Last Name
-			  </label>
-			  <input class="form-control" id="DLname4" name="DLname4" type="text"/>
-			 </div>
-			 </div>
-			 <div class="form-group ">
-			  <label class="control-label " for="DOB4">
-			   Date of Birth
-			  </label>
-			  <input class="form-control" id="DOB4" name="DOB4" type="date"/>
-			 </div> <br />
-			 <div class="form-group">
-			 
-			  <div class="pull-right">
-			   <button class="btn btn-success " name="submit" type="submit">
-				Next
-			   </button>
-			  </div>
-			 </div>
-			</form>
-		   </div>
-		  </div>
-		 </div>
-		</div>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
-
 </html>

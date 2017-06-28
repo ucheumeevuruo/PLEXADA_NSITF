@@ -1,162 +1,119 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-	<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
-	<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;}.bootstrap-iso .form-control:focus { border-color: #4fa333;  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6);} .asteriskField{color: red;}
-			.comp-title {
-					    width: 100%;
-						padding: 10px 20px;
-						background: #f5f5f5;
-						margin-left: -10px;
-						border-bottom: #DDD 3px solid;
-						margin-bottom: 0;
-						font-weight: bold;
-						color: #444;
-						}
-			.text-center {color: white}
-	</style>
+    <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
 </head>
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-			<h3 class="text-center"> NOTIFICATION OF ACCIDENT/ OCCUPATIONAL DISEASE/ DEATH </h3>
-                <div class="navbar-header">
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+        <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
+            <small> <i> Fields with <span class="asteriskField">*</span> are compulsary </i> </small>
+            <div class="pull-right">
+                <button class="btn btn-link " name="submit" type="submit">
+                     Logout
+                </button>
+            </div> 
+            <br />
+            <br />
+		   
+            <p class="comp-title">
+                EMPLOYEE 
+            </p>
+		   
+            <form method="post" action="" id="EmployeeDetails">
+			
+                <div class="form-group ">
+                    <label class="requiredField" for="fname">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        First Name
+                    </label>
+                    <input class="form-control " id="fname" name="fname" type="text"/>
                 </div>
-                <div class="collapse navbar-collapse" id="navcol-1"></div>
-            </div>
-        </nav>
-    </div>
-    <div class="container">
-        <div class="col-lg-4 col-md-4 col-md-offset-0">
-            <ul class="nav nav-pills nav-stacked">
-                <li class="active"><a href="#">Employee Details &nbsp; &nbsp; &nbsp; </a></li>
-                <li><a href="#">Occupation Disease </a></li>
-                <li><a href="#">Attestation </a></li>
-            </ul>
-        </div>
-		
-		<div class="bootstrap-iso">
-		 <div class="container-fluid">
-		  <div class="row">
-		   <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-		   
-
-		   <small> <i> Fields with <span class="asteriskField">*</span> are compulsary </i> </small>
-		   <div class="pull-right">
-			   <button class="btn btn-link " name="submit" type="submit">
-				Logout
-			   </button>
-			</div> 
-			  
-		   <br /><br />
-		   
-		   <p class="comp-title"> EMPLOYEE </P>
-		   
-			<form method="post" action="" id="EmployeeDetails">
-			
-			
-			 <div class="form-group ">
-			  <label class="requiredField" for="fname">
-			   <span class="asteriskField">
-				*
-			   </span>
-			   First Name
-			  </label>
-			  
-			  <input class="form-control " id="fname" name="fname" type="text"/>
-			 </div>
 			 
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label " for="mname">
-			   Middle Name
-			  </label>
-			  <input class="form-control " id="mname" name="mname" type="text"/>
-			 </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="mname">
+                            Middle Name
+                        </label>
+                        <input class="form-control " id="mname" name="mname" type="text"/>
+                    </div>
 			      
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="Lname">
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Last Name
-			  </label>
-			  <input class="form-control" id="Lname" name="Lname" type="text"/>
-			 </div>
-			 </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="Lname">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Last Name
+                        </label>
+                     <input class="form-control" id="Lname" name="Lname" type="text"/>
+                    </div>
+                </div>
 			 
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label " for="EmpID">
-			   NSITF Employee ID
-			  </label>
-			  <input class="form-control" id="EmpID" name="EmpID" type="text"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="staffID">
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Staff ID
-			  </label>
-			  <input class="form-control" id="staffID" name="staffID" type="text"/>
-			 </div>
-			 </div> 
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="EmpID">
+                            NSITF Employee ID
+                        </label>
+                        <input class="form-control" id="EmpID" name="EmpID" type="text"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="staffID">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Staff ID
+                        </label>
+                        <input class="form-control" id="staffID" name="staffID" type="text"/>
+                    </div>
+                </div> 
 			 
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="Earnings">
-			   <span class="asteriskField">
-				*
-			   </span>
-			   Earnings of employee at the times of accident (₦)
-			  </label>
-			  <input class="form-control" id="Earnings" name="Earnings" type="text"/>
-			 </div> <br />
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="Earnings">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Earnings of employee at the times of accident (₦)
+                    </label>
+                    <input class="form-control" id="Earnings" name="Earnings" type="text"/>
+                </div> 
+                <br />
 			 
-			 <span class="asteriskField">
-				*
-			   </span> Period in your employment <br /><br />
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label " for="yrs">
-			   Years (yrs)
-			  </label>
-			  <input class="form-control" id="yrs" name="yrs" type="number" min="0" max="35" />
-			 </div>
-			 <div class="form-group ccol-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label " for="months">
-			   Months (months)
-			  </label>
-			  <input class="form-control" id="months" name="months" type="number" min="0" max="12" />
-			 </div>
-			 </div> <br />
-			 <div class="form-group">
-			  <div class="pull-right">
-			   <button class="btn btn-success " name="submit" type="submit">
-				Next
-			   </button>
-			  </div>
-			 </div>
-			</div>
-			</form>
-		   </div>
-		  </div>
-		 </div>
-		</div>
-
+                <span class="asteriskField">
+                    *
+                </span> 
+                Period in your employment 
+                <br />
+                <br />
+                
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="yrs">
+                            Years (yrs)
+                        </label>
+                        <input class="form-control" id="yrs" name="yrs" type="number" min="0" max="35" />
+                    </div>
+                    <div class="form-group ccol-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="months">
+                            Months (months)
+                        </label>
+                        <input class="form-control" id="months" name="months" type="number" min="0" max="12" />
+                    </div>
+                </div> 
+                <br />
+                
+                <div class="form-group">
+                    <div class="pull-right">
+                        <button class="btn btn-success " name="submit" type="submit">
+                             Next
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
