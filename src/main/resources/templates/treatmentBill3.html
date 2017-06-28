@@ -2,211 +2,181 @@
 <html>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>page</title>
-    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/styles.css">
-	<link rel="stylesheet" href="https://formden.com/static/cdn/bootstrap-iso.css" /> 
-	<style>.bootstrap-iso .formden_header h2, .bootstrap-iso .formden_header p, .bootstrap-iso form{font-family: Arial, Helvetica, sans-serif; color: black}.bootstrap-iso form button, .bootstrap-iso form button:hover{color: #ffffff !important;}.bootstrap-iso .form-control:focus { border-color: #4fa333;  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6); box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px rgba(79, 163, 51, 0.6);} .asteriskField{color: red;}
-			.comp-title {
-					    width: 100%;
-						padding: 10px 20px;
-						background: #f5f5f5;
-						margin-left: -10px;
-						border-bottom: #DDD 3px solid;
-						margin-bottom: 0;
-						font-weight: bold;
-						color: #444;
-						}
-			.text-center {color: white}
-	</style>
-
+     <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
 </head>
 
 <body>
     <div class="container">
-        <nav class="navbar navbar-default navbar-fixed-top">
-            <div class="container-fluid">
-			<h3 class="text-center"> CLAIM FOR COMPENSATION </h3>
-                <div class="navbar-header">
-                    <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navcol-1"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button>
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+            <div class="pull-right">
+                <button class="btn btn-link" name="submit" type="submit">
+                    Home
+                </button>
+                <button class="btn btn-link" name="submit" type="submit">
+                    Logout
+                </button> 
+            </div> 
+            <small> 
+                <i>
+                    Fields with 
+                    <span class="asteriskField">
+                        *
+                    </span> 
+                    are compulsary 
+                </i> 
+            </small>
+            <br />
+            <br />
+            <p class="comp-title"> 
+                DETAILS OF TREATMENT BILL 
+            </P>
+            <br />
+            <form method="post" action="/third-page" id="treatmentBill3">
+                <div class="form-group ">
+                    <label class="control-label requiredField" for="date">
+                        Date injury/disease/death was sustained/diagnosed/occurred
+                    </label>
+                    <input class="form-control" id="date" name="date" type="date"/>
                 </div>
-                <div class="collapse navbar-collapse" id="navcol-1"></div>
-            </div>
-        </nav>
-    </div>
-    <div class="container">
-        <div class="col-lg-4 col-md-4 col-md-offset-0">
-            <ul class="nav nav-pills nav-stacked">
-                <li><a href="#">Employer and Employee details &nbsp; &nbsp; &nbsp; </a></li>
-                <li><a href="#">Health Status and Provider </a></li>
-                <li class="active"><a href="#">Details of Treatment Bill </a></li>
-                <li><a href="#">Attachments &nbsp; &nbsp; &nbsp; </a></li>
-                <li><a href="#">Bank Details and Attestation &nbsp; &nbsp; &nbsp; </a></li>
-            </ul>
+			 
+                Bill for Registration of Hospital/clinic
+                <br />
+                <br />
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="date1">
+                            Date
+                        </label>
+                        <input class="form-control" id="date1" name="date1" placeholder="MM/DD/YYYY" type="date"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="number">
+                            Amount Charged
+                        </label>
+                        <input class="form-control" id="number" name="number" type="text"/>
+                    </div>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="message">
+                        Remarks
+                    </label>
+                    <textarea class="form-control" cols="40" id="message" name="message" rows="6"></textarea>
+                </div>
+			 
+                Bill for Medical admission/confinement
+                <br />
+                <br />
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="date2">
+                            Date
+                        </label>
+                        <input class="form-control" id="date2" name="date2" placeholder="MM/DD/YYYY" type="date"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="number1">
+                            Amount Charged
+                        </label>
+                        <input class="form-control" id="number1" name="number1" type="text"/>
+                    </div>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="message1">
+                        Remarks
+                    </label>
+                    <textarea class="form-control" cols="40" id="message1" name="message1" rows="6"></textarea>
+                </div>
+			 
+                Bill for Medical Expenses
+                <br />
+                <br />
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="date3">
+                            Date
+                        </label>
+                        <input class="form-control" id="date3" name="date3" placeholder="MM/DD/YYYY" type="date"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="number2">
+                            Amount Charged
+                        </label>
+                        <input class="form-control" id="number2" name="number2" type="text"/>
+                    </div>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="message2">
+                        Remarks
+                    </label>
+                    <textarea class="form-control" cols="40" id="message2" name="message2" rows="6"></textarea>
+                </div>
+			 
+                Bill for Laboratory Services
+                <br />
+                <br />
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="date4">
+                            Date
+                        </label>
+                        <input class="form-control" id="date4" name="date4" placeholder="MM/DD/YYYY" type="date"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="number3">
+                            Amount Charged
+                        </label>
+                        <input class="form-control" id="number3" name="number3" type="text"/>
+                    </div>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="message3">
+                        Remarks
+                    </label
+                    <textarea class="form-control" cols="40" id="message3" name="message3" rows="6"></textarea>
+                </div>
+
+                Bill for Drugs/Pharmaceutical Care
+                <br />
+                <br />
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="date5">
+                            Date
+                        </label>
+                        <input class="form-control" id="date5" name="date5" placeholder="MM/DD/YYYY" type="date"/>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="number4">
+                            Amount Charged
+                        </label>
+                        <input class="form-control" id="number4" name="number4" type="text"/>
+                    </div>
+                </div>
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="message4">
+                        Remarks
+                    </label>
+                    <textarea class="form-control" cols="40" id="message4" name="message4" rows="6"></textarea>
+                </div>
+                <div class="form-group">
+                    <div class="pull-right">
+                        <button class="btn btn-success " name="submit" type="submit">
+                            Back
+                        </button>
+                     <button class="btn btn-success " name="submit" type="submit">
+                            Next
+                     </button>
+                    </div>
+                </div>
+            </form>
         </div>
-		<div class="bootstrap-iso">
-		 <div class="container-fluid">
-		  <div class="row">
-		   <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-			   <div class="pull-right">
-			   <button class="btn btn-link" name="submit" type="submit">
-				Home
-			   </button>
-			   <button class="btn btn-link" name="submit" type="submit">
-				Logout
-			   </button> 
-			   </div> 
-			   <small> <i> Fields with <span class="asteriskField">*</span> are compulsary </i> </small>
-			   <br /> <br />
-			   <p class="comp-title"> DETAILS OF TREATMENT BILL </P>
-			   <br />
-			<form method="post" action="/third-page" id="treatmentBill3">
-			 <div class="form-group ">
-			  <label class="control-label requiredField" for="date">
-			   Date injury/disease/death was sustained/diagnosed/occurred
-			  </label>
-			  <input class="form-control" id="date" name="date" type="date"/>
-			 </div>
-			 
-			 Bill for Registration of Hospital/clinic
-			 <br /><br />
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="date1">
-			   Date
-			  </label>
-			  <input class="form-control" id="date1" name="date1" placeholder="MM/DD/YYYY" type="date"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="number">
-			   Amount Charged
-			  </label>
-			  <input class="form-control" id="number" name="number" type="text"/>
-			 </div>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="message">
-			   Remarks
-			  </label>
-			  <textarea class="form-control" cols="40" id="message" name="message" rows="6"></textarea>
-			 </div>
-			 
-			 Bill for Medical admission/confinement
-			 <br /><br />
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="date2">
-			   Date
-			  </label>
-			  <input class="form-control" id="date2" name="date2" placeholder="MM/DD/YYYY" type="date"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="number1">
-			   Amount Charged
-			  </label>
-			  <input class="form-control" id="number1" name="number1" type="text"/>
-			 </div>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="message1">
-			   Remarks
-			  </label>
-			  <textarea class="form-control" cols="40" id="message1" name="message1" rows="6"></textarea>
-			 </div>
-			 
-			 Bill for Medical Expenses
-			 <br /><br />
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="date3">
-			   Date
-			  </label>
-			  <input class="form-control" id="date3" name="date3" placeholder="MM/DD/YYYY" type="date"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="number2">
-			   Amount Charged
-			  </label>
-			  <input class="form-control" id="number2" name="number2" type="text"/>
-			 </div>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="message2">
-			   Remarks
-			  </label>
-			  <textarea class="form-control" cols="40" id="message2" name="message2" rows="6"></textarea>
-			 </div>
-			 
-			 Bill for Laboratory Services
-			 <br /><br />
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="date4">
-			   Date
-			  </label>
-			  <input class="form-control" id="date4" name="date4" placeholder="MM/DD/YYYY" type="date"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="number3">
-			   Amount Charged
-			  </label>
-			  <input class="form-control" id="number3" name="number3" type="text"/>
-			 </div>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="message3">
-			   Remarks
-			  </label
-			  <textarea class="form-control" cols="40" id="message3" name="message3" rows="6"></textarea>
-			 </div>
-			 
-			 Bill for Drugs/Pharmaceutical Care
-			 <br /><br />
-			 <div class="row">
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="date5">
-			   Date
-			  </label>
-			  <input class="form-control" id="date5" name="date5" placeholder="MM/DD/YYYY" type="date"/>
-			 </div>
-			 <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			  <label class="control-label requiredField" for="number4">
-			   Amount Charged
-			  </label>
-			  <input class="form-control" id="number4" name="number4" type="text"/>
-			 </div>
-			 </div>
-			 
-			 <div class="form-group ">
-			  <label class="control-label " for="message4">
-			   Remarks
-			  </label>
-			  <textarea class="form-control" cols="40" id="message4" name="message4" rows="6"></textarea>
-			 </div>
-			 <div class="form-group">
-			  <div class="pull-right">
-			   <button class="btn btn-success " name="submit" type="submit">
-				Back
-			   </button>
-			   <button class="btn btn-success " name="submit" type="submit">
-				Next
-			   </button>
-			  </div>
-			 </div>
-			</form>
-		   </div>
-		  </div>
-		 </div>
-		</div>
     </div>
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 </body>
 
 </html>
