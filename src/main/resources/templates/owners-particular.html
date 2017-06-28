@@ -47,7 +47,7 @@
                     <label class="control-label" for="select">
                         Mode of Identification
                     </label>
-                    <select class="select form-control" id="select" th:field="*{modeOfId}">
+                    <select class="select form-control" id="modeOfId" th:field="*{modeOfId}">
 
                     </select>
                     <label th:if="${#fields.hasErrors('modeOfId')}" th:errors="*{modeOfId}" id="modeOfId-error" class="error" for="modeOfId"></label>
@@ -57,7 +57,7 @@
                     <label class="control-label" for="phoneNumber">
                         Mobile Number
                     </label>
-                    <input type="number" th:field="*{phoneNumber}" id="tel" class="form-control" />
+                    <input type="text" th:field="*{phoneNumber}" id="tel" class="form-control" />
                     <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" id="phoneNumber-error" class="error" for="phoneNumber"></label>
                 </div>
                 <!-- ./form-group -->

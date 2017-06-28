@@ -5,17 +5,20 @@
  */
 package com.plexada.controller;
 
-import com.google.gson.Gson;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.reflect.TypeToken;
-import com.plexada.model.employee.Company;
-import com.plexada.model.employee.Employee;
-import com.plexada.model.employee.Emulment;
-import com.plexada.model.employee.OwnersParticular;
-import com.plexada.model.employee.Sector;
+import com.plexada.build.Company;
+import com.plexada.build.Employee;
+import com.plexada.build.Emulment;
+import com.plexada.build.OwnersParticular;
+import com.plexada.build.Sector;
+import com.plexada.doa.JsonObjectRepository;
+import com.plexada.model.States;
+import com.plexada.services.AddressService;
+import com.plexada.services.ProvinceService;
+import com.plexada.services.StateService;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.IOException;
-import java.security.Principal;
 //import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 //import org.apache.catalina.servlet4preview.ServletContext;
@@ -27,15 +30,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import java.io.FileWriter;
 import java.lang.reflect.Type;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.bind.annotation.PathVariable;
 
 /**
  *
@@ -45,11 +50,17 @@ import javax.servlet.http.HttpServletResponse;
 @RequestMapping(path = "/account")
 public class FormController {
     
-    private final Gson gson = new Gson();
-    private FileReader fileReader = null;
-    Map<String, Object> mapper = new HashMap();
     Type collectionType = new TypeToken<Map<String, Object>>(){}.getType();
-    private static final String FILE = "C:\\temp\\test.json";
+    private final ObjectMapper mapper = new ObjectMapper();
+    private final Map<String, Object> map = new HashMap();
+    ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
+
+    //Cookie customerDAO = (Cookie) context.getBean("customerDAO");stateDAO
+    StateService state = (StateService) context.getBean("stateDAO");
+    ProvinceService local = (ProvinceService) context.getBean("localDAO");
+    AddressService address = (AddressService)context.getBean("addressDAO");
+    
+    private final JsonObjectRepository repo = new JsonObjectRepository();
     
     @GetMapping("")
     public String index(HttpServletResponse response, 
@@ -57,20 +68,19 @@ public class FormController {
         Company company;
         try {
             // 1. JSON to Java object, read it from a file.
-            fileReader = new FileReader(FILE);
-            Map<String, Company> map = gson.fromJson(fileReader, 
-                new TypeToken<Map<String, Company>>(){}.getType()
-            );
-            company = map.get("company");
-            if(!(company instanceof Company)){
-                company = new Company();
+            repo.initRepo(collectionType);
+            if(!repo.contains("company")){
+                company = new Company();    
+            }else{
+                company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             }
-            fileReader.close();
         } catch (FileNotFoundException ex) {
             company = new Company();
         } catch (IOException | NullPointerException ex) {
             company = new Company();
         }
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findByObjectId(0));
         model.addAttribute("employee", company);
         return "home";
     }
@@ -78,18 +88,18 @@ public class FormController {
     @PostMapping("")
     public String indexForm(HttpServletResponse response,
     Model model, 
-    @Valid Company company, 
+    @ModelAttribute @Valid Company company, 
     BindingResult bindingResult) throws IOException, FileNotFoundException{
         if(bindingResult.hasErrors()){
+            model.addAttribute("states", state.findAll());
+            model.addAttribute("locals", local.findByObjectId(0));
             model.addAttribute("employee", company);
             return "home";
         }
         //2. Convert object to JSON string and save into a file directly
-        try (FileWriter writer = new FileWriter(FILE)) {
-            Map<String, Company> map = new HashMap();
+        try {
             map.put("company", company);
-            mapper.putAll(map);
-            gson.toJson(mapper, writer);
+            repo.save(map);
         } catch (IOException e) {
             return "home";
         }
@@ -102,25 +112,14 @@ public class FormController {
         Emulment emulment;
         try {
             // 1. JSON to Java object, read it from a file.
-            fileReader = new FileReader(FILE);
-            Map<String, Company> mapcheck = gson.fromJson(fileReader, 
-                new TypeToken<Map<String, Company>>(){}.getType()
-            );
-            Company company = mapcheck.get("company");
-            if(!(company instanceof Company)){
-                return "redirect:/account/";
-            }
-            fileReader.close();
-            
-            fileReader = new FileReader(FILE);
-            Map<String, Emulment> map = gson.fromJson(fileReader, 
-                new TypeToken<Map<String, Emulment>>(){}.getType()
-            );
-            emulment = map.get("emulment");
-            if(!(emulment instanceof Emulment)){
+            repo.initRepo(collectionType);
+            if(!repo.contains("company")){
+                return "redirect:/account/";    
+            }else if(repo.contains("emulment")){
+                emulment = mapper.convertValue(repo.findAll().get("emulment"), Emulment.class);
+            }else{
                 emulment = new Emulment();
             }
-            fileReader.close();
         } catch (FileNotFoundException ex) {
             return "redirect:/account/";
         } catch (IOException | NullPointerException ex) {
@@ -133,18 +132,16 @@ public class FormController {
     @PostMapping("/second-page")
     public String showStaffEmulmentForm(HttpServletResponse response, 
     Model model,  
-    @Valid @ModelAttribute Emulment emulment, 
+    @ModelAttribute @Valid Emulment emulment, 
     BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             model.addAttribute("emulment", emulment);
             return "emulment";
         }
         //2. Convert object to JSON string and save into a file directly
-        try (FileWriter writer = new FileWriter(FILE)) {
-            Map<String, Emulment> map = new HashMap();
+        try  {
             map.put("emulment", emulment);
-            mapper.putAll(map);
-            gson.toJson(mapper, writer);
+            repo.save(map);
         } catch (IOException e) {
             return "emulment";
         }
@@ -157,27 +154,18 @@ public class FormController {
         Sector sect;
         try {
             // 1. JSON to Java object, read it from a file.
-            fileReader = new FileReader(FILE);
-            Map<String, Emulment> mapcheck = gson.fromJson(fileReader, 
-                new TypeToken<Map<String, Emulment>>(){}.getType()
-            );
-            Emulment emulment = mapcheck.get("emulment");
-            if(!(emulment instanceof Emulment)){
+            repo.initRepo(collectionType);
+            if(!repo.contains("company")){
+                return "redirect:/account/";    
+            }else if(!repo.contains("emulment")){
                 return "redirect:/account/second-page";
-            }
-            fileReader.close();
-            
-            fileReader = new FileReader(FILE);
-            Map<String, Sector> map = gson.fromJson(fileReader, 
-                new TypeToken<Map<String, Sector>>(){}.getType()
-            );
-            sect = map.get("sector");
-            if(!(sect instanceof Sector)){
+            }else if(repo.contains("sector")){
+                sect = mapper.convertValue(repo.findAll().get("sector"), Sector.class);
+            }else{
                 sect = new Sector();
             }
-            fileReader.close();
         } catch (FileNotFoundException ex) {
-            sect = new Sector();
+            return "redirect:/account/";
         } catch (IOException | NullPointerException ex) {
             sect = new Sector();
         }
@@ -188,16 +176,16 @@ public class FormController {
     @PostMapping("/third-page")
     public String showBusinessClassForm(HttpServletResponse response,
     Model model,
-    @Valid @ModelAttribute Sector sect, 
+    @ModelAttribute @Valid Sector sect, 
     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             model.addAttribute("businessClass", sect);
             return "sector";
         }
         //2. Convert object to JSON string and save into a file directly
-        try (FileWriter writer = new FileWriter(FILE)) {
-            mapper.put("sector", sect);
-            gson.toJson(mapper, writer);
+        try {
+            map.put("sector", sect);
+            repo.save(map);
         } catch (IOException e) {
             return "sector";
         }
@@ -210,27 +198,20 @@ public class FormController {
         OwnersParticular particular;
         try {
             // 1. JSON to Java object, read it from a file.
-            fileReader = new FileReader(FILE);
-            Map<String, Sector> mapcheck = gson.fromJson(fileReader, 
-                new TypeToken<Map<String, Sector>>(){}.getType()
-            );
-            Sector sect = mapcheck.get("sector");
-            if(!(sect instanceof Sector)){
+            repo.initRepo(collectionType);
+            if(!repo.contains("company")){
+                return "redirect:/account/";    
+            }else if(!repo.contains("emulment")){
+                return "redirect:/account/second-page";
+            }else if(!repo.contains("sector")){
                 return "redirect:/account/third-page";
-            }
-            fileReader.close();
-            
-            fileReader = new FileReader(FILE);
-            Map<String, OwnersParticular> map = gson.fromJson(fileReader, 
-                new TypeToken<Map<String, OwnersParticular>>(){}.getType()
-            );
-            particular = map.get("particular");
-            if(!(particular instanceof OwnersParticular)){
+            }else if(repo.contains("particular")){
+                particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class);
+            }else{
                 particular = new OwnersParticular();
             }
-            fileReader.close();
         } catch (FileNotFoundException ex) {
-            particular = new OwnersParticular();
+            return "redirect:/account/"; 
         } catch (IOException | NullPointerException ex) {
             particular = new OwnersParticular();
         }
@@ -248,9 +229,9 @@ public class FormController {
             return "owners-particular";
         }
         //2. Convert object to JSON string and save into a file directly
-        try (FileWriter writer = new FileWriter(FILE)) {
-            mapper.put("particular", particular);
-            gson.toJson(mapper, writer);
+        try  {
+            map.put("particular", particular);
+            repo.save(map);
         } catch (IOException e) {
             return "owners-particular";
         }
@@ -264,27 +245,22 @@ public class FormController {
         Employee employee;
         try {
             // 1. JSON to Java object, read it from a file.
-            fileReader = new FileReader(FILE);
-            Map<String, OwnersParticular> mapcheck = gson.fromJson(fileReader, 
-                new TypeToken<Map<String, OwnersParticular>>(){}.getType()
-            );
-            OwnersParticular particular = mapcheck.get("particular");
-            if(!(particular instanceof OwnersParticular)){
+            repo.initRepo(collectionType);
+            if(!repo.contains("company")){
+                return "redirect:/account/";    
+            }else if(!repo.contains("emulment")){
+                return "redirect:/account/second-page";
+            }else if(!repo.contains("sector")){
                 return "redirect:/account/third-page";
-            }
-            fileReader.close();
-            
-            fileReader = new FileReader(FILE);
-            Map<String, Employee> map = gson.fromJson(fileReader, 
-                new TypeToken<Map<String, Employee>>(){}.getType()
-            );
-            employee = map.get("employee");
-            if(!(employee instanceof Employee)){
+            }else if(!repo.contains("particular")){
+                return "redirect:/account/fourth-page";
+            }else if(repo.contains("employee")){
+                employee = mapper.convertValue(repo.findAll().get("employee"), Employee.class);
+            }else{
                 employee = new Employee();
             }
-            fileReader.close();
         } catch (FileNotFoundException ex) {
-            employee = new Employee();
+            return "redirect:/account/";
         } catch (IOException | NullPointerException ex) {
             employee = new Employee();
         }
@@ -302,9 +278,9 @@ public class FormController {
            return "employee-info";
         }
         //2. Convert object to JSON string and save into a file directly
-        try (FileWriter writer = new FileWriter(FILE)) {
-            mapper.put("employee", staffInfo);
-            gson.toJson(mapper, writer);
+        try {
+            map.put("employee", staffInfo);
+            repo.save(map);
         } catch (IOException e) {
             return "employee-info";
         }
@@ -314,40 +290,52 @@ public class FormController {
     @GetMapping("/preview")
     public String showPreviewForm(HttpServletRequest request,
     Model model,
-    HttpServletResponse response) {
+    HttpServletResponse response){
         try {
             // 1. JSON to Java object, read it from a file.
-            fileReader = new FileReader(FILE);
-            mapper = gson.fromJson(fileReader,
-                new TypeToken<Map<String, Object>>(){}.getType()
-            );
-           model.addAttribute("company", mapper.get("company"));
-           model.addAttribute("emulment", mapper.get("emulment"));
-           model.addAttribute("sector", mapper.get("sector"));
-           model.addAttribute("particular", mapper.get("particular"));
-           model.addAttribute("employee", mapper.get("employee"));
+            repo.initRepo(collectionType);
+            if(!repo.contains("company")){
+                return "redirect:/account/";    
+            }else if(!repo.contains("emulment")){
+                return "redirect:/account/second-page";
+            }else if(!repo.contains("sector")){
+                return "redirect:/account/third-page";
+            }else if(!repo.contains("particular")){
+                return "redirect:/account/fourth-page";
+            }
+            Company company = mapper.convertValue(repo.findAll().get("company"), Company.class);
+            States states = state.findByObjectId(Integer.parseInt(company.getState()));
+            company.setState(states.getName());
+            model.addAttribute("company", company);
+            model.addAttribute("emulment", repo.findByObjectId("emulment"));
+            model.addAttribute("sector", repo.findByObjectId("sector"));
+            model.addAttribute("particular", repo.findByObjectId("particular"));
+            model.addAttribute("employee", repo.findByObjectId("employee"));
         } catch (FileNotFoundException ex) {
+            Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
         }
         return "preview";
     }
     
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    String saveRequest(Principal principal, 
-    @ModelAttribute Employee request, 
-    Model model) {
+    @PostMapping("/save")
+    String saveRequest(Model model) {
+        Company company;
         try {
             // Set UserId to Request Field USER_ID
             //Users user = usersRepository.findOneByInitialName(principal.getName());
             // 1. JSON to Java object, read it from a file.
-            fileReader = new FileReader(FILE);
-            Map<String, Company> company = gson.fromJson(fileReader,
-                    new TypeToken<Map<String, Company>>(){}.getType()
-            );
+            repo.initRepo(collectionType);
+            company = mapper.convertValue(repo.findAll().get("company"), Company.class);
+            address.insert(company);
+            //customerDAO.create(company);
             //this.employeeService.save(company.get("company"));
         } catch (FileNotFoundException ex) {
             Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return "requests";
+        return "finish";
     }
 }
