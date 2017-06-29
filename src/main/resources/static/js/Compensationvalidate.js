@@ -47,34 +47,34 @@ $(document).ready (
 						div_radio: {
 							required: true
 							},
-						dateofinjury: "required",
-						dateoftreat: "required",
-						Hospital: "required",
-						HouseNumber: "required",
-						StreetNumber: "required",
-						State: {
+						dateOfInjury: "required",
+						dateOfTreat: "required",
+						hospital: "required",
+						houseNumber: "required",
+						streetNumber: "required",
+						state: {
 							required: true
 							},
-						LGA: {
+						province: {
 							required: true
 							},
-						SPname: "required",
-						SPname1: "required",
-						PracticeNum: "required"
+						medicFirstName: "required",
+						medicLastName: "required",
+						practiceNumber: "required"
 					},
 						
 					messages: {
 						div_radio: "Please make a choice",
-						dateofinjury: "Please select date",
-						dateoftreat: "Please select date",
-						Hospital: "This field is required",
-						HouseNumber: "This field is required",
-						StreetNumber: "This field is required",
-						State: "Please select a state",
-						LGA: "Please select a Local government area by States",
-						SPname: "Please enter Specialist's First Name",
-						SPname1: "Please enter Specialist's Last Name",
-						PracticeNum: "Please enter a valid  Practice Number of Specialist"
+						dateOfInjury: "Please select date",
+						dateOfTreat: "Please select date",
+						hospital: "This field is required",
+						houseNumber: "This field is required",
+						streetNumber: "This field is required",
+						state: "Please select a state",
+						province: "Please select a Local government area by States",
+						medicFirstName: "Please enter Specialist's First Name",
+						medicLastName: "Please enter Specialist's Last Name",
+						practiceNumber: "Please enter a valid  Practice Number of Specialist"
 					},
 					 
 					submitHandler: function(form) {
