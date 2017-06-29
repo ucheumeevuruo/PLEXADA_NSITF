@@ -27,13 +27,15 @@
                     *
                 </span>
                 Signature
-                <input type="file" name="Signature" id="Signature">
+                <input type="file" name="signature" th:field="*{signature}" id="signature">
+                <label th:if="${#fields.hasErrors('signature')}" th:errors="*{signature}" id="signature-error" class="error" for="signature"></label>
 
                 <span class="asteriskField">
                     *
                 </span>
                 Stamp
-                <input type="file" name="Stamp" id="Stamp">
+                <input type="file" name="stamp" th:field="*{stamp}" id="stamp">
+                <label th:if="${#fields.hasErrors('stamp')}" th:errors="*{stamp}" id="stamp-error" class="error" for="stamp"></label>
 			
                 <div class="form-group ">
                     <label class="control-label requiredField" for="name">
@@ -44,7 +46,8 @@
                     </span>
                     Name
                     </label>
-                    <input class="form-control" id="name" name="name" type="text"/>
+                    <input class="form-control" th:field="*{name}" id="name" name="name" type="text"/>
+                    <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" id="name-error" class="error" for="name"></label>
                 </div>
                 <div class="form-group" id="div_checkbox">
                     <div class=" ">

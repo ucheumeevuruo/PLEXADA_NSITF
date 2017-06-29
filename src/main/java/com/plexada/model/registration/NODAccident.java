@@ -5,491 +5,535 @@
  */
 package com.plexada.model.registration;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author SAP Training
  */
 public class NODAccident {
-    private String WorkNature;
-    private String DiseaseNature;
-    private String State;
-    private String LGA;
-    private String COD;
-    private String Disdate;
-    private String Reporttime;
-    private String Diagdate;
-    private String Length;
-    private String Ceasedate;
-    private String Resumedate;
-    private String Numday;
-    private String fname;
-    private String Lname;
-    private String NKfname;
-    private String NKLname;
-    private String DFname;
-    private String DMname;
-    private String DLname;
-    private String DOB;
-    private String DFname2;
-    private String DMname2;
-    private String DLname2;
-    private String DOB2;
-    private String DFname3;
-    private String DMname3;
-    private String DLname3;
-    private String DOB3;
-    private String DFname4;
-    private String DMname4;
-    private String DLname4;
-    private String DOB4;
+    @NotEmpty
+    private String workNature;
+    @NotEmpty
+    private String diseaseNature;
+    @NotEmpty
+    private String state;
+    @NotEmpty
+    private String province;
+    @NotEmpty
+    private String cod;
+    @NotEmpty
+    private String reportDate;
+    @NotEmpty
+    private String reportTime;
+    @NotEmpty
+    private String diagnosisDate;
+    @NotEmpty
+    private String length;
+    @NotEmpty
+    private String ceaseDate;
+    @NotEmpty
+    private String resumeDate;
+    @NotEmpty
+    private String numDay;
+    @NotEmpty
+    private String medicFirstName;
+    @NotEmpty
+    private String medicLastName;
+    @NotEmpty
+    private String practiceNumber;
+    @NotEmpty
+    private String kinFirstName;
+    @NotEmpty
+    private String kinLastName;
+    @NotEmpty
+    private String dFirstName;
+    private String dMiddleName;
+    @NotEmpty
+    private String dLastName;
+    @NotEmpty
+    private String dDob;
+    @NotEmpty
+    private String dFirstName2;
+    private String dMiddleName2;
+    @NotEmpty
+    private String dLastName2;
+    @NotEmpty
+    private String dDob2;
+    @NotEmpty
+    private String dFirstName3;
+    private String dMiddleName3;
+    @NotEmpty
+    private String dLastName3;
+    @NotEmpty
+    private String dDob3;
+    @NotEmpty
+    private String dFirstName4;
+    private String dMiddleName4;
+    @NotEmpty
+    private String dLastName4;
+    @NotEmpty
+    private String dDob4;   
 
     /**
-     * @return the WorkNature
+     * @return the workNature
      */
     public String getWorkNature() {
-        return WorkNature;
+        return workNature;
     }
 
     /**
-     * @param WorkNature the WorkNature to set
+     * @param workNature the workNature to set
      */
-    public void setWorkNature(String WorkNature) {
-        this.WorkNature = WorkNature;
+    public void setWorkNature(String workNature) {
+        this.workNature = workNature;
     }
 
     /**
-     * @return the DiseaseNature
+     * @return the diseaseNature
      */
     public String getDiseaseNature() {
-        return DiseaseNature;
+        return diseaseNature;
     }
 
     /**
-     * @param DiseaseNature the DiseaseNature to set
+     * @param diseaseNature the diseaseNature to set
      */
-    public void setDiseaseNature(String DiseaseNature) {
-        this.DiseaseNature = DiseaseNature;
+    public void setDiseaseNature(String diseaseNature) {
+        this.diseaseNature = diseaseNature;
     }
 
     /**
-     * @return the State
+     * @return the state
      */
     public String getState() {
-        return State;
+        return state;
     }
 
     /**
-     * @param State the State to set
+     * @param state the state to set
      */
-    public void setState(String State) {
-        this.State = State;
+    public void setState(String state) {
+        this.state = state;
     }
 
     /**
-     * @return the LGA
+     * @return the province
      */
-    public String getLGA() {
-        return LGA;
+    public String getProvince() {
+        return province;
     }
 
     /**
-     * @param LGA the LGA to set
+     * @param province the province to set
      */
-    public void setLGA(String LGA) {
-        this.LGA = LGA;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     /**
-     * @return the COD
+     * @return the cod
      */
-    public String getCOD() {
-        return COD;
+    public String getCod() {
+        return cod;
     }
 
     /**
-     * @param COD the COD to set
+     * @param cod the cod to set
      */
-    public void setCOD(String COD) {
-        this.COD = COD;
+    public void setCod(String cod) {
+        this.cod = cod;
     }
 
     /**
-     * @return the Disdate
+     * @return the reportDate
      */
-    public String getDisdate() {
-        return Disdate;
+    public String getReportDate() {
+        return reportDate;
     }
 
     /**
-     * @param Disdate the Disdate to set
+     * @param reportDate the reportDate to set
      */
-    public void setDisdate(String Disdate) {
-        this.Disdate = Disdate;
+    public void setReportDate(String reportDate) {
+        this.reportDate = reportDate;
     }
 
     /**
-     * @return the Reporttime
+     * @return the reportTime
      */
-    public String getReporttime() {
-        return Reporttime;
+    public String getReportTime() {
+        return reportTime;
     }
 
     /**
-     * @param Reporttime the Reporttime to set
+     * @param reportTime the reportTime to set
      */
-    public void setReporttime(String Reporttime) {
-        this.Reporttime = Reporttime;
+    public void setReportTime(String reportTime) {
+        this.reportTime = reportTime;
     }
 
     /**
-     * @return the Diagdate
+     * @return the diagnosisDate
      */
-    public String getDiagdate() {
-        return Diagdate;
+    public String getDiagnosisDate() {
+        return diagnosisDate;
     }
 
     /**
-     * @param Diagdate the Diagdate to set
+     * @param diagnosisDate the diagnosisDate to set
      */
-    public void setDiagdate(String Diagdate) {
-        this.Diagdate = Diagdate;
+    public void setDiagnosisDate(String diagnosisDate) {
+        this.diagnosisDate = diagnosisDate;
     }
 
     /**
-     * @return the Length
+     * @return the length
      */
     public String getLength() {
-        return Length;
+        return length;
     }
 
     /**
-     * @param Length the Length to set
+     * @param length the length to set
      */
-    public void setLength(String Length) {
-        this.Length = Length;
+    public void setLength(String length) {
+        this.length = length;
     }
 
     /**
-     * @return the Ceasedate
+     * @return the ceaseDate
      */
-    public String getCeasedate() {
-        return Ceasedate;
+    public String getCeaseDate() {
+        return ceaseDate;
     }
 
     /**
-     * @param Ceasedate the Ceasedate to set
+     * @param ceaseDate the ceaseDate to set
      */
-    public void setCeasedate(String Ceasedate) {
-        this.Ceasedate = Ceasedate;
+    public void setCeaseDate(String ceaseDate) {
+        this.ceaseDate = ceaseDate;
     }
 
     /**
-     * @return the Resumedate
+     * @return the resumeDate
      */
-    public String getResumedate() {
-        return Resumedate;
+    public String getResumeDate() {
+        return resumeDate;
     }
 
     /**
-     * @param Resumedate the Resumedate to set
+     * @param resumeDate the resumeDate to set
      */
-    public void setResumedate(String Resumedate) {
-        this.Resumedate = Resumedate;
+    public void setResumeDate(String resumeDate) {
+        this.resumeDate = resumeDate;
     }
 
     /**
-     * @return the Numday
+     * @return the numDay
      */
-    public String getNumday() {
-        return Numday;
+    public String getNumDay() {
+        return numDay;
     }
 
     /**
-     * @param Numday the Numday to set
+     * @param numDay the numDay to set
      */
-    public void setNumday(String Numday) {
-        this.Numday = Numday;
+    public void setNumDay(String numDay) {
+        this.numDay = numDay;
     }
 
     /**
-     * @return the fname
+     * @return the medicFirstName
      */
-    public String getFname() {
-        return fname;
+    public String getMedicFirstName() {
+        return medicFirstName;
     }
 
     /**
-     * @param fname the fname to set
+     * @param medicFirstName the medicFirstName to set
      */
-    public void setFname(String fname) {
-        this.fname = fname;
+    public void setMedicFirstName(String medicFirstName) {
+        this.medicFirstName = medicFirstName;
     }
 
     /**
-     * @return the Lname
+     * @return the medicLastName
      */
-    public String getLname() {
-        return Lname;
+    public String getMedicLastName() {
+        return medicLastName;
     }
 
     /**
-     * @param Lname the Lname to set
+     * @param medicLastName the medicLastName to set
      */
-    public void setLname(String Lname) {
-        this.Lname = Lname;
+    public void setMedicLastName(String medicLastName) {
+        this.medicLastName = medicLastName;
     }
 
     /**
-     * @return the NKfname
+     * @return the practiceNumber
      */
-    public String getNKfname() {
-        return NKfname;
+    public String getPracticeNumber() {
+        return practiceNumber;
     }
 
     /**
-     * @param NKfname the NKfname to set
+     * @param practiceNumber the practiceNumber to set
      */
-    public void setNKfname(String NKfname) {
-        this.NKfname = NKfname;
+    public void setPracticeNumber(String practiceNumber) {
+        this.practiceNumber = practiceNumber;
     }
 
     /**
-     * @return the NKLname
+     * @return the kinFirstName
      */
-    public String getNKLname() {
-        return NKLname;
+    public String getKinFirstName() {
+        return kinFirstName;
     }
 
     /**
-     * @param NKLname the NKLname to set
+     * @param kinFirstName the kinFirstName to set
      */
-    public void setNKLname(String NKLname) {
-        this.NKLname = NKLname;
+    public void setKinFirstName(String kinFirstName) {
+        this.kinFirstName = kinFirstName;
     }
 
     /**
-     * @return the DFname
+     * @return the kinLastName
      */
-    public String getDFname() {
-        return DFname;
+    public String getKinLastName() {
+        return kinLastName;
     }
 
     /**
-     * @param DFname the DFname to set
+     * @param kinLastName the kinLastName to set
      */
-    public void setDFname(String DFname) {
-        this.DFname = DFname;
+    public void setKinLastName(String kinLastName) {
+        this.kinLastName = kinLastName;
     }
 
     /**
-     * @return the DMname
+     * @return the dFirstName
      */
-    public String getDMname() {
-        return DMname;
+    public String getdFirstName() {
+        return dFirstName;
     }
 
     /**
-     * @param DMname the DMname to set
+     * @param dFirstName the dFirstName to set
      */
-    public void setDMname(String DMname) {
-        this.DMname = DMname;
+    public void setdFirstName(String dFirstName) {
+        this.dFirstName = dFirstName;
     }
 
     /**
-     * @return the DLname
+     * @return the dMiddleName
      */
-    public String getDLname() {
-        return DLname;
+    public String getdMiddleName() {
+        return dMiddleName;
     }
 
     /**
-     * @param DLname the DLname to set
+     * @param dMiddleName the dMiddleName to set
      */
-    public void setDLname(String DLname) {
-        this.DLname = DLname;
+    public void setdMiddleName(String dMiddleName) {
+        this.dMiddleName = dMiddleName;
     }
 
     /**
-     * @return the DOB
+     * @return the dLastName
      */
-    public String getDOB() {
-        return DOB;
+    public String getdLastName() {
+        return dLastName;
     }
 
     /**
-     * @param DOB the DOB to set
+     * @param dLastName the dLastName to set
      */
-    public void setDOB(String DOB) {
-        this.DOB = DOB;
+    public void setdLastName(String dLastName) {
+        this.dLastName = dLastName;
     }
 
     /**
-     * @return the DFname2
+     * @return the dDob
      */
-    public String getDFname2() {
-        return DFname2;
+    public String getdDob() {
+        return dDob;
     }
 
     /**
-     * @param DFname2 the DFname2 to set
+     * @param dDob the dDob to set
      */
-    public void setDFname2(String DFname2) {
-        this.DFname2 = DFname2;
+    public void setdDob(String dDob) {
+        this.dDob = dDob;
     }
 
     /**
-     * @return the DMname2
+     * @return the dFirstName2
      */
-    public String getDMname2() {
-        return DMname2;
+    public String getdFirstName2() {
+        return dFirstName2;
     }
 
     /**
-     * @param DMname2 the DMname2 to set
+     * @param dFirstName2 the dFirstName2 to set
      */
-    public void setDMname2(String DMname2) {
-        this.DMname2 = DMname2;
+    public void setdFirstName2(String dFirstName2) {
+        this.dFirstName2 = dFirstName2;
     }
 
     /**
-     * @return the DLname2
+     * @return the dMiddleName2
      */
-    public String getDLname2() {
-        return DLname2;
+    public String getdMiddleName2() {
+        return dMiddleName2;
     }
 
     /**
-     * @param DLname2 the DLname2 to set
+     * @param dMiddleName2 the dMiddleName2 to set
      */
-    public void setDLname2(String DLname2) {
-        this.DLname2 = DLname2;
+    public void setdMiddleName2(String dMiddleName2) {
+        this.dMiddleName2 = dMiddleName2;
     }
 
     /**
-     * @return the DOB2
+     * @return the dLastName2
      */
-    public String getDOB2() {
-        return DOB2;
+    public String getdLastName2() {
+        return dLastName2;
     }
 
     /**
-     * @param DOB2 the DOB2 to set
+     * @param dLastName2 the dLastName2 to set
      */
-    public void setDOB2(String DOB2) {
-        this.DOB2 = DOB2;
+    public void setdLastName2(String dLastName2) {
+        this.dLastName2 = dLastName2;
     }
 
     /**
-     * @return the DFname3
+     * @return the dDob2
      */
-    public String getDFname3() {
-        return DFname3;
+    public String getdDob2() {
+        return dDob2;
     }
 
     /**
-     * @param DFname3 the DFname3 to set
+     * @param dDob2 the dDob2 to set
      */
-    public void setDFname3(String DFname3) {
-        this.DFname3 = DFname3;
+    public void setdDob2(String dDob2) {
+        this.dDob2 = dDob2;
     }
 
     /**
-     * @return the DMname3
+     * @return the dFirstName3
      */
-    public String getDMname3() {
-        return DMname3;
+    public String getdFirstName3() {
+        return dFirstName3;
     }
 
     /**
-     * @param DMname3 the DMname3 to set
+     * @param dFirstName3 the dFirstName3 to set
      */
-    public void setDMname3(String DMname3) {
-        this.DMname3 = DMname3;
+    public void setdFirstName3(String dFirstName3) {
+        this.dFirstName3 = dFirstName3;
     }
 
     /**
-     * @return the DLname3
+     * @return the dMiddleName3
      */
-    public String getDLname3() {
-        return DLname3;
+    public String getdMiddleName3() {
+        return dMiddleName3;
     }
 
     /**
-     * @param DLname3 the DLname3 to set
+     * @param dMiddleName3 the dMiddleName3 to set
      */
-    public void setDLname3(String DLname3) {
-        this.DLname3 = DLname3;
+    public void setdMiddleName3(String dMiddleName3) {
+        this.dMiddleName3 = dMiddleName3;
     }
 
     /**
-     * @return the DOB3
+     * @return the dLastName3
      */
-    public String getDOB3() {
-        return DOB3;
+    public String getdLastName3() {
+        return dLastName3;
     }
 
     /**
-     * @param DOB3 the DOB3 to set
+     * @param dLastName3 the dLastName3 to set
      */
-    public void setDOB3(String DOB3) {
-        this.DOB3 = DOB3;
+    public void setdLastName3(String dLastName3) {
+        this.dLastName3 = dLastName3;
     }
 
     /**
-     * @return the DFname4
+     * @return the dDob3
      */
-    public String getDFname4() {
-        return DFname4;
+    public String getdDob3() {
+        return dDob3;
     }
 
     /**
-     * @param DFname4 the DFname4 to set
+     * @param dDob3 the dDob3 to set
      */
-    public void setDFname4(String DFname4) {
-        this.DFname4 = DFname4;
+    public void setdDob3(String dDob3) {
+        this.dDob3 = dDob3;
     }
 
     /**
-     * @return the DMname4
+     * @return the dFirstName4
      */
-    public String getDMname4() {
-        return DMname4;
+    public String getdFirstName4() {
+        return dFirstName4;
     }
 
     /**
-     * @param DMname4 the DMname4 to set
+     * @param dFirstName4 the dFirstName4 to set
      */
-    public void setDMname4(String DMname4) {
-        this.DMname4 = DMname4;
+    public void setdFirstName4(String dFirstName4) {
+        this.dFirstName4 = dFirstName4;
     }
 
     /**
-     * @return the DLname4
+     * @return the dMiddleName4
      */
-    public String getDLname4() {
-        return DLname4;
+    public String getdMiddleName4() {
+        return dMiddleName4;
     }
 
     /**
-     * @param DLname4 the DLname4 to set
+     * @param dMiddleName4 the dMiddleName4 to set
      */
-    public void setDLname4(String DLname4) {
-        this.DLname4 = DLname4;
+    public void setdMiddleName4(String dMiddleName4) {
+        this.dMiddleName4 = dMiddleName4;
     }
 
     /**
-     * @return the DOB4
+     * @return the dLastName4
      */
-    public String getDOB4() {
-        return DOB4;
+    public String getdLastName4() {
+        return dLastName4;
     }
 
     /**
-     * @param DOB4 the DOB4 to set
+     * @param dLastName4 the dLastName4 to set
      */
-    public void setDOB4(String DOB4) {
-        this.DOB4 = DOB4;
+    public void setdLastName4(String dLastName4) {
+        this.dLastName4 = dLastName4;
     }
-    
-	
-}
+
+    /**
+     * @return the dDob4
+     */
+    public String getdDob4() {
+        return dDob4;
+    }
+
+    /**
+     * @param dDob4 the dDob4 to set
+     */
+    public void setdDob4(String dDob4) {
+        this.dDob4 = dDob4;
+    }
+}  
