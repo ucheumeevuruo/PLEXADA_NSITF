@@ -68,6 +68,7 @@ $(document).ready (
                     agreement: "You have not agreed with out terms"
                 },
                 submitHandler: function(form) {
+                    $("button['name=Next']").attr("disabled", "");
                     form.submit();
                 }
             });

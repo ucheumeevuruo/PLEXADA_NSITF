@@ -6,9 +6,9 @@
 package com.plexada.controller;
 
 import com.plexada.build.Emulment;
+import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
-import java.io.IOException;
-import javax.servlet.http.HttpServletResponse;
+import java.util.List;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,23 +26,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/ecs")
 public class ECSController {
-    NavLinks links = new NavLinks();
+    List<Link> links = NavLinks.ECSSidebarLinks();
     private String path;
     private final String header = "ECS";
     
     @GetMapping("/dashboard")
     public String home(Model model){
         model.addAttribute("header", header);
-        model.addAttribute("links", links.ECSSidebarLinks());
+        model.addAttribute("links", links);
         path = "ECS-Dashboard";
         return this.path;
     }
     
     @GetMapping("/notification-type")
-    public String showNotification(@PathVariable String path, Model model){
+    public String showNotification(Model model){
         this.path = "ECS-Notification";
         model.addAttribute("header", header);
-        model.addAttribute("links", links.ECSSidebarLinks());
+        model.addAttribute("links", links);
         return this.path;
     }
     
@@ -56,7 +56,7 @@ public class ECSController {
             this.path = "ECS-Notification";
         }
         model.addAttribute("header", header);
-        model.addAttribute("links", links.ECSSidebarLinks());
+        model.addAttribute("links", links);
         return this.path;
     }
     
@@ -64,7 +64,7 @@ public class ECSController {
     public String showSubscription(Model model){
         this.path = "ECS-Subscription";
         model.addAttribute("header", header);
-        model.addAttribute("links", links.ECSSidebarLinks());
+        model.addAttribute("links", links);
         //model.addAttribute("subscription", links.ECSSidebarLinks());
         return this.path;
     }
@@ -78,7 +78,7 @@ public class ECSController {
             //this.path = "redirect:/account/third-page";
         }
         model.addAttribute("header", header);
-        model.addAttribute("links", links.ECSSidebarLinks());
+        model.addAttribute("links", links);
         //model.addAttribute("subscription", emulment);
         this.path = "ECS-Subscription";
         return this.path;
@@ -88,7 +88,7 @@ public class ECSController {
     public String showChangePassword(Model model){
         this.path = "ECS-Change-Password";
         model.addAttribute("header", header);
-        model.addAttribute("links", links.ECSSidebarLinks());
+        model.addAttribute("links", links);
         return this.path;
     }
     
@@ -101,7 +101,7 @@ public class ECSController {
             //this.path = "redirect:/account/third-page";
         }
         model.addAttribute("header", header);
-        model.addAttribute("links", links.ECSSidebarLinks());
+        model.addAttribute("links", links);
         //model.addAttribute("subscription", emulment);
         this.path = "ECS-Change-Password";
         return this.path;

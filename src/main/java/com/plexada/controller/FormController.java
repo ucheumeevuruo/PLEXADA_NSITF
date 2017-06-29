@@ -95,7 +95,7 @@ public class FormController {
     public String indexForm(HttpServletResponse response,
     Model model, 
     @ModelAttribute @Valid Company company, 
-    BindingResult bindingResult) throws IOException, FileNotFoundException{
+    BindingResult bindingResult){
         if(bindingResult.hasErrors()){
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());

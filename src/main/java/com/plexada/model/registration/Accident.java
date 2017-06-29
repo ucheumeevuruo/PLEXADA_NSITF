@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author SAP Training
  */
-public class NoAAccident {
+public class Accident {
     @NotEmpty
     private String doA;
     @NotEmpty
