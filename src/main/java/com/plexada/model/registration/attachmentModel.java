@@ -5,191 +5,89 @@
  */
 package com.plexada.model.registration;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author SAP Training
  */
 public class attachmentModel {
-    private String firstName;
-    private String otherName;
-    private String position;
-    private String staffID;
-    private String company;
-    private String impNumber;
-    private String tinNum;
-    private String email;
-    private String phoneNumber;
-    private String houseNo;
-    private String address;
-    private String staffEmulment;
+    @NotEmpty
+    private String div_radio;
+    @NotEmpty
+    private String fileToUpload1;
+    @NotEmpty
+    private String fileToUpload2;
+    private String fileToUpload;
+    private String fileToUpload3;
 
     /**
-     * @return the firstName
+     * @return the div_radio
      */
-    public String getFirstName() {
-        return firstName;
+    public String getDiv_radio() {
+        return div_radio;
     }
 
     /**
-     * @param firstName the firstName to set
+     * @param div_radio the div_radio to set
      */
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
+    public void setDiv_radio(String div_radio) {
+        this.div_radio = div_radio;
     }
 
     /**
-     * @return the otherName
+     * @return the fileToUpload1
      */
-    public String getOtherName() {
-        return otherName;
+    public String getFileToUpload1() {
+        return fileToUpload1;
     }
 
     /**
-     * @param otherName the otherName to set
+     * @param fileToUpload1 the fileToUpload1 to set
      */
-    public void setOtherName(String otherName) {
-        this.otherName = otherName;
+    public void setFileToUpload1(String fileToUpload1) {
+        this.fileToUpload1 = fileToUpload1;
     }
 
     /**
-     * @return the position
+     * @return the fileToUpload2
      */
-    public String getPosition() {
-        return position;
+    public String getFileToUpload2() {
+        return fileToUpload2;
     }
 
     /**
-     * @param position the position to set
+     * @param fileToUpload2 the fileToUpload2 to set
      */
-    public void setPosition(String position) {
-        this.position = position;
+    public void setFileToUpload2(String fileToUpload2) {
+        this.fileToUpload2 = fileToUpload2;
     }
 
     /**
-     * @return the staffID
+     * @return the fileToUpload
      */
-    public String getStaffID() {
-        return staffID;
+    public String getFileToUpload() {
+        return fileToUpload;
     }
 
     /**
-     * @param staffID the staffID to set
+     * @param fileToUpload the fileToUpload to set
      */
-    public void setStaffID(String staffID) {
-        this.staffID = staffID;
+    public void setFileToUpload(String fileToUpload) {
+        this.fileToUpload = fileToUpload;
     }
 
     /**
-     * @return the company
+     * @return the fileToUpload3
      */
-    public String getCompany() {
-        return company;
+    public String getFileToUpload3() {
+        return fileToUpload3;
     }
 
     /**
-     * @param company the company to set
+     * @param fileToUpload3 the fileToUpload3 to set
      */
-    public void setCompany(String company) {
-        this.company = company;
-    }
-
-    /**
-     * @return the impNumber
-     */
-    public String getImpNumber() {
-        return impNumber;
-    }
-
-    /**
-     * @param impNumber the impNumber to set
-     */
-    public void setImpNumber(String impNumber) {
-        this.impNumber = impNumber;
-    }
-
-    /**
-     * @return the tinNum
-     */
-    public String getTinNum() {
-        return tinNum;
-    }
-
-    /**
-     * @param tinNum the tinNum to set
-     */
-    public void setTinNum(String tinNum) {
-        this.tinNum = tinNum;
-    }
-
-    /**
-     * @return the email
-     */
-    public String getEmail() {
-        return email;
-    }
-
-    /**
-     * @param email the email to set
-     */
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    /**
-     * @return the phoneNumber
-     */
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
-    /**
-     * @param phoneNumber the phoneNumber to set
-     */
-    public void setPhoneNumber(String phoneNumber) {
-        this.phoneNumber = phoneNumber;
-    }
-
-    /**
-     * @return the houseNo
-     */
-    public String getHouseNo() {
-        return houseNo;
-    }
-
-    /**
-     * @param houseNo the houseNo to set
-     */
-    public void setHouseNo(String houseNo) {
-        this.houseNo = houseNo;
-    }
-
-    /**
-     * @return the address
-     */
-    public String getAddress() {
-        return address;
-    }
-
-    /**
-     * @param address the address to set
-     */
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    /**
-     * @return the staffEmulment
-     */
-    public String getStaffEmulment() {
-        return staffEmulment;
-    }
-
-    /**
-     * @param staffEmulment the staffEmulment to set
-     */
-    public void setStaffEmulment(String staffEmulment) {
-        this.staffEmulment = staffEmulment;
-    }
-    
-    
-}
+    public void setFileToUpload3(String fileToUpload3) {
+        this.fileToUpload3 = fileToUpload3;
+    } 
+}  
