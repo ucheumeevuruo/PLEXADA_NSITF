@@ -5,42 +5,56 @@
  */
 package com.plexada.model.registration;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author SAP Training
  */
 public class treatmentBillModel {
-    private String date1;
+    @NotEmpty
+    private String dateSustained;
+    @NotEmpty
     private String number;
+    @NotEmpty
     private String message;
+    @NotEmpty
     private String date2;
+    @NotEmpty
     private String number1;
+    @NotEmpty
     private String message1;
+    @NotEmpty
     private String date3;
+    @NotEmpty
     private String number2;
+    @NotEmpty
     private String message2;
+    @NotEmpty
     private String date4;
+    @NotEmpty
     private String number3;
-    private String employerDetails1;
+    @NotEmpty
     private String message3;
+    @NotEmpty
     private String date5;
+    @NotEmpty
     private String number4;
+    @NotEmpty
     private String message4;
-    private String healthStatus2;
-    private String attachments4;
 
     /**
-     * @return the date1
+     * @return the dateSustained
      */
-    public String getDate1() {
-        return date1;
+    public String getDateSustained() {
+        return dateSustained;
     }
 
     /**
-     * @param date1 the date1 to set
+     * @param dateSustained the dateSustained to set
      */
-    public void setDate1(String date1) {
-        this.date1 = date1;
+    public void setDateSustained(String dateSustained) {
+        this.dateSustained = dateSustained;
     }
 
     /**
@@ -184,20 +198,6 @@ public class treatmentBillModel {
     }
 
     /**
-     * @return the employerDetails1
-     */
-    public String getEmployerDetails1() {
-        return employerDetails1;
-    }
-
-    /**
-     * @param employerDetails1 the employerDetails1 to set
-     */
-    public void setEmployerDetails1(String employerDetails1) {
-        this.employerDetails1 = employerDetails1;
-    }
-
-    /**
      * @return the message3
      */
     public String getMessage3() {
@@ -252,33 +252,5 @@ public class treatmentBillModel {
     public void setMessage4(String message4) {
         this.message4 = message4;
     }
-
-    /**
-     * @return the healthStatus2
-     */
-    public String getHealthStatus2() {
-        return healthStatus2;
-    }
-
-    /**
-     * @param healthStatus2 the healthStatus2 to set
-     */
-    public void setHealthStatus2(String healthStatus2) {
-        this.healthStatus2 = healthStatus2;
-    }
-
-    /**
-     * @return the attachments4
-     */
-    public String getAttachments4() {
-        return attachments4;
-    }
-
-    /**
-     * @param attachments4 the attachments4 to set
-     */
-    public void setAttachments4(String attachments4) {
-        this.attachments4 = attachments4;
-    }
-    
+ 
 }

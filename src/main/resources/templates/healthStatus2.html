@@ -43,16 +43,18 @@
                 </div>
                 <br />
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="dateofinjury">
+                    <label class="control-label requiredField" for="dateOfInjury">
                         Date on which the injury/disease/death was reported to the Employer
                     </label>
-                    <input class="form-control" id="dateofinjury" name="dateofinjury" type="text"/>
+                    <input class="form-control" th:field="*{dateOfInjury}" id="dateOfInjury" name="dateOfInjury" type="text"/>
+                    <label th:if="${#fields.hasErrors('dateOfInjury')}" th:errors="*{dateOfInjury}" id="dateOfInjury-error" class="error" for="dateOfInjury"></label>
                 </div>
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="dateoftreat">
+                    <label class="control-label requiredField" for="dateOfTreat">
                         Date of first treatment
                     </label>
-                    <input class="form-control" id="dateoftreat" name="dateoftreat" type="text"/>
+                    <input class="form-control" th:field="*{dateOfTreat}" id="dateOfTreat" name="dateOfTreat" type="text"/>
+                    <label th:if="${#fields.hasErrors('dateOfTreat')}" th:errors="*{dateOfTreat}" id="dateOfTreat-error" class="error" for="dateOfTreat"></label>
                 </div>
                 <br />
                 <p class="comp-title"> 
@@ -60,31 +62,34 @@
                 </p>
                 <br />
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="Hospital">
+                    <label class="control-label requiredField" for="hospital">
                         Hospital
                     </label>
-                    <input class="form-control" id="Hospital" name="Hospital" type="text"/>
+                    <input class="form-control" th:field="*{hospital}" id="hospital" name="hospital" type="text"/>
+                    <label th:if="${#fields.hasErrors('hospital')}" th:errors="*{hospital}" id="hospital-error" class="error" for="hospital"></label>
                 </div>
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="HouseNumber">
+                    <label class="control-label requiredField" for="houseNumber">
                         House Number
                     </label>
-                    <input class="form-control" id="HouseNumber" name="HouseNumber" type="text"/>
+                    <input class="form-control" th:field="*{houseNumber}" id="houseNumber" name="houseNumber" type="text"/>
+                    <label th:if="${#fields.hasErrors('houseNumber')}" th:errors="*{houseNumber}" id="houseNumber-error" class="error" for="houseNumber"></label>
                 </div>
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="StreetNumber">
+                    <label class="control-label requiredField" for="streetNumber">
                         Street Number
                     </label>
-                    <input class="form-control" id="StreetNumber" name="StreetNumber" type="text"/>
+                    <input class="form-control" th:field="*{streetNumber}" id="streetNumber" name="streetNumber" type="text"/>
+                    <label th:if="${#fields.hasErrors('streetNumber')}" th:errors="*{streetNumber}" id="streetNumber-error" class="error" for="streetNumber"></label>
                 </div>
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="State">
+                    <label class="control-label requiredField" for="state">
                         State
                         <span class="asteriskField">
                              *
                         </span>
                     </label>
-                    <select class="select form-control" id="State" name="State">
+                    <select class="select form-control" th:field="*{state}" id="state" name="state">
                         <option selected="selected" value="">
                         </option>
                         <option value="Ibadan">
@@ -94,15 +99,16 @@
                              Lagos
                         </option>
                     </select>
+                    <label th:if="${#fields.hasErrors('state')}" th:errors="*{state}" id="state-error" class="error" for="state"></label>
                 </div>
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="LGA">
+                    <label class="control-label requiredField" for="province">
                         Local Government
                         <span class="asteriskField">
                              *
                         </span>
                     </label>
-                    <select class="select form-control" id="LGA" name="LGA">
+                    <select class="select form-control" th:field="*{province}" id="province" name="province">
                         <option selected="selected" value="">
                         </option>
                         <option value="Surulere">
@@ -112,37 +118,41 @@
                             Eti-Osa
                         </option>
                     </select>
+                    <label th:if="${#fields.hasErrors('province')}" th:errors="*{province}" id="province-error" class="error" for="province"></label>
                 </div>
 
                 Name of Specialist
                 <br />
                 <br />
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="SPname">
+                    <label class="control-label requiredField" for="medicFirstName">
                         First Name
                         <span class="asteriskField">
                              *
                         </span>
                     </label>
-                    <input class="form-control" id="SPname" name="SPname" type="text"/>
+                    <input class="form-control" th:field="*{medicFirstName}" id="medicFirstName" name="medicFirstName" type="text"/>
+                    <label th:if="${#fields.hasErrors('medicFirstName')}" th:errors="*{medicFirstName}" id="medicFirstName-error" class="error" for="medicFirstName"></label>
                 </div>
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="SPname1">
+                    <label class="control-label requiredField" for="medicLastName">
                         Last Name
                         <span class="asteriskField">
                              *
                         </span>
                     </label>
-                    <input class="form-control" id="SPname1" name="SPname1" type="text"/>
+                    <input class="form-control" th:field="*{medicLastName}" id="medicLastName" name="medicLastName" type="text"/>
+                    <label th:if="${#fields.hasErrors('medicLastName')}" th:errors="*{medicLastName}" id="medicLastName-error" class="error" for="medicLastName"></label>
                 </div>
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="PracticeNum">
+                    <label class="control-label requiredField" for="practiceNumber">
                         Practice Number of Specialist
                         <span class="asteriskField">
                              *
                         </span>
                     </label>
-                    <input class="form-control" id="PracticeNum" name="PracticeNum" type="text"/>
+                    <input class="form-control" th:field="*{practiceNumber}" id="practiceNumber" name="practiceNumber" type="text"/>
+                    <label th:if="${#fields.hasErrors('practiceNumber')}" th:errors="*{practiceNumber}" id="practiceNumber-error" class="error" for="practiceNumber"></label>
                 </div>
                 <div class="form-group">
                     <div class="pull-right">

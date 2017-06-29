@@ -34,10 +34,11 @@
             <br />
             <form method="post" action="/third-page" id="treatmentBill3">
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="date">
+                    <label class="control-label requiredField" for="dateSustained">
                         Date injury/disease/death was sustained/diagnosed/occurred
                     </label>
-                    <input class="form-control" id="date" name="date" type="date"/>
+                    <input class="form-control" th:field="*{dateSustained}" id="dateSustained" name="dateSustained" type="date"/>
+                    <label th:if="${#fields.hasErrors('dateSustained')}" th:errors="*{dateSustained}" id="dateSustained-error" class="error" for="dateSustained"></label>
                 </div>
 			 
                 Bill for Registration of Hospital/clinic
@@ -48,13 +49,15 @@
                         <label class="control-label requiredField" for="date1">
                             Date
                         </label>
-                        <input class="form-control" id="date1" name="date1" placeholder="MM/DD/YYYY" type="date"/>
+                        <input class="form-control" th:field="*{date1}" id="date1" name="date1" placeholder="MM/DD/YYYY" type="date"/>
+                        <label th:if="${#fields.hasErrors('date1')}" th:errors="*{date1}" id="date1-error" class="error" for="date1"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="number">
                             Amount Charged
                         </label>
-                        <input class="form-control" id="number" name="number" type="text"/>
+                        <input class="form-control" th:field="*{number}" id="number" name="number" type="text"/>
+                        <label th:if="${#fields.hasErrors('number')}" th:errors="*{number}" id="number-error" class="error" for="number"></label>
                     </div>
                 </div>
 			 
@@ -62,7 +65,8 @@
                     <label class="control-label " for="message">
                         Remarks
                     </label>
-                    <textarea class="form-control" cols="40" id="message" name="message" rows="6"></textarea>
+                    <textarea class="form-control" th:field="*{message}" cols="40" id="message" name="message" rows="6"></textarea>
+                    <label th:if="${#fields.hasErrors('message')}" th:errors="*{message}" id="message-error" class="error" for="message"></label>
                 </div>
 			 
                 Bill for Medical admission/confinement
@@ -73,13 +77,15 @@
                         <label class="control-label requiredField" for="date2">
                             Date
                         </label>
-                        <input class="form-control" id="date2" name="date2" placeholder="MM/DD/YYYY" type="date"/>
+                        <input class="form-control" th:field="*{date2}" id="date2" name="date2" placeholder="MM/DD/YYYY" type="date"/>
+                        <label th:if="${#fields.hasErrors('date2')}" th:errors="*{date2}" id="date2-error" class="error" for="date2"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="number1">
                             Amount Charged
                         </label>
-                        <input class="form-control" id="number1" name="number1" type="text"/>
+                        <input class="form-control" th:field="*{number1}" id="number1" name="number1" type="text"/>
+                        <label th:if="${#fields.hasErrors('number1')}" th:errors="*{number1}" id="number1-error" class="error" for="number1"></label>
                     </div>
                 </div>
 			 
@@ -87,7 +93,8 @@
                     <label class="control-label " for="message1">
                         Remarks
                     </label>
-                    <textarea class="form-control" cols="40" id="message1" name="message1" rows="6"></textarea>
+                    <textarea class="form-control" th:field="*{message1}" cols="40" id="message1" name="message1" rows="6"></textarea>
+                    <label th:if="${#fields.hasErrors('message1')}" th:errors="*{message1}" id="message1-error" class="error" for="message1"></label>
                 </div>
 			 
                 Bill for Medical Expenses
@@ -98,13 +105,15 @@
                         <label class="control-label requiredField" for="date3">
                             Date
                         </label>
-                        <input class="form-control" id="date3" name="date3" placeholder="MM/DD/YYYY" type="date"/>
+                        <input class="form-control" th:field="*{date3}" id="date3" name="date3" placeholder="MM/DD/YYYY" type="date"/>
+                        <label th:if="${#fields.hasErrors('date3')}" th:errors="*{date3}" id="date3-error" class="error" for="date3"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="number2">
                             Amount Charged
                         </label>
-                        <input class="form-control" id="number2" name="number2" type="text"/>
+                        <input class="form-control" th:field="*{number2}" id="number2" name="number2" type="text"/>
+                        <label th:if="${#fields.hasErrors('number2')}" th:errors="*{number2}" id="number2-error" class="error" for="number2"></label>
                     </div>
                 </div>
 			 
@@ -112,7 +121,8 @@
                     <label class="control-label " for="message2">
                         Remarks
                     </label>
-                    <textarea class="form-control" cols="40" id="message2" name="message2" rows="6"></textarea>
+                    <textarea class="form-control" th:field="*{message2}" cols="40" id="message2" name="message2" rows="6"></textarea>
+                    <label th:if="${#fields.hasErrors('message2')}" th:errors="*{message2}" id="message2-error" class="error" for="message2"></label>
                 </div>
 			 
                 Bill for Laboratory Services
@@ -123,21 +133,24 @@
                         <label class="control-label requiredField" for="date4">
                             Date
                         </label>
-                        <input class="form-control" id="date4" name="date4" placeholder="MM/DD/YYYY" type="date"/>
+                        <input class="form-control" th:field="*{date4}" id="date4" name="date4" placeholder="MM/DD/YYYY" type="date"/>
+                        <label th:if="${#fields.hasErrors('date4')}" th:errors="*{date4}" id="date4-error" class="error" for="date4"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="number3">
                             Amount Charged
                         </label>
-                        <input class="form-control" id="number3" name="number3" type="text"/>
+                        <input class="form-control" th:field="*{number3}" id="number3" name="number3" type="text"/>
+                        <label th:if="${#fields.hasErrors('number3')}" th:errors="*{number3}" id="number3-error" class="error" for="number3"></label>
                     </div>
                 </div>
 			 
                 <div class="form-group ">
                     <label class="control-label " for="message3">
                         Remarks
-                    </label
-                    <textarea class="form-control" cols="40" id="message3" name="message3" rows="6"></textarea>
+                    </label>
+                    <textarea class="form-control" th:field="*{message3}" cols="40" id="message3" name="message3" rows="6"></textarea>
+                    <label th:if="${#fields.hasErrors('message3')}" th:errors="*{message3}" id="message3-error" class="error" for="message3"></label>
                 </div>
 
                 Bill for Drugs/Pharmaceutical Care
@@ -148,13 +161,15 @@
                         <label class="control-label requiredField" for="date5">
                             Date
                         </label>
-                        <input class="form-control" id="date5" name="date5" placeholder="MM/DD/YYYY" type="date"/>
+                        <input class="form-control" th:field="*{date5}" id="date5" name="date5" placeholder="MM/DD/YYYY" type="date"/>
+                        <label th:if="${#fields.hasErrors('date5')}" th:errors="*{date5}" id="date5-error" class="error" for="date5"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="number4">
                             Amount Charged
                         </label>
-                        <input class="form-control" id="number4" name="number4" type="text"/>
+                        <input class="form-control" th:field="*{number4}" id="number4" name="number4" type="text"/>
+                        <label th:if="${#fields.hasErrors('number4')}" th:errors="*{number4}" id="number4-error" class="error" for="number4"></label>
                     </div>
                 </div>
 			 
@@ -162,7 +177,8 @@
                     <label class="control-label " for="message4">
                         Remarks
                     </label>
-                    <textarea class="form-control" cols="40" id="message4" name="message4" rows="6"></textarea>
+                    <textarea class="form-control" th:field="*{message4}" cols="40" id="message4" name="message4" rows="6"></textarea>
+                    <label th:if="${#fields.hasErrors('message4')}" th:errors="*{message4}" id="message4-error" class="error" for="message4"></label>
                 </div>
                 <div class="form-group">
                     <div class="pull-right">

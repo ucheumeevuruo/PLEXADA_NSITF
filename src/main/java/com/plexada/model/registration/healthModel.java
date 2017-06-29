@@ -5,24 +5,35 @@
  */
 package com.plexada.model.registration;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author SAP Training
  */
 public class healthModel {
+    @NotEmpty
     private String div_radio;
-    private String dateofinjury;
-    private String dateoftreat;
-    private String Hospital;
-    private String HouseNumber;
-    private String StreetNumber;
-    private String State;
-    private String LGA;
-    private String SPname;
-    private String SPname1;
-    private String PracticeNum;
-    private String employerDetails1;
-    private String treatmentBill3;
+    @NotEmpty
+    private String dateOfInjury;
+    @NotEmpty
+    private String dateOfTreat;
+    @NotEmpty
+    private String hospital;
+    @NotEmpty
+    private String houseNumber;
+    @NotEmpty
+    private String streetNumber;
+    @NotEmpty
+    private String state;
+    @NotEmpty
+    private String province;
+    @NotEmpty
+    private String medicFirstName;
+    @NotEmpty
+    private String medicLastName;
+    @NotEmpty
+    private String practiceNumber;
 
     /**
      * @return the div_radio
@@ -39,172 +50,143 @@ public class healthModel {
     }
 
     /**
-     * @return the dateofinjury
+     * @return the dateOfInjury
      */
-    public String getDateofinjury() {
-        return dateofinjury;
+    public String getDateOfInjury() {
+        return dateOfInjury;
     }
 
     /**
-     * @param dateofinjury the dateofinjury to set
+     * @param dateOfInjury the dateOfInjury to set
      */
-    public void setDateofinjury(String dateofinjury) {
-        this.dateofinjury = dateofinjury;
+    public void setDateOfInjury(String dateOfInjury) {
+        this.dateOfInjury = dateOfInjury;
     }
 
     /**
-     * @return the dateoftreat
+     * @return the dateOfTreat
      */
-    public String getDateoftreat() {
-        return dateoftreat;
+    public String getDateOfTreat() {
+        return dateOfTreat;
     }
 
     /**
-     * @param dateoftreat the dateoftreat to set
+     * @param dateOfTreat the dateOfTreat to set
      */
-    public void setDateoftreat(String dateoftreat) {
-        this.dateoftreat = dateoftreat;
+    public void setDateOfTreat(String dateOfTreat) {
+        this.dateOfTreat = dateOfTreat;
     }
 
     /**
-     * @return the Hospital
+     * @return the hospital
      */
     public String getHospital() {
-        return Hospital;
+        return hospital;
     }
 
     /**
-     * @param Hospital the Hospital to set
+     * @param hospital the hospital to set
      */
-    public void setHospital(String Hospital) {
-        this.Hospital = Hospital;
+    public void setHospital(String hospital) {
+        this.hospital = hospital;
     }
 
     /**
-     * @return the HouseNumber
+     * @return the houseNumber
      */
     public String getHouseNumber() {
-        return HouseNumber;
+        return houseNumber;
     }
 
     /**
-     * @param HouseNumber the HouseNumber to set
+     * @param houseNumber the houseNumber to set
      */
-    public void setHouseNumber(String HouseNumber) {
-        this.HouseNumber = HouseNumber;
+    public void setHouseNumber(String houseNumber) {
+        this.houseNumber = houseNumber;
     }
 
     /**
-     * @return the StreetNumber
+     * @return the streetNumber
      */
     public String getStreetNumber() {
-        return StreetNumber;
+        return streetNumber;
     }
 
     /**
-     * @param StreetNumber the StreetNumber to set
+     * @param streetNumber the streetNumber to set
      */
-    public void setStreetNumber(String StreetNumber) {
-        this.StreetNumber = StreetNumber;
+    public void setStreetNumber(String streetNumber) {
+        this.streetNumber = streetNumber;
     }
 
     /**
-     * @return the State
+     * @return the state
      */
     public String getState() {
-        return State;
+        return state;
     }
 
     /**
-     * @param State the State to set
+     * @param state the state to set
      */
-    public void setState(String State) {
-        this.State = State;
+    public void setState(String state) {
+        this.state = state;
     }
 
     /**
-     * @return the LGA
+     * @return the province
      */
-    public String getLGA() {
-        return LGA;
+    public String getProvince() {
+        return province;
     }
 
     /**
-     * @param LGA the LGA to set
+     * @param province the province to set
      */
-    public void setLGA(String LGA) {
-        this.LGA = LGA;
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     /**
-     * @return the SPname
+     * @return the medicFirstName
      */
-    public String getSPname() {
-        return SPname;
+    public String getMedicFirstName() {
+        return medicFirstName;
     }
 
     /**
-     * @param SPname the SPname to set
+     * @param medicFirstName the medicFirstName to set
      */
-    public void setSPname(String SPname) {
-        this.SPname = SPname;
+    public void setMedicFirstName(String medicFirstName) {
+        this.medicFirstName = medicFirstName;
     }
 
     /**
-     * @return the SPname1
+     * @return the medicLastName
      */
-    public String getSPname1() {
-        return SPname1;
+    public String getMedicLastName() {
+        return medicLastName;
     }
 
     /**
-     * @param SPname1 the SPname1 to set
+     * @param medicLastName the medicLastName to set
      */
-    public void setSPname1(String SPname1) {
-        this.SPname1 = SPname1;
+    public void setMedicLastName(String medicLastName) {
+        this.medicLastName = medicLastName;
     }
 
     /**
-     * @return the PracticeNum
+     * @return the practiceNumber
      */
-    public String getPracticeNum() {
-        return PracticeNum;
+    public String getPracticeNumber() {
+        return practiceNumber;
     }
 
     /**
-     * @param PracticeNum the PracticeNum to set
+     * @param practiceNumber the practiceNumber to set
      */
-    public void setPracticeNum(String PracticeNum) {
-        this.PracticeNum = PracticeNum;
+    public void setPracticeNumber(String practiceNumber) {
+        this.practiceNumber = practiceNumber;
     }
-
-    /**
-     * @return the employerDetails1
-     */
-    public String getEmployerDetails1() {
-        return employerDetails1;
-    }
-
-    /**
-     * @param employerDetails1 the employerDetails1 to set
-     */
-    public void setEmployerDetails1(String employerDetails1) {
-        this.employerDetails1 = employerDetails1;
-    }
-
-    /**
-     * @return the treatmentBill3
-     */
-    public String getTreatmentBill3() {
-        return treatmentBill3;
-    }
-
-    /**
-     * @param treatmentBill3 the treatmentBill3 to set
-     */
-    public void setTreatmentBill3(String treatmentBill3) {
-        this.treatmentBill3 = treatmentBill3;
-    }
-    
-    
+      
 }

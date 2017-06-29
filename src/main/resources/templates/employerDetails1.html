@@ -39,13 +39,14 @@
                             </span>
                             Notification Code
                         </label>
-                        <select class="select form-control" id="select" name="select">
+                        <select class="select form-control" th:field="*{dFirstName}" id="select" name="select">
                             <option selected="selected" value="">
                             </option>
                             <option value="fffffffffffffffffffffffffffffffff">
                                 fffffffffffffffffffffffffffffffff
                             </option>
                         </select>
+                        <label th:if="${#fields.hasErrors('dDob')}" th:errors="*{dDob}" id="dDob-error" class="error" for="dDob"></label>
                     </div>
                 </div>
 				 
@@ -84,7 +85,8 @@
                         </span>
                         First Name
                     </label>
-                    <input class="form-control" id="fName" name="fName" type="text"/>
+                    <input class="form-control" th:field="*{fName}" id="fName" name="fName" type="text"/>
+                    <label th:if="${#fields.hasErrors('fName')}" th:errors="*{fName}" id="fName-error" class="error" for="fName"></label>
                 </div>
 				 
                 <div class="row">
@@ -93,6 +95,7 @@
                             Middle Name
                         </label>
                         <input class="form-control" id="fName" name="fName" type="text"/>
+                        
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="lName">
@@ -101,16 +104,18 @@
                             </span>
                             Last Name
                         </label>
-                        <input class="form-control" id="lName" name="lName" type="text"/>
+                        <input class="form-control" th:field="*{lName}" id="lName" name="lName" type="text"/>
+                        <label th:if="${#fields.hasErrors('lName')}" th:errors="*{lName}" id="lName-error" class="error" for="lName"></label>
                     </div>
                 </div>
 				 
                 <div class="row">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label " for="empID">
+                        <label class="control-label " for="empId">
                             NSITF Employee ID
                         </label>
-                        <input class="form-control" id="empID" name="empID" type="text"/>
+                        <input class="form-control" th:field="*{empId}" id="empId" name="empId" type="text"/>
+                        <label th:if="${#fields.hasErrors('empId')}" th:errors="*{empId}" id="empId-error" class="error" for="empId"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="staffId">
@@ -119,7 +124,8 @@
                             </span>
                             Staff Identification Number
                         </label>
-                        <input class="form-control" id="staffId" name="staffId" type="text"/>
+                        <input class="form-control" th:field="*{staffId}" id="staffId" name="staffId" type="text"/>
+                        <label th:if="${#fields.hasErrors('staffId')}" th:errors="*{staffId}" id="staffId-error" class="error" for="staffId"></label>
                     </div>
                 </div>
 				 
@@ -131,7 +137,7 @@
                             </span>
                             Marital Status
                         </label>
-                        <select class="select form-control" id="maritalStatus" name="maritalStatus">
+                        <select class="select form-control" th:field="*{maritalStatus}" id="maritalStatus" name="maritalStatus">
                             <option value="Single">
                                 Single
                             </option>
@@ -142,6 +148,7 @@
                                 Divorced
                             </option>
                         </select>
+                        <label th:if="${#fields.hasErrors('maritalStatus')}" th:errors="*{maritalStatus}" id="maritalStatus-error" class="error" for="maritalStatus"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="spouseNumber">
@@ -150,7 +157,7 @@
                         </span>
                         Number of Spouses
                         </label>
-                        <select class="select form-control" id="spouseNumber" name="spouseNumber">
+                        <select class="select form-control" th:field="*{spouseNumber}" id="spouseNumber" name="spouseNumber">
                             <option value="0">
                                  0
                             </option>
@@ -173,6 +180,7 @@
                                  6
                             </option>
                         </select>
+                        <label th:if="${#fields.hasErrors('spouseNumber')}" th:errors="*{spouseNumber}" id="spouseNumber-error" class="error" for="spouseNumber"></label>
                     </div>
                 </div>
 				 
@@ -184,7 +192,7 @@
                             </span>
                             Number of Children
                         </label>
-                        <select class="select form-control" id="childrenNumber" name="childrenNumber">
+                        <select class="select form-control" th:field="*{childrenNumber}" id="childrenNumber" name="childrenNumber">
                             <option value="0">
                                  0
                             </option>
@@ -201,15 +209,16 @@
                                  4
                             </option>
                         </select>
+                        <label th:if="${#fields.hasErrors('childrenNumber')}" th:errors="*{childrenNumber}" id="childrenNumber-error" class="error" for="childrenNumber"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label requiredField" for="chage">
+                        <label class="control-label requiredField" for="childrenAge">
                             <span class="asteriskField">
                                   *
                             </span>
                             Age of Children (years)
                         </label>
-                        <select class="select form-control" id="chage" name="chage">
+                        <select class="select form-control" th:field="*{childrenAge}" id="childrenAge" name="childrenAge">
                             <option value="0 - 12">
                                  0 - 12
                             </option>
@@ -217,163 +226,185 @@
                                  12 - 21
                             </option>
                         </select>
+                        <label th:if="${#fields.hasErrors('childrenAge')}" th:errors="*{childrenAge}" id="childrenAge-error" class="error" for="childrenAge"></label>
                     </div>
                 </div>
 				 
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="Address">
+                    <label class="control-label requiredField" for="address">
                         <span class="asteriskField">
                             *
                         </span>
                         Address
                     </label>
-                    <input class="form-control" id="Address" name="Address" type="text"/>
+                    <input class="form-control" th:field="*{address}" id="address" name="address" type="text"/>
+                    <label th:if="${#fields.hasErrors('address')}" th:errors="*{address}" id="address-error" class="error" for="address"></label>
                 </div>
                 <p class="comp-title"> 
                     REGISTERED DEPENDANT IF ANY 
                 </P>
                 <br />
-                <small> 
+                <span class="asteriskField"> 
                     <i> 
-                        Specify at list one Dependant
-                    </i> 
-                </small>
-                <br />
-                <br />
-				 
+                        Specify at least one dependant
+                    </i>
+                </span>
+                <br /> 
+                <br /> 
+			 
                 <p class="dependant"> 
                     <span class="asteriskField">
                         *
                     </span> 
                     DEPENDANT 1 
                 </p>
-			   
+                <br />
+			 
                 <div class="form-group ">
-                    <label class="control-label " for="dfname">
+                    <label class="control-label requiredField" for="dFirstName">
                         <span class="asteriskField">
                             *
                         </span>
                         First Name
                     </label>
-                    <input class="form-control" id="dfname" name="dfname" type="text"/>
+                    <input class="form-control" th:field="*{dFirstName}" id="dFirstName" name="dFirstName" type="text"/>
+                    <label th:if="${#fields.hasErrors('dFirstName')}" th:errors="*{dFirstName}" id="dFirstName-error" class="error" for="dFirstName"></label>
                 </div>
+			 
                 <div class="row">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label " for="dmname">
+                        <label class="control-label " for="dMiddleName">
                             Middle Name
                         </label>
-                        <input class="form-control" id="dmname" name="dmname" type="text"/>
+                        <input class="form-control" id="dMiddleName" name="dMiddleName" type="text"/>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label requiredField" for="dlname">
+                        <label class="control-label requiredField" for="dLastName">
                             <span class="asteriskField">
-                                *
+				*
                             </span>
                             Last Name
                         </label>
-                        <input class="form-control" id="dlname" name="dlname" type="text"/>
+                        <input class="form-control" th:field="*{dLastName}" id="dLastName" name="dLastName" type="text"/>
+                        <label th:if="${#fields.hasErrors('dLastName')}" th:errors="*{dLastName}" id="dLastName-error" class="error" for="dLastName"></label>
                     </div>
                 </div>
-				 
+			 
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="dob">
-                    <span class="asteriskField">
-                        *
-                    </span>
-                    Date of birth
+                    <label class="control-label requiredField" for="dDob">
+                        <span class="asteriskField">
+                            *
+                        </span>
+                        Date of Birth
                     </label>
-                    <input class="form-control" id="dob" name="dob" type="date"/>
+                    <input class="form-control " th:field="*{dDob}" id="dDob" name="dDob" type="date"/>
+                    <label th:if="${#fields.hasErrors('dDob')}" th:errors="*{dDob}" id="dDob-error" class="error" for="dDob"></label>
                 </div>
-                <br />
-				 
-                <p class="dependant"> 
-                    DEPENDANT 2
+                
+		<br />
+                <p class="dependant">
+                    DEPENDANT 2 
                 </p>
+                <br />
+			 
                 <div class="form-group ">
-                    <label class="control-label " for="dfname2">
+                    <label class="control-label " for="dFirstName2">
                         First Name
                     </label>
-                    <input class="form-control" id="dfname2" name="dfname2" type="text"/>
+                    <input class="form-control" th:field="*{dFirstName2}" id="dFirstName2" name="dFirstName2" type="text"/>
+                    <label th:if="${#fields.hasErrors('dFirstName2')}" th:errors="*{dFirstName2}" id="dFirstName2-error" class="error" for="dFirstName2"></label>
                 </div>
                 <div class="row">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label " for="dmname2">
-                            Middle Name
+                        <label class="control-label " for="dMiddleName2">
+                         Middle Name
                         </label>
-                        <input class="form-control" id="dmname2" name="dmname2" type="text"/>
+                        <input class="form-control" id="dMiddleName2" name="dMiddleName2" type="text"/>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label requiredField" for="dlname2">
+                        <label class="control-label requiredField" for="dLastName2">
+                            <span class="asteriskField">
+				*
+                            </span>
                             Last Name
                         </label>
-                        <input class="form-control" id="dlname2" name="dlname2" type="text"/>
+                        <input class="form-control" th:field="*{dLastName2}" id="dLastName2" name="dLastName2" type="text"/>
+                        <label th:if="${#fields.hasErrors('dLastName2')}" th:errors="*{dLastName2}" id="dLastName2-error" class="error" for="dLastName2"></label>
                     </div>
                 </div>
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="dob2">
-                        Date of birth
+                    <label class="control-label " for="dDob2">
+                     Date of Birth
                     </label>
-                    <input class="form-control" id="dob2" name="dob2" type="date"/>
+                    <input class="form-control" th:field="*{dDob2}" id="dDob2" name="dDob2" type="date"/>
+                    <label th:if="${#fields.hasErrors('dDob2')}" th:errors="*{dDob2}" id="dDob2-error" class="error" for="dDob2"></label>
                 </div>
-                <br />
-				 
-                <p class="dependant">
+                
+		<br />
+                <p class="dependant"> 
                     DEPENDANT 3 
                 </p>
-                <div class="form-group ">
-                    <label class="control-label " for="dfname3">
-                        First Name
-                    </label>
-                    <input class="form-control" id="dfname3" name="dfname3" type="text"/>
-                </div>
-                <div class="row">
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label " for="dmname3">
-                            Middle Name
-                        </label>
-                        <input class="form-control" id="dmname3" name="dmname3" type="text"/>
-                    </div>
-                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label requiredField" for="dlname3">
-                            Last Name
-                        </label>
-                        <input class="form-control" id="dlname3" name="dlname3" type="text"/>
-                    </div>
-                </div>
-                <div class="form-group ">
-                    <label class="control-label requiredField" for="dob3">
-                        Date of birth
-                    </label>
-                    <input class="form-control" id="dob3" name="dob3" type="date"/>
-                </div>
                 <br />
-				 
-                <p class="dependant"> DEPENDANT 4 </p>
+			 
                 <div class="form-group ">
-                    <label class="control-label " for="dfname4">
+                    <label class="control-label " for="dFirstName3">
                         First Name
                     </label>
-                    <input class="form-control" id="dfname4" name="dfname4" type="text"/>
+                    <input class="form-control" th:field="*{dFirstName3}" id="dFirstName3" name="dFirstName3" type="text"/>
+                    <label th:if="${#fields.hasErrors('dFirstName3')}" th:errors="*{dFirstName3}" id="dFirstName3-error" class="error" for="dFirstName3"></label>
                 </div>
                 <div class="row">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label " for="dmname4">
-                            Middle Name
+                        <label class="control-label " for="dMiddleName3">
+			   Middle Name
                         </label>
-                        <input class="form-control" id="dmname4" name="dmname4" type="text"/>
+                        <input class="form-control" id="dMiddleName3" name="dMiddleName3" type="text"/>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label requiredField" for="dlname4">
-                            Last Name
+                        <label class="control-label requiredField" for="dLastName3">
+			   Last Name
                         </label>
-                        <input class="form-control" id="dlname4" name="dlname4" type="text"/>
+                        <input class="form-control" th:field="*{dLastName3}" id="dLastName3" name="dLastName3" type="text"/>
+                        <label th:if="${#fields.hasErrors('dLastName3')}" th:errors="*{dLastName3}" id="dLastName3-error" class="error" for="dLastName3"></label>
                     </div>
                 </div>
+			 
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="dob4">
-                        Date of birth
+                    <label class="control-label " for="dDob3">
+                        Date of Birth
                     </label>
-                    <input class="form-control" id="dob4" name="dob4" type="date"/>
+                    <input class="form-control" th:field="*{dDob3}" id="dDob3" name="dDob3" type="date"/>
+                    <label th:if="${#fields.hasErrors('dDob3')}" th:errors="*{dDob3}" id="dDob3-error" class="error" for="dDob3"></label>
+                </div>
+                	
+		<br />
+                <p class="dependant">
+                    DEPENDANT 4
+                </p>
+                <br />
+			 
+                <div class="form-group ">
+                    <label class="control-label " for="dFirstName4">
+                        First Name
+                    </label>
+                    <input class="form-control" th:field="*{dFirstName4}" id="dFirstName4" name="dFirstName4" type="text"/>
+                    <label th:if="${#fields.hasErrors('dFirstName4')}" th:errors="*{dFirstName4}" id="dFirstName4-error" class="error" for="dFirstName4"></label>
+                </div>
+                <div class="row">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label " for="dMiddleName4">
+                            Middle Name
+                        </label>
+                        <input class="form-control" th:field="*{dMiddleName4}" id="dMiddleName4" name="dMiddleName4" type="text"/>
+                        <label th:if="${#fields.hasErrors('dMiddleName4')}" th:errors="*{dMiddleName4}" id="dMiddleName4-error" class="error" for="dMiddleName4"></label>
+                   </div>
+                   <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
+                        <label class="control-label requiredField" for="dLastName4">
+                            Last Name
+                        </label>
+                        <input class="form-control" th:field="*{dLastName4}" id="dLastName4" name="dLastName4" type="text"/>
+                        <label th:if="${#fields.hasErrors('dLastName4')}" th:errors="*{dLastName4}" id="dLastName4-error" class="error" for="dLastName4"></label>
+                   </div>
                 </div>
                 <br />
 				 

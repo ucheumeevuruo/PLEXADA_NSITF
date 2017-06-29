@@ -3,38 +3,38 @@ $(document).ready (
 	$("#employerDetails1").validate({
                     rules: {
 						select: "required",
-						Compensation: "required",
-						fname: "required",
-						lname: "required",
-						EmpID: "required",
-						StaffId: "required",
-						mstat: "required",
-						spouseno: "required",
-						chno: "required",
-						chage: "required",
-						Address: "required",
-						dfname: "required",
-						dlname: "required",
-						dob: {
+						compensation: "required",
+						fName: "required",
+						lName: "required",
+						empId: "required",
+						staffId: "required",
+						maritalStatus: "required",
+						spouseNumber: "required",
+						childrenNumber: "required",
+						childrenAge: "required",
+						address: "required",
+						dFirstName: "required",
+						dLastName: "required",
+						dDob: {
 							required: true
 							}
 					},
 					
 					messages: {
 						select: "",
-						Compensation: "",
-						fname: "Please enter your First Name",
-						lname: "Please enter your Last Name",
-						EmpID: "Enter a valid Employee ID",
-						StaffId: "Enter a valid Staff ID",
-						mstat: "Please select Marital Status",
-						spouseno: "Please select number of spouse",
-						chno: "Please select number of children",
-						chage: "Please select age range of children",
-						Address: "This value is required",
-						dfname: "Please enter Dependant's First Name",
-						dlname: "Please enter Dependant's Last Name",
-						dob: "Please select date"
+						compensation: "",
+						fName: "Please enter your First Name",
+						lName: "Please enter your Last Name",
+						empId: "Enter a valid Employee ID",
+						staffId: "Enter a valid Staff ID",
+						maritalStatus: "Please select Marital Status",
+						spouseNumber: "Please select number of spouse",
+						childrenNumber: "Please select number of children",
+						childrenAge: "Please select age range of children",
+						address: "This value is required",
+						dFirstName: "Please enter Dependant's First Name",
+						dLastName: "Please enter Dependant's Last Name",
+						dDob: "Please select date"
 					},
 					
 					submitHandler: function(form) {
@@ -47,34 +47,34 @@ $(document).ready (
 						div_radio: {
 							required: true
 							},
-						dateofinjury: "required",
-						dateoftreat: "required",
-						Hospital: "required",
-						HouseNumber: "required",
-						StreetNumber: "required",
-						State: {
+						dateOfInjury: "required",
+						dateOfTreat: "required",
+						hospital: "required",
+						houseNumber: "required",
+						streetNumber: "required",
+						state: {
 							required: true
 							},
-						LGA: {
+						province: {
 							required: true
 							},
-						SPname: "required",
-						SPname1: "required",
-						PracticeNum: "required"
+						medicFirstName: "required",
+						medicLastName: "required",
+						practiceNumber: "required"
 					},
 						
 					messages: {
 						div_radio: "Please make a choice",
-						dateofinjury: "Please select date",
-						dateoftreat: "Please select date",
-						Hospital: "This field is required",
-						HouseNumber: "This field is required",
-						StreetNumber: "This field is required",
-						State: "Please select a state",
-						LGA: "Please select a Local government area by States",
-						SPname: "Please enter Specialist's First Name",
-						SPname1: "Please enter Specialist's Last Name",
-						PracticeNum: "Please enter a valid  Practice Number of Specialist"
+						dateOfInjury: "Please select date",
+						dateOfTreat: "Please select date",
+						hospital: "This field is required",
+						houseNumber: "This field is required",
+						streetNumber: "This field is required",
+						state: "Please select a state",
+						province: "Please select a Local government area by States",
+						medicFirstName: "Please enter Specialist's First Name",
+						medicLastName: "Please enter Specialist's Last Name",
+						practiceNumber: "Please enter a valid  Practice Number of Specialist"
 					},
 					 
 					submitHandler: function(form) {
