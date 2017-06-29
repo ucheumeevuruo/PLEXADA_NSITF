@@ -53,8 +53,25 @@
                     <div class=" ">
                         <label class="checkbox-inline">
                              <input name="checkbox" type="checkbox" value="I agree to NSITF Terms and Conditions and certify that the above particulars are correct"/>
-                             I agree to NSITF <a href="#"> <span class="asteriskField"> Terms and Conditions </span> </a> and certify that the above particulars are correct 
+                             I agree to NSITF 
+                             <a href="#" data-toggle="modal" data-target=""> 
+                                 <span class="asteriskField"> 
+                                     Terms and Conditions 
+                                 </span> 
+                             </a> 
+                             and certify that the above particulars are correct 
                         </label>
+                        <div class="modal fade termsandcondition" tabindex="-1" role="dialog" aria-labelledby="Terms and Conditions">
+                            <div class="modal-dialog modal-sm" role="document">
+                                <div class="modal-content">
+                                    ...
+                                    <small> Our Terms and Conditions are </small>
+                                    <br />
+                                    <br />
+                                    <p> I confirm that the information I have given is true to the best of my knowledge. I agree to indemnify NSITF for any loss arising from relying on the information I have provided and acknowledge that Penalty may be invoked in accordance with Section 65 of the Employees’ Compensation Act, 2010 where it is found that I have wilfully given incorrect information. </p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="form-group pull-right">
