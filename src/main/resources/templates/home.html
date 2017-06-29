@@ -49,7 +49,8 @@
               </select>
              </div>
 
-             <div class="form-group " id="Email">
+             <div class row="row">
+                <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12" id="Email">
               <label class="control-label requiredField" for="email">
                Email
                <span class="asteriskField">
@@ -60,7 +61,7 @@
                  <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" id="email" class="error" for="email">Company Error.</label>
              </div>
 
-             <div class="form-group " id="MobileN">
+             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12" id="MobileN">
               <label class="control-label requiredField" for="phone_number">
                Mobile Number
                <span class="asteriskField">
@@ -70,9 +71,10 @@
               <input type="text" th:field="*{phoneNumber}" class="form-control" id="phoneNumber" />
                  <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" id="phoneNumber" class="error" for="phone_number">Company Error.</label>
               </div>
+             </div>
 
-
-             <div class="form-group " id="State">
+             <div class="row">
+             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12" id="State">
               <label class="control-label requiredField" for="State">
                State
                <span class="asteriskField">
@@ -85,7 +87,7 @@
               </select>
              </div>
 
-             <div class="form-group " id="lga">
+             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12" id="lga">
               <label class="control-label requiredField" for="lga">
                Local Government
                <span class="asteriskField">
@@ -96,6 +98,7 @@
                  <option selected="selected" value="">Select an option</option>
                  <option th:each="local : ${locals}" th:text="${local.name}" th:value="${local.id}">LGA</option>
                </select>
+             </div>
              </div>
 
              <div class="form-group " >
@@ -125,9 +128,9 @@
              </div>
 
 
-             <div class="form-group" id="Next">
+             <div class="form-group pull-right" id="Next">
               <div>
-               <button class="btn btn-primary " name="Next" type="submit">
+               <button class="btn btn-success " name="Next" type="submit">
                     Next
                </button>
               </div>
