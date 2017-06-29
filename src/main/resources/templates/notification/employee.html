@@ -26,10 +26,10 @@
 
             <p class="comp-title">
                 EMPLOYEE 
-            </P> 
+            </p> 
             <br />
 
-            <form method="post" action="" id="EmployeeDetails">
+            <form method="post" action="" th:object="${var}"  id="EmployeeDetails">
 
                 <div class="form-group ">
                     <label class="control-label requiredField" for="fname">
@@ -38,7 +38,7 @@
                         </span>
                         First Name
                     </label>
-                    <input class="form-control " id="fname" name="fname" type="text"/>
+                    <input th:field="*{firstName}" class="form-control" id="firstName" type="text"/>
                 </div>
 
                 <div class="row">
@@ -56,7 +56,7 @@
                             </span>
                             Last Name
                         </label>
-                        <input class="form-control" id="Lname" name="Lname" type="text"/>
+                    <input th:field="*{lastName}" class="form-control" id="lastName" type="text"/>
                     </div>
                 </div>
 
@@ -66,6 +66,7 @@
                             NSITF Employee ID
                         </label>
                         <input class="form-control" id="EmpID" name="EmpID" type="text"/>
+                        <input th:field="*{employeeId}" class="form-control" id="employeeId" type="text"/>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="staffID">
@@ -74,7 +75,7 @@
                             </span>
                             Staff ID
                         </label>
-                        <input class="form-control" id="staffID" name="staffID" type="text"/>
+                        <input th:field="*{staffID}" class="form-control" id="staffId" type="text"/>
                     </div>
                 </div> 
 
@@ -83,9 +84,9 @@
                         <span class="asteriskField">
                              *
                         </span>
-                        Earnings of employee at the times of accident (₦)
+                        Earnings of employee at the times of accident (&#8358;)
                     </label>
-                    <input class="form-control" id="Earnings" name="Earnings" type="text"/>
+                    <input th:field="*{earnings}" class="form-control" id="earnings" type="text"/>
                 </div> 
                 <br />
 
@@ -98,13 +99,13 @@
                         <label class="control-label " for="yrs">
                             Years (yrs)
                         </label>
-                        <input class="form-control" id="yrs" name="yrs" type="number" min="0" max="34" />
+                        <input th:field="*{years}" class="form-control" id="years" type="number" min="0" max="34" />
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label " for="months">
                             Months (months)
                         </label>
-                        <input class="form-control" id="months" name="months" type="number" min="0" max="12" />
+                        <input th:field="*{months}" class="form-control" id="months" type="number" min="0" max="12" />
                     </div>
                 </div>
                 <div class="form-group pull-right">

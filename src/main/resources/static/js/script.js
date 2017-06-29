@@ -27,7 +27,7 @@ $(document).ready(function(){
         });
     });
     
-    $("#claim").click(function(){
-        window.location = "/notification/" + $(this).attr("value");
+    $("input[name='claim']").click(function(){
+        window.location = "/notification/" + $(this).attr("value") + "/employee";
     });
 });
