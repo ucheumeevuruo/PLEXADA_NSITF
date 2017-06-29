@@ -33,8 +33,8 @@ import com.plexada.model.registration.NODAttestation;
  * @author SAP Training
  */
 @Controller
-@RequestMapping("/notification")
-public class ODController {
+@RequestMapping("/compentation")
+public class CompentationController {
     List<Link> links;
     private final String header = "Notification of Accident/ Occupational Disease/ Death";
     private String path;
@@ -149,7 +149,8 @@ public class ODController {
     }
     
     @GetMapping("/occupational-disease/disease")
-    public String showDiseaseFrom(Model model){
+    public String showDiseaseFrom(Model model,
+    BindingResult bindingResult){
         this.path = "notification/disease";
         links = NavLinks.accidentSidebarLinks();
         
