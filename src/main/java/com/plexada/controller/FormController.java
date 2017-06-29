@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import com.plexada.build.Company;
 import com.plexada.build.Employee;
 import com.plexada.build.Emulment;
+import com.plexada.build.Link;
 import com.plexada.build.OwnersParticular;
 import com.plexada.build.Sector;
 import com.plexada.doa.JsonObjectRepository;

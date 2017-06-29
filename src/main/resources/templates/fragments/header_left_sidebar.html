@@ -28,7 +28,7 @@ and open the template in the editor.
             <div class="col-lg-4 col-md-4 sidebar">
                 <ul class="nav nav-pills nav-stacked affix">
                     <li th:each="link : ${links}">
-                        <a th:href="${link.href}" th:text="${link.value}"></a>
+                        <a th:href="${link.getHref()}" th:text="${link.getValue()}"></a>
                     </li>
                 </ul>
             </div>

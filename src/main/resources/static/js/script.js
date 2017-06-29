@@ -26,4 +26,8 @@ $(document).ready(function(){
             }
         });
     });
+    
+    $("#claim").click(function(){
+        window.location = "/notification/" + $(this).attr("value");
+    });
 });
