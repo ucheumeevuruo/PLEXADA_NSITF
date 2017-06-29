@@ -7,6 +7,7 @@ package com.plexada.model.registration;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+
 /**
  *
  * @author SAP Training
@@ -23,7 +24,7 @@ public class ClaimEmployee {
     @NotEmpty
     private String earnings;
     @NotEmpty
-    private Integer years;
+    private String years;
     @NotEmpty
     private String months;
 
@@ -114,14 +115,14 @@ public class ClaimEmployee {
     /**
      * @return the years
      */
-    public Integer getYears() {
+    public String getYears() {
         return years;
     }
 
     /**
      * @param years the years to set
      */
-    public void setYears(Integer years) {
+    public void setYears(String years) {
         this.years = years;
     }
 

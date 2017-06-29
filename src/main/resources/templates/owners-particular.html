@@ -48,7 +48,9 @@
                         Mode of Identification
                     </label>
                     <select class="select form-control" id="modeOfId" th:field="*{modeOfId}">
-
+                        <option>Drivers License</option>
+                        <option>National I.D</option>
+                        <option>International Passport</option>
                     </select>
                     <label th:if="${#fields.hasErrors('modeOfId')}" th:errors="*{modeOfId}" id="modeOfId-error" class="error" for="modeOfId"></label>
                 </div>

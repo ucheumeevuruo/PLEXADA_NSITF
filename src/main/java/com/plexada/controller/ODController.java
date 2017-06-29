@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonObjectRepository;
+import com.plexada.model.registration.Accident;
 import com.plexada.model.registration.ClaimEmployee;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -25,7 +26,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.plexada.model.registration.NoAAccident;
 import com.plexada.model.registration.NODAttestation;
 
 /**
@@ -36,7 +36,7 @@ import com.plexada.model.registration.NODAttestation;
 @RequestMapping("/notification")
 public class ODController {
     List<Link> links;
-    private final String header = "";
+    private final String header = "Notification of Accident/ Occupational Disease/ Death";
     private String path;
     private final JsonObjectRepository repo = new JsonObjectRepository();
     Type collectionType = new TypeToken<Map<String, Object>>(){}.getType();
@@ -49,11 +49,13 @@ public class ODController {
         model.addAttribute("header", header);
         String contains = "";
         if(type.equalsIgnoreCase("occupational-disease")){
-            links = NavLinks.accidentSidebarLinks();
+            links = NavLinks.occupationSidebarLinks();
             contains = "employeeD";
         }else if(type.equalsIgnoreCase("accident")){
-            links = NavLinks.occupationSidebarLinks();
+            links = NavLinks.accidentSidebarLinks();
             contains = "employeeA";
+        }else{
+            this.path = "redirect:/notification";
         }
         ClaimEmployee claims;
         try {
@@ -76,20 +78,27 @@ public class ODController {
     
     @PostMapping("/{type}/employee")
     public String postEmployeeForm(Model model, 
-    @ModelAttribute @Valid ClaimEmployee claim, 
     @PathVariable String type, 
-    BindingResult bindingResult){
+    @ModelAttribute @Valid ClaimEmployee claim, 
+    BindingResult bindingResult) throws Exception{
         this.path = "notification/employee";
-        String redirect = "";
+        String redirect = "", contains = "";
         if(type.equalsIgnoreCase("occupational-disease")){
             links = NavLinks.occupationSidebarLinks();
-            redirect = type + "/accident";
+            redirect = type + "/disease";
+            contains = "employeeD";
         }else if(type.equalsIgnoreCase("accident")){
             links = NavLinks.accidentSidebarLinks();
             redirect = type + "/accident";
+            contains = "employeeA";
+        }else{
+            this.path = "redirect:/notification";
         }
+        
+        //Validate the script before we move on
         if(!bindingResult.hasErrors()){
             try {
+                map.put(contains, claim);
                 repo.save(map);
                 this.path = "redirect:/notification/" + redirect;
             } catch (IOException ex) {}
@@ -105,14 +114,14 @@ public class ODController {
         this.path = "notification/accident";
         links = NavLinks.accidentSidebarLinks();
         
-        NoAAccident accident = new NoAAccident();
+        Accident accident = new Accident();
         try {
             // 1. JSON to Java object, read it from a file.
             repo.initRepo(collectionType);
             if(!repo.contains("employeeA")){
                 this.path = "redirect:/notification/accident/employee";    
             }else{
-                accident = mapper.convertValue(repo.findAll().get("accident"), NoAAccident.class);
+                accident = mapper.convertValue(repo.findAll().get("accident"), Accident.class);
             }
         } catch (IOException ex) {}
         model.addAttribute("header", header);
@@ -123,7 +132,7 @@ public class ODController {
     
     @PostMapping("/accident/accident")
     public String accident(Model model,
-    @ModelAttribute @Valid NoAAccident accident,
+    @ModelAttribute @Valid Accident accident,
     BindingResult bindingResult){
         this.path = "notification/accident";
         links = NavLinks.accidentSidebarLinks();
@@ -139,6 +148,47 @@ public class ODController {
         return this.path;
     }
     
+    @GetMapping("/occupational-disease/disease")
+    public String showDiseaseFrom(Model model,
+    BindingResult bindingResult){
+        this.path = "notification/disease";
+        links = NavLinks.accidentSidebarLinks();
+        
+        Accident disease = new Accident();
+        try {
+            // 1. JSON to Java object, read it from a file.
+            repo.initRepo(collectionType);
+            if(!repo.contains("employeeD")){
+                this.path = "redirect:/notification/occupational-disease/employee";    
+            }else if(!repo.contains("disease")){
+                disease = mapper.convertValue(repo.findAll().get("disease"), Accident.class);
+            }
+        } catch (IOException ex) {}
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("var", disease);
+        return this.path;
+    }
+    
+    @PostMapping("/occupational-disease/disease")
+    public String postDiseaseForm(Model model,
+    @ModelAttribute @Valid Accident disease,
+    BindingResult bindingResult){
+        this.path = "notification/disease";
+        links = NavLinks.occupationSidebarLinks();
+        if(!bindingResult.hasErrors()){
+            try {
+                map.put("disease", disease);
+                repo.save(map);
+                this.path = "redirect:/notification/occupational-disease/attestation";
+            } catch (IOException ex) {}
+        }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("var", disease);
+        return this.path;
+    }
+    
     @GetMapping("/{type}/attestation")
     public String AttestationForm(Model model,
     @PathVariable String type){
@@ -148,6 +198,8 @@ public class ODController {
             links = NavLinks.occupationSidebarLinks();
         }else if(type.equalsIgnoreCase("accident")){
             links = NavLinks.accidentSidebarLinks();
+        }else{
+            this.path = "redirect:/notification";
         }
         try {
             // 1. JSON to Java object, read it from a file.
@@ -155,7 +207,11 @@ public class ODController {
             if(!repo.contains("employeeA")){
                 this.path = "redirect:/notification/accident/employee";    
             }else{
-                attestation = mapper.convertValue(repo.findAll().get("attestation"), NODAttestation.class);
+                if(repo.contains("attestation")){
+                    attestation = mapper.convertValue(repo.findAll().get("attestation"), NODAttestation.class);
+                }else{
+                    this.path = "redirect:/notification/accident/employee";
+                }
             }
         } catch (IOException ex) {}
         model.addAttribute("header", header);
@@ -169,6 +225,7 @@ public class ODController {
     @PathVariable String type,
     @ModelAttribute @Valid NODAttestation attestation,
     BindingResult bindingResult){
+        this.path = "notification/attestation";
         String redirect = "";
         if(type.equalsIgnoreCase("occupational-disease")){
             links = NavLinks.occupationSidebarLinks();
@@ -176,16 +233,24 @@ public class ODController {
         }else if(type.equalsIgnoreCase("accident")){
             links = NavLinks.accidentSidebarLinks();
             redirect = type + "/accident";
+        }else{
+            this.path = "redirect:/notification";
         }
         if(!bindingResult.hasErrors()){
             try {
                 repo.save(map);
-                this.path = "redirect:/notification/" + redirect;
+                this.path = "redirect:/notification/finish";
             } catch (IOException ex) {}
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", attestation);
-        return "notification/attestation";
+        return this.path;
+    }
+    
+    @GetMapping("/finish")
+    public String finish(){
+        this.path = "notification/finish";
+        return this.path;
     }
 }

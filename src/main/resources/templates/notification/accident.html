@@ -21,7 +21,7 @@
                 ACCIDENTS
             </p>
             <br />
-            <form method="post" action="" id="AccidentNotification2">
+            <form method="post" th:action="@{/notification/accident}" th:object="${var}" id="AccidentNotification2">
                 <div class="form-group ">
                     <span class="asteriskField">
                         *
@@ -29,7 +29,7 @@
                     <label class="control-label requiredField" for="DOA">
                        Date of Accident
                     </label>
-                    <input class="form-control" id="DOA" name="DOA" type="date"/>
+                    <input class="form-control" id="DOA" th:field="*{dDob4}" type="date"/>
                     <label th:if="${#fields.hasErrors('dDob4')}" th:errors="*{dDob4}" id="dDob4-error" class="error" for="dDob4"></label>
                 </div>
 
@@ -208,7 +208,7 @@
                 </div>
                 <br />
 
-                <p class="comp-title"> REGISTERED DEPENDANT IF ANY </P>
+                <p class="comp-title"> REGISTERED DEPENDANT IF ANY </p>
                 <br />
 			 
                 <div class="row">
@@ -404,11 +404,10 @@
                     <label th:if="${#fields.hasErrors('dDob4')}" th:errors="*{dDob4}" id="dDob4-error" class="error" for="dDob4"></label>
                 </div> 
 
-                    <div class="form-group pull-right">
-                        <button class="btn btn-success " name="submit" type="submit">
-                            Next
-                        </button>
-                    </div>
+                <div class="form-group pull-right">
+                    <button class="btn btn-success " name="submit" type="submit">
+                        Next
+                    </button>
                 </div>
             </form>
         </div>
