@@ -29,59 +29,59 @@ $(document).ready (
 	
 		$("#DiseaseNotification2").validate({
                     rules: {
-						WorkNature: "required",
-						DiseaseNature: "required",
-						State: {
+						workNature: "required",
+						diseaseNature: "required",
+						state: {
 							required: true
 							},
-						LGA: {
+						province: {
 							required: true
 							},
-						COD: "required",
-						Disdate: "required",
-						Diagdate: "required",
-						Length: "required",
-						Ceasedate: "required",
-						Resumedate: "required",
-						Numday: "required",
+						cod: "required",
+						reportDate: "required",
+						diagnosisDate: "required",
+						length: "required",
+						ceaseDate: "required",
+						resumeDate: "required",
+						numDay: "required",
 						div_radio3: {
 							required: true
 							},
 							
-						fname: "required",
-						Lname: "required",
-						Practicenum: "required",
+						medicFirstName: "required",
+						medicLastName: "required",
+						practiceNumber: "required",
 						
-						NKfname: "required",
-						NKLname: "required",
-						DFname: "required",
-						DLname: "required",
-						DOB: {
+						kinFirstName: "required",
+						kinLastName: "required",
+						dFirstName: "required",
+						dLastName: "required",
+						dDob: {
 							required: true
 							}
                             },
 							
 					messages: {
-						WorkNature: "Please specify nature of work",
-						DiseaseNature: "Please specify nature of disease",
-						State: "Please select a state",
-						LGA: "Please select a Local government area by States",
-						COD: "Please specify Suspected Cause of Disease",
-						Disdate: "Please select a date",
-						Diagdate: "Please select a date",
+						workNature: "Please specify nature of work",
+						diseaseNature: "Please specify nature of disease",
+						state: "Please select a state",
+						province: "Please select a Local government area by States",
+						cod: "Please specify Suspected Cause of Disease",
+						reportDate: "Please select a date",
+						diagnosisDate: "Please select a date",
 						Length: "",
-						Ceasedate: "Please select a date",
-						Resumedate: "Please select a date",
-						Numday: "",
-						fname: "Please enter Practitioner's First Name",
-						Lname: "Please enter Practitioner's Last Name",
-						Practicenum: "This value is required",
+						ceaseDate: "Please select a date",
+						resumeDate: "Please select a date",
+						numDay: "",
+						medicFirstName: "Please enter Practitioner's First Name",
+						medicLastName: "Please enter Practitioner's Last Name",
+						practiceNumber: "This value is required",
 						div_radio3: "Please make a choice",
-						NKfname: "Please enter Next of Kin's First Name",
-						NKLname: "Please enter Next of Kin's Last Name",
+						kinFirstName: "Please enter Next of Kin's First Name",
+						kinLastName: "Please enter Next of Kin's Last Name",
 						DFname: "Please enter Dependant's First Name",
 						DLname: "Please enter Dependant's Last Name",
-						DOB: "Please select date"
+						dDob: "Please select date"
 						
 					},
 						
@@ -89,6 +89,82 @@ $(document).ready (
 						form.submit();
 					}
 		});
+                
+                $("#AccidentNotification2").validate({
+                    rules: {
+						doA: {
+							required: true
+							},
+						toA: "required",
+						poA: "required",
+						state: {
+							required: true
+							},
+						province: {
+							required: true
+							},
+						reportDate: "required",
+						reportTime: "required",
+						message1: "required",
+						message: "required",
+						div_radio: {
+							required: true
+							},
+						div_radio1: {
+							required: true
+							},
+						medicFirstName: "required",
+						medicLastName: "required",
+						practiceNumber: "required",
+						workMonth: "required",
+						ceaseDate: {
+							required: true
+							},
+						div_radio2: {
+							required: true
+							},
+						resumeDate: {
+							required: true
+							},
+						div_radio3: {
+							required: true
+							},
+						kinFirstName: "required",
+						kinLastName: "required",
+						dFirstName: "required",
+						dLastName: "required",
+						dDob: {
+							required: true
+							}
+                                      },
+							
+					messages: {
+						doA: "Please select date",
+						toA: "Please select time",
+						poA: "This field is required",
+						state: "Please select a state",
+						province: "Please select a Local government area by States",
+						reportDate: "Please select a date",
+						reportTime: "Please select time",
+						message1: "",
+						message: "",
+						div_radio: "Please make a choice",
+						div_radio1: "Please make a choice",
+						medicFirstName: "Please enter Practitioner's First Name",
+						medicLastName: "Please enter Practitioner's Last Name",
+						practiceNumber: "This value is required",
+						workMonth: "This value is required",
+						ceaseDate: "Please select a date",
+						div_radio2: "Please make a choice",
+						resumeDate: "Please select date",
+						div_radio3: "Please make a choice",
+						kinFirstName: "Please enter Next of Kin's First Name",
+						kinLastName: "Please enter Next of Kin's Last Name",
+						DFname: "Please enter Dependant's First Name",
+						DLname: "Please enter Dependant's Last Name",
+						dDob: "Please select date"
+					}
+                });
 		
 		$("#AccidentNotification2").validate({
                     rules: {

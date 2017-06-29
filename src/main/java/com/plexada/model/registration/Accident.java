@@ -13,35 +13,43 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 public class Accident {
     @NotEmpty
-    private String workNature;
+    private String doA;
     @NotEmpty
-    private String diseaseNature;
+    private String toA;
+    @NotEmpty
+    private String poA;
     @NotEmpty
     private String state;
     @NotEmpty
     private String province;
     @NotEmpty
-    private String cod;
-    @NotEmpty
     private String reportDate;
     @NotEmpty
     private String reportTime;
     @NotEmpty
-    private String diagnosisDate;
+    private String message;
     @NotEmpty
-    private String length;
+    private String message1;
     @NotEmpty
-    private String ceaseDate;
+    private String div_radio;
     @NotEmpty
-    private String resumeDate;
-    @NotEmpty
-    private String numDay;
+    private String div_radio1;
     @NotEmpty
     private String medicFirstName;
     @NotEmpty
     private String medicLastName;
     @NotEmpty
     private String practiceNumber;
+    @NotEmpty
+    private String workMonth;
+    @NotEmpty
+    private String ceaseDate;
+    @NotEmpty
+    private String div_radio2;
+    @NotEmpty
+    private String resumeDate;
+    @NotEmpty
+    private String div_radio3;
     @NotEmpty
     private String kinFirstName;
     @NotEmpty
@@ -73,34 +81,47 @@ public class Accident {
     @NotEmpty
     private String dLastName4;
     @NotEmpty
-    private String dDob4;   
-
+    private String dDob4;
     /**
-     * @return the workNature
+     * @return the doA
      */
-    public String getWorkNature() {
-        return workNature;
+    public String getDoA() {
+        return doA;
     }
 
     /**
-     * @param workNature the workNature to set
+     * @param doA the doA to set
      */
-    public void setWorkNature(String workNature) {
-        this.workNature = workNature;
+    public void setDoA(String doA) {
+        this.doA = doA;
     }
 
     /**
-     * @return the diseaseNature
+     * @return the toA
      */
-    public String getDiseaseNature() {
-        return diseaseNature;
+    public String getToA() {
+        return toA;
     }
 
     /**
-     * @param diseaseNature the diseaseNature to set
+     * @param toA the toA to set
      */
-    public void setDiseaseNature(String diseaseNature) {
-        this.diseaseNature = diseaseNature;
+    public void setToA(String toA) {
+        this.toA = toA;
+    }
+
+    /**
+     * @return the poA
+     */
+    public String getPoA() {
+        return poA;
+    }
+
+    /**
+     * @param poA the poA to set
+     */
+    public void setPoA(String poA) {
+        this.poA = poA;
     }
 
     /**
@@ -132,20 +153,6 @@ public class Accident {
     }
 
     /**
-     * @return the cod
-     */
-    public String getCod() {
-        return cod;
-    }
-
-    /**
-     * @param cod the cod to set
-     */
-    public void setCod(String cod) {
-        this.cod = cod;
-    }
-
-    /**
      * @return the reportDate
      */
     public String getReportDate() {
@@ -174,73 +181,59 @@ public class Accident {
     }
 
     /**
-     * @return the diagnosisDate
+     * @return the message
      */
-    public String getDiagnosisDate() {
-        return diagnosisDate;
+    public String getMessage() {
+        return message;
     }
 
     /**
-     * @param diagnosisDate the diagnosisDate to set
+     * @param message the message to set
      */
-    public void setDiagnosisDate(String diagnosisDate) {
-        this.diagnosisDate = diagnosisDate;
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     /**
-     * @return the length
+     * @return the message1
      */
-    public String getLength() {
-        return length;
+    public String getMessage1() {
+        return message1;
     }
 
     /**
-     * @param length the length to set
+     * @param message1 the message1 to set
      */
-    public void setLength(String length) {
-        this.length = length;
+    public void setMessage1(String message1) {
+        this.message1 = message1;
     }
 
     /**
-     * @return the ceaseDate
+     * @return the div_radio
      */
-    public String getCeaseDate() {
-        return ceaseDate;
+    public String getDiv_radio() {
+        return div_radio;
     }
 
     /**
-     * @param ceaseDate the ceaseDate to set
+     * @param div_radio the div_radio to set
      */
-    public void setCeaseDate(String ceaseDate) {
-        this.ceaseDate = ceaseDate;
+    public void setDiv_radio(String div_radio) {
+        this.div_radio = div_radio;
     }
 
     /**
-     * @return the resumeDate
+     * @return the div_radio1
      */
-    public String getResumeDate() {
-        return resumeDate;
+    public String getDiv_radio1() {
+        return div_radio1;
     }
 
     /**
-     * @param resumeDate the resumeDate to set
+     * @param div_radio1 the div_radio1 to set
      */
-    public void setResumeDate(String resumeDate) {
-        this.resumeDate = resumeDate;
-    }
-
-    /**
-     * @return the numDay
-     */
-    public String getNumDay() {
-        return numDay;
-    }
-
-    /**
-     * @param numDay the numDay to set
-     */
-    public void setNumDay(String numDay) {
-        this.numDay = numDay;
+    public void setDiv_radio1(String div_radio1) {
+        this.div_radio1 = div_radio1;
     }
 
     /**
@@ -283,6 +276,76 @@ public class Accident {
      */
     public void setPracticeNumber(String practiceNumber) {
         this.practiceNumber = practiceNumber;
+    }
+
+    /**
+     * @return the workMonth
+     */
+    public String getWorkMonth() {
+        return workMonth;
+    }
+
+    /**
+     * @param workMonth the workMonth to set
+     */
+    public void setWorkMonth(String workMonth) {
+        this.workMonth = workMonth;
+    }
+
+    /**
+     * @return the ceaseDate
+     */
+    public String getCeaseDate() {
+        return ceaseDate;
+    }
+
+    /**
+     * @param ceaseDate the ceaseDate to set
+     */
+    public void setCeaseDate(String ceaseDate) {
+        this.ceaseDate = ceaseDate;
+    }
+
+    /**
+     * @return the div_radio2
+     */
+    public String getDiv_radio2() {
+        return div_radio2;
+    }
+
+    /**
+     * @param div_radio2 the div_radio2 to set
+     */
+    public void setDiv_radio2(String div_radio2) {
+        this.div_radio2 = div_radio2;
+    }
+
+    /**
+     * @return the resumeDate
+     */
+    public String getResumeDate() {
+        return resumeDate;
+    }
+
+    /**
+     * @param resumeDate the resumeDate to set
+     */
+    public void setResumeDate(String resumeDate) {
+        this.resumeDate = resumeDate;
+    }
+
+    /**
+     * @return the div_radio3
+     */
+    public String getDiv_radio3() {
+        return div_radio3;
+    }
+
+    /**
+     * @param div_radio3 the div_radio3 to set
+     */
+    public void setDiv_radio3(String div_radio3) {
+        this.div_radio3 = div_radio3;
     }
 
     /**
@@ -536,4 +599,6 @@ public class Accident {
     public void setdDob4(String dDob4) {
         this.dDob4 = dDob4;
     }
-}  
+   
+}
+    

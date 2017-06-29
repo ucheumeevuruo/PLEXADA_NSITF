@@ -43,16 +43,18 @@
                     </div>
                 </div>
 			 
-                Upload receipt for treaments from treatment
+                Upload receipt for treatments from treatment
                 <br />
                 <br />
-                <input type="file" name="fileToUpload1" id="fileToUpload1">
+                <input type="file" name="fileToUpload1" th:field="*{fileToUpload1}" id="fileToUpload1">
+                <label th:if="${#fields.hasErrors('fileToUpload1')}" th:errors="*{fileToUpload1}" id="fileToUpload1-error" class="error" for="fileToUpload1"></label>
                 <br />
 			 
                 Upload Detail of all bills which must be signed by each professional/Specialist with his practicing license number.
                 <br />
                 <br />
-                <input type="file" name="fileToUpload2" id="fileToUpload2">
+                <input type="file" name="fileToUpload2" th:field="*{fileToUpload2}" id="fileToUpload2">
+                <label th:if="${#fields.hasErrors('fileToUpload2')}" th:errors="*{fileToUpload2}" id="fileToUpload2-error" class="error" for="fileToUpload2"></label>
                 <br />
 			 
                 Upload Affidavit deposed to by employee to confirm accident or occupational disease
@@ -76,8 +78,7 @@
                             Next
                         </button>
                     </div>
-                </div>
-			 
+                </div>	 
             </form>
         </div>
     </div>

@@ -11,7 +11,8 @@
         <div class="col-md-6 col-sm-6 col-xs-12">
             <!-- form -->
             <form method="post" th:action="@{/account/fourth-page}" th:object="${particular}" id="registration-form">
-                <div class="form-group" id="Ownerf">
+                <div class="row">
+                <div class="form-group col-md-6 col-sm-6 col-xs-12" id="Ownerf">
                     <label class="control-label" for="name">
                         Owner's First Name
                     </label>
@@ -19,15 +20,18 @@
                     <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" id="firstName-error" class="error" for="name"></label>
                 </div>
                 <!-- ./form-group -->
-                <div class="form-group" id="Ownerl">
+                <div class="form-group col-md-6 col-sm-6 col-xs-12" id="Ownerl">
                     <label class="control-label" for="lastName">
                         Owner's Last Name
                     </label>
                     <input type="text" th:field="*{lastName}" id="lastName" class="form-control" />
                     <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" id="lastName-error" class="error" for="lastName"></label>
                 </div>
+                </div>
                 <!-- ./form-group -->
-                <div class="form-group" id="Ownerp">
+                
+                <div class="row">
+                <div class="form-group col-md-6 col-sm-6 col-xs-12" id="Ownerp">
                     <label class="control-label" for="text">
                         Position
                     </label>
@@ -35,25 +39,83 @@
                     <label th:if="${#fields.hasErrors('position')}" th:errors="*{position}" id="position-error" class="error" for="position"></label>
                 </div>
                 <!-- ./form-group -->
-                <div class="form-group" id="Ownere">
+                <div class="form-group col-md-6 col-sm-6 col-xs-12" id="Ownere">
                     <label class="control-label requiredField" for="email">
                         Email
                     </label>
                     <input type="email" th:field="*{email}" id="email" class="form-control" />
                     <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" id="email-error" class="error" for="email"></label>
                 </div>
+                </div>
                 <!-- ./form-group -->
                 <div class="form-group" id="ModeID">
                     <label class="control-label" for="select">
                         Mode of Identification
                     </label>
-                    <select class="select form-control" id="modeOfId" th:field="*{modeOfId}">
-                        <option>Drivers License</option>
-                        <option>National I.D</option>
-                        <option>International Passport</option>
+                    <select class="select form-control" id="select" th:field="*{modeOfId}">
+                        <option value=""> </option>
+                        <option value="license"> Driver License </option>
+                        <option value="national"> National ID </option>
+                        <option value="passport"> International Passport </option>
                     </select>
                     <label th:if="${#fields.hasErrors('modeOfId')}" th:errors="*{modeOfId}" id="modeOfId-error" class="error" for="modeOfId"></label>
                 </div>
+                
+                    <div class="row license box" id="license">
+                    <div class="form-group col-xs-6">
+                            <label class="control-label requiredField" for="name">
+                            Specify Driver"s License Number
+                            </label>
+                                    <input class="form-control" id="name" name="name" type="text"/>
+                    </div>
+                    <div class="form-group col-xs-6" >
+                            <label class="control-label requiredField" for="name1">
+                            <span class="asteriskField">
+                                    *
+                            </span>
+                            Expiry Date
+                            </label>
+                                    <input class="form-control" id="name1" name="name1" type="date"/>
+                    </div>
+                    </div>
+
+                    <div class="row national box" id="national">
+                    <div class="form-group col-xs-6">
+                            <label class="control-label requiredField" for="name">
+                            Specify National ID Number
+                            </label>
+                                    <input class="form-control" id="name" name="name" type="text"/>
+                    </div>
+                    <div class="form-group col-xs-6">
+                            <label class="control-label requiredField" for="name1">
+                            <span class="asteriskField">
+                                    *
+                            </span>
+                            Expiry Date
+                            </label>
+                                    <input class="form-control" id="name1" name="name1" type="date"/>
+                    </div>
+                    </div>
+
+                    <div class="row passport box" id="passport">
+                    <div class="form-group col-xs-6">
+                            <label class="control-label requiredField" for="name">
+                            Specify International Passport Number
+                            </label>
+                                    <input class="form-control" id="name" name="name" type="text"/>
+                    </div>
+                    <div class="form-group col-xs-6">
+                            <label class="control-label requiredField" for="name1">
+                            <span class="asteriskField">
+                                    *
+                            </span>
+                                <br /> Expiry Date
+                            </label>
+                                    <input class="form-control" id="name1" name="name1" type="date"/>
+                    </div>
+                    </div>
+                    <label th:if="${#fields.hasErrors('modeOfId')}" th:errors="*{modeOfId}" id="modeOfId-error" class="error" for="modeOfId"></label>
+             
                 <!-- ./form-group -->
                 <div class="form-group">
                     <label class="control-label" for="phoneNumber">
@@ -64,11 +126,11 @@
                 </div>
                 <!-- ./form-group -->
                 <div class="form-group">
-                    <div id="downb">
-                        <button class="btn btn-primary" name="Back" type="submit">
+                    <div id="downb pull-right">
+                        <button class="btn btn-success" name="Back" type="submit">
                             Back
                         </button>
-                        <button class="btn btn-primary" name="Next" type="submit">
+                        <button class="btn btn-success" name="Next" type="submit">
                             Next
                         </button>
                     </div>
@@ -79,5 +141,23 @@
         </div>
         <!-- ./col -->
     </div>
+    
+  <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
+    <script type="text/javascript">
+$(document).ready(function(){
+    $("select").change(function(){
+        $(this).find("option:selected").each(function(){
+            var optionValue = $(this).attr("value");
+            if(optionValue){
+                $(".box").not("." + optionValue).hide();
+                $("." + optionValue).show();
+            } else{
+                $(".box").hide();
+            }
+        });
+    }).change();
+});
+</script>
+
 </body>
 </html>

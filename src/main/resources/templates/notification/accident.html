@@ -26,88 +26,87 @@
                     <span class="asteriskField">
                         *
                     </span>
-                    <label class="control-label requiredField" for="DOA">
+                    <label class="control-label requiredField" for="doA">
                        Date of Accident
                     </label>
-                    <input class="form-control" id="DOA" th:field="*{dDob4}" type="date"/>
-                    <label th:if="${#fields.hasErrors('dDob4')}" th:errors="*{dDob4}" id="dDob4-error" class="error" for="dDob4"></label>
+                    <input class="form-control" th:field="*{doA}" id="doA" type="date"/>
+                    <label th:if="${#fields.hasErrors('doA')}" th:errors="*{doA}" id="doA-error" class="error" for="doA"></label>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-md-6">
-                    <label class="control-label requiredField" for="TOA">
+                    <label class="control-label requiredField" for="toA">
                     <span class="asteriskField">
                         *
                     </span>
                     Time of Accidents (hh:mm:(AM/PM))
                     </label>
-                    <input class="form-control " id="TOA" name="TOA" type="time"/>
-                    <label th:if="${#fields.hasErrors('dDob4')}" th:errors="*{dDob4}" id="dDob4-error" class="error" for="dDob4"></label>
+                    <input class="form-control " th:field="*{toA}" id="toA" name="toA" type="time"/>
+                    <label th:if="${#fields.hasErrors('toA')}" th:errors="*{toA}" id="toA-error" class="error" for="toA"></label>
                     </div>
                 </div>
 
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="POA">
+                    <label class="control-label requiredField" for="poA">
                     <span class="asteriskField">
                         *
                     </span>
                     Place of Accident
                     </label>
-                    <input class="form-control" id="POA" name="POA" type="text"/>
-                    <label th:if="${#fields.hasErrors('dDob4')}" th:errors="*{dDob4}" id="dDob4-error" class="error" for="dDob4"></label>
+                    <input class="form-control" th:field="*{poA}" id="poA" name="poA" type="text"/>
+                    <label th:if="${#fields.hasErrors('poA')}" th:errors="*{poA}" id="poA-error" class="error" for="poA"></label>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label requiredField" for="State">
+                        <label class="control-label requiredField" for="state">
                             <span class="asteriskField">
                                 *
                             </span>
                             State
                         </label>
-                        <select class="select form-control" id="State" name="State">
-                            <option value="First Choice">
-                                First Choice
-                            </option>
+                        <select class="select form-control" th:field="*{state}" id="state" name="state">
+                            <option selected="selected" value="">Select an option</option>
+                            <option th:each="state : ${states}" th:text="${state.name}" th:value="${state.id}">State</option>
                         </select>
-                        <label th:if="${#fields.hasErrors('dDob4')}" th:errors="*{dDob4}" id="dDob4-error" class="error" for="dDob4"></label>
+                        <label th:if="${#fields.hasErrors('state')}" th:errors="*{state}" id="state-error" class="error" for="state"></label>
                     </div>
 
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label requiredField" for="LGA">
+                        <label class="control-label requiredField" for="province">
                             <span class="asteriskField">
                                 *
                             </span>
                             Local Government
                         </label>
-                        <select class="select form-control" id="LGA" name="LGA">
-                            <option value="First Choice">
-                                 First Choice
-                            </option>
+                        <select class="select form-control" th:field="*{province}" id="province" name="province">
+                            <option th:each="local : ${locals}" th:text="${local.name}" th:value="${local.id}">LGA</option>
                         </select>
-                        <label th:if="${#fields.hasErrors('dDob4')}" th:errors="*{dDob4}" id="dDob4-error" class="error" for="dDob4"></label>
+                        <label th:if="${#fields.hasErrors('province')}" th:errors="*{province}" id="province-error" class="error" for="province"></label>
                     </div>
                 </div>
 
                 <div class="form-group ">
-                    <label class="control-label requiredField" for="Reportdate">
+                    <label class="control-label requiredField" for="reportDate">
                         <span class="asteriskField">
                             *
                         </span>
                         Date Employee reported accident
                     </label>
-                    <input class="form-control" id="Reportdate" name="Reportdate" type="date"/>
+                    <input class="form-control" th:field="*{reportDate}" id="reportDate" name="reportDate" type="date"/>
+                    <label th:if="${#fields.hasErrors('reportDate')}" th:errors="*{reportDate}" id="reportDate-error" class="error" for="reportDate"></label>
                 </div>
 
                 <div class="row">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
-                        <label class="control-label requiredField" for="Reporttime">
+                        <label class="control-label requiredField" for="reportTime">
                             <span class="asteriskField">
                                 *
                             </span>
                             Time of Report
                         </label>
-                        <input class="form-control" id="Reporttime" name="Reporttime" type="time"/>
+                        <input class="form-control" th:field="*{reportTime}" id="reportTime" name="reportTime" type="time"/>
+                        <label th:if="${#fields.hasErrors('reportTime')}" th:errors="*{reportTime}" id="reportTime-error" class="error" for="reportTime"></label>
                     </div>
                 </div>
 
@@ -118,7 +117,8 @@
                         </span>
                         What task was the employee performing at the time of accident? (Please provide a description)
                     </label>
-                    <textarea class="form-control" cols="40" id="message" name="message" rows="7"></textarea>
+                    <textarea class="form-control" th:field="*{message}" cols="40" id="message" name="message" rows="7"></textarea>
+                    <label th:if="${#fields.hasErrors('message')}" th:errors="*{message}" id="message-error" class="error" for="message"></label>
                 </div>
 
                 <div class="form-group ">
@@ -128,7 +128,8 @@
                         </span>
                         State the nature of injury sustained
                     </label>
-                    <textarea class="form-control" cols="40" id="message1" name="message1" rows="7"></textarea>
+                    <textarea class="form-control" th:field="*{message1}" cols="40" id="message1" name="message1" rows="7"></textarea>
+                    <label th:if="${#fields.hasErrors('message1')}" th:errors="*{message1}" id="message1-error" class="error" for="message1"></label>
                 </div>
 
                 <div class="form-group" id="div_radio">

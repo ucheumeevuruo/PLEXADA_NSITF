@@ -9,10 +9,10 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.reflect.TypeToken;
 import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
-import com.plexada.doa.JsonObjectRepository;
+import com.plexada.doa.JsonDBRepository;
 import com.plexada.model.registration.Accident;
+import com.plexada.model.registration.Disease;
 import com.plexada.model.registration.ClaimEmployee;
-import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.List;
@@ -27,6 +27,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.plexada.model.registration.NODAttestation;
+import com.plexada.services.ProvinceService;
+import com.plexada.services.StateService;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 /**
  *
@@ -38,10 +44,14 @@ public class ODController {
     List<Link> links;
     private final String header = "Notification of Accident/ Occupational Disease/ Death";
     private String path;
-    private final JsonObjectRepository repo = new JsonObjectRepository();
+    private final JsonDBRepository repo = new JsonDBRepository();
     Type collectionType = new TypeToken<Map<String, Object>>(){}.getType();
     private final ObjectMapper mapper = new ObjectMapper();
     private final Map<String, Object> map = new HashMap();
+    ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
+
+    StateService state = (StateService) context.getBean("stateDAO");
+    ProvinceService local = (ProvinceService) context.getBean("localDAO");
     
     @GetMapping("/{type}/employee")
     public String showEmployeeForm(Model model,
@@ -66,13 +76,17 @@ public class ODController {
             }else{
                 claims = mapper.convertValue(repo.findAll().get(contains), ClaimEmployee.class);
             }
-        } catch (IOException ex) {
+            System.out.println(repo.findAll().toString());
+        } catch (Exception ex) {
             claims = new ClaimEmployee();
+            System.out.println(ex.getMessage());
         }
-            
+
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", claims);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findByObjectId(0));
         return "notification/employee";
     }
     
@@ -97,15 +111,15 @@ public class ODController {
         
         //Validate the script before we move on
         if(!bindingResult.hasErrors()){
-            try {
-                map.put(contains, claim);
-                repo.save(map);
-                this.path = "redirect:/notification/" + redirect;
-            } catch (IOException ex) {}
+            map.put(contains, claim);
+            repo.save(map);
+            this.path = "redirect:/notification/" + redirect;
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", claim);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findByObjectId(0));
         return this.path;
     }
     
@@ -119,11 +133,13 @@ public class ODController {
             // 1. JSON to Java object, read it from a file.
             repo.initRepo(collectionType);
             if(!repo.contains("employeeA")){
-                this.path = "redirect:/notification/accident/employee";    
-            }else{
+                this.path = "redirect:/notification/accident/employee";
+            }else if(repo.contains("accident")){
                 accident = mapper.convertValue(repo.findAll().get("accident"), Accident.class);
             }
-        } catch (IOException ex) {}
+        } catch (Exception ex) {
+            this.path = "redirect:/notification/accident/employee";
+        }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", accident);
@@ -137,10 +153,9 @@ public class ODController {
         this.path = "notification/accident";
         links = NavLinks.accidentSidebarLinks();
         if(!bindingResult.hasErrors()){
-            try {
-                repo.save(map);
-                this.path = "redirect:/notification/accident/attestation";
-            } catch (IOException ex) {}
+            map.put("disease", accident);
+            repo.save(map);
+            this.path = "redirect:/notification/accident/attestation";
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
@@ -153,16 +168,18 @@ public class ODController {
         this.path = "notification/disease";
         links = NavLinks.accidentSidebarLinks();
         
-        Accident disease = new Accident();
+        Disease disease = new Disease();
         try {
             // 1. JSON to Java object, read it from a file.
             repo.initRepo(collectionType);
             if(!repo.contains("employeeD")){
-                this.path = "redirect:/notification/occupational-disease/employee";    
-            }else if(!repo.contains("disease")){
-                disease = mapper.convertValue(repo.findAll().get("disease"), Accident.class);
+                this.path = "redirect:/notification/occupational-disease/employee";
+            }else if(repo.contains("disease")){
+                disease = mapper.convertValue(repo.findAll().get("disease"), Disease.class);
             }
-        } catch (IOException ex) {}
+        } catch (Exception ex) {
+            this.path = "redirect:/notification/occupational-disease/employee";
+        }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", disease);
@@ -171,16 +188,14 @@ public class ODController {
     
     @PostMapping("/occupational-disease/disease")
     public String postDiseaseForm(Model model,
-    @ModelAttribute @Valid Accident disease,
+    @ModelAttribute @Valid Disease disease,
     BindingResult bindingResult){
         this.path = "notification/disease";
         links = NavLinks.occupationSidebarLinks();
         if(!bindingResult.hasErrors()){
-            try {
-                map.put("disease", disease);
-                repo.save(map);
-                this.path = "redirect:/notification/occupational-disease/attestation";
-            } catch (IOException ex) {}
+            map.put("disease", disease);
+            repo.save(map);
+            this.path = "redirect:/notification/occupational-disease/attestation";
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
@@ -204,15 +219,13 @@ public class ODController {
             // 1. JSON to Java object, read it from a file.
             repo.initRepo(collectionType);
             if(!repo.contains("employeeA")){
-                this.path = "redirect:/notification/accident/employee";    
-            }else{
-                if(repo.contains("attestation")){
-                    attestation = mapper.convertValue(repo.findAll().get("attestation"), NODAttestation.class);
-                }else{
-                    this.path = "redirect:/notification/accident/employee";
-                }
+                this.path = "redirect:/notification/accident/employee";
+            }else if(repo.contains("attestation")){
+                attestation = mapper.convertValue(repo.findAll().get("attestation"), NODAttestation.class);
             }
-        } catch (IOException ex) {}
+        } catch (Exception ex) {
+            this.path = "redirect:/notification/accident/employee";
+        }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", attestation);
@@ -236,10 +249,8 @@ public class ODController {
             this.path = "redirect:/notification";
         }
         if(!bindingResult.hasErrors()){
-            try {
-                repo.save(map);
-                this.path = "redirect:/notification/finish";
-            } catch (IOException ex) {}
+            repo.save(map);
+            this.path = "redirect:/notification/finish";
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links);

@@ -10,7 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonObjectRepository;
-import com.plexada.model.registration.Accident;
+import com.plexada.model.registration.Disease;
 import com.plexada.model.registration.ClaimEmployee;
 import java.io.IOException;
 import java.lang.reflect.Type;
@@ -114,14 +114,14 @@ public class CompentationController {
         this.path = "notification/accident";
         links = NavLinks.accidentSidebarLinks();
         
-        Accident accident = new Accident();
+        Disease accident = new Disease();
         try {
             // 1. JSON to Java object, read it from a file.
             repo.initRepo(collectionType);
             if(!repo.contains("employeeA")){
                 this.path = "redirect:/notification/accident/employee";    
             }else{
-                accident = mapper.convertValue(repo.findAll().get("accident"), Accident.class);
+                accident = mapper.convertValue(repo.findAll().get("accident"), Disease.class);
             }
         } catch (IOException ex) {}
         model.addAttribute("header", header);
@@ -132,7 +132,7 @@ public class CompentationController {
     
     @PostMapping("/accident/accident")
     public String accident(Model model,
-    @ModelAttribute @Valid Accident accident,
+    @ModelAttribute @Valid Disease accident,
     BindingResult bindingResult){
         this.path = "notification/accident";
         links = NavLinks.accidentSidebarLinks();
@@ -154,14 +154,14 @@ public class CompentationController {
         this.path = "notification/disease";
         links = NavLinks.accidentSidebarLinks();
         
-        Accident disease = new Accident();
+        Disease disease = new Disease();
         try {
             // 1. JSON to Java object, read it from a file.
             repo.initRepo(collectionType);
             if(!repo.contains("employeeD")){
                 this.path = "redirect:/notification/occupational-disease/employee";    
             }else if(!repo.contains("disease")){
-                disease = mapper.convertValue(repo.findAll().get("disease"), Accident.class);
+                disease = mapper.convertValue(repo.findAll().get("disease"), Disease.class);
             }
         } catch (IOException ex) {}
         model.addAttribute("header", header);
@@ -172,7 +172,7 @@ public class CompentationController {
     
     @PostMapping("/occupational-disease/disease")
     public String postDiseaseForm(Model model,
-    @ModelAttribute @Valid Accident disease,
+    @ModelAttribute @Valid Disease disease,
     BindingResult bindingResult){
         this.path = "notification/disease";
         links = NavLinks.occupationSidebarLinks();
