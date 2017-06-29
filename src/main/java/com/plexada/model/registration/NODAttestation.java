@@ -5,42 +5,48 @@
  */
 package com.plexada.model.registration;
 
+import org.hibernate.validator.constraints.NotEmpty;
+
 /**
  *
  * @author SAP Training
  */
 public class NODAttestation {
-    private String Signature;
-    private String Stamp;
+    @NotEmpty
+    private String signature;
+    @NotEmpty
+    private String stamp;
+    @NotEmpty
     private String name;
+    @NotEmpty
     private String div_checkbox;
 
     /**
-     * @return the Signature
+     * @return the signature
      */
     public String getSignature() {
-        return Signature;
+        return signature;
     }
 
     /**
-     * @param Signature the Signature to set
+     * @param signature the signature to set
      */
-    public void setSignature(String Signature) {
-        this.Signature = Signature;
+    public void setSignature(String signature) {
+        this.signature = signature;
     }
 
     /**
-     * @return the Stamp
+     * @return the stamp
      */
     public String getStamp() {
-        return Stamp;
+        return stamp;
     }
 
     /**
-     * @param Stamp the Stamp to set
+     * @param stamp the stamp to set
      */
-    public void setStamp(String Stamp) {
-        this.Stamp = Stamp;
+    public void setStamp(String stamp) {
+        this.stamp = stamp;
     }
 
     /**
@@ -70,6 +76,5 @@ public class NODAttestation {
     public void setDiv_checkbox(String div_checkbox) {
         this.div_checkbox = div_checkbox;
     }
-   
     
 }
