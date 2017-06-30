@@ -5,21 +5,18 @@
  */
 package com.plexada.doa;
 
+import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import com.plexada.build.JsonFileMapper;
 import com.plexada.services.DBCookieService;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.Map;
 import java.lang.reflect.Type;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.plexada.model.Cookie;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -28,18 +25,23 @@ import java.util.List;
 public class JsonDBRepository {
     private Map<String, Object> mapper;
     ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
-    private final DBCookieService cookies = (DBCookieService) context.getBean("cookieDOA");
+    private final DBCookieService cookieService = (DBCookieService) context.getBean("cookieDOA");
+    private Cookie cookie = null;
     Gson gson = new Gson();
+    
+    public JsonDBRepository(Cookie cookie){
+        this.cookie = cookie;
+    }
     
     // Initialize the repository
     // Not necessary when saving to repository
     public JsonDBRepository initRepo(Type listType) throws Exception{
         // Retrieve file from temporal file system directory.
-        List<Cookie> list = cookies.findById("1");
+        List<Cookie> list = cookieService.findByIP(cookie);
         if(list.isEmpty()){
             throw new Exception(list.toString());
         }
-        Cookie cookie = list.get(0);
+        cookie = list.get(0);
         mapper = gson.fromJson(cookie.getJsonDoc(), listType);
         //fileReader.close();
         return this;
@@ -58,13 +60,29 @@ public class JsonDBRepository {
     }
     
     public void save(Map<? extends String, ? extends Object> map){
-        String json = gson.toJson(map);
-        Cookie cookie = new Cookie();
-        cookie.setId(1);
-        cookie.setIp_address("192.168.3.10");
-        cookie.setJsonDoc(json);
-        System.out.print(cookie.getJsonDoc());
-        cookies.create(cookie);
-        //cookies.update(cookie);
+        if(cookieService.findTotalCustomer(cookie) == 0){
+            String json = gson.toJson(map);
+            cookie.setJsonDoc(json); 
+            cookieService.create(cookie);
+        }else{
+            try {
+                Cookie temp = cookie;
+                this.initRepo( new TypeToken<Map<String, Object>>(){}.getType());
+                //Maps.difference(map, mapper).entriesOnlyOnLeft()
+                mapper.putAll(map);
+                String json = gson.toJson(mapper);
+                cookie = temp;
+                cookie.setJsonDoc(json);
+                System.out.println(cookie.getHashed());
+                System.out.println(cookie.getIpAddress());
+                System.out.println(cookie.getJsonDoc());
+                System.out.println(cookie.getName());
+                cookieService.update(cookie);
+            } catch (Exception ex) {}
+        }
+    }
+
+    public void delete() {
+        cookieService.delete(cookie);
     }
 }

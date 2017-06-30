@@ -10,16 +10,13 @@ import com.google.gson.reflect.TypeToken;
 import com.plexada.build.Company;
 import com.plexada.build.Employee;
 import com.plexada.build.Emulment;
-import com.plexada.build.Link;
+import com.plexada.build.HashAlgorithm;
 import com.plexada.build.OwnersParticular;
 import com.plexada.build.Sector;
-import com.plexada.doa.JsonObjectRepository;
 import com.plexada.model.States;
 import com.plexada.services.AddressService;
 import com.plexada.services.ProvinceService;
 import com.plexada.services.StateService;
-import java.io.FileNotFoundException;
-import java.io.IOException;
 //import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 //import org.apache.catalina.servlet4preview.ServletContext;
@@ -33,15 +30,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import java.lang.reflect.Type;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.plexada.build.NavLinks;
+import com.plexada.doa.JsonDBRepository;
+import com.plexada.model.Cookie;
 
 /**
  *
@@ -53,7 +49,8 @@ public class FormController {
     
     Type collectionType = new TypeToken<Map<String, Object>>(){}.getType();
     private final ObjectMapper mapper = new ObjectMapper();
-    private final Map<String, Object> map = new HashMap();
+    private Map<String, Object> map = new HashMap();
+    private Cookie cookie = null;
     ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
     //Cookie customerDAO = (Cookie) context.getBean("customerDAO");stateDAO
@@ -61,27 +58,34 @@ public class FormController {
     ProvinceService local = (ProvinceService) context.getBean("localDAO");
     AddressService address = (AddressService)context.getBean("addressDAO");
     
-    private final JsonObjectRepository repo = new JsonObjectRepository();
+    private JsonDBRepository repo = null;
     
     private final NavLinks links = new NavLinks();
     private final String header = "REGISTRATION OF EMPLOYERS";
     
+    private void setCookieRequest(HttpServletRequest http, String name){
+        cookie = new Cookie();
+        cookie.setIpAddress(http.getRemoteHost());
+        cookie.setHashed(HashAlgorithm.hashingUsingCommons(http.getRemoteHost() + http.getHeader("User-Agent")));
+        cookie.setName(name);
+    }
+    
     @GetMapping("")
-    public String index(HttpServletResponse response, 
+    public String index(HttpServletRequest request, 
     Model model) {
         Company company;
         try {
             // 1. JSON to Java object, read it from a file.
+            this.setCookieRequest(request, "company");
+            repo = new JsonDBRepository(cookie);
             repo.initRepo(collectionType);
             if(!repo.contains("company")){
                 company = new Company();    
             }else{
                 company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             }
-        } catch (FileNotFoundException ex) {
-            company = new Company();
-        } catch (IOException | NullPointerException ex) {
-            company = new Company();
+        } catch (Exception ex) {
+            company = new Company(); 
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links.registrationSidebarLinks());
@@ -92,7 +96,7 @@ public class FormController {
     }
     
     @PostMapping("")
-    public String indexForm(HttpServletResponse response,
+    public String indexForm(HttpServletRequest request,
     Model model, 
     @ModelAttribute @Valid Company company, 
     BindingResult bindingResult){
@@ -105,21 +109,22 @@ public class FormController {
             return "home";
         }
         //2. Convert object to JSON string and save into a file directly
-        try {
-            map.put("company", company);
-            repo.save(map);
-        } catch (IOException e) {
-            return "home";
-        }
+        setCookieRequest(request, "company");
+        repo = new JsonDBRepository(cookie);
+        map = new HashMap();
+        map.put("company", company);
+        repo.save(map);
         return "redirect:/account/second-page";
     }
     
     @GetMapping("/second-page")
-    public String showStaffEmulment(HttpServletResponse response, 
+    public String showStaffEmulment(HttpServletRequest request, 
     Model model) {
         Emulment emulment;
         try {
             // 1. JSON to Java object, read it from a file.
+            this.setCookieRequest(request, "company");
+            repo = new JsonDBRepository(cookie);
             repo.initRepo(collectionType);
             if(!repo.contains("company")){
                 return "redirect:/account/";    
@@ -128,10 +133,8 @@ public class FormController {
             }else{
                 emulment = new Emulment();
             }
-        } catch (FileNotFoundException ex) {
-            return "redirect:/account/";
-        } catch (IOException | NullPointerException ex) {
-            emulment = new Emulment();
+        } catch (Exception ex) {
+            return "redirect:/account/"; 
         }
         model.addAttribute("header", "REGISTRATION OF EMPLOYERS");
         model.addAttribute("links", links.registrationSidebarLinks());
@@ -140,7 +143,7 @@ public class FormController {
     }
     
     @PostMapping("/second-page")
-    public String showStaffEmulmentForm(HttpServletResponse response, 
+    public String showStaffEmulmentForm(HttpServletRequest request, 
     Model model,  
     @ModelAttribute @Valid Emulment emulment, 
     BindingResult bindingResult){
@@ -151,21 +154,22 @@ public class FormController {
             return "emulment";
         }
         //2. Convert object to JSON string and save into a file directly
-        try  {
-            map.put("emulment", emulment);
-            repo.save(map);
-        } catch (IOException e) {
-            return "emulment";
-        }
+        setCookieRequest(request, "company");
+        repo = new JsonDBRepository(cookie);
+        map = new HashMap();
+        map.put("emulment", emulment);
+        repo.save(map);
         return "redirect:/account/third-page";
     }
     
     @GetMapping("/third-page")
-    public String showBusinessClass(HttpServletResponse response, 
+    public String showBusinessClass(HttpServletRequest request, 
     Model model) {
         Sector sect;
         try {
             // 1. JSON to Java object, read it from a file.
+            this.setCookieRequest(request, "company");
+            repo = new JsonDBRepository(cookie);
             repo.initRepo(collectionType);
             if(!repo.contains("company")){
                 return "redirect:/account/";    
@@ -176,10 +180,8 @@ public class FormController {
             }else{
                 sect = new Sector();
             }
-        } catch (FileNotFoundException ex) {
-            return "redirect:/account/";
-        } catch (IOException | NullPointerException ex) {
-            sect = new Sector();
+        } catch (Exception ex) {
+            return "redirect:/account/"; 
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links.registrationSidebarLinks());
@@ -188,7 +190,7 @@ public class FormController {
     }
     
     @PostMapping("/third-page")
-    public String showBusinessClassForm(HttpServletResponse response,
+    public String showBusinessClassForm(HttpServletRequest request,
     Model model,
     @ModelAttribute @Valid Sector sect, 
     BindingResult bindingResult) {
@@ -199,21 +201,22 @@ public class FormController {
             return "sector";
         }
         //2. Convert object to JSON string and save into a file directly
-        try {
-            map.put("sector", sect);
-            repo.save(map);
-        } catch (IOException e) {
-            return "sector";
-        }
+        setCookieRequest(request, "company");
+        repo = new JsonDBRepository(cookie);
+        map = new HashMap();
+        map.put("sector", sect);
+        repo.save(map);
         return "redirect:/account/fourth-page";
     }
     
     @GetMapping("/fourth-page")
-    public String showOwnersParticular(HttpServletResponse response, 
+    public String showOwnersParticular(HttpServletRequest request, 
     Model model){
         OwnersParticular particular;
         try {
             // 1. JSON to Java object, read it from a file.
+            this.setCookieRequest(request, "company");
+            repo = new JsonDBRepository(cookie);
             repo.initRepo(collectionType);
             if(!repo.contains("company")){
                 return "redirect:/account/";    
@@ -226,10 +229,8 @@ public class FormController {
             }else{
                 particular = new OwnersParticular();
             }
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             return "redirect:/account/"; 
-        } catch (IOException | NullPointerException ex) {
-            particular = new OwnersParticular();
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links.registrationSidebarLinks());
@@ -238,7 +239,7 @@ public class FormController {
     }
     
     @PostMapping("/fourth-page")
-    public String showOwnersParticularForm(HttpServletResponse response, 
+    public String showOwnersParticularForm(HttpServletRequest request, 
     Model model, 
     @ModelAttribute OwnersParticular particular,
     BindingResult bindingResult) {
@@ -249,22 +250,23 @@ public class FormController {
             return "owners-particular";
         }
         //2. Convert object to JSON string and save into a file directly
-        try  {
-            map.put("particular", particular);
-            repo.save(map);
-        } catch (IOException e) {
-            return "owners-particular";
-        }
+        setCookieRequest(request, "company");
+        repo = new JsonDBRepository(cookie);
+        map = new HashMap();
+        map.put("particular", particular);
+        repo.save(map);
         return "redirect:/account/fifth-page";
     }
     
     
     @GetMapping("/fifth-page")
-    public String showStaffInfo(HttpServletResponse response,
+    public String showStaffInfo(HttpServletRequest request,
     Model model) {
         Employee employee;
         try {
             // 1. JSON to Java object, read it from a file.
+            this.setCookieRequest(request, "company");
+            repo = new JsonDBRepository(cookie);
             repo.initRepo(collectionType);
             if(!repo.contains("company")){
                 return "redirect:/account/";    
@@ -279,10 +281,8 @@ public class FormController {
             }else{
                 employee = new Employee();
             }
-        } catch (FileNotFoundException ex) {
+        } catch (Exception ex) {
             return "redirect:/account/";
-        } catch (IOException | NullPointerException ex) {
-            employee = new Employee();
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links.registrationSidebarLinks());
@@ -291,7 +291,7 @@ public class FormController {
     }
     
     @PostMapping("/fifth-page")
-    public String showStaffInfoForm(HttpServletResponse response,
+    public String showStaffInfoForm(HttpServletRequest request,
     Model model,
     @ModelAttribute Employee staffInfo,
     BindingResult bindingResult) {
@@ -302,12 +302,11 @@ public class FormController {
             return "employee-info";
         }
         //2. Convert object to JSON string and save into a file directly
-        try {
-            map.put("employee", staffInfo);
-            repo.save(map);
-        } catch (IOException e) {
-            return "employee-info";
-        }
+        setCookieRequest(request, "company");
+        repo = new JsonDBRepository(cookie);
+        map = new HashMap();
+        map.put("employee", staffInfo);
+        repo.save(map);
         return "redirect:/account/preview";
     }
     
@@ -317,6 +316,8 @@ public class FormController {
     HttpServletResponse response){
         try {
             // 1. JSON to Java object, read it from a file.
+            setCookieRequest(request, "company");
+            repo = new JsonDBRepository(cookie);
             repo.initRepo(collectionType);
             if(!repo.contains("company")){
                 return "redirect:/account/";    
@@ -337,31 +338,31 @@ public class FormController {
             model.addAttribute("sector", repo.findByObjectId("sector"));
             model.addAttribute("particular", repo.findByObjectId("particular"));
             model.addAttribute("employee", repo.findByObjectId("employee"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            return "redirect:/account/";
         }
         return "preview";
     }
     
     @PostMapping("/save")
-    String saveRequest(Model model) {
+    String saveRequest(Model model,
+    HttpServletRequest request) {
         Company company;
         try {
             // Set UserId to Request Field USER_ID
             //Users user = usersRepository.findOneByInitialName(principal.getName());
             // 1. JSON to Java object, read it from a file.
+            this.setCookieRequest(request, "company");
+            repo = new JsonDBRepository(cookie);
             repo.initRepo(collectionType);
             company = mapper.convertValue(repo.findAll().get("company"), Company.class);
+            repo.delete();
             address.insert(company);
             //customerDAO.create(company);
             //this.employeeService.save(company.get("company"));
-        } catch (FileNotFoundException ex) {
-            Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (IOException ex) {
-            Logger.getLogger(FormController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        } catch (Exception ex) {
+            return "redirect:/account/";
+        } 
         return "finish";
     }
 }

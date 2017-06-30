@@ -7,9 +7,11 @@ package com.plexada.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.reflect.TypeToken;
+import com.plexada.build.HashAlgorithm;
 import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonDBRepository;
+import com.plexada.model.Cookie;
 import com.plexada.model.registration.Accident;
 import com.plexada.model.registration.Disease;
 import com.plexada.model.registration.ClaimEmployee;
@@ -29,8 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.plexada.model.registration.NODAttestation;
 import com.plexada.services.ProvinceService;
 import com.plexada.services.StateService;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -44,19 +45,26 @@ public class ODController {
     List<Link> links;
     private final String header = "Notification of Accident/ Occupational Disease/ Death";
     private String path;
-    private final JsonDBRepository repo = new JsonDBRepository();
+    private JsonDBRepository repo = null;
     Type collectionType = new TypeToken<Map<String, Object>>(){}.getType();
     private final ObjectMapper mapper = new ObjectMapper();
-    private final Map<String, Object> map = new HashMap();
+    private Map<String, Object> map = new HashMap();
+    private final Cookie cookie = new Cookie();
     ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
     StateService state = (StateService) context.getBean("stateDAO");
     ProvinceService local = (ProvinceService) context.getBean("localDAO");
     
+    private void setCookieRequest(HttpServletRequest http, String name){
+        cookie.setIpAddress(http.getRemoteHost());
+        cookie.setHashed(HashAlgorithm.hashingUsingCommons(http.getRemoteHost() + http.getHeader("User-Agent")));
+        cookie.setName(name);
+    }
+    
     @GetMapping("/{type}/employee")
     public String showEmployeeForm(Model model,
-    @PathVariable String type){
-        model.addAttribute("header", header);
+    @PathVariable String type, 
+    HttpServletRequest request){
         String contains = "";
         if(type.equalsIgnoreCase("occupational-disease")){
             links = NavLinks.occupationSidebarLinks();
@@ -70,6 +78,8 @@ public class ODController {
         ClaimEmployee claims;
         try {
             // 1. JSON to Java object, read it from a file.
+            setCookieRequest(request, type);
+            repo = new JsonDBRepository(cookie);    
             repo.initRepo(collectionType);
             if(!repo.contains(contains)){
                 claims = new ClaimEmployee();    
@@ -79,14 +89,11 @@ public class ODController {
             System.out.println(repo.findAll().toString());
         } catch (Exception ex) {
             claims = new ClaimEmployee();
-            System.out.println(ex.getMessage());
         }
 
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", claims);
-        model.addAttribute("states", state.findAll());
-        model.addAttribute("locals", local.findByObjectId(0));
         return "notification/employee";
     }
     
@@ -94,7 +101,8 @@ public class ODController {
     public String postEmployeeForm(Model model, 
     @PathVariable String type, 
     @ModelAttribute @Valid ClaimEmployee claim, 
-    BindingResult bindingResult) throws Exception{
+    BindingResult bindingResult,
+    HttpServletRequest request) throws Exception{
         this.path = "notification/employee";
         String redirect = "", contains = "";
         if(type.equalsIgnoreCase("occupational-disease")){
@@ -111,6 +119,9 @@ public class ODController {
         
         //Validate the script before we move on
         if(!bindingResult.hasErrors()){
+            setCookieRequest(request, type);
+            repo = new JsonDBRepository(cookie); 
+            map = new HashMap();
             map.put(contains, claim);
             repo.save(map);
             this.path = "redirect:/notification/" + redirect;
@@ -124,13 +135,16 @@ public class ODController {
     }
     
     @GetMapping("/accident/accident")
-    public String accidentForm(Model model){
+    public String showAccidentForm(Model model,
+    HttpServletRequest request){
         this.path = "notification/accident";
         links = NavLinks.accidentSidebarLinks();
         
         Accident accident = new Accident();
         try {
             // 1. JSON to Java object, read it from a file.
+            setCookieRequest(request, "accident");
+            repo = new JsonDBRepository(cookie);  
             repo.initRepo(collectionType);
             if(!repo.contains("employeeA")){
                 this.path = "redirect:/notification/accident/employee";
@@ -143,34 +157,45 @@ public class ODController {
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", accident);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findByObjectId(0));
         return this.path;
     }
     
     @PostMapping("/accident/accident")
-    public String accident(Model model,
-    @ModelAttribute @Valid Accident accident,
-    BindingResult bindingResult){
+    public String postAccidentForm(Model model,
+    @ModelAttribute Accident accident,
+    BindingResult bindingResult,
+    HttpServletRequest request){
         this.path = "notification/accident";
         links = NavLinks.accidentSidebarLinks();
         if(!bindingResult.hasErrors()){
-            map.put("disease", accident);
+            setCookieRequest(request, "accident");
+            repo = new JsonDBRepository(cookie);  
+            map = new HashMap();
+            map.put("accident", accident);
             repo.save(map);
             this.path = "redirect:/notification/accident/attestation";
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", accident);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findByObjectId(0));
         return this.path;
     }
     
     @GetMapping("/occupational-disease/disease")
-    public String showDiseaseFrom(Model model){
+    public String showDiseaseFrom(Model model,
+    HttpServletRequest request){
         this.path = "notification/disease";
         links = NavLinks.accidentSidebarLinks();
         
         Disease disease = new Disease();
         try {
             // 1. JSON to Java object, read it from a file.
+            setCookieRequest(request, "occupational-disease");
+            repo = new JsonDBRepository(cookie);  
             repo.initRepo(collectionType);
             if(!repo.contains("employeeD")){
                 this.path = "redirect:/notification/occupational-disease/employee";
@@ -189,10 +214,14 @@ public class ODController {
     @PostMapping("/occupational-disease/disease")
     public String postDiseaseForm(Model model,
     @ModelAttribute @Valid Disease disease,
-    BindingResult bindingResult){
+    BindingResult bindingResult,
+    HttpServletRequest request){
         this.path = "notification/disease";
         links = NavLinks.occupationSidebarLinks();
         if(!bindingResult.hasErrors()){
+            setCookieRequest(request, "occupational-disease");
+            repo = new JsonDBRepository(cookie);  
+            map = new HashMap();
             map.put("disease", disease);
             repo.save(map);
             this.path = "redirect:/notification/occupational-disease/attestation";
@@ -205,7 +234,8 @@ public class ODController {
     
     @GetMapping("/{type}/attestation")
     public String AttestationForm(Model model,
-    @PathVariable String type){
+    @PathVariable String type,
+    HttpServletRequest request){
         this.path = "notification/attestation";
         NODAttestation attestation = new NODAttestation();
         if(type.equalsIgnoreCase("occupational-disease")){
@@ -217,6 +247,8 @@ public class ODController {
         }
         try {
             // 1. JSON to Java object, read it from a file.
+            setCookieRequest(request, type);
+            repo = new JsonDBRepository(cookie);  
             repo.initRepo(collectionType);
             if(!repo.contains("employeeA")){
                 this.path = "redirect:/notification/accident/employee";
@@ -236,7 +268,8 @@ public class ODController {
     public String Attestation(Model model,
     @PathVariable String type,
     @ModelAttribute @Valid NODAttestation attestation,
-    BindingResult bindingResult){
+    BindingResult bindingResult,
+    HttpServletRequest request){
         this.path = "notification/attestation";
         String redirect = "";
         if(type.equalsIgnoreCase("occupational-disease")){
@@ -249,6 +282,9 @@ public class ODController {
             this.path = "redirect:/notification";
         }
         if(!bindingResult.hasErrors()){
+            setCookieRequest(request, type);
+            repo = new JsonDBRepository(cookie);  
+            map = new HashMap();
             repo.save(map);
             this.path = "redirect:/notification/finish";
         }
@@ -258,8 +294,12 @@ public class ODController {
         return this.path;
     }
     
-    @GetMapping("/finish")
-    public String finish(){
+    @GetMapping("/{path}/finish")
+    public String finish(@PathVariable String path,
+    HttpServletRequest request){
+        setCookieRequest(request, path);
+        repo = new JsonDBRepository(cookie);  
+        repo.delete();
         this.path = "notification/finish";
         return this.path;
     }

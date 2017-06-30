@@ -24,8 +24,8 @@ public class DBCookieService {
     }
     
     public void create(Cookie cookie) {
-        String SQL = "INSERT INTO pre_registrations(id, ip_addr, ses_document) values (?, ?, ?)";
-        jdbcTemplateObject.update( SQL, '1', cookie.getIp_address(), String.valueOf(cookie.getJsonDoc()));
+        String SQL = "INSERT INTO pre_registrations(id, ip_addr, ses_document, hashed, name) values (auto_increment.nextval, ?, ?, ?, ?)";
+        jdbcTemplateObject.update( SQL, cookie.getIpAddress(), cookie.getJsonDoc(), cookie.getHashed(), cookie.getName());
         System.out.println(SQL + " " + cookie.getJsonDoc());
     }
     
@@ -37,12 +37,12 @@ public class DBCookieService {
         return cookie;
     }
     
-    public List<Cookie> findById(String id) {
-        String SQL = "select * from pre_registrations where id = ?";
-        List<Cookie> cookie = jdbcTemplateObject.query(SQL, 
-           new Object[]{id}, new CookieMapper());
+    public List<Cookie> findByIP(Cookie cookie) {
+        String SQL = "select * from pre_registrations where ip_addr = ? AND hashed = ? AND name = ?";
+        List<Cookie> list = jdbcTemplateObject.query(SQL, 
+           new Object[]{cookie.getIpAddress(), cookie.getHashed(), cookie.getName()}, new CookieMapper());
         System.out.println(SQL);    
-        return cookie;
+        return list;
     }
     
     public List<Cookie> listCustomers() {
@@ -52,15 +52,24 @@ public class DBCookieService {
         return cookie;
     }
     
-    public void delete(Integer id) {
-        String SQL = "delete from pre_registrations where id = ?";
-        jdbcTemplateObject.update(SQL, id);
-        System.out.println("Deleted Record with ID = " + id );
+    public void delete(Cookie cookie) {
+        String SQL = "delete from pre_registrations where ip_addr = ? AND  hashed = ? AND name = ?";
+        jdbcTemplateObject.update(SQL, cookie.getIpAddress(), cookie.getHashed(), cookie.getName());
+        System.out.println("Deleted Record with ID = " + cookie.getId() );
     }
     
     public void update(Cookie cookie){
-        String SQL = "update pre_registrations set ses_document = ? where ip_addr = ?";
-        jdbcTemplateObject.update(SQL, cookie.getJsonDoc(), cookie.getIp_address());
-        System.out.println("Updated Record with ID = " + cookie.getId() );
+        String SQL = "update pre_registrations set ses_document = ? where ip_addr = ? AND  hashed = ? AND name = ?";
+        jdbcTemplateObject.update(SQL, cookie.getJsonDoc(), cookie.getIpAddress(), cookie.getHashed(), cookie.getName());
+        System.out.println("Updated Record with ID = " + cookie.getId());
+    }
+    
+    public int findTotalCustomer(Cookie cookie){
+		
+        String sql = "SELECT COUNT(ID) FROM pre_registrations where IP_ADDR = ? AND  HASHED = ? AND NAME = ?";
+
+        Integer total = jdbcTemplateObject.queryForObject(sql, new Object[]{cookie.getIpAddress(), cookie.getHashed(), cookie.getName()}, Integer.class);
+
+        return total;
     }
 }
