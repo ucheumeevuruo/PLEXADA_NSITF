@@ -14,7 +14,7 @@ $(document).ready (
                     company: "required",
                     incNumber: {
                         required : true,
-                        regex: /^[A-Z]{2}\-[0-9]{9}$/
+                        regex: /^[A-Z]{2}\[0-9]{9}$/
                     },
                     incYear: "required",
                     email: {
@@ -22,7 +22,7 @@ $(document).ready (
                         email : true
                     },
                     phoneNumber: {
-                        regex: /^[+-]{1}[0-9]{1,3}\-[0-9]{11}$/
+                        regex: /^[+-]{1}[0-9]{1,3}\[0-9]{11}$/
                     },
                     state: "required",
                     province: "required",
@@ -48,7 +48,7 @@ $(document).ready (
                     company: "Please enter Company's Name",
                     incNumber: {
                         required: "Please enter Incorporation Number",
-                        regex: "Please enter a valid incorporation number i.e. RC-000000009"
+                        regex: "Please enter a valid incorporation number i.e. RC000000009"
                     },
                     incYear: "Please enter year of Incorporation",
                     email: {
@@ -56,7 +56,7 @@ $(document).ready (
                         email: "Please enter a valid email address"
                     },
                     phoneNumber: {
-                        regex: "Please enter a valid phone number i.e. +234-1234567890"
+                        regex: "Please enter a valid phone number i.e. +2341234567890"
                     },
                     state: "Please pick a state",
                     province: "Please select a Local Government",
