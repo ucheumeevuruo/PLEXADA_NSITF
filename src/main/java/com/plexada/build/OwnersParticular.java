@@ -28,8 +28,20 @@ public class OwnersParticular implements Externalizable{
     @NotEmpty
     private String modeOfId;
     @NotEmpty
+    private String licenseNumber;
+    @NotEmpty
+    private String licenseNumberDate;
+    @NotEmpty
+    private String nationalId;
+    @NotEmpty
+    private String nationalIdDate;
+    @NotEmpty
+    private String passport;
+    @NotEmpty
+    private String passportDate;
+    @NotEmpty
     private String phoneNumber;
-    
+
     /**
      * @return the firstName
      */
@@ -101,6 +113,90 @@ public class OwnersParticular implements Externalizable{
     }
 
     /**
+     * @return the licenseNumber
+     */
+    public String getLicenseNumber() {
+        return licenseNumber;
+    }
+
+    /**
+     * @param licenseNumber the licenseNumber to set
+     */
+    public void setLicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    }
+
+    /**
+     * @return the licenseNumberDate
+     */
+    public String getLicenseNumberDate() {
+        return licenseNumberDate;
+    }
+
+    /**
+     * @param licenseNumberDate the licenseNumberDate to set
+     */
+    public void setLicenseNumberDate(String licenseNumberDate) {
+        this.licenseNumberDate = licenseNumberDate;
+    }
+
+    /**
+     * @return the nationalId
+     */
+    public String getNationalId() {
+        return nationalId;
+    }
+
+    /**
+     * @param nationalId the nationalId to set
+     */
+    public void setNationalId(String nationalId) {
+        this.nationalId = nationalId;
+    }
+
+    /**
+     * @return the nationalIdDate
+     */
+    public String getNationalIdDate() {
+        return nationalIdDate;
+    }
+
+    /**
+     * @param nationalIdDate the nationalIdDate to set
+     */
+    public void setNationalIdDate(String nationalIdDate) {
+        this.nationalIdDate = nationalIdDate;
+    }
+
+    /**
+     * @return the passport
+     */
+    public String getPassport() {
+        return passport;
+    }
+
+    /**
+     * @param passport the passport to set
+     */
+    public void setPassport(String passport) {
+        this.passport = passport;
+    }
+
+    /**
+     * @return the passportDate
+     */
+    public String getPassportDate() {
+        return passportDate;
+    }
+
+    /**
+     * @param passportDate the passportDate to set
+     */
+    public void setPassportDate(String passportDate) {
+        this.passportDate = passportDate;
+    }
+
+    /**
      * @return the phoneNumber
      */
     public String getPhoneNumber() {
@@ -119,9 +215,16 @@ public class OwnersParticular implements Externalizable{
         out.writeObject(this.firstName);
         out.writeObject(this.lastName);
         out.writeObject(this.modeOfId);
+        out.writeObject(this.licenseNumber);
+        out.writeObject(this.licenseNumberDate);
+        out.writeObject(this.nationalId);
+        out.writeObject(this.nationalIdDate);
+        out.writeObject(this.passport);
+        out.writeObject(this.passportDate);
         out.writeObject(this.phoneNumber);
         out.writeObject(this.position);
         out.writeObject(this.email);
+       
     }
 
     @Override
@@ -129,8 +232,17 @@ public class OwnersParticular implements Externalizable{
         this.firstName = (String)in.readObject();
         this.lastName = (String)in.readObject();
         this.modeOfId = (String)in.readObject();
+        this.licenseNumber = (String)in.readObject();
+        this.licenseNumberDate = (String)in.readObject();
+        this.nationalId = (String)in.readObject();
+        this.nationalIdDate = (String)in.readObject();
+        this.passport = (String)in.readObject();
+        this.passportDate = (String)in.readObject();
         this.phoneNumber = (String)in.readObject();
         this.position = (String)in.readObject();
         this.email = (String)in.readObject();
+        
     }
+    
 }
+

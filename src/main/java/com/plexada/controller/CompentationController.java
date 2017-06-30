@@ -143,6 +143,8 @@ public class CompentationController {
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", accident);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findAll());
         return this.path;
     }
     
