@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author SAP Training
  */
-public class bankDetailsModel {
+public class Attestation {
     @NotEmpty
     private String bankName;
     @NotEmpty

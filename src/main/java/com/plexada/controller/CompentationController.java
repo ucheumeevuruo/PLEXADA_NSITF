@@ -13,6 +13,7 @@ import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonDBRepository;
 import com.plexada.model.Cookie;
 import com.plexada.model.registration.Accident;
+import com.plexada.model.registration.Attestation;
 import com.plexada.model.registration.Disease;
 import com.plexada.model.registration.ClaimEmployee;
 import java.lang.reflect.Type;
@@ -29,6 +30,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.plexada.model.registration.NODAttestation;
+import com.plexada.model.registration.Treatment;
+import com.plexada.model.registration.Upload;
 import com.plexada.services.ProvinceService;
 import com.plexada.services.StateService;
 import javax.servlet.http.HttpServletRequest;
@@ -140,6 +143,8 @@ public class CompentationController {
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", accident);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findAll());
         return this.path;
     }
     
@@ -167,52 +172,195 @@ public class CompentationController {
     @GetMapping("/step3")
     public String showDetailOfTreatmentForm(Model model,
     HttpServletRequest request){
-        this.path = "";
-        return this.path;
+        this.path = "compentation/bill";
+        links = NavLinks.accidentSidebarLinks();
+        
+        Treatment treatment = new Treatment();
+        try {
+            // 1. JSON to Java object, read it from a file.
+            setCookieRequest(request, name);
+            repo = new JsonDBRepository(cookie);  
+            repo.initRepo(collectionType);
+            if(!repo.contains("employee")){
+                // Redirect to step one if not exist in the list
+                this.path = "redirect:/compentation/step1";
+            }else if(!repo.contains("provider")){
+                this.path = "redirect:/compentation/step2";
+            }else if(repo.contains("bill")){
+                treatment = mapper.convertValue(repo.findAll().get("bill"), Treatment.class);
+            }
+        } catch (Exception ex) {
+            this.path = "redirect:/compentation/step2";
+        }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("var", treatment);
+        return this.path;   
     }
     
     @PostMapping("/step3")
     public String postDetailOfTreatmentForm(Model model,
+    @ModelAttribute Treatment treatment,
+    BindingResult bindingResult,
     HttpServletRequest request){
-        this.path = "";
+        this.path = "compentation/bill";
+        links = NavLinks.accidentSidebarLinks();
+        if(!bindingResult.hasErrors()){
+            setCookieRequest(request, name);
+            repo = new JsonDBRepository(cookie);  
+            map = new HashMap();
+            map.put("bill", treatment);
+            repo.save(map);
+            this.path = "redirect:/compentation/step4";
+        }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("var", treatment);
         return this.path;
     }
     
     @GetMapping("/step4")
     public String showAttachmentForm(Model model,
     HttpServletRequest request){
-        this.path = "";
+        this.path = "compentation/attachment";
+        links = NavLinks.accidentSidebarLinks();
+        
+        Upload upload = new Upload();
+        try {
+            // 1. JSON to Java object, read it from a file.
+            setCookieRequest(request, name);
+            repo = new JsonDBRepository(cookie);  
+            repo.initRepo(collectionType);
+            if(!repo.contains("employee")){
+                // Redirect to step one if not exist in the list
+                this.path = "redirect:/compentation/step1";
+            }else if(!repo.contains("provider")){
+                this.path = "redirect:/compentation/step2";
+            }else if(!repo.contains("bill")){
+                this.path = "redirect:/compentation/step3";
+            }else if(repo.contains("upload")){
+                upload = mapper.convertValue(repo.findAll().get("upload"), Upload.class);
+            }
+        } catch (Exception ex) {
+            this.path = "redirect:/compentation/step3";
+        }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("var", upload);
         return this.path;
     }
     
     @PostMapping("/step4")
     public String postAttachmentForm(Model model,
+    @ModelAttribute Upload upload,
+    BindingResult bindingResult,
     HttpServletRequest request){
-        this.path = "";
+        this.path = "compentation/attachment";
+        links = NavLinks.accidentSidebarLinks();
+        if(!bindingResult.hasErrors()){
+            setCookieRequest(request, name);
+            repo = new JsonDBRepository(cookie);  
+            map = new HashMap();
+            map.put("attachment", upload);
+            repo.save(map);
+            this.path = "redirect:/compentation/step5";
+        }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("var", upload);
         return this.path;
     }
     
     @GetMapping("/step5")
     public String showBankAndAttestationForm(Model model,
     HttpServletRequest request){
-        this.path = "";
+        this.path = "compentation/bank";
+        links = NavLinks.accidentSidebarLinks();
+        
+        Attestation attestation = new Attestation();
+        try {
+            // 1. JSON to Java object, read it from a file.
+            setCookieRequest(request, name);
+            repo = new JsonDBRepository(cookie);  
+            repo.initRepo(collectionType);
+            if(!repo.contains("employee")){
+                // Redirect to step one if not exist in the list
+                this.path = "redirect:/compentation/step1";
+            }else if(!repo.contains("provider")){
+                this.path = "redirect:/compentation/step2";
+            }else if(!repo.contains("bill")){
+                this.path = "redirect:/compentation/step3";
+                }else if(!repo.contains("upload")){
+                this.path = "redirect:/compentation/step4";
+            }else if(repo.contains("attachment")){
+                attestation = mapper.convertValue(repo.findAll().get("attestation"), Attestation.class);
+            }
+        } catch (Exception ex) {
+            this.path = "redirect:/compentation/step4";
+             }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("var", attestation);
         return this.path;
     }
     
     @PostMapping("/step5")
     public String postBankAndAttestationForm(Model model,
+    @ModelAttribute Attestation attestation,
+    BindingResult bindingResult,
     HttpServletRequest request){
-        this.path = "";
+        this.path = "compentation/bank";
+        links = NavLinks.accidentSidebarLinks();
+        if(!bindingResult.hasErrors()){
+            setCookieRequest(request, name);
+            repo = new JsonDBRepository(cookie);  
+            map = new HashMap();
+            map.put("bank", attestation);
+            repo.save(map);
+            this.path = "redirect:/compentation/finish";
+        }
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("var", attestation);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findAll());
         return this.path;
     }
     
     @GetMapping("/{path}/finish")
     public String finish(@PathVariable String path,
     HttpServletRequest request){
+        links = NavLinks.accidentSidebarLinks();
         setCookieRequest(request, path);
-        repo = new JsonDBRepository(cookie);  
-        repo.delete();
-        this.path = "notification/finish";
+        repo = new JsonDBRepository(cookie); 
+        
+        Attestation attestation = new Attestation();
+        try {
+            // 1. JSON to Java object, read it from a file.
+            setCookieRequest(request, name);
+            repo = new JsonDBRepository(cookie);  
+            repo.initRepo(collectionType);
+            if(!repo.contains("employee")){
+                // Redirect to step one if not exist in the list
+                this.path = "redirect:/compentation/step1";
+            }else if(!repo.contains("provider")){
+                this.path = "redirect:/compentation/step2";
+            }else if(!repo.contains("bill")){
+                this.path = "redirect:/compentation/step3";
+            }else if(!repo.contains("upload")){
+                this.path = "redirect:/compentation/step4";
+            }else if(!repo.contains("attachment")){
+                this.path = "redirect:/compentation/step5";
+                //attestation = mapper.convertValue(repo.findAll().get("attestation"), Attestation.class);
+            }else{
+                // Save and delete cached form fromrepository
+                this.path = "redirect:/ecs/subscription";
+                repo.delete();
+            }
+        } catch (Exception ex) {
+            this.path = "redirect:/compentation/step5";
+        }
         return this.path;
+    }    
+        
     }
-}

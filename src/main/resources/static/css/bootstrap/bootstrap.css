@@ -2509,7 +2509,7 @@ label {
   display: inline-block;
   max-width: 100%;
   margin-bottom: 5px;
-  font-weight: bold;
+  /*font-weight: bold;*/
 }
 input[type="search"] {
   -webkit-box-sizing: border-box;
@@ -3172,7 +3172,8 @@ fieldset[disabled] .btn-primary.focus {
 }
 .btn-success {
   color: #fff;
-  background-color: #5cb85c;
+  /*background-color: #5cb85c;*/
+  background-color: #006600;
   border-color: #4cae4c;
 }
 .btn-success:focus,

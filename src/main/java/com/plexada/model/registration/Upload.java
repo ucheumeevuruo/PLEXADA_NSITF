@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author SAP Training
  */
-public class attachmentModel {
+public class Upload {
     @NotEmpty
     private String div_radio;
     @NotEmpty

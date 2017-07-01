@@ -39,6 +39,15 @@ $(document).ready (
                     lastName: "required",
                     position: "required",
                     modeOfId: "required",
+                    licenseNumber: {
+                        required: true,
+                        
+                    },
+                    licenseNumberDate: "required",
+                    nationalId: "required",
+                    nationalIdDate: "required",
+                    passport: "required",
+                    passportDate: "required",
                     staffID: "required",
                     agreement: {
                         required: true

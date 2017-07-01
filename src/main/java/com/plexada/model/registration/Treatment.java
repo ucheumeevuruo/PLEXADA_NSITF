@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author SAP Training
  */
-public class treatmentBillModel {
+public class Treatment {
     @NotEmpty
     private String dateSustained;
     @NotEmpty
