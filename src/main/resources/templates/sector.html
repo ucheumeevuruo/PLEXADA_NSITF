@@ -61,10 +61,19 @@
                      *
                 </span>
             </label>
-            <select class="select form-control" id="sector" th:field="*{sector}">
-                <option value="Aviation">
-                  Aviation
-                </option>
+            <select class="select form-control" id="sector" th:field="*{sector}" multiple="multiple">
+                <option value="Construction">Construction</option>
+                <option value="MDAs">MDAs</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Banking and finance">Banking and finance</option>
+                <option value="Mining">Mining</option>
+                <option value="Aviation">Aviation</option>
+                <option value="Telecom">Telecom</option>
+                <option value="Energy">Energy</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Oil and Gas">Oil and Gas</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Technology">Technology</option>
             </select>
             <span class="help-block" id="hint_select">
              Press Ctrl for multiple select

@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author SAP Training
  */
-public class Sector implements Externalizable {
+public class Sector {
     @NotEmpty
     private String type;
     @NotEmpty
@@ -62,19 +62,5 @@ public class Sector implements Externalizable {
      */
     public void setOtherSector(String otherSector) {
         this.otherSector = otherSector;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(this.type);
-        out.writeObject(this.sector);
-        out.writeObject(this.otherSector);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.type = (String)in.readObject();
-        this.sector = (String)in.readObject();
-        this.otherSector = (String)in.readObject();
     }
 }

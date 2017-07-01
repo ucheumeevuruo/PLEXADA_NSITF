@@ -96,7 +96,7 @@
               </label>
               <select class="select form-control" id="province" th:field="*{province}">
                  <option selected="selected" value="">Select an option</option>
-                 <option th:each="local : ${locals}" th:text="${local.name}" th:value="${local.id}">LGA</option>
+                 <option th:each="province : *{locals}" th:text="${province.name}" th:value="${province.id}">LGA</option>
                </select>
              </div>
              </div>
