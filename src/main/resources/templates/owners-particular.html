@@ -103,21 +103,21 @@
 
                     <div class="row passport box" id="passport">
                     <div class="form-group col-xs-6">
-                            <label class="control-label requiredField" for="passport">
-                            Specify International Passport Number
-                            </label>
-                                    <input class="form-control" th:field="*{passport}" id="passport" name="passport" type="text"/>
-                                    <label th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}" id="passport-error" class="error" for="passport"></label>
+                        <label class="control-label requiredField" for="passport">
+                        Specify International Passport Number
+                        </label>
+                        <input class="form-control" th:field="*{passport}" id="passport" name="passport" type="text"/>
+                        <label th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}" id="passport-error" class="error" for="passport"></label>
                     </div>
                     <div class="form-group col-xs-6">
-                            <label class="control-label requiredField" for="passportDate">
-                            <span class="asteriskField">
-                                    *
-                            </span>
-                                <br /> Expiry Date
-                            </label>
-                                    <input class="form-control" th:field="*{passportDate}" id="passportDate" name="passportDate" type="date"/>
-                                    <label th:if="${#fields.hasErrors('passportDate')}" th:errors="*{passportDate}" id="passportDate-error" class="error" for="passportDate"></label>
+                        <label class="control-label requiredField" for="passportDate">
+                        <span class="asteriskField">
+                                *
+                        </span>
+                            <br /> Expiry Date
+                        </label>
+                        <input class="form-control" th:field="*{passportDate}" id="passportDate" name="passportDate" type="date"/>
+                        <label th:if="${#fields.hasErrors('passportDate')}" th:errors="*{passportDate}" id="passportDate-error" class="error" for="passportDate"></label>
                     </div>
                     </div>
                     
