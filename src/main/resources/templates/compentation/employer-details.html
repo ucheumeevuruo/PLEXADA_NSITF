@@ -27,10 +27,10 @@
             <br />
             <p class="comp-title"> 
                 EMPLOYEE DETAILS 
-            </P>
+            </p>
             <br /> 
             <br />
-            <form method="post" action="/" id="employerDetails1">
+            <form method="post" action="" th:object="${var}" id="employerDetails1">
                 <div class="row">
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
                         <label class="control-label requiredField" for="select">
@@ -39,12 +39,8 @@
                             </span>
                             Notification Code
                         </label>
-                        <select class="select form-control" th:field="*{dFirstName}" id="select" name="select">
-                            <option selected="selected" value="">
-                            </option>
-                            <option value="fffffffffffffffffffffffffffffffff">
-                                fffffffffffffffffffffffffffffffff
-                            </option>
+                        <select class="select form-control" th:field="*{dDob}" id="select" name="select">
+                            <option selected="selected" value=""></option>
                         </select>
                         <label th:if="${#fields.hasErrors('dDob')}" th:errors="*{dDob}" id="dDob-error" class="error" for="dDob"></label>
                     </div>
@@ -242,7 +238,7 @@
                 </div>
                 <p class="comp-title"> 
                     REGISTERED DEPENDANT IF ANY 
-                </P>
+                </p>
                 <br />
                 <span class="asteriskField"> 
                     <i> 

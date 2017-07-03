@@ -18,7 +18,7 @@
             <br />
             <br />
             <i> Field with <span class="asteriskField">*</span> are compulsary </i>
-            <form method="post" action="" id="attestation">
+            <form method="post" action="" th:object="${var}" id="attestation">
                 <p class="comp-title">
                     ATTESTATION
                 </p> 
@@ -27,14 +27,14 @@
                     *
                 </span>
                 Signature
-                <input type="file" name="signature" th:field="*{signature}" id="signature">
+                <input type="file" name="signature" th:field="*{signature}" id="signature" />
                 <label th:if="${#fields.hasErrors('signature')}" th:errors="*{signature}" id="signature-error" class="error" for="signature"></label>
 
                 <span class="asteriskField">
                     *
                 </span>
                 Stamp
-                <input type="file" name="stamp" th:field="*{stamp}" id="stamp">
+                <input type="file" name="stamp" th:field="*{stamp}" id="stamp" />
                 <label th:if="${#fields.hasErrors('stamp')}" th:errors="*{stamp}" id="stamp-error" class="error" for="stamp"></label>
 			
                 <div class="form-group ">

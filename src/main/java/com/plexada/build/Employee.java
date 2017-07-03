@@ -15,7 +15,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author SAP Training
  */
-public class Employee implements Externalizable{
+public class Employee{
     @NotEmpty
     private String firstName;
     @NotEmpty
@@ -143,29 +143,5 @@ public class Employee implements Externalizable{
      */
     public void setAgreement(String agreement) {
         this.agreement = agreement;
-    }
-
-    @Override
-    public void writeExternal(ObjectOutput out) throws IOException {
-        out.writeObject(this.firstName);
-        out.writeObject(this.otherName);
-        out.writeObject(this.position);
-        out.writeObject(this.signature);
-        out.writeObject(this.staffID);
-        out.writeObject(this.stamp);
-        out.writeObject(this.upload);
-        out.writeObject(this.agreement);
-    }
-
-    @Override
-    public void readExternal(ObjectInput in) throws IOException, ClassNotFoundException {
-        this.firstName = (String)in.readObject();
-        this.otherName = (String)in.readObject();
-        this.position = (String)in.readObject();
-        this.signature = (String)in.readObject();
-        this.staffID = (String)in.readObject();
-        this.stamp = (String)in.readObject();
-        this.upload = (String)in.readObject();
-        this.agreement = (String)in.readObject();
     }
 }

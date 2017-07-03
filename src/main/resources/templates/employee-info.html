@@ -8,7 +8,7 @@
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
     <div class="col-lg-7 col-md-7 col-sm-12">
-        <form method="post" th:action="@{/account/fifth-page}" th:object="${staffInfo}" id="registration-form">
+        <form method="post" th:action="@{/account/fifth-page}" th:object="${staffInfo}" id="registration-form" enctype="multipart/form-data">
         <div class="row">
          <div class="form-group col-lg-6 col-md-6 col-sm-6" id="FName">
           <label class="control-label requiredField" for="name">

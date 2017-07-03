@@ -38,6 +38,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonDBRepository;
 import com.plexada.model.Cookie;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -51,6 +53,7 @@ public class FormController {
     private final ObjectMapper mapper = new ObjectMapper();
     private Map<String, Object> map = new HashMap();
     private Cookie cookie = null;
+    private String path;
     ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
     //Cookie customerDAO = (Cookie) context.getBean("customerDAO");stateDAO
@@ -212,7 +215,7 @@ public class FormController {
     @GetMapping("/fourth-page")
     public String showOwnersParticular(HttpServletRequest request, 
     Model model){
-        OwnersParticular particular;
+        OwnersParticular particular = new OwnersParticular();
         try {
             // 1. JSON to Java object, read it from a file.
             this.setCookieRequest(request, "company");
@@ -230,7 +233,8 @@ public class FormController {
                 particular = new OwnersParticular();
             }
         } catch (Exception ex) {
-            return "redirect:/account/"; 
+            System.out.println(ex.getMessage());
+            //return "redirect:/account/"; 
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links.registrationSidebarLinks());
@@ -255,7 +259,12 @@ public class FormController {
         map = new HashMap();
         map.put("particular", particular);
         repo.save(map);
-        return "redirect:/account/fifth-page";
+        if("".equals(particular.getModeOfId())){
+            this.path = "redirect:/account/preview";
+        }else{
+            this.path = "redirect:/account/fifth-page";
+        }
+        return this.path;
     }
     
     
@@ -293,6 +302,7 @@ public class FormController {
     @PostMapping("/fifth-page")
     public String showStaffInfoForm(HttpServletRequest request,
     Model model,
+    @RequestParam("stamp") MultipartFile stamp, 
     @ModelAttribute Employee staffInfo,
     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
@@ -327,6 +337,8 @@ public class FormController {
                 return "redirect:/account/third-page";
             }else if(!repo.contains("particular")){
                 return "redirect:/account/fourth-page";
+            }else if(!repo.contains("employee")){
+                return "redirect:/account/fifth-page";
             }
             Company company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             States states = state.findByObjectId(Integer.parseInt(company.getState()));
@@ -347,6 +359,7 @@ public class FormController {
     @PostMapping("/save")
     String saveRequest(Model model,
     HttpServletRequest request) {
+        Map<String, Object> progress = new HashMap();
         Company company;
         try {
             // Set UserId to Request Field USER_ID
@@ -361,8 +374,13 @@ public class FormController {
             //customerDAO.create(company);
             //this.employeeService.save(company.get("company"));
         } catch (Exception ex) {
-            return "redirect:/account/";
+            //return "redirect:/account/preview";
         } 
+        progress.put("response", "success");
+        progress.put("message", "Registration successful!");
+        model.addAttribute("header", header);
+        model.addAttribute("links", links.registrationSidebarLinks());
+        model.addAttribute("progress", progress);
         return "finish";
     }
 }

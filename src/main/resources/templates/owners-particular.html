@@ -52,7 +52,7 @@
                     <label class="control-label" for="select">
                         Mode of Identification
                     </label>
-                    <select class="select form-control" id="select" th:field="*{modeOfId}">
+                    <select class="select form-control" id="modeOfId" th:field="*{modeOfId}">
                         <option value=""> </option>
                         <option value="license"> Driver License </option>
                         <option value="national"> National ID </option>
@@ -61,67 +61,25 @@
                     <label th:if="${#fields.hasErrors('modeOfId')}" th:errors="*{modeOfId}" id="modeOfId-error" class="error" for="modeOfId"></label>
                 </div>
                 
-                    <div class="row license box" id="license">
+                <div class="row license box hidden" id="license">
                     <div class="form-group col-xs-6">
-                            <label class="control-label requiredField" for="licenseNumber">
-                            Specify Driver"s License Number
+                            <label class="control-label requiredField indentify" for="licenseNumber">
+                                Specify Driver's License Number
                             </label>
-                                    <input class="form-control" th:field="*{licenseNumber}"id="licenseNumber" name="licenseNumber" type="text"/>
-                                    <label th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}" id="licenseNumber-error" class="error" for="licenseNumber"></label>
+                            <input class="form-control" th:field="*{licenseNumber}" id="licenseNumber" name="licenseNumber" type="text" />
+                            <label th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}" id="licenseNumber-error" class="error" for="licenseNumber"></label>
                     </div>
                     <div class="form-group col-xs-6" >
-                            <label class="control-label requiredField" for="licenseNumberDate">
+                        <label class="control-label requiredField" for="expiryDate">
                             <span class="asteriskField">
                                     *
                             </span>
                             Expiry Date
-                            </label>
-                                    <input class="form-control" th:field="*{licenseNumberDate}" id="licenseNumberDate" name="licenseNumberDate" type="date" />
-                                    <label th:if="${#fields.hasErrors('licenseNumberDate')}" th:errors="*{licenseNumberDate}" id="licenseNumberDate-error" class="error" for="licenseNumberDate"></label>
+                        </label>
+                        <input class="form-control" th:field="*{expiryDate}" id="expiryDate" type="date" />
+                        <label th:if="${#fields.hasErrors('expiryDate')}" th:errors="*{expiryDate}" id="expiryDate-error" class="error" for="expiryDate"></label>
                     </div>
-                    </div>
-
-                    <div class="row national box" id="national">
-                    <div class="form-group col-xs-6">
-                            <label class="control-label requiredField" for="nationalId">
-                            Specify National ID Number
-                            </label>
-                                    <input class="form-control" th:field="*{nationalId}" id="nationalId" name="nationalId" type="text"/>
-                                    <label th:if="${#fields.hasErrors('nationalId')}" th:errors="*{nationalId}" id="nationalId-error" class="error" for="nationalId"></label>
-                    </div>
-                    <div class="form-group col-xs-6">
-                            <label class="control-label requiredField" for="nationalIdDate">
-                            <span class="asteriskField">
-                                    *
-                            </span>
-                            Expiry Date
-                            </label>
-                                    <input class="form-control" th:field="*{nationalIdDate}" id="nationalIdDate" name="nationalIdDate" type="date"/>
-                                    <label th:if="${#fields.hasErrors('nationalIdDate')}" th:errors="*{nationalIdDate}" id="nationalIdDate-error" class="error" for="nationalIdDate"></label>
-                    </div>
-                    </div>
-
-                    <div class="row passport box" id="passport">
-                    <div class="form-group col-xs-6">
-                            <label class="control-label requiredField" for="passport">
-                            Specify International Passport Number
-                            </label>
-                                    <input class="form-control" th:field="*{passport}" id="passport" name="passport" type="text"/>
-                                    <label th:if="${#fields.hasErrors('passport')}" th:errors="*{passport}" id="passport-error" class="error" for="passport"></label>
-                    </div>
-                    <div class="form-group col-xs-6">
-                            <label class="control-label requiredField" for="passportDate">
-                            <span class="asteriskField">
-                                    *
-                            </span>
-                                <br /> Expiry Date
-                            </label>
-                                    <input class="form-control" th:field="*{passportDate}" id="passportDate" name="passportDate" type="date"/>
-                                    <label th:if="${#fields.hasErrors('passportDate')}" th:errors="*{passportDate}" id="passportDate-error" class="error" for="passportDate"></label>
-                    </div>
-                    </div>
-                    
-                
+                </div>     
              
                 <!-- ./form-group -->
                 <div class="form-group">
@@ -148,23 +106,5 @@
         </div>
         <!-- ./col -->
     </div>
-    
-  <script type="text/javascript" src="http://code.jquery.com/jquery.min.js"></script>
-    <script type="text/javascript">
-$(document).ready(function(){
-    $("select").change(function(){
-        $(this).find("option:selected").each(function(){
-            var optionValue = $(this).attr("value");
-            if(optionValue){
-                $(".box").not("." + optionValue).hide();
-                $("." + optionValue).show();
-            } else{
-                $(".box").hide();
-            }
-        });
-    }).change();
-});
-</script>
-
 </body>
 </html>

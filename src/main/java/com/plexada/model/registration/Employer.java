@@ -11,7 +11,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author SAP Training
  */
-public class employerModel {
+public class Employer {
     @NotEmpty
     private String select;
     @NotEmpty

@@ -38,7 +38,7 @@ $(document).ready (
                     otherName: "required",
                     lastName: "required",
                     position: "required",
-                    modeOfId: "required",
+                    //modeOfId: "required",
                     licenseNumber: {
                         required: true,
                         
