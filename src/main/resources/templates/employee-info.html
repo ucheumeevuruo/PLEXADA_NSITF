@@ -87,18 +87,6 @@
           </span>
           </div>
           </div>
-
-          <div id="Employee">
-          Employee list
-          <span class="asteriskField">
-                *
-           </span>
-           <input type="file" th:field="*{upload}" id="stamp" /> 
-           <label th:if="${#fields.hasErrors('upload')}" th:errors="*{upload}" id="stamp-error" class="error" for="upload"></label>
-          <span class="help-block" id="hint_name">
-          *Maximum size 200kb <br /> *Supports only xlsx
-          </span>
-          </div>
           <br />
           <br />
           <div class="">
@@ -114,11 +102,11 @@
             <div class="pull-right">
 
                 <span id="Buttons"> 
-                      <button class="btn btn-success " name="Back" type="submit">
+                      <a class="btn btn-success" href="/account/fourth-page">
                           Back
-                      </button>
+                      </a>
 
-                      <button class="btn btn-success " name="Next" type="submit">
+                      <button class="btn btn-success" name="Next" type="submit">
                            Next
                       </button> 
                 </span>

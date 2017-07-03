@@ -302,6 +302,7 @@ public class FormController {
     @PostMapping("/fifth-page")
     public String showStaffInfoForm(HttpServletRequest request,
     Model model,
+    @RequestParam("signature") MultipartFile signature, 
     @RequestParam("stamp") MultipartFile stamp, 
     @ModelAttribute Employee staffInfo,
     BindingResult bindingResult) {
@@ -309,6 +310,7 @@ public class FormController {
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("staffInfo", staffInfo);
+            System.out.println(stamp);
             return "employee-info";
         }
         //2. Convert object to JSON string and save into a file directly

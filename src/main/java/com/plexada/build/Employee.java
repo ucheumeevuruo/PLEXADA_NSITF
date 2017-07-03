@@ -5,10 +5,6 @@
  */
 package com.plexada.build;
 
-import java.io.Externalizable;
-import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
@@ -24,12 +20,10 @@ public class Employee{
     private String position;
     @NotEmpty
     private String staffID;
-    @NotEmpty
+    //@NotEmpty
     private String signature;
-    @NotEmpty
+    //@NotEmpty
     private String stamp;
-    @NotEmpty
-    private String upload;
     @NotEmpty
     private String agreement;
     
@@ -116,21 +110,7 @@ public class Employee{
     public void setStamp(String stamp) {
         this.stamp = stamp;
     }
-
-    /**
-     * @return the upload
-     */
-    public String getUpload() {
-        return upload;
-    }
-
-    /**
-     * @param upload the upload to set
-     */
-    public void setUpload(String upload) {
-        this.upload = upload;
-    }
-
+    
     /**
      * @return the agreement
      */
