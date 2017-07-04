@@ -25,7 +25,7 @@ public class ProvinceService{
     }
 
     public List<Locals> findByObjectId(int stateId) {
-        String SQL = "select local_id, state_id, local_name from locals where state_id = ?";
+        String SQL = "select local_id, state_id, local_name from locals where state_id = ? order by local_id desc";
         List<Locals> local = jdbcTemplateObject.query(SQL, 
            new Object[]{stateId}, new LocalMapper());
         System.out.println(SQL);    
@@ -34,14 +34,14 @@ public class ProvinceService{
 
     //@Override
     public List<Locals> findAll() {
-        String SQL = "select * from locals";
+        String SQL = "select * from locals order by local_id desc";
         List <Locals> local = jdbcTemplateObject.query(SQL, new LocalMapper());
         System.out.println(SQL);
         return local;
     }
 
     public int findTotalCustomer() {
-        String SQL = "select count(*) from locals";
+        String SQL = "select count(*) from locals order by local_id desc";
         List <Locals> local = jdbcTemplateObject.query(SQL, new LocalMapper());
         System.out.println(SQL);
         return local.size();

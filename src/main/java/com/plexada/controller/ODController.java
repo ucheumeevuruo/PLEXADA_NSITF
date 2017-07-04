@@ -34,6 +34,8 @@ import com.plexada.services.StateService;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -65,13 +67,10 @@ public class ODController {
     public String showEmployeeForm(Model model,
     @PathVariable String type, 
     HttpServletRequest request){
-        String contains = "";
         if(type.equalsIgnoreCase("occupational-disease")){
             links = NavLinks.occupationSidebarLinks();
-            contains = "employeeD";
         }else if(type.equalsIgnoreCase("accident")){
             links = NavLinks.accidentSidebarLinks();
-            contains = "employeeA";
         }else{
             this.path = "redirect:/notification";
         }
@@ -81,10 +80,10 @@ public class ODController {
             setCookieRequest(request, type);
             repo = new JsonDBRepository(cookie);    
             repo.initRepo(collectionType);
-            if(!repo.contains(contains)){
+            if(!repo.contains("employee")){
                 claims = new ClaimEmployee();    
             }else{
-                claims = mapper.convertValue(repo.findAll().get(contains), ClaimEmployee.class);
+                claims = mapper.convertValue(repo.findAll().get("employee"), ClaimEmployee.class);
             }
             System.out.println(repo.findAll().toString());
         } catch (Exception ex) {
@@ -104,15 +103,13 @@ public class ODController {
     BindingResult bindingResult,
     HttpServletRequest request) throws Exception{
         this.path = "notification/employee";
-        String redirect = "", contains = "";
+        String redirect = "";
         if(type.equalsIgnoreCase("occupational-disease")){
             links = NavLinks.occupationSidebarLinks();
             redirect = type + "/disease";
-            contains = "employeeD";
         }else if(type.equalsIgnoreCase("accident")){
             links = NavLinks.accidentSidebarLinks();
             redirect = type + "/accident";
-            contains = "employeeA";
         }else{
             this.path = "redirect:/notification";
         }
@@ -122,15 +119,13 @@ public class ODController {
             setCookieRequest(request, type);
             repo = new JsonDBRepository(cookie); 
             map = new HashMap();
-            map.put(contains, claim);
+            map.put("employee", claim);
             repo.save(map);
             this.path = "redirect:/notification/" + redirect;
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", claim);
-        model.addAttribute("states", state.findAll());
-        model.addAttribute("locals", local.findByObjectId(0));
         return this.path;
     }
     
@@ -146,7 +141,7 @@ public class ODController {
             setCookieRequest(request, "accident");
             repo = new JsonDBRepository(cookie);  
             repo.initRepo(collectionType);
-            if(!repo.contains("employeeA")){
+            if(!repo.contains("employee")){
                 this.path = "redirect:/notification/accident/employee";
             }else if(repo.contains("accident")){
                 accident = mapper.convertValue(repo.findAll().get("accident"), Accident.class);
@@ -197,7 +192,7 @@ public class ODController {
             setCookieRequest(request, "occupational-disease");
             repo = new JsonDBRepository(cookie);  
             repo.initRepo(collectionType);
-            if(!repo.contains("employeeD")){
+            if(!repo.contains("employee")){
                 this.path = "redirect:/notification/occupational-disease/employee";
             }else if(repo.contains("disease")){
                 disease = mapper.convertValue(repo.findAll().get("disease"), Disease.class);
@@ -229,12 +224,15 @@ public class ODController {
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", disease);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findByObjectId(0));
         return this.path;
     }
     
     @GetMapping("/{type}/attestation")
     public String AttestationForm(Model model,
     @PathVariable String type,
+    @RequestParam("file") MultipartFile file, 
     HttpServletRequest request){
         this.path = "notification/attestation";
         NODAttestation attestation = new NODAttestation();
@@ -250,7 +248,7 @@ public class ODController {
             setCookieRequest(request, type);
             repo = new JsonDBRepository(cookie);  
             repo.initRepo(collectionType);
-            if(!repo.contains("employeeA")){
+            if(!repo.contains("employee")){
                 this.path = "redirect:/notification/accident/employee";
             }else if(repo.contains("attestation")){
                 attestation = mapper.convertValue(repo.findAll().get("attestation"), NODAttestation.class);
@@ -261,10 +259,12 @@ public class ODController {
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", attestation);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findByObjectId(0));
         return this.path;
     }
     
-    @PostMapping("/attestation")
+    @PostMapping("/{type}/attestation")
     public String Attestation(Model model,
     @PathVariable String type,
     @ModelAttribute @Valid NODAttestation attestation,
@@ -286,7 +286,7 @@ public class ODController {
             repo = new JsonDBRepository(cookie);  
             map = new HashMap();
             repo.save(map);
-            this.path = "redirect:/notification/finish";
+            this.path = "redirect:/notification/" + type + "/finish";
         }
         model.addAttribute("header", header);
         model.addAttribute("links", links);
@@ -294,13 +294,20 @@ public class ODController {
         return this.path;
     }
     
-    @GetMapping("/{path}/finish")
-    public String finish(@PathVariable String path,
+    @GetMapping("/{type}/finish")
+    public String finish(Model model,
+    @PathVariable String type,
     HttpServletRequest request){
-        setCookieRequest(request, path);
+        this.path = "finish";
+        Map<String, Object> progress = new HashMap();
+        progress.put("response", "success");
+        progress.put("message", "Registration successful!");
+        setCookieRequest(request, type);
         repo = new JsonDBRepository(cookie);  
         repo.delete();
-        this.path = "notification/finish";
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("progress", progress);
         return this.path;
     }
 }

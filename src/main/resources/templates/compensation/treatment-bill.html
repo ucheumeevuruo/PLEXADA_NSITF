@@ -10,13 +10,13 @@
         <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
             <div class="pull-right">
-                <button class="btn btn-link" name="submit" type="submit">
+                <a class="btn btn-link" href="/ecs/subscription">
                     Home
-                </button>
-                <button class="btn btn-link" name="submit" type="submit">
+                </a>
+                <a class="btn btn-link" href="#">
                     Logout
-                </button> 
-            </div> 
+                </a>
+            </div>
             <small> 
                 <i>
                     Fields with 
@@ -30,9 +30,9 @@
             <br />
             <p class="comp-title"> 
                 DETAILS OF TREATMENT BILL 
-            </P>
+            </p>
             <br />
-            <form method="post" action="/third-page" id="treatmentBill3">
+            <form method="post" action="" th:object="${var}" id="treatmentBill3">
                 <div class="form-group ">
                     <label class="control-label requiredField" for="dateSustained">
                         Date injury/disease/death was sustained/diagnosed/occurred
@@ -68,7 +68,8 @@
                     <textarea class="form-control" th:field="*{message}" cols="40" id="message" name="message" rows="6"></textarea>
                     <label th:if="${#fields.hasErrors('message')}" th:errors="*{message}" id="message-error" class="error" for="message"></label>
                 </div>
-			 
+		
+                <br />
                 Bill for Medical admission/confinement
                 <br />
                 <br />
@@ -182,9 +183,9 @@
                 </div>
                 <div class="form-group">
                     <div class="pull-right">
-                        <button class="btn btn-success " name="submit" type="submit">
+                        <a class="btn btn-success " href="/compensation/health-status">
                             Back
-                        </button>
+                        </a>
                      <button class="btn btn-success " name="submit" type="submit">
                             Next
                      </button>

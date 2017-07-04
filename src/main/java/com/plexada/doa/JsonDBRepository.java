@@ -5,7 +5,6 @@
  */
 package com.plexada.doa;
 
-import com.google.common.collect.Maps;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.plexada.services.DBCookieService;
@@ -15,8 +14,6 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.plexada.model.Cookie;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -41,8 +38,7 @@ public class JsonDBRepository {
         if(list.isEmpty()){
             throw new Exception(list.toString());
         }
-        cookie = list.get(0);
-        mapper = gson.fromJson(cookie.getJsonDoc(), listType);
+        mapper = gson.fromJson(list.get(0).getJsonDoc(), listType);
         //fileReader.close();
         return this;
     }
@@ -73,10 +69,6 @@ public class JsonDBRepository {
                 String json = gson.toJson(mapper);
                 cookie = temp;
                 cookie.setJsonDoc(json);
-                System.out.println(cookie.getHashed());
-                System.out.println(cookie.getIpAddress());
-                System.out.println(cookie.getJsonDoc());
-                System.out.println(cookie.getName());
                 cookieService.update(cookie);
             } catch (Exception ex) {}
         }
@@ -84,5 +76,8 @@ public class JsonDBRepository {
 
     public void delete() {
         cookieService.delete(cookie);
+        System.out.println(cookie.getHashed());
+        System.out.println(cookie.getIpAddress());
+        System.out.println(cookie.getName());
     }
 }

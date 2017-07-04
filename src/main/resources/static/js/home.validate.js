@@ -14,7 +14,7 @@ $(document).ready (
                     company: "required",
                     incNumber: {
                         required : true,
-                        regex: /^[A-Z]{2}\[0-9]{9}$/
+                        regex: /^([A-Z]{2})[0-9]{9}$/
                     },
                     incYear: "required",
                     email: {
@@ -22,7 +22,7 @@ $(document).ready (
                         email : true
                     },
                     phoneNumber: {
-                        regex: /^[+-]{1}[0-9]{1,3}\[0-9]{11}$/
+                        regex: /^([+-]{1})([0-9]{1,3})[0-9]{10}$/
                     },
                     state: "required",
                     province: "required",
@@ -38,7 +38,7 @@ $(document).ready (
                     otherName: "required",
                     lastName: "required",
                     position: "required",
-                    modeOfId: "required",
+                    //modeOfId: "required",
                     licenseNumber: {
                         required: true,
                         

@@ -15,17 +15,17 @@
                     *
                </span>
               </label>
-              <input th:field="*{staffEmulment}" class="form-control" id="staffEmulment" type="number"/>
+              <input th:field="*{staffEmulment}" class="form-control currency" id="staffEmulment" type="number" min="100" />
              </div>
              <div class="form-group">
-              <div class="pull-right">
-               <button class="btn btn-success" name="submit" type="Next">
-                   Back
-               </button>
-               <button class="btn btn-success" name="submit" type="Next">
-                   Next
-               </button>
-              </div>
+                <div class="pull-right">
+                    <a class="btn btn-success" href="/account/">
+                        Back
+                    </a>
+                    <button class="btn btn-success" type="submit">
+                        Next
+                    </button>
+                </div>
              </div>
             </form>
         </div>

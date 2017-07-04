@@ -15,6 +15,8 @@ public class Treatment {
     @NotEmpty
     private String dateSustained;
     @NotEmpty
+    private String date1;
+    @NotEmpty
     private String number;
     @NotEmpty
     private String message;
@@ -43,6 +45,7 @@ public class Treatment {
     @NotEmpty
     private String message4;
 
+
     /**
      * @return the dateSustained
      */
@@ -55,6 +58,20 @@ public class Treatment {
      */
     public void setDateSustained(String dateSustained) {
         this.dateSustained = dateSustained;
+    }
+
+    /**
+     * @return the date1
+     */
+    public String getDate1() {
+        return date1;
+    }
+
+    /**
+     * @param date1 the date1 to set
+     */
+    public void setDate1(String date1) {
+        this.date1 = date1;
     }
 
     /**
@@ -252,5 +269,5 @@ public class Treatment {
     public void setMessage4(String message4) {
         this.message4 = message4;
     }
- 
+    
 }

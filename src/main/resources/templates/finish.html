@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+     <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
+</head>
+
+<body>
+    <div class="container">
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12" th:switch="${progress.response}">
+            <div th:case="success" class="alert alert-success" th:text="${progress.message}">
+                <i class="fa fa-success"></i>
+            </div><!--
+            <div th:case="error" class="alert alert-danger" th:each="error : ${progress.message.errors}">
+                <p th:text="${error}"></p>
+            </div>-->
+        </div>
+    </div>
+</body>
+</html>

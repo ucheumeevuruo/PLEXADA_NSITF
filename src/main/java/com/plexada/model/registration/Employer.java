@@ -11,9 +11,9 @@ import org.hibernate.validator.constraints.NotEmpty;
  *
  * @author SAP Training
  */
-public class employerModel {
+public class Employer {
     @NotEmpty
-    private String select;
+    private String notCode;
     @NotEmpty
     private String compensation;
     @NotEmpty
@@ -65,17 +65,17 @@ public class employerModel {
     private String dDob4;
 
     /**
-     * @return the select
+     * @return the notCode
      */
-    public String getSelect() {
-        return select;
+    public String getNotCode() {
+        return notCode;
     }
 
     /**
-     * @param select the select to set
+     * @param notCode the notCode to set
      */
-    public void setSelect(String select) {
-        this.select = select;
+    public void setNotCode(String notCode) {
+        this.notCode = notCode;
     }
 
     /**
@@ -455,5 +455,7 @@ public class employerModel {
     public void setdDob4(String dDob4) {
         this.dDob4 = dDob4;
     }
+  
+    
  
 }
