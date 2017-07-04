@@ -84,7 +84,7 @@
                         <td class="text-uppercase" th:text="${sector.type}"></td>
                     </tr>
                     <tr th:switch="${sector.otherSector != null}">
-                        <th class="text-uppercase">year of incorporation</th>
+                        <th class="text-uppercase">business sector categories</th>
                         <td th:case="#{false}" class="text-uppercase" th:text="${sector.sector + ',' + sector.otherSector}"></td>
                         <td th:case="#{true}" class="text-uppercase" th:text="${sector.sector}"></td>
                     </tr>
@@ -109,24 +109,24 @@
                     </tr>
                     <tr>
                         <th class="text-uppercase">Signature or thumb print</th>
-                        <td class="text-uppercase" th:text="${employee.signature}"></td>
+                        <td class="text-uppercase"><img th:src="${employee.signature.part.location.path + '\' + employee.signature.filename}" /></td>
                     </tr>
                     <tr>
                         <th class="text-uppercase">official stamp</th>
-                        <td class="text-uppercase" th:text="${employee.stamp}"></td>
+                        <td class="text-uppercase"><img th:src="${employee.stamp.part.location.path + '\' + employee.stamp.filename}" /></td>
                     </tr>
                 </tbody>
             </table> 
             
             <div class="form-group">
-             <div id="Next">
-                 <a class="btn btn-success" href="/account/fifth-page">
-                    Back 
-                 </a>
-                <button class="btn btn-success" name="Next" type="submit">
-                     Save
-                </button>
-             </div>
+                <div id="Next" class="pull-right">
+                    <a class="btn btn-success" href="/account/fifth-page">
+                       Back 
+                    </a>
+                    <button class="btn btn-success" type="submit">
+                         Save
+                    </button>
+                </div>
             </div>
         </form>
     </div>

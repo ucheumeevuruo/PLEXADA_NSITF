@@ -19,7 +19,7 @@ $(document).ready(function(){
                 $("#province option").remove();
                 province.html('<option value="" selected>Select an option</option>');
                 $(json).each(function(index, element) {
-                    if(json[index].name === province.attr("value")){
+                    if(json[index].name === province.attr("aria-label")){
                         province.append('<option selected="selected">' + json[index].name + '</option>');
                     }else{
                         province.append('<option>' + json[index].name + '</option>');
@@ -30,7 +30,7 @@ $(document).ready(function(){
                 $("#province").html('<option value="" selected>Select an option</option>');
             }
         });
-    });
+    }).change();
     
     $("input[name='claim']").click(function(){
         window.location = "/notification/" + $(this).attr("value") + "/employee";
@@ -65,7 +65,7 @@ $(document).ready(function(){
                 $(".box").removeClass("hidden");
             }
         });
-    });
+    }).change();
     /*
     addCommas = function(input){
         

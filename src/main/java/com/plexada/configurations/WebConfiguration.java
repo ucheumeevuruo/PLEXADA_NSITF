@@ -9,6 +9,8 @@ import org.h2.server.web.WebServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.multipart.commons.CommonsMultipartResolver;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
@@ -43,5 +45,12 @@ public class WebConfiguration{
         ServletRegistrationBean registrationBean = new ServletRegistrationBean( new WebServlet());
         registrationBean.addUrlMappings("/console/*");
         return registrationBean;
+    }
+    
+    @Bean(name = "multipartResolver")
+    public CommonsMultipartResolver multipartResolver(){
+        CommonsMultipartResolver multipartResolver = new CommonsMultipartResolver();
+        multipartResolver.setMaxUploadSize(100000);
+        return new CommonsMultipartResolver();
     }
 }

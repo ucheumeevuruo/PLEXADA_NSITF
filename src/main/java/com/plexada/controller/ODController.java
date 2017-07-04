@@ -184,7 +184,7 @@ public class ODController {
     public String showDiseaseFrom(Model model,
     HttpServletRequest request){
         this.path = "notification/disease";
-        links = NavLinks.accidentSidebarLinks();
+        links = NavLinks.occupationSidebarLinks();
         
         Disease disease = new Disease();
         try {
@@ -203,6 +203,8 @@ public class ODController {
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("var", disease);
+        model.addAttribute("states", state.findAll());
+        model.addAttribute("locals", local.findByObjectId(0));
         return this.path;
     }
     
@@ -232,7 +234,6 @@ public class ODController {
     @GetMapping("/{type}/attestation")
     public String AttestationForm(Model model,
     @PathVariable String type,
-    @RequestParam("file") MultipartFile file, 
     HttpServletRequest request){
         this.path = "notification/attestation";
         NODAttestation attestation = new NODAttestation();
@@ -266,18 +267,17 @@ public class ODController {
     
     @PostMapping("/{type}/attestation")
     public String Attestation(Model model,
-    @PathVariable String type,
+    @PathVariable String type, 
     @ModelAttribute @Valid NODAttestation attestation,
+    @RequestParam("signature") MultipartFile signature,
+    @RequestParam("stamp") MultipartFile stamp,
     BindingResult bindingResult,
     HttpServletRequest request){
         this.path = "notification/attestation";
-        String redirect = "";
         if(type.equalsIgnoreCase("occupational-disease")){
             links = NavLinks.occupationSidebarLinks();
-            redirect = type + "/accident";
         }else if(type.equalsIgnoreCase("accident")){
             links = NavLinks.accidentSidebarLinks();
-            redirect = type + "/accident";
         }else{
             this.path = "redirect:/notification";
         }

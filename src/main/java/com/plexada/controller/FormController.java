@@ -291,6 +291,7 @@ public class FormController {
                 employee = new Employee();
             }
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             return "redirect:/account/";
         }
         model.addAttribute("header", header);
@@ -310,7 +311,7 @@ public class FormController {
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("staffInfo", staffInfo);
-            System.out.println(stamp);
+            System.out.println(bindingResult.getAllErrors());
             return "employee-info";
         }
         //2. Convert object to JSON string and save into a file directly

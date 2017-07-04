@@ -6,6 +6,7 @@
 package com.plexada.build;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -21,9 +22,9 @@ public class Employee{
     @NotEmpty
     private String staffID;
     //@NotEmpty
-    private String signature;
+    private MultipartFile signature;
     //@NotEmpty
-    private String stamp;
+    private MultipartFile stamp;
     @NotEmpty
     private String agreement;
     
@@ -86,29 +87,29 @@ public class Employee{
     /**
      * @return the signature
      */
-    public String getSignature() {
+    public MultipartFile getSignature() {
         return signature;
     }
 
     /**
      * @param signature the signature to set
      */
-    public void setSignature(String signature) {
+    public void setSignature(MultipartFile signature) {
         this.signature = signature;
     }
 
     /**
      * @return the stamp
      */
-    public String getStamp() {
-        return stamp;
+    public MultipartFile getStamp() {
+        return stamp; 
     }
 
     /**
      * @param stamp the stamp to set
      */
-    public void setStamp(String stamp) {
-        this.stamp = stamp;
+    public void setStamp(MultipartFile stamp) {
+        this.stamp = stamp; 
     }
     
     /**
