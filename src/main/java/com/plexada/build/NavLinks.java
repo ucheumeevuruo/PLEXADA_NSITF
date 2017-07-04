@@ -86,7 +86,7 @@ public class NavLinks {
         link.setValue("Notification of Occupation diseases / Accident ");
         list.add(link);
         link = new Link();
-        link.setHref("/compentation/request/step/1");
+        link.setHref("/compensation/step1");
         link.setValue("Compensation Request");
         list.add(link);
         link = new Link();

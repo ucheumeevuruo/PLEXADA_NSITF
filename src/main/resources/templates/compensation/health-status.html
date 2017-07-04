@@ -12,31 +12,31 @@
             <br />
             <br />
             <div class="pull-right">
-                <button class="btn btn-link" name="submit" type="submit">
+                <a class="btn btn-link" href="/ecs/subscription">
                     Home
-                </button>
-                <button class="btn btn-link" name="submit" type="submit">
+                </a>
+                <a class="btn btn-link" href="#">
                     Logout
-                </button> 
-            </div> 
+                </a>
+            </div>
             <br /> 
             <br />
             <p class="comp-title"> 
                 HEALTH STATUS 
-            </p>
-            <br />
-            <form method="post" action="/second-page" th:object="${var}" id="healthStatus2">
+            <br />            </p>
+
+            <form method="post" action="" th:object="${var}" id="healthStatus2">
                 <div class="form-group" id="div_radio">
                     <label class="control-label " for="radio">
                         Have you enjoyed any First Aid Treatment?
                     </label>
                     <div class="">
                         <label class="radio-inline">
-                            <input name="radio" type="radio" value="Yes"/>
+                            <input th:field="*{div_radio}" type="radio" value="Yes"/>
                             Yes
                         </label>
                         <label class="radio-inline">
-                            <input name="radio" type="radio" value="No"/>
+                            <input th:field="*{div_radio}" type="radio" value="No"/>
                             No
                         </label>
                     </div>
@@ -46,14 +46,14 @@
                     <label class="control-label requiredField" for="dateOfInjury">
                         Date on which the injury/disease/death was reported to the Employer
                     </label>
-                    <input class="form-control" th:field="*{dateOfInjury}" id="dateOfInjury" name="dateOfInjury" type="text"/>
+                    <input class="form-control" th:field="*{dateOfInjury}" id="dateOfInjury" name="dateOfInjury" type="date"/>
                     <label th:if="${#fields.hasErrors('dateOfInjury')}" th:errors="*{dateOfInjury}" id="dateOfInjury-error" class="error" for="dateOfInjury"></label>
                 </div>
                 <div class="form-group ">
                     <label class="control-label requiredField" for="dateOfTreat">
                         Date of first treatment
                     </label>
-                    <input class="form-control" th:field="*{dateOfTreat}" id="dateOfTreat" name="dateOfTreat" type="text"/>
+                    <input class="form-control" th:field="*{dateOfTreat}" id="dateOfTreat" name="dateOfTreat" type="date"/>
                     <label th:if="${#fields.hasErrors('dateOfTreat')}" th:errors="*{dateOfTreat}" id="dateOfTreat-error" class="error" for="dateOfTreat"></label>
                 </div>
                 <br />
@@ -144,9 +144,9 @@
                 </div>
                 <div class="form-group">
                     <div class="pull-right">
-                        <button class="btn btn-success" name="submit" type="submit">
+                        <a class="btn btn-success" href="/compensation/employet-details">
                             Back
-                        </button> 
+                        </a>
                         <button class="btn btn-success" name="submit" type="submit">
                             Next
                         </button> 

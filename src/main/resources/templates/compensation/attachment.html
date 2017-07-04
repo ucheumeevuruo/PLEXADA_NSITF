@@ -10,13 +10,13 @@
          <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
             <div class="pull-right">
-                <button class="btn btn-link" name="submit" type="submit">
-                     Home
-                </button>
-                <button class="btn btn-link" name="submit" type="submit">
-                     Logout
-                </button> 
-            </div> 
+                <a class="btn btn-link" href="/ecs/subscription">
+                    Home
+                </a>
+                <a class="btn btn-link" href="#">
+                    Logout
+                </a>
+            </div>
             <br /> 
             <br />
             <p class="comp-title"> 
@@ -33,11 +33,11 @@
                     </label>
                     <div class="" >
                         <label class="radio-inline">
-                        <input name="radio" type="radio" value="Yes"/>
+                        <input th:field="*{div_radio}" type="radio" value="Yes"/>
                             Yes
                         </label>
                         <label class="radio-inline">
-                        <input name="radio" type="radio" value="No"/>
+                        <input th:field="*{div_radio}" type="radio" value="No"/>
                             No
                         </label>
                     </div>
@@ -46,34 +46,34 @@
                 Upload receipt for treatments from treatment
                 <br />
                 <br />
-                <input type="file" name="fileToUpload1" th:field="*{fileToUpload1}" id="fileToUpload1">
+                <input type="file" name="fileToUpload1" th:field="*{fileToUpload1}" id="fileToUpload1"/> 
                 <label th:if="${#fields.hasErrors('fileToUpload1')}" th:errors="*{fileToUpload1}" id="fileToUpload1-error" class="error" for="fileToUpload1"></label>
                 <br />
 			 
                 Upload Detail of all bills which must be signed by each professional/Specialist with his practicing license number.
                 <br />
                 <br />
-                <input type="file" name="fileToUpload2" th:field="*{fileToUpload2}" id="fileToUpload2">
+                <input type="file" name="fileToUpload2" th:field="*{fileToUpload2}" id="fileToUpload2"> </input>
                 <label th:if="${#fields.hasErrors('fileToUpload2')}" th:errors="*{fileToUpload2}" id="fileToUpload2-error" class="error" for="fileToUpload2"></label>
                 <br />
 			 
                 Upload Affidavit deposed to by employee to confirm accident or occupational disease
                 <br />
                 <br />
-                <input type="file" name="fileToUpload" id="fileToUpload">
+                <input type="file" name="fileToUpload" id="fileToUpload"> </input>
                 <br />
 			 
                 Upload Police report
                 <br />
                 <br />
-                <input type="file" name="fileToUpload3" id="fileToUpload3">
+                <input type="file" name="fileToUpload3" id="fileToUpload3"> </input>
                 <br />
 			 
                 <div class="form-group">
                     <div class="pull-right">
-                        <button class="btn btn-success " name="submit" type="submit">
+                        <a class="btn btn-success " href="/compensation/treatment-bill">
                             Back
-                        </button>
+                        </a>
                         <button class="btn btn-success " name="submit" type="submit">
                             Next
                         </button>

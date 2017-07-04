@@ -17,12 +17,14 @@
                     </span> are compulsory 
                 </i> 
             </small>
-            <button class="btn btn-link pull-right" name="submit" type="submit">
-                Logout
-            </button>
-            <button class="btn btn-link pull-right" name="submit" type="submit">
-                Home
-            </button>
+            <div class="pull-right">
+                <a class="btn btn-link" href="/ecs/subscription">
+                    Home
+                </a>
+                <a class="btn btn-link" href="#">
+                    Logout
+                </a>
+            </div>
             <br />
             <br />
             <p class="comp-title"> 
@@ -39,10 +41,12 @@
                             </span>
                             Notification Code
                         </label>
-                        <select class="select form-control" th:field="*{dDob}" id="select" name="select">
-                            <option selected="selected" value=""></option>
+                        <select class="select form-control" th:field="*{notCode}" id="notcode" name="notCode">
+                            <option value="option"> select an option </option>
+                            <option value="not98694122"> not98694122 </option>
+                            <option value="not19632123"> not19632123 </option>
                         </select>
-                        <label th:if="${#fields.hasErrors('dDob')}" th:errors="*{dDob}" id="dDob-error" class="error" for="dDob"></label>
+                        <label th:if="${#fields.hasErrors('notCode')}" th:errors="*{notCode}" id="notCode-error" class="error" for="notCode"></label>
                     </div>
                 </div>
 				 
@@ -54,21 +58,21 @@
                         Compensation Claim
                     </label>
                     <div class="">
-                        <div class="radio" id="Compensation"> 
+                        <div class="radio" id="compensation"> 
                             <label class="radio">
-                                <input name="radio" type="radio" value="Accident"/>
+                                <input th:field="*{compensation}" type="radio" value="Accident"/>
                                 Accident
                             </label>
                         </div>
                         <div class="radio">
                             <label class="radio">
-                                <input name="radio" type="radio" value="Occupational Disease"/>
+                                <input th:field="*{compensation}" type="radio" value="Occupational Disease"/>
                                 Occupational Disease
                             </label>
                         </div>
                         <div class="radio">
                             <label class="radio">
-                                <input name="radio" type="radio" value="Death"/>
+                                <input th:field="*{compensation}" type="radio" value="Death"/>
                                 Death
                             </label>
                         </div>
@@ -154,6 +158,9 @@
                         Number of Spouses
                         </label>
                         <select class="select form-control" th:field="*{spouseNumber}" id="spouseNumber" name="spouseNumber">
+                            <option value="option">
+                                 select an option
+                            </option>
                             <option value="0">
                                  0
                             </option>
@@ -189,6 +196,9 @@
                             Number of Children
                         </label>
                         <select class="select form-control" th:field="*{childrenNumber}" id="childrenNumber" name="childrenNumber">
+                            <option value="option">
+                                 select an option
+                            </option>
                             <option value="0">
                                  0
                             </option>
@@ -215,6 +225,9 @@
                             Age of Children (years)
                         </label>
                         <select class="select form-control" th:field="*{childrenAge}" id="childrenAge" name="childrenAge">
+                            <option value="option">
+                                 select an option
+                            </option>
                             <option value="0 - 12">
                                  0 - 12
                             </option>
@@ -401,6 +414,13 @@
                         <input class="form-control" th:field="*{dLastName4}" id="dLastName4" name="dLastName4" type="text"/>
                         <label th:if="${#fields.hasErrors('dLastName4')}" th:errors="*{dLastName4}" id="dLastName4-error" class="error" for="dLastName4"></label>
                    </div>
+                </div>
+                <div class="form-group ">
+                     <label class="control-label " for="dDob4">
+                         Date of Birth
+                     </label>
+                     <input class="form-control" th:field="*{dDob4}" id="dDob4" name="dDob4" type="date"/>
+                     <label th:if="${#fields.hasErrors('dDob4')}" th:errors="*{dDob4}" id="dDob4-error" class="error" for="dDob4"></label>
                 </div>
                 <br />
 				 
