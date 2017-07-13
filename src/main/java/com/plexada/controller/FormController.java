@@ -17,6 +17,7 @@ import com.plexada.model.States;
 import com.plexada.services.AddressService;
 import com.plexada.services.ProvinceService;
 import com.plexada.services.StateService;
+import com.plexada.services.CompanyService;
 //import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 //import org.apache.catalina.servlet4preview.ServletContext;
@@ -38,6 +39,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonDBRepository;
 import com.plexada.model.Cookie;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -57,6 +59,7 @@ public class FormController {
     ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
     //Cookie customerDAO = (Cookie) context.getBean("customerDAO");stateDAO
+    CompanyService companyService = (CompanyService)context.getBean("companyDOA");
     StateService state = (StateService) context.getBean("stateDAO");
     ProvinceService local = (ProvinceService) context.getBean("localDAO");
     AddressService address = (AddressService)context.getBean("addressDAO");
@@ -302,15 +305,13 @@ public class FormController {
     @PostMapping("/fifth-page")
     public String showStaffInfoForm(HttpServletRequest request,
     Model model,
-    @RequestParam("signature") MultipartFile signature, 
-    @RequestParam("stamp") MultipartFile stamp, 
     @ModelAttribute Employee staffInfo,
     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("staffInfo", staffInfo);
-            System.out.println(stamp);
+            System.out.println(bindingResult.getAllErrors());
             return "employee-info";
         }
         //2. Convert object to JSON string and save into a file directly
@@ -371,12 +372,14 @@ public class FormController {
             repo = new JsonDBRepository(cookie);
             repo.initRepo(collectionType);
             company = mapper.convertValue(repo.findAll().get("company"), Company.class);
+            OwnersParticular particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class); 
+            companyService.insert(company, particular);
             repo.delete();
-            address.insert(company);
             //customerDAO.create(company);
             //this.employeeService.save(company.get("company"));
         } catch (Exception ex) {
             //return "redirect:/account/preview";
+            System.out.println(ex.getMessage());
         } 
         progress.put("response", "success");
         progress.put("message", "Registration successful!");
@@ -385,4 +388,34 @@ public class FormController {
         model.addAttribute("progress", progress);
         return "finish";
     }
+    
+    @PostMapping("/update")
+    public Boolean update(HttpServletRequest request,
+    Model model,
+    HttpServletResponse response,
+    @RequestParam int id, 
+    @RequestParam String name, 
+    @RequestParam String rc_number,
+    @RequestParam String email, 
+    @RequestParam String mobile_number,
+    @RequestParam String state,
+    @RequestParam String province,
+    @RequestParam String block_no,
+    @RequestParam String street_address,
+    @RequestParam String owner,
+    @RequestParam String position){
+        Company company = new Company();
+        company.setCompany(name);
+        company.setIncNumber(rc_number);
+        company.setEmail(email);
+        company.setPhoneNumber(mobile_number);
+        company.setState(state);
+        company.setProvince(province);
+        company.setHouseNo(block_no);
+        company.setStreetName(street_address);
+        OwnersParticular particulars = new OwnersParticular();
+        particulars.setPosition(position);
+        particulars.setLastName(owner);
+        return companyService.update(company, particulars);
+    }   
 }

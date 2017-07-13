@@ -68,8 +68,7 @@
            <span class="asteriskField">
                 *
            </span>
-            <input type="file" th:field="*{signature}" id="signature" />
-            <label th:if="${#fields.hasErrors('signature')}" th:errors="*{signature}" id="signature-error" class="error" for="signature"></label>
+            <input type="file" name="signature" id="signature" />
           <span class="help-block" id="hint_name">
            *Minimum 200*200px <br /> *Maximum size 200kb <br /> *Supports only JPEG, PNG and GIF
           </span>
@@ -80,8 +79,7 @@
            <span class="asteriskField">
                 *
            </span>
-           <input type="file" th:field="*{stamp}" id="stamp" />
-           <label th:if="${#fields.hasErrors('stamp')}" th:errors="*{stamp}" id="stamp-error" class="error" for="stamp"></label>
+           <input type="file" name="stamp" id="stamp" />
           <span class="help-block" id="hint_name">
            *Minimum 200*200px <br /> *Maximum size 200kb <br /> *Supports only JPEG, PNG and GIF
           </span>
