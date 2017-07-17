@@ -18,6 +18,7 @@ import com.plexada.services.AddressService;
 import com.plexada.services.ProvinceService;
 import com.plexada.services.StateService;
 import com.plexada.services.CompanyService;
+import com.plexada.services.EmailService;
 //import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 //import org.apache.catalina.servlet4preview.ServletContext;
@@ -39,9 +40,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonDBRepository;
 import com.plexada.model.Cookie;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
+
 
 /**
  *
@@ -343,6 +348,9 @@ public class FormController {
             }else if(!repo.contains("employee")){
                 return "redirect:/account/fifth-page";
             }
+            
+            
+            
             Company company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             States states = state.findByObjectId(Integer.parseInt(company.getState()));
             company.setState(states.getName());
@@ -359,11 +367,14 @@ public class FormController {
         return "preview";
     }
     
+    @Autowired
+    private EmailService emailservice;
+    
     @PostMapping("/save")
     String saveRequest(Model model,
     HttpServletRequest request) {
         Map<String, Object> progress = new HashMap();
-        Company company;
+        Company company = null;
         try {
             // Set UserId to Request Field USER_ID
             //Users user = usersRepository.findOneByInitialName(principal.getName());
@@ -374,12 +385,16 @@ public class FormController {
             company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             OwnersParticular particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class); 
             companyService.insert(company, particular);
-            repo.delete();
+            //repo.delete();
             //customerDAO.create(company);
             //this.employeeService.save(company.get("company"));
+            //send email notification
+            emailservice.sendEmail(company);
         } catch (Exception ex) {
             //return "redirect:/account/preview";
             System.out.println(ex.getMessage());
+            
+            
         } 
         progress.put("response", "success");
         progress.put("message", "Registration successful!");

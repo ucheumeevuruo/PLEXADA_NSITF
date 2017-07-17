@@ -15,6 +15,9 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.plexada.model.Cookie;
 import java.util.List;
 
+//import org.springframework.data.jpa.repository.CrudRepository;
+//import org.springframework.stereotype.Repository;
+
 /**
  *
  * @author SAP Training
@@ -50,6 +53,8 @@ public class JsonDBRepository {
     public <T>Object findByObjectId(String object){
         return mapper.get(object);
     }
+    
+    //
     
     public boolean contains(String k){
         return mapper.containsKey(k);

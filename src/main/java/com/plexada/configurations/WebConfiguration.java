@@ -12,6 +12,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
+
 /**
  *
  * @author SAP Training
@@ -44,4 +45,5 @@ public class WebConfiguration{
         registrationBean.addUrlMappings("/console/*");
         return registrationBean;
     }
+    
 }
