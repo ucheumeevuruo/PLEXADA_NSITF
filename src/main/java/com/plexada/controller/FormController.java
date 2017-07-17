@@ -10,6 +10,7 @@ import com.google.gson.reflect.TypeToken;
 import com.plexada.build.Company;
 import com.plexada.build.Employee;
 import com.plexada.build.Emulment;
+import com.plexada.build.FileUploader;
 import com.plexada.build.HashAlgorithm;
 import com.plexada.build.OwnersParticular;
 import com.plexada.build.Sector;
@@ -38,6 +39,21 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonDBRepository;
 import com.plexada.model.Cookie;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import org.springframework.util.StringUtils;
+import java.util.stream.Collectors;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -303,10 +319,12 @@ public class FormController {
     @PostMapping("/fifth-page")
     public String showStaffInfoForm(HttpServletRequest request,
     Model model,
-    @RequestParam("signature") MultipartFile signature, 
-    @RequestParam("stamp") MultipartFile stamp, 
+    @RequestParam("images") MultipartFile[] images,
     @ModelAttribute Employee staffInfo,
-    BindingResult bindingResult) {
+    BindingResult bindingResult) throws IOException {
+        //Move file to temp part before uploading
+        List<byte[]> saveUploadedFiles = FileUploader.saveUploadedFiles(Arrays.asList(images));
+        staffInfo.setFile(saveUploadedFiles);
         if(bindingResult.hasErrors()){
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
@@ -314,6 +332,8 @@ public class FormController {
             System.out.println(bindingResult.getAllErrors());
             return "employee-info";
         }
+        //Move file to temp part before uploading
+        //FileUploader.saveUploadedFiles(Arrays.asList(images));
         //2. Convert object to JSON string and save into a file directly
         setCookieRequest(request, "company");
         repo = new JsonDBRepository(cookie);
@@ -343,18 +363,27 @@ public class FormController {
             }else if(!repo.contains("employee")){
                 return "redirect:/account/fifth-page";
             }
+            int num = 0;
+            Employee employee = mapper.convertValue(repo.findAll().get("employee"), Employee.class);
             Company company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             States states = state.findByObjectId(Integer.parseInt(company.getState()));
             company.setState(states.getName());
+            
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("company", company);
             model.addAttribute("emulment", repo.findByObjectId("emulment"));
             model.addAttribute("sector", repo.findByObjectId("sector"));
             model.addAttribute("particular", repo.findByObjectId("particular"));
-            model.addAttribute("employee", repo.findByObjectId("employee"));
+            model.addAttribute("employee", employee);
+            List l = new ArrayList();
+            for(byte[] getByte : employee.getFile()){
+                l.add(FileUploader.generateBase64Image(getByte));
+            }
+            model.addAttribute("images", l);
         } catch (Exception ex) {
-            return "redirect:/account/";
+            //System.out.println(ex.getMessage());
+            //return "redirect:/account/";
         }
         return "preview";
     }
@@ -385,5 +414,22 @@ public class FormController {
         model.addAttribute("links", links.registrationSidebarLinks());
         model.addAttribute("progress", progress);
         return "finish";
+    }
+    
+    @GetMapping("/images/{images_id}")
+    public ResponseEntity<byte[]> getImage(@PathVariable("images_id") String imageId,
+    HttpServletRequest request){
+        byte[] imageContent = null;
+        final HttpHeaders headers = new HttpHeaders();
+        Employee employee;
+        try {
+            this.setCookieRequest(request, "company");
+            repo = new JsonDBRepository(cookie);
+            repo.initRepo(collectionType);
+            employee = mapper.convertValue(repo.findAll().get("employee"), Employee.class);
+            headers.setContentType(MediaType.IMAGE_GIF);
+        } catch (Exception ex) {System.out.println(ex.getMessage());}
+        System.out.println(Arrays.toString(imageContent));
+        return new ResponseEntity<>(imageContent, headers, HttpStatus.OK);
     }
 }

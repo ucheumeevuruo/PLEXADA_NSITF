@@ -6,6 +6,7 @@
 package com.plexada.model.registration;
 
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
@@ -21,9 +22,7 @@ public class Attestation {
     @NotEmpty
     private String sortCode;
     @NotEmpty
-    private String fileToUpload;
-    @NotEmpty
-    private String fileToUpload1;
+    private MultipartFile[] images;
     @NotEmpty
     private String tandc;
 
@@ -84,31 +83,17 @@ public class Attestation {
     }
 
     /**
-     * @return the fileToUpload
+     * @return the images
      */
-    public String getFileToUpload() {
-        return fileToUpload;
+    public MultipartFile[] getFileToUpload() {
+        return images;  
     }
 
     /**
-     * @param fileToUpload the fileToUpload to set
+     * @param fileToUpload the images to set
      */
-    public void setFileToUpload(String fileToUpload) {
-        this.fileToUpload = fileToUpload;
-    }
-
-    /**
-     * @return the fileToUpload1
-     */
-    public String getFileToUpload1() {
-        return fileToUpload1;
-    }
-
-    /**
-     * @param fileToUpload1 the fileToUpload1 to set
-     */
-    public void setFileToUpload1(String fileToUpload1) {
-        this.fileToUpload1 = fileToUpload1;
+    public void setFileToUpload(MultipartFile[] fileToUpload) {
+        this.images = fileToUpload; 
     }
 
     /**

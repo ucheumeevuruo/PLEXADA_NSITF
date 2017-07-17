@@ -5,8 +5,11 @@
  */
 package com.plexada.build;
 
+import java.util.ArrayList;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
+import java.util.List;
+import java.util.Map;
 
 /**
  *
@@ -22,9 +25,9 @@ public class Employee{
     @NotEmpty
     private String staffID;
     //@NotEmpty
-    private MultipartFile signature;
-    //@NotEmpty
-    private MultipartFile stamp;
+    //private MultipartFile[] images;
+    
+    private List<byte[]> file = new ArrayList();
     @NotEmpty
     private String agreement;
     
@@ -86,31 +89,17 @@ public class Employee{
     
     /**
      * @return the signature
-     */
-    public MultipartFile getSignature() {
-        return signature;
+     *
+    public MultipartFile[] getImages() {
+        return images;
     }
 
     /**
-     * @param signature the signature to set
-     */
-    public void setSignature(MultipartFile signature) {
-        this.signature = signature;
-    }
-
-    /**
-     * @return the stamp
-     */
-    public MultipartFile getStamp() {
-        return stamp; 
-    }
-
-    /**
-     * @param stamp the stamp to set
-     */
-    public void setStamp(MultipartFile stamp) {
-        this.stamp = stamp; 
-    }
+     * @param images the images to set
+     *
+    public void setImages(MultipartFile[] images) {
+        this.images = images;
+    }*/
     
     /**
      * @return the agreement
@@ -124,5 +113,19 @@ public class Employee{
      */
     public void setAgreement(String agreement) {
         this.agreement = agreement;
+    }
+
+    /**
+     * @return the file
+     */
+    public List<byte[]> getFile() {
+        return file;
+    }
+
+    /**
+     * @param file the file to set
+     */
+    public void setFile(List<byte[]> file) {
+        this.file = file;
     }
 }
