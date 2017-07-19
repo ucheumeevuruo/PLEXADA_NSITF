@@ -55,4 +55,8 @@ public class Link {
     public void setCssClass(String cssClass) {
         this.cssClass = cssClass;
     }
+
+    void add(Link link) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

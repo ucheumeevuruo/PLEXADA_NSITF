@@ -99,6 +99,15 @@ public class NavLinks {
         list.add(link);
         return list;
     }
+    
+    public static List<Link> ECSLoginSidebarLinks(){
+        list =  new ArrayList();
+        link.setHref("/ecs/login");
+        link.setValue("Login");
+        link.add(link);
+        return list;
+    }
+    
     /*
      Employer and Employee Details
 

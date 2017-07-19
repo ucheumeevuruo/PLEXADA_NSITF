@@ -32,7 +32,7 @@ public class CompanyService{
     }
 
     public void insert(Company company, OwnersParticular particular){
-        SQL = "insert into " + TABLE + "(id, name, rc_number, email, mobile_number, state, province, block_no, street_address, position,owner) values (AUTO_INCREMENT.NEXTVAL,?,?,?,?,?,?,?,?,?,?)";
+        SQL = "insert into " + TABLE + "(id, name, rc_number, email, mobile_number, state, province, region, branch, block_no, street_address, position,owner) values (AUTO_INCREMENT.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?)";
         jdbcTemplateObject.update( SQL, 
             company.getCompany(), 
             company.getIncNumber(), 
@@ -40,6 +40,8 @@ public class CompanyService{
             company.getPhoneNumber(), 
             company.getState(), 
             company.getProvince(),
+            company.getRegion(),
+            company.getBranch(),
             company.getHouseNo(),
             company.getStreetName(),
             particular.getPosition(),
@@ -50,7 +52,7 @@ public class CompanyService{
     
     public Boolean update(Company company, OwnersParticular particular){
         Boolean returns = false;
-        SQL = "UPDATE TABLE SET NAME = ?, RC_NUMBER = ?, EMAIL = ?, MOBILE_NUMBER = ?, STATE = ?, PROVINCE = ?, BLOCK_NO = ?, STREET_ADDRESS = ?, POSITION = ?, OWNER = ? WHERE ID = ?";
+        SQL = "UPDATE TABLE SET NAME = ?, RC_NUMBER = ?, EMAIL = ?, MOBILE_NUMBER = ?, STATE = ?, PROVINCE = ?, REGION = ?, BRANCH = ?, BLOCK_NO = ?, STREET_ADDRESS = ?, POSITION = ?, OWNER = ? WHERE ID = ?";
         int updateSql = jdbcTemplateObject.update(SQL, 
             company.getCompany(), 
             company.getIncNumber(), 
@@ -58,6 +60,8 @@ public class CompanyService{
             company.getPhoneNumber(), 
             company.getState(), 
             company.getProvince(),
+            company.getRegion(),
+            company.getBranch(),
             company.getHouseNo(),
             company.getStreetName(),
             particular.getPosition(),

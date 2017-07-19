@@ -18,15 +18,21 @@
             <br />
             <br />
             <form method="post">
-                <div class="form-group ">
+                <div th:if="$(param.error)" class="alert alert-danger">
+                    <p> Invalid Username and/or Password </p>
+                </div>
+                <div th:if="$(param.logout)" class="alert alert-success">
+                    <p> You have been logged out </p>
+                </div>
+                <div class="form-group" th:class="$(param.error) ? 'form-group has-error' | 'form-group'">
                     <label class="control-label " for="username">
                        Username
                     </label>
                     <input class="form-control" id="username" name="username" type="text"/>
                 </div>
                 <br /> 
-                <div class="form-group ">
-                    <label class="control-label " for="Password">
+                <div class="form-group" th:class="$(param.error) ? 'form-group has-error' | 'form-group'">
+                    <label class="control-label " for="password">
                        Password
                     </label>
                     <input class="form-control" id="Password" name="Password" type="text"/>

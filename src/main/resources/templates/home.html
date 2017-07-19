@@ -100,6 +100,35 @@
                </select>
              </div>
              </div>
+             
+            <div class="row">
+             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12" id="Region">
+              <label class="control-label requiredField" for="Region">
+               Region
+               <span class="asteriskField">
+                    *
+               </span>
+              </label>
+              <select class="select form-control" id="region" th:field="*{region}" th:value="*{region}">
+                 <option selected="selected" value="">Select an option</option>
+                 <option th:each="region : ${regions}" th:text="${region.name}" th:value="${region.id}">Region</option>
+               </select>
+             </div>
+        
+             <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+              <label class="control-label requiredField" for="branch">
+               Branch
+               <span class="asteriskField">
+                    *
+               </span>
+              </label>
+              <select class="select form-control" id="branch" th:field="*{branch}" th:value="*{branch}">
+                 <option selected="selected" value="">Select an option</option>
+                 <option th:each="branch : ${branch}" th:text="${branch.name}" th:value="${branch.id}">Branch</option>
+               </select>
+             </div>
+             </div>
+            
 
              <div class="form-group " >
              <p id="Address"> Address 
