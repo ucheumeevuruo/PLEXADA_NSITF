@@ -46,8 +46,17 @@ public class ECSController {
     StateService state = (StateService) context.getBean("stateDAO");
     
     
-    @GetMapping("/dashboard")
+    @GetMapping("/home")
     public String home(Model model){
+        
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        path = "ECS-Home";
+        return this.path;
+    }
+    
+    @GetMapping("/dashboard")
+    public String showDashboard(Model model){
         
         model.addAttribute("header", header);
         model.addAttribute("links", links);
@@ -56,7 +65,7 @@ public class ECSController {
     }
     
     @GetMapping("/dashboard/{id}")
-    public String homePath(Model model,
+    public String PostDashboard(Model model,
     @PathVariable("id") String id){
         model.addAttribute("header", header);
         model.addAttribute("links", links);

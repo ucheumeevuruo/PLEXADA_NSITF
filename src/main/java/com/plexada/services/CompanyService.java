@@ -84,7 +84,7 @@ public class CompanyService{
 
     //@Override
     public List<Map<String, Object>> findById(String Id) {
-        SQL = "select * from " + TABLE + " WHERE ID = ?";
+        SQL = "select * from " + TABLE + " WHERE USER_ID = ?";
         List<Map<String, Object>> address = jdbcTemplateObject.query(SQL, 
            new Object[]{Id}, new CompanyMapper());
         System.out.println(SQL);    

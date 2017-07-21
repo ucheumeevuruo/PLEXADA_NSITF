@@ -45,9 +45,9 @@ import com.plexada.services.RegionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
+//import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.mail.SimpleMailMessage;
+//import org.springframework.mail.javamail.JavaMailSender;
 
 
 /**
@@ -392,6 +392,7 @@ public class FormController {
             repo.initRepo(collectionType);
             company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             OwnersParticular particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class); 
+            
             companyService.insert(company, particular);
             //repo.delete();
             //customerDAO.create(company);

@@ -17,32 +17,29 @@
             </p>
             <br />
             <br />
-            <form method="post">
-                <div th:if="$(param.error)" class="alert alert-danger">
+            <form method="post" th:object="${vars}" action="">
+                <div th:if="${error != null}" class="alert alert-danger">
                     <p> Invalid Username and/or Password </p>
                 </div>
-                <div th:if="$(param.logout)" class="alert alert-success">
-                    <p> You have been logged out </p>
-                </div>
-                <div class="form-group" th:class="$(param.error) ? 'form-group has-error' | 'form-group'">
+                <div class="form-group" th:class="form-group">
                     <label class="control-label " for="username">
                        Username
                     </label>
-                    <input class="form-control" id="username" name="username" type="text"/>
+                    <input class="form-control" id="username" th:field="*{username}" type="text"/>
                 </div>
                 <br /> 
-                <div class="form-group" th:class="$(param.error) ? 'form-group has-error' | 'form-group'">
+                <div class="form-group" th:class="form-group">
                     <label class="control-label " for="password">
                        Password
                     </label>
-                    <input class="form-control" id="Password" name="Password" type="text"/>
+                    <input class="form-control" id="Password" th:field="*{password}" type="text"/>
                 </div>
                 <span class="pull-right"> <a href="#"> <i> Forgot your password? </i> </a> </span> <br /><br />
                 <div class="form-group pull-right">
                     <button class="btn btn-success" name="submit" type="submit">
                         Login
                     </button>
-                 </div>
+                </div>
             </form>
         </div>
     </div>

@@ -20,6 +20,10 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
         
+        <bean id="userDAO" class="com.plexada.services.LoginService">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+        
         <bean id="addressDAO" class="com.plexada.services.AddressService">
 		<property name="dataSource" ref="dataSource" />
 	</bean>

@@ -108,6 +108,13 @@ public class NavLinks {
         return list;
     }
     
+    public static List<Link> ECSHomeSidebarLinks(){
+        list =  new ArrayList();
+        link.setHref("/ecs/home");
+        link.setValue("Home");
+        link.add(link);
+        return list;
+    }
     /*
      Employer and Employee Details
 
