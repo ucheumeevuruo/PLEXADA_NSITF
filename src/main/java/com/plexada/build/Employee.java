@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
@@ -28,6 +27,9 @@ public class Employee{
     //private MultipartFile[] images;
     
     private List<byte[]> file = new ArrayList();
+    //@NotEmpty    
+
+    private MultipartFile stamp;
     @NotEmpty
     private String agreement;
     
@@ -88,20 +90,6 @@ public class Employee{
     }
     
     /**
-     * @return the signature
-     *
-    public MultipartFile[] getImages() {
-        return images;
-    }
-
-    /**
-     * @param images the images to set
-     *
-    public void setImages(MultipartFile[] images) {
-        this.images = images;
-    }*/
-    
-    /**
      * @return the agreement
      */
     public String getAgreement() {
@@ -129,3 +117,17 @@ public class Employee{
         this.file = file;
     }
 }
+    
+    /**
+     * @return the signature
+     *
+    public MultipartFile[] getImages() {
+        return images;
+    }
+
+    /**
+     * @param images the images to set
+     *
+    public void setImages(MultipartFile[] images) {
+        this.images = images;
+    }*/

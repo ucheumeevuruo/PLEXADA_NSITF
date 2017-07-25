@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+   <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
+</head>
+<body>
+    <div class="container">
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+	<div class="col-lg-7 col-md-7 col-md-offset-0">
+            <div class="pull-right">
+                <a class="btn btn-link" href="/ecs/subscription">
+                    Home
+                </a>
+                <a class="btn btn-link" href="#">
+                    Logout
+                </a>
+            </div>
+            <br />
+            <br />
+            
+            <br />
+            <br />
+            <br />
+            <form class="form-wrapper" method="post" action="/ecs/search">
+                <div class="form-inline">
+                    
+                        <input class="form-control" id="search" name="q" type="text" placeholder=""/>
+                        <button class="btn btn-default "  type="submit">
+                                Search
+                        </button>
+                </div>    
+                    <br />	 
+
+                
+            </form>
+            <div class="container">
+                <div class="page-header">
+                    <h5 class="">Search result</h5>
+                </div>
+                <ul>
+                    <li th:each="result : ${results}">
+                        <a th:href="${result.getHref()}" th:text="${result.getValue()}"></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
