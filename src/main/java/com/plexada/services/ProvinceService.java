@@ -8,6 +8,7 @@ package com.plexada.services;
 import com.plexada.doa.LocalMapper;
 import com.plexada.model.Locals;
 import java.util.List;
+import java.util.Map;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
 
@@ -46,4 +47,6 @@ public class ProvinceService{
         System.out.println(SQL);
         return local.size();
     }
+    
+   
 }

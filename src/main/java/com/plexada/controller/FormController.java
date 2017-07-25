@@ -38,6 +38,8 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonDBRepository;
 import com.plexada.model.Cookie;
+import com.plexada.services.BranchService;
+import com.plexada.services.RegionService;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -50,6 +52,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.web.multipart.MultipartFile;
+//import org.springframework.mail.SimpleMailMessage;
+//import org.springframework.mail.javamail.JavaMailSender;
 
 
 /**
@@ -68,9 +73,11 @@ public class FormController {
     ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
     //Cookie customerDAO = (Cookie) context.getBean("customerDAO");stateDAO
-    CompanyService companyService = (CompanyService)context.getBean("companyDOA");
-    StateService state = (StateService) context.getBean("stateDAO");
-    ProvinceService local = (ProvinceService) context.getBean("localDAO");
+    //CompanyService companyService = (CompanyService)context.getBean("companyDOA");
+    StateService state = (StateService)context.getBean("stateDAO");
+    ProvinceService local = (ProvinceService)context.getBean("localDAO");
+    RegionService region = (RegionService)context.getBean ("regionDAO");
+    BranchService branch = (BranchService)context.getBean ("branchDAO");
     AddressService address = (AddressService)context.getBean("addressDAO");
     
     private JsonDBRepository repo = null;
@@ -106,6 +113,8 @@ public class FormController {
         model.addAttribute("links", links.registrationSidebarLinks());
         model.addAttribute("states", state.findAll());
         model.addAttribute("locals", local.findByObjectId(0));
+        model.addAttribute("regions", region.findAll());
+        model.addAttribute("branch", branch.findByObjectId(0));
         model.addAttribute("employee", company);
         return "home";
     }
@@ -120,6 +129,8 @@ public class FormController {
             model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("states", state.findAll());
             model.addAttribute("locals", local.findByObjectId(0));
+            model.addAttribute("regions", region.findAll());
+            model.addAttribute("branch", branch.findByObjectId(0));
             model.addAttribute("employee", company);
             return "home";
         }
@@ -400,7 +411,8 @@ public class FormController {
             repo.initRepo(collectionType);
             company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             OwnersParticular particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class); 
-            companyService.insert(company, particular);
+            
+            //companyService.insert(company, particular);
             //repo.delete();
             //customerDAO.create(company);
             //this.employeeService.save(company.get("company"));
@@ -448,6 +460,8 @@ public class FormController {
     @RequestParam String mobile_number,
     @RequestParam String state,
     @RequestParam String province,
+    @RequestParam String region,
+    @RequestParam String branch,
     @RequestParam String block_no,
     @RequestParam String street_address,
     @RequestParam String owner,
@@ -459,11 +473,14 @@ public class FormController {
         company.setPhoneNumber(mobile_number);
         company.setState(state);
         company.setProvince(province);
+        company.setRegion(region);
+        company.setBranch(branch);
         company.setHouseNo(block_no);
         company.setStreetName(street_address);
         OwnersParticular particulars = new OwnersParticular();
         particulars.setPosition(position);
         particulars.setLastName(owner);
-        return companyService.update(company, particulars);
-    }   
+        //return companyService.update(company, particulars);
+        return false;
+    }  
 }

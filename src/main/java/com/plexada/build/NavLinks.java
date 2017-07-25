@@ -61,7 +61,7 @@ public class NavLinks {
     }
     
     public static List<Link> accidentSidebarLinks(){
-        list =  new ArrayList();
+        list = new ArrayList();
         link.setHref("/notification/accident/employee");
         link.setValue("Employee Details");
         list.add(link);
@@ -77,7 +77,7 @@ public class NavLinks {
     }
     
     public static List<Link> ECSSidebarLinks(){
-        list =  new ArrayList();
+        list = new ArrayList();
         link.setHref("/ecs/dashboard");
         link.setValue("Dashboard");
         list.add(link);
@@ -96,6 +96,22 @@ public class NavLinks {
         link = new Link();
         link.setHref("/password/recovery");
         link.setValue("Change Password");
+        list.add(link);
+        return list;
+    }
+    
+    public static List<Link> ECSLoginSidebarLinks(){
+        list = new ArrayList();
+        link.setHref("/ecs/login");
+        link.setValue("Login");
+        list.add(link);
+        return list;
+    }
+    
+    public static List<Link> ECSHomeSidebarLinks(){
+        list =  new ArrayList();
+        link.setHref("/ecs/home");
+        link.setValue("Home");
         list.add(link);
         return list;
     }

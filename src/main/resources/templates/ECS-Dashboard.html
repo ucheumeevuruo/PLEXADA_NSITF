@@ -8,9 +8,6 @@
         <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->		
         <div class="col-md-6 col-sm-6 col-xs-12">
             <div class="pull-right">
-            <a class="btn btn-link" href="/ecs/search" name="submit" type="submit">
-                   search 
-                </a>
             <button class="btn btn-link pull-right" name="submit" type="submit"> 
                 Logout 
             </button> 
@@ -37,11 +34,11 @@
                         </tr>
                         <tr>
                             <th class="text-uppercase">company name</th>
-                            <td class="text-uppercase edit-field" th:text="${vars.name}"></td>    
+                            <td class="text-uppercase edit-field" th:text="${vars.company}"></td>    
                         </tr>
                         <tr>
                             <th class="text-uppercase">incorporation number</th>
-                            <td class="text-uppercase edit-field" th:text="${vars.rc_number}"></td>
+                            <td class="text-uppercase edit-field" th:text="${vars.incNumber}"></td>
                         </tr>
                         <tr>
                             <th class="text-uppercase">e-mail</th>
@@ -49,7 +46,7 @@
                         </tr>
                         <tr>
                             <th class="text-uppercase">mobile number</th>
-                            <td class="text-uppercase edit-field" th:text="${vars.mobile_number}"></td>
+                            <td class="text-uppercase edit-field" th:text="${vars.phoneNumber}"></td>
                         </tr>
                         <tr>
                             <th class="text-uppercase">state</th>
@@ -61,19 +58,19 @@
                         </tr>
                         <tr>
                             <th class="text-uppercase">house number</th>
-                            <td class="text-uppercase edit-field" th:text="${vars.block_no}"></td>
+                            <td class="text-uppercase edit-field" th:text="${vars.houseNo}"></td>
                         </tr>
                         <tr>
                             <th class="text-uppercase">street name</th>
-                            <td class="text-uppercase edit-field" th:text="${vars.street_address}"></td>
+                            <td class="text-uppercase edit-field" th:text="${vars.streetName}"></td>
                         </tr>
                         <tr>
                             <th class="text-uppercase">owner</th>
-                            <td class="text-uppercase edit-field" th:text="${vars.owner}"></td>
+                            <td class="text-uppercase edit-field"></td>
                         </tr>
                         <tr>
                             <th class="text-uppercase">position</th>
-                            <td class="text-uppercase edit-field" th:text="${vars.position}"></td>
+                            <td class="text-uppercase edit-field"></td>
                         </tr>
                     </tbody>
                 </table>

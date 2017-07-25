@@ -1,3 +1,4 @@
+
 $(document).ready(function(){
     /* Add active plane to the list */
    var url = window.location;
@@ -31,6 +32,30 @@ $(document).ready(function(){
             }
         });
     }).change();
+    
+    $("#region").change(function(e) {
+        var branch = $("#branch");
+        $.ajax({
+            url:"/locale/rg/" + $(this).val(), 
+            type:"GET",     
+            success: function(data){
+                var json = $.parseJSON(data);
+                $("#branch option").remove();
+                branch.html('<option value="" selected>Select an option</option>');
+                $(json).each(function(index, element) {
+                    if(json[index].name === branch.attr("value")){
+                        branch.append('<option selected="selected">' + json[index].name + '</option>');
+                    }else{
+                        branch.append('<option>' + json[index].name + '</option>');
+                    }
+                });
+            },
+            error: function(){
+                $("#branch").html('<option value="" selected>Select an option</option>');
+            }
+        });
+    });
+    
     
     $("input[name='claim']").click(function(){
         window.location = "/notification/" + $(this).attr("value") + "/employee";

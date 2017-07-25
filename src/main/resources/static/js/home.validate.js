@@ -26,6 +26,8 @@ $(document).ready (
                     },
                     state: "required",
                     province: "required",
+                    branch: "required",
+                    region: "required",
                     houseNo: "required",
                     streetName: "required",
                     // second-page
@@ -40,7 +42,7 @@ $(document).ready (
                     position: "required",
                     //modeOfId: "required",
                     licenseNumber: {
-                        required: true,
+                        required: true
                         
                     },
                     licenseNumberDate: "required",
