@@ -8,11 +8,11 @@ package com.plexada.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.reflect.TypeToken;
 import com.plexada.build.Company;
-import com.plexada.build.Employee;
-import com.plexada.build.Emulment;
+//import com.plexada.build.Employee;
+//import com.plexada.build.Emulment;
 import com.plexada.build.HashAlgorithm;
 import com.plexada.build.OwnersParticular;
-import com.plexada.build.Sector;
+//import com.plexada.build.Sector;
 import com.plexada.model.States;
 import com.plexada.services.AddressService;
 import com.plexada.services.ProvinceService;
@@ -136,7 +136,7 @@ public class FormController {
         return "redirect:/account/second-page";
     }
     
-    @GetMapping("/second-page")
+    /*@GetMapping("/second-page")
     public String showStaffEmulment(HttpServletRequest request, 
     Model model) {
         Emulment emulment;
@@ -227,8 +227,9 @@ public class FormController {
         repo.save(map);
         return "redirect:/account/fourth-page";
     }
+*/
     
-    @GetMapping("/fourth-page")
+    @GetMapping("/second-page")
     public String showOwnersParticular(HttpServletRequest request, 
     Model model){
         OwnersParticular particular = new OwnersParticular();
@@ -238,11 +239,7 @@ public class FormController {
             repo = new JsonDBRepository(cookie);
             repo.initRepo(collectionType);
             if(!repo.contains("company")){
-                return "redirect:/account/";    
-            }else if(!repo.contains("emulment")){
-                return "redirect:/account/second-page";
-            }else if(!repo.contains("sector")){
-                return "redirect:/account/third-page";
+                return "redirect:/account/";
             }else if(repo.contains("particular")){
                 particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class);
             }else{
@@ -258,33 +255,30 @@ public class FormController {
         return "owners-particular";
     }
     
-    @PostMapping("/fourth-page")
-    public String showOwnersParticularForm(HttpServletRequest request, 
-    Model model, 
+    @PostMapping("/second-page")
+    public String showOwnersParticularForm(HttpServletRequest request,
+    Model model,
     @ModelAttribute OwnersParticular particular,
     BindingResult bindingResult) {
         if(bindingResult.hasErrors()){
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("particular", particular);
+            System.out.println(bindingResult.getAllErrors());
             return "owners-particular";
         }
+        
         //2. Convert object to JSON string and save into a file directly
         setCookieRequest(request, "company");
         repo = new JsonDBRepository(cookie);
         map = new HashMap();
         map.put("particular", particular);
         repo.save(map);
-        if("".equals(particular.getModeOfId())){
-            this.path = "redirect:/account/preview";
-        }else{
-            this.path = "redirect:/account/fifth-page";
-        }
-        return this.path;
+        return "redirect:/account/preview";
     }
     
-    
-    @GetMapping("/fifth-page")
+
+    /*@GetMapping("/fifth-page")
     public String showStaffInfo(HttpServletRequest request,
     Model model) {
         Employee employee;
@@ -335,6 +329,7 @@ public class FormController {
         repo.save(map);
         return "redirect:/account/preview";
     }
+    */
     
     @GetMapping("/preview")
     public String showPreviewForm(HttpServletRequest request,
@@ -347,16 +342,15 @@ public class FormController {
             repo.initRepo(collectionType);
             if(!repo.contains("company")){
                 return "redirect:/account/";    
-            }else if(!repo.contains("emulment")){
+            /*}else if(!repo.contains("emulment")){
                 return "redirect:/account/second-page";
             }else if(!repo.contains("sector")){
                 return "redirect:/account/third-page";
             }else if(!repo.contains("particular")){
-                return "redirect:/account/fourth-page";
-            }else if(!repo.contains("employee")){
-                return "redirect:/account/fifth-page";
+                return "redirect:/account/fourth-page";*/
+            }else if(!repo.contains("particular")){
+                return "redirect:/account/second-page";
             }
-            
             
             
             Company company = mapper.convertValue(repo.findAll().get("company"), Company.class);
@@ -365,10 +359,10 @@ public class FormController {
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("company", company);
-            model.addAttribute("emulment", repo.findByObjectId("emulment"));
-            model.addAttribute("sector", repo.findByObjectId("sector"));
+            //model.addAttribute("emulment", repo.findByObjectId("emulment"));
+            //model.addAttribute("sector", repo.findByObjectId("sector"));
             model.addAttribute("particular", repo.findByObjectId("particular"));
-            model.addAttribute("employee", repo.findByObjectId("employee"));
+            //model.addAttribute("employee", repo.findByObjectId("employee"));
         } catch (Exception ex) {
             return "redirect:/account/";
         }
@@ -442,7 +436,7 @@ public class FormController {
         company.setHouseNo(block_no);
         company.setStreetName(street_address);
         OwnersParticular particulars = new OwnersParticular();
-        particulars.setPosition(position);
+        particulars.setOwnersPosition(position);
         particulars.setLastName(owner);
         return companyService.update(company, particulars);
     }  

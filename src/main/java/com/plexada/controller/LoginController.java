@@ -62,4 +62,16 @@ public class LoginController {
         model.addAttribute("vars", loginModel);
         return this.path;
     }  
+    
+    @GetMapping ("/reset")
+    public String showReset(HttpServletRequest request, 
+    Model model) {
+        model.addAttribute("header", "ECS-Forget Password");
+        model.addAttribute("header", header);
+        model.addAttribute("links", links);
+        model.addAttribute("vars", new LoginModel());
+        path = "ECS-Forget Password";
+        return this.path;
+    }
+    
 }

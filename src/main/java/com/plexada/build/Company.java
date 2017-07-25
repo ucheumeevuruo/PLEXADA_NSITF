@@ -18,8 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 //@Entity
 //@Table(name="USER")  
 public class Company implements Address{
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    
     private Long id;
     @NotEmpty
     private String company;
@@ -46,8 +45,14 @@ public class Company implements Address{
     private String streetName;
     private String city;
     private String country;
-    
-    
+    @NotEmpty
+    private String staffEmulment;
+    @NotEmpty
+    private String type;
+    @NotEmpty
+    private String sector;
+    private String otherSector;
+
     /**
      * @return the id
      */
@@ -258,8 +263,64 @@ public class Company implements Address{
         this.country = country;
     }
 
-    
+    /**
+     * @return the staffEmulment
+     */
+    public String getStaffEmulment() {
+        return staffEmulment;
+    }
 
+    /**
+     * @param staffEmulment the staffEmulment to set
+     */
+    public void setStaffEmulment(String staffEmulment) {
+        this.staffEmulment = staffEmulment;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return the sector
+     */
+    public String getSector() {
+        return sector;
+    }
+
+    /**
+     * @param sector the sector to set
+     */
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+
+    /**
+     * @return the otherSector
+     */
+    public String getOtherSector() {
+        return otherSector;
+    }
+
+    /**
+     * @param otherSector the otherSector to set
+     */
+    public void setOtherSector(String otherSector) {
+        this.otherSector = otherSector;
+    }
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+  
     
     
 }

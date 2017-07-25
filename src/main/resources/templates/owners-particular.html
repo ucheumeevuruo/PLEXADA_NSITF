@@ -10,7 +10,7 @@
         <!-- col -->
         <div class="col-md-6 col-sm-6 col-xs-12">
             <!-- form -->
-            <form method="post" th:action="@{/account/fourth-page}" th:object="${particular}" id="registration-form">
+            <form method="post" action="" th:object="${particular}" id="registration-form">
                 <div class="row">
                 <div class="form-group col-md-6 col-sm-6 col-xs-12" id="Ownerf">
                     <label class="control-label" for="name">
@@ -89,10 +89,98 @@
                     <input type="text" th:field="*{phoneNumber}" id="tel" class="form-control" />
                     <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" id="phoneNumber-error" class="error" for="phoneNumber"></label>
                 </div>
+                
+                <div class="row">
+         <div class="form-group col-lg-6 col-md-6 col-sm-6" id="FName">
+          <label class="control-label requiredField" for="name">
+           First Name
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <input type="text" th:field="*{ownersFirstName}" id="first-name" class="form-control" />
+          <label th:if="${#fields.hasErrors('ownersFirstName')}" th:errors="*{ownersFirstName}" id="ownersFirstName-error" class="error" for="ownersFirstName"></label>
+         </div>
+         <div class="form-group col-lg-6 col-md-6 col-sm-6" id="OtherN">
+          <label class="control-label requiredField" for="name1">
+           Other Names
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <input type="text" th:field="*{ownersOtherName}" id="other-name" class="form-control" />
+          <label th:if="${#fields.hasErrors('ownersOtherName')}" th:errors="*{ownersOtherName}" id="ownersOtherName-error" class="error" for="ownersOtherName"></label>
+         </div>
+         </div>
+         
+         <div class="row">
+         <div class="form-group col-lg-6 col-md-6 col-sm-6" id="PSTN">
+          <label class="control-label requiredField" for="Position">
+           Position
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <input type="text" th:field="*{ownersPosition}" id="position" class="form-control" />
+          <label th:if="${#fields.hasErrors('ownersPosition')}" th:errors="*{ownersPosition}" id="ownersPosition-error" class="error" for="ownersPosition"></label>
+         </div>
+         <div class="form-group col-lg-6 col-md-6 col-sm-6" id="SID">
+          <label class="control-label requiredField" for="StaffID">
+           Staff ID
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <input type="text" th:field="*{staffID}" id="StaffID" class="form-control" />
+          <label th:if="${#fields.hasErrors('staffID')}" th:errors="*{staffID}" id="staffID-error" class="error" for="staffID"></label>
+         </div>
+         </div>    
+             
+         <div class="form-group">
+          <!-- <label class="control-label requiredField">
+           Check all that apply
+           <span class="asteriskField">
+                *
+           </span>
+          </label> -->
+          <div class="row">
+          <div id="sign col-lg-6 col-md-6 col-sm-6">
+           Signature
+           <span class="asteriskField">
+                *
+           </span>
+            <input type="file" name="signature" id="signature" />
+          <span class="help-block" id="hint_name">
+           *Minimum 200*200px <br /> *Maximum size 200kb <br /> *Supports only JPEG, PNG and GIF
+          </span>
+          </div>
+
+          <div id="offstamp col-lg-6 col-md-6 col-sm-6">
+          Official stamp
+           <span class="asteriskField">
+                *
+           </span>
+           <input type="file" name="stamp" id="stamp" />
+          <span class="help-block" id="hint_name">
+           *Minimum 200*200px <br /> *Maximum size 200kb <br /> *Supports only JPEG, PNG and GIF
+          </span>
+          </div>
+          </div>
+          <br />
+          <br />
+          <div class="">
+           <div class="checkbox">
+                <label>
+                    <input th:field="*{agreement}" type="checkbox" value="I agree" />
+                    I agree to NSITF Terms and Conditions and certify that the above particulars are correct
+                </label>
+           </div>
+          </div>
+        </div>
                 <!-- ./form-group -->
                 <div class="form-group">
                     <div id="downb" class="pull-right">
-                        <a class="btn btn-success" href="/account/third-page">
+                        <a class="btn btn-success" href="/account">
                             Back
                         </a>
                         <button class="btn btn-success" name="Next" type="submit">

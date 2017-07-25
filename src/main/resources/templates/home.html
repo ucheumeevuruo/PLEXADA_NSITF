@@ -155,7 +155,97 @@
               <input type="text" th:field="*{streetName}" class="form-control" id="streetName" />
               <label th:if="${#fields.hasErrors('streetName')}" th:errors="*{streetName}" id="streetName" class="error" for="street_name">Company Error.</label>
              </div>
-
+                
+             <div class="form-group">
+              <label class="control-label requiredField" for="Emoulment">
+               Total Staff Emolument ('&#8358;')
+               <span class="text-danger">
+                    *
+               </span>
+              </label>
+              <input th:field="*{staffEmulment}" class="form-control currency" id="staffEmulment" type="number" min="100" />
+             </div>
+                
+            <div class="form-group">
+                <label class="control-label requiredField">
+                    Class of Business
+                    <span class="asteriskField">
+                          *
+                    </span>
+                </label>
+                <div class="">
+                   <div class="radio">
+                       <label>
+                         <input type="radio" th:field="*{type}" id="type" value="Enterprise venture" />
+                         Enterprise venture
+                       </label>
+                   </div>
+                   <div class="radio">
+                        <label>
+                            <input type="radio" th:field="*{type}" id="type" value="Partnership" />
+                            Partnership
+                        </label>
+                   </div>
+                   <div class="radio">
+                       <label>
+                            <input type="radio" th:field="*{type}" id="type" value="MDA"/>
+                            MDA
+                       </label>
+                   </div>
+                   <div class="radio">
+                       <label>
+                           <input type="radio" th:field="*{type}" id="type" value="Public Sector" />
+                           Public Sector
+                       </label>
+                   </div>
+                   <div class="radio">
+                       <label>
+                           <input type="radio" th:field="*{type}" id="type" value="PLC" />
+                           PLC
+                       </label>
+                   </div>
+                   <div class="radio">
+                       <label>
+                           <input type="radio" th:field="*{type}" id="type" value="LTD" />
+                           LTD
+                       </label>
+                   </div>
+               </div>
+            </div>
+        <div class="form-group ">
+            <label class="control-label requiredField" for="select">
+                Please select
+                <span class="asteriskField">
+                     *
+                </span>
+            </label>
+            <select class="select form-control" id="sector" th:field="*{sector}" multiple="true" size="12">
+                <option value="Construction">Construction</option>
+                <option value="MDAs">MDAs</option>
+                <option value="Manufacturing">Manufacturing</option>
+                <option value="Banking and finance">Banking and finance</option>
+                <option value="Mining">Mining</option>
+                <option value="Aviation">Aviation</option>
+                <option value="Telecom">Telecom</option>
+                <option value="Energy">Energy</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Oil and Gas">Oil and Gas</option>
+                <option value="Information Technology">Information Technology</option>
+                <option value="Technology">Technology</option>
+            </select>
+            <span class="help-block" id="hint_select">
+             Press Ctrl for multiple select
+            </span>
+        </div>
+        <div class="form-group ">
+            <label class="control-label " for="name">
+             Others please specify
+            </label>
+            <input type="text" th:field="*{otherSector}" id="otherSector" class="form-control" />
+         <span class="help-block" id="hint_name">
+          Separate with comma. e.g, item1, item2
+         </span>
+        </div>
 
              <div class="form-group pull-right" id="Next">
               <div>

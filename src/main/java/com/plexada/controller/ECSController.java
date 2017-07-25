@@ -5,7 +5,8 @@
  */
 package com.plexada.controller;
 
-import com.plexada.build.Emulment;
+//import com.plexada.build.Emulment;
+import com.plexada.build.Company;
 import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
 import com.plexada.model.States;
@@ -115,7 +116,7 @@ public class ECSController {
     
     @PostMapping("/subscription")
     public String postSubscriptionForm(Model model,  
-    @ModelAttribute @Valid Emulment emulment, 
+    @ModelAttribute @Valid Company company, 
     BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
             //Redirect to next page
@@ -138,7 +139,7 @@ public class ECSController {
     
     @PostMapping("/change-password")
     public String postChangePasswordForm(Model model,  
-    @ModelAttribute @Valid Emulment emulment, 
+    @ModelAttribute @Valid Company company, 
     BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
             //Redirect to next page

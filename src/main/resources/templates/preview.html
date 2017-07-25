@@ -74,7 +74,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="text-uppercase" th:text="${emulment.staffEmulment}"></td>
+                        <td class="text-uppercase" th:text="${company.staffEmulment}"></td>
                     </tr>
                 </tbody>
             </table> 
@@ -89,12 +89,12 @@
                 <tbody>
                     <tr>
                         <th class="text-uppercase">class of business</th>
-                        <td class="text-uppercase" th:text="${sector.type}"></td>
+                        <td class="text-uppercase" th:text="${company.type}"></td>
                     </tr>
-                    <tr th:switch="${sector.otherSector != null}">
+                    <tr th:switch="${company.otherSector != null}">
                         <th class="text-uppercase">year of incorporation</th>
-                        <td th:case="#{false}" class="text-uppercase" th:text="${sector.sector + ',' + sector.otherSector}"></td>
-                        <td th:case="#{true}" class="text-uppercase" th:text="${sector.sector}"></td>
+                        <td th:case="#{false}" class="text-uppercase" th:text="${company.sector + ',' + company.otherSector}"></td>
+                        <td th:case="#{true}" class="text-uppercase" th:text="${company.sector}"></td>
                     </tr>
                 </tbody>
             </table> 
@@ -109,11 +109,11 @@
                 <tbody>
                     <tr>
                         <th class="text-uppercase">name</th>
-                        <td class="text-uppercase" th:text="${employee.firstName + ' ' + employee.otherName}"></td>
+                        <td class="text-uppercase" th:text="${particular.ownersFirstName + ' ' + particular.ownersOtherName}"></td>
                     </tr>
                     <tr>
                         <th class="text-uppercase">position</th>
-                        <td class="text-uppercase" th:text="${employee.position}"></td>
+                        <td class="text-uppercase" th:text="${particular.ownersPosition}"></td>
                     </tr>
                     <tr>
                         <th class="text-uppercase">Signature or thumb print</th>
@@ -124,9 +124,9 @@
                 </tbody>
             </table> 
             
-            <div class="form-group">
+            <div class="form-group pull-right">
              <div id="Next">
-                 <a class="btn btn-success" href="/account/fifth-page">
+                 <a class="btn btn-success" href="/account/second-page">
                     Back 
                  </a>
                 <button class="btn btn-success" name="Next" type="submit">

@@ -7,12 +7,14 @@ package com.plexada.build;
 
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
  * @author SAP Training
  */
 public class OwnersParticular{
+
     @NotEmpty
     private String firstName;
     @NotEmpty
@@ -29,7 +31,19 @@ public class OwnersParticular{
     private String expiryDate;
     @NotEmpty
     private String phoneNumber;
-
+    @NotEmpty
+    private String ownersFirstName;
+    @NotEmpty
+    private String ownersOtherName;
+    @NotEmpty
+    private String ownersPosition;
+    @NotEmpty
+    private String staffID;
+    //@NotEmpty    
+    private MultipartFile stamp;
+    @NotEmpty
+    private String agreement;
+    
     /**
      * @return the firstName
      */
@@ -128,8 +142,6 @@ public class OwnersParticular{
         this.expiryDate = expiryDate;
     }
 
-    
-
     /**
      * @return the phoneNumber
      */
@@ -143,5 +155,91 @@ public class OwnersParticular{
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
+
+    /**
+     * @return the ownersFirstName
+     */
+    public String getOwnersFirstName() {
+        return ownersFirstName;
+    }
+
+    /**
+     * @param ownersFirstName the ownersFirstName to set
+     */
+    public void setOwnersFirstName(String ownersFirstName) {
+        this.ownersFirstName = ownersFirstName;
+    }
+
+    /**
+     * @return the ownersOtherName
+     */
+    public String getOwnersOtherName() {
+        return ownersOtherName;
+    }
+
+    /**
+     * @param ownersOtherName the ownersOtherName to set
+     */
+    public void setOwnersOtherName(String ownersOtherName) {
+        this.ownersOtherName = ownersOtherName;
+    }
+
+    /**
+     * @return the ownersPosition
+     */
+    public String getOwnersPosition() {
+        return ownersPosition;
+    }
+
+    /**
+     * @param ownersPosition the ownersPosition to set
+     */
+    public void setOwnersPosition(String ownersPosition) {
+        this.ownersPosition = ownersPosition;
+    }
+
+    /**
+     * @return the staffID
+     */
+    public String getStaffID() {
+        return staffID;
+    }
+
+    /**
+     * @param staffID the staffID to set
+     */
+    public void setStaffID(String staffID) {
+        this.staffID = staffID;
+    }
+
+    /**
+     * @return the stamp
+     */
+    public MultipartFile getStamp() {
+        return stamp;
+    }
+
+    /**
+     * @param stamp the stamp to set
+     */
+    public void setStamp(MultipartFile stamp) {
+        this.stamp = stamp;
+    }
+
+    /**
+     * @return the agreement
+     */
+    public String getAgreement() {
+        return agreement;
+    }
+
+    /**
+     * @param agreement the agreement to set
+     */
+    public void setAgreement(String agreement) {
+        this.agreement = agreement;
+    }
+    
+
 }
 
