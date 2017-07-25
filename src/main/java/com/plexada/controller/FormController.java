@@ -8,8 +8,7 @@ package com.plexada.controller;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.gson.reflect.TypeToken;
 import com.plexada.build.Company;
-//import com.plexada.build.Employee;
-//import com.plexada.build.Emulment;
+import com.plexada.build.FileUploader;
 import com.plexada.build.HashAlgorithm;
 import com.plexada.build.OwnersParticular;
 //import com.plexada.build.Sector;
@@ -17,12 +16,8 @@ import com.plexada.model.States;
 import com.plexada.services.AddressService;
 import com.plexada.services.ProvinceService;
 import com.plexada.services.StateService;
-import com.plexada.services.CompanyService;
 import com.plexada.services.EmailService;
-//import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
-//import org.apache.catalina.servlet4preview.ServletContext;
-//import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -42,7 +37,14 @@ import com.plexada.doa.JsonDBRepository;
 import com.plexada.model.Cookie;
 import com.plexada.services.BranchService;
 import com.plexada.services.RegionService;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 //import org.springframework.web.multipart.MultipartFile;
@@ -66,7 +68,7 @@ public class FormController {
     ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
     //Cookie customerDAO = (Cookie) context.getBean("customerDAO");stateDAO
-    CompanyService companyService = (CompanyService)context.getBean("companyDOA");
+    //CompanyService companyService = (CompanyService)context.getBean("companyDOA");
     StateService state = (StateService)context.getBean("stateDAO");
     ProvinceService local = (ProvinceService)context.getBean("localDAO");
     RegionService region = (RegionService)context.getBean ("regionDAO");
@@ -301,6 +303,7 @@ public class FormController {
                 employee = new Employee();
             }
         } catch (Exception ex) {
+            System.out.println(ex.getMessage());
             return "redirect:/account/";
         }
         model.addAttribute("header", header);
@@ -312,8 +315,12 @@ public class FormController {
     @PostMapping("/fifth-page")
     public String showStaffInfoForm(HttpServletRequest request,
     Model model,
+    @RequestParam("images") MultipartFile[] images,
     @ModelAttribute Employee staffInfo,
-    BindingResult bindingResult) {
+    BindingResult bindingResult) throws IOException {
+        //Move file to temp part before uploading
+        List<byte[]> saveUploadedFiles = FileUploader.saveUploadedFiles(Arrays.asList(images));
+        staffInfo.setFile(saveUploadedFiles);
         if(bindingResult.hasErrors()){
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
@@ -321,6 +328,8 @@ public class FormController {
             System.out.println(bindingResult.getAllErrors());
             return "employee-info";
         }
+        //Move file to temp part before uploading
+        //FileUploader.saveUploadedFiles(Arrays.asList(images));
         //2. Convert object to JSON string and save into a file directly
         setCookieRequest(request, "company");
         repo = new JsonDBRepository(cookie);
@@ -351,20 +360,32 @@ public class FormController {
             }else if(!repo.contains("particular")){
                 return "redirect:/account/second-page";
             }
+
             
             
+
+            OwnersParticular particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class);
+
             Company company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             States states = state.findByObjectId(Integer.parseInt(company.getState()));
             company.setState(states.getName());
+            
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("company", company);
             //model.addAttribute("emulment", repo.findByObjectId("emulment"));
             //model.addAttribute("sector", repo.findByObjectId("sector"));
             model.addAttribute("particular", repo.findByObjectId("particular"));
-            //model.addAttribute("employee", repo.findByObjectId("employee"));
+             model.addAttribute("employee", particular);
+            List l = new ArrayList();
+            for(byte[] getByte : particular.getFile()){
+                l.add(FileUploader.generateBase64Image(getByte));
+            }
+            model.addAttribute("images", l);
+
         } catch (Exception ex) {
-            return "redirect:/account/";
+            //System.out.println(ex.getMessage());
+            //return "redirect:/account/";
         }
         return "preview";
     }
@@ -387,7 +408,7 @@ public class FormController {
             company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             OwnersParticular particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class); 
             
-            companyService.insert(company, particular);
+            //companyService.insert(company, particular);
             //repo.delete();
             //customerDAO.create(company);
             //this.employeeService.save(company.get("company"));
@@ -405,6 +426,23 @@ public class FormController {
         model.addAttribute("links", links.registrationSidebarLinks());
         model.addAttribute("progress", progress);
         return "finish";
+    }
+   
+    @GetMapping("/images/{images_id}")
+    public ResponseEntity<byte[]> getImage(@PathVariable("images_id") String imageId,
+    HttpServletRequest request){
+        byte[] imageContent = null;
+        final HttpHeaders headers = new HttpHeaders();
+        OwnersParticular particular;
+        try {
+            this.setCookieRequest(request, "company");
+            repo = new JsonDBRepository(cookie);
+            repo.initRepo(collectionType);
+            particular = mapper.convertValue(repo.findAll().get("employee"), OwnersParticular.class);
+            headers.setContentType(MediaType.IMAGE_GIF);
+        } catch (Exception ex) {System.out.println(ex.getMessage());}
+        System.out.println(Arrays.toString(imageContent));
+        return new ResponseEntity<>(imageContent, headers, HttpStatus.OK);
     }
     
     @PostMapping("/update")
@@ -438,8 +476,7 @@ public class FormController {
         OwnersParticular particulars = new OwnersParticular();
         particulars.setOwnersPosition(position);
         particulars.setLastName(owner);
-        return companyService.update(company, particulars);
+        //return companyService.update(company, particulars);
+        return false;
     }  
-    
-    
 }

@@ -20,7 +20,7 @@ $(document).ready(function(){
                 $("#province option").remove();
                 province.html('<option value="" selected>Select an option</option>');
                 $(json).each(function(index, element) {
-                    if(json[index].name === province.attr("value")){
+                    if(json[index].name === province.attr("data-name")){
                         province.append('<option selected="selected">' + json[index].name + '</option>');
                     }else{
                         province.append('<option>' + json[index].name + '</option>');
@@ -31,7 +31,7 @@ $(document).ready(function(){
                 $("#province").html('<option value="" selected>Select an option</option>');
             }
         });
-    });
+    }).change();
     
     $("#region").change(function(e) {
         var branch = $("#branch");
@@ -90,7 +90,7 @@ $(document).ready(function(){
                 $(".box").removeClass("hidden");
             }
         });
-    });
+    }).change();
     /*
     addCommas = function(input){
         

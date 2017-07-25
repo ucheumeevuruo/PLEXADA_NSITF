@@ -30,7 +30,4 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
         <bean id="cookieDOA" class="com.plexada.services.DBCookieService">
 		<property name="dataSource" ref="dataSource" />
 	</bean>
-        <bean id="companyDOA" class="com.plexada.services.CompanyService">
-		<property name="dataSource" ref="dataSource" />
-	</bean>
 </beans>

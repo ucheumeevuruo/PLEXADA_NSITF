@@ -5,6 +5,8 @@
  */
 package com.plexada.build;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,10 +45,14 @@ public class OwnersParticular{
     private MultipartFile stamp;
     @NotEmpty
     private String agreement;
+    private List<byte[]> file = new ArrayList();
+
     
     /**
      * @return the firstName
      */
+    
+    
     public String getFirstName() {
         return firstName;
     }
@@ -240,6 +246,12 @@ public class OwnersParticular{
         this.agreement = agreement;
     }
     
-
+    public List<byte[]> getFile(){
+        return this.file;
+    }
+    
+    public void setFile(List<byte[]> file){
+        this.file = file;
+    }
 }
 

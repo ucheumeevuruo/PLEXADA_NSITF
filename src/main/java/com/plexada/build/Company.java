@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 //@Table(name="USER")  
 public class Company implements Address{
     
-    private Long id;
+    private String id;
     @NotEmpty
     private String company;
     @NotEmpty
@@ -56,14 +56,14 @@ public class Company implements Address{
     /**
      * @return the id
      */
-    public Long getId() {
+    public String getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 

@@ -94,7 +94,7 @@
                     *
                </span>
               </label>
-              <select class="select form-control" id="province" th:field="*{province}" th:value="*{province}">
+              <select class="select form-control" id="province" th:field="*{province}" th:attr="data-name=*{province}">
                  <option selected="selected" value="">Select an option</option>
                  <option th:each="province : ${locals}" th:text="${province.name}" th:value="${province.id}">LGA</option>
                </select>

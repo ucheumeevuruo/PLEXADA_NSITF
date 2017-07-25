@@ -9,14 +9,14 @@ package com.plexada.controller;
 import com.plexada.build.Company;
 import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
-import com.plexada.model.States;
-import com.plexada.model.registration.LoginModel;
-import com.plexada.services.CompanyService;
+import com.plexada.siebel.service.CompanyService;
 import com.plexada.services.StateService;
+import com.plexadasi.connect.siebel.SiebelConnect;
+import com.siebel.data.SiebelException;
+import com.siebel.eai.SiebelBusinessServiceException;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
-import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
@@ -29,8 +29,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.util.HtmlUtils;
-import org.unbescape.html.HtmlEscape;
 
 /**
  *
@@ -45,9 +43,12 @@ public class ECSController {
     ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
 
     //Cookie customerDAO = (Cookie) context.getBean("customerDAO");stateDAO
-    CompanyService companyService = (CompanyService)context.getBean("companyDOA");
+    CompanyService companyService = null;
     StateService state = (StateService) context.getBean("stateDAO");
     
+    public ECSController() throws SiebelBusinessServiceException, SiebelException{
+        companyService = new CompanyService(SiebelConnect.connectSiebelServer());
+    }
     
     @GetMapping("/home")
     public String home(Model model){
@@ -69,16 +70,15 @@ public class ECSController {
     
     @GetMapping("/dashboard/{id}")
     public String PostDashboard(Model model,
-    @PathVariable("id") String id){
+    @PathVariable("id") String id) throws SiebelException{
         model.addAttribute("header", header);
         model.addAttribute("links", links);
-        //List<Map<String, Object>> list = companyService.findById(id);
-        
-        List<Map<String, Object>> list = companyService.findById(id);
-        Map<String, Object> map = list.get(0);
-        States states = state.findByObjectId(Integer.parseInt(String.valueOf(map.get("state"))));
-        map.put("state", states.getName());
-        model.addAttribute("vars", map);
+
+        List<Company> list = companyService.find(id);
+        Company company = list.get(0);
+        System.out.println(company.getId());
+        //States states = state.findByObjectId(Integer.parseInt(String.valueOf(companies.getState())));
+        model.addAttribute("vars", company);
         path = "ECS-Dashboard";
         return this.path;
     }
@@ -162,17 +162,18 @@ public class ECSController {
     
     @PostMapping("/search")
     public String postSearchForm(Model model,  
-    @RequestParam("q") String q){
+    @RequestParam("q") String q) throws SiebelException{
         List<Link> list = new ArrayList();
         Link link = new Link();
-        List<Map<String, Object>> searchResult = companyService.findByObjectId(q);
-        for(Map<String, Object> result : searchResult){
-            link.setHref("/ecs/dashboard/" + result.get("ID"));
-            link.setValue((String)result.get("rc_number"));
+        List<Company> searchResult = companyService.find(q);
+        for (Iterator<Company> companies = searchResult.iterator(); companies.hasNext();) {
+            Company company = companies.next();
+            link.setHref("/ecs/dashboard/" + company.getId());
+            link.setValue((String)company.getIncNumber());
             list.add(link);
         }
-            //Redirect to next page
-            //this.path = "redirect:/account/third-page";
+        //Redirect to next page
+        //this.path = "redirect:/account/third-page";
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         model.addAttribute("results", list);
