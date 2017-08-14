@@ -38,6 +38,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/ecs")
 public class ECSController {
     List<Link> links = NavLinks.ECSSidebarLinks();
+    
     private String path;
     private final String header = "ECS";
     ApplicationContext context = new ClassPathXmlApplicationContext("Spring-Module.xml");
@@ -47,17 +48,17 @@ public class ECSController {
     StateService state = (StateService) context.getBean("stateDAO");
     
     public ECSController() throws SiebelBusinessServiceException, SiebelException{
-        companyService = new CompanyService(SiebelConnect.connectSiebelServer());
+        //companyService = new CompanyService(SiebelConnect.connectSiebelServer());
     }
     
-    @GetMapping("/home")
+    /**@GetMapping("/home")
     public String home(Model model){
         
         model.addAttribute("header", header);
         model.addAttribute("links", links);
         path = "ECS-Home";
         return this.path;
-    }
+    }*/
     
     @GetMapping("/dashboard")
     public String showDashboard(Model model){
@@ -152,7 +153,7 @@ public class ECSController {
         return this.path;
     }
     
-    @GetMapping("/search")
+    /**@GetMapping("/search")
     public String showSearch(Model model){
         this.path = "ECS-Search";
         model.addAttribute("header", header);
@@ -179,5 +180,5 @@ public class ECSController {
         model.addAttribute("results", list);
         this.path = "ECS-Search";
         return this.path;
-    }
+    }*/
 }

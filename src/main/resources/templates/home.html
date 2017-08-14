@@ -8,6 +8,12 @@
         <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->		
         <div class="col-md-6 col-sm-6 col-xs-12">
             <form method="post" th:action="@{/account/}" th:object="${employee}" id="registration-form">
+                
+            <p class="comp-title"> 
+                BUSINESS PARTICULARS  
+            </p>
+            <br />
+            
              <div class="form-group">
               <label class="control-label requiredField" for="CompName">
                Company's Name
@@ -155,7 +161,13 @@
               <input type="text" th:field="*{streetName}" class="form-control" id="streetName" />
               <label th:if="${#fields.hasErrors('streetName')}" th:errors="*{streetName}" id="streetName" class="error" for="street_name">Company Error.</label>
              </div>
-                
+            
+            <br />
+            <p class="comp-title"> 
+                TOTAL EMOLUMENT  
+            </p>
+            <br />
+            
              <div class="form-group">
               <label class="control-label requiredField" for="Emoulment">
                Total Staff Emolument ('&#8358;')
@@ -165,7 +177,13 @@
               </label>
               <input th:field="*{staffEmulment}" class="form-control currency" id="staffEmulment" type="number" min="100" />
              </div>
-                
+            
+            <br />
+            <p class="comp-title"> 
+                BUSINESS SECTOR 
+            </p>
+            <br />
+            
             <div class="form-group">
                 <label class="control-label requiredField">
                     Class of Business
@@ -257,5 +275,6 @@
             </form>
        </div>
      </div>
+    
 </body>
 </html>

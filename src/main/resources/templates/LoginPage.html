@@ -1,0 +1,101 @@
+<html>
+
+<head>
+    
+    <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
+    
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid">
+			
+                <div class="navbar-brand navbar-link" href="#">
+                    <img alt="brand" src="/img/NSITF-image.jpg" th:href="@{/img/NSITF-image.jpg}" class="img-circle" width="100" height="100" rel="image" media="screen" />
+                </div>
+				
+                <div class="header">
+                    <p>Employee Login</p>
+                </div>
+				
+            </div>
+        </nav>
+    </div>
+	
+    <div class="container">	
+        <div class="col-lg-1 col-md-1 col-md-offset-0">
+        </div>
+		
+        <div class="col-lg-5 col-md-5 col-md-offset-0">
+            <div class="panel panel-default">
+            <div class="panel-heading">LOGIN</div>
+		
+            <div class="panel-body">
+           
+                <form method="post" th:object="${vars}" action="">
+                    <div th:if="${error != null}" class="alert alert-danger">
+                        <p> Invalid Username and/or Password </p>
+                    </div>
+                    <div class="form-group" th:class="form-group">
+                        <label class="control-label " for="username">
+                           Username
+                        </label>
+                        <input class="form-control" id="username" th:field="*{username}" type="text"/>
+                    </div>
+                    <br /> 
+                    <div class="form-group" th:class="form-group">
+                        <label class="control-label " for="password">
+                           Password
+                        </label>
+                        <input class="form-control" id="Password" th:field="*{password}" type="text"/>
+                    </div>
+                    <span class="pull-right"> <a href="/ecs/reset"> <i> Forgot your password? </i> </a> </span> <br /><br />
+                    <div class="form-group pull-right">
+                        <button class="btn btn-success" name="submit" type="submit">
+                            Login
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        </div>
+		
+        <div class="col-lg-5 col-md-5 col-md-offset-0">
+            <div class="panel panel-default">
+            <div class="panel-heading">ACCESS REQUEST</div>
+		
+            <div class="panel-body">
+                <br />
+                <br />
+                <form method="post" th:object="${vars}" action="">
+                            <div>
+                    <label class="control-label " for="email">
+                            Email
+                                    </label>
+                                    <input class="form-control" id="email" name="email" type="email"/>
+                            </div>
+                            <br />
+
+                    <div class="form-group pull-right">
+                        <button class="btn btn-success" name="submit" type="submit">
+                            Send Access Request
+                        </button>
+                    </div>
+                    <br />
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="footer row ">
+        <div class="container-fluid">
+            © 2015 Copyright: <a href="nsitf.gov.ng"> National Social Insurance Trust Fund </a>
+        </div>
+    </div>
+     
+</body>
+	
+				
+</html>			

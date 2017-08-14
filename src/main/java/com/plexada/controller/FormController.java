@@ -37,6 +37,7 @@ import com.plexada.doa.JsonDBRepository;
 import com.plexada.model.Cookie;
 import com.plexada.services.BranchService;
 import com.plexada.services.RegionService;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -47,6 +48,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 //import org.springframework.web.multipart.MultipartFile;
 //import org.springframework.mail.SimpleMailMessage;
 //import org.springframework.mail.javamail.JavaMailSender;
@@ -111,7 +113,7 @@ public class FormController {
         model.addAttribute("regions", region.findAll());
         model.addAttribute("branch", branch.findByObjectId(0));
         model.addAttribute("employee", company);
-        return "home";
+        return "index2";
     }
     
     @PostMapping("")
@@ -127,7 +129,7 @@ public class FormController {
             model.addAttribute("regions", region.findAll());
             model.addAttribute("branch", branch.findByObjectId(0));
             model.addAttribute("employee", company);
-            return "home";
+            return "index2";
         }
         //2. Convert object to JSON string and save into a file directly
         setCookieRequest(request, "company");
@@ -135,7 +137,7 @@ public class FormController {
         map = new HashMap();
         map.put("company", company);
         repo.save(map);
-        return "redirect:/account/second-page";
+        return "redirect:/account/preview";
     }
     
     /*@GetMapping("/second-page")
@@ -261,7 +263,11 @@ public class FormController {
     public String showOwnersParticularForm(HttpServletRequest request,
     Model model,
     @ModelAttribute OwnersParticular particular,
-    BindingResult bindingResult) {
+    @RequestParam("images") MultipartFile[] images,
+    BindingResult bindingResult) throws IOException {
+        //Move file to temp part before uploading
+        List<byte[]> saveUploadedFiles = FileUploader.saveUploadedFiles(Arrays.asList(images));
+        particular.setFile(saveUploadedFiles);
         if(bindingResult.hasErrors()){
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
@@ -356,32 +362,34 @@ public class FormController {
             }else if(!repo.contains("sector")){
                 return "redirect:/account/third-page";
             }else if(!repo.contains("particular")){
-                return "redirect:/account/fourth-page";*/
+                return "redirect:/account/fourth-page";
             }else if(!repo.contains("particular")){
-                return "redirect:/account/second-page";
+                return "redirect:/account/second-page";*/
             }
 
             
             
 
-            OwnersParticular particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class);
+            //OwnersParticular particular = mapper.convertValue(repo.findAll().get("particular"), OwnersParticular.class);
 
             Company company = mapper.convertValue(repo.findAll().get("company"), Company.class);
             States states = state.findByObjectId(Integer.parseInt(company.getState()));
             company.setState(states.getName());
+            
+            
             
             model.addAttribute("header", header);
             model.addAttribute("links", links.registrationSidebarLinks());
             model.addAttribute("company", company);
             //model.addAttribute("emulment", repo.findByObjectId("emulment"));
             //model.addAttribute("sector", repo.findByObjectId("sector"));
-            model.addAttribute("particular", repo.findByObjectId("particular"));
-             model.addAttribute("employee", particular);
-            List l = new ArrayList();
+            //model.addAttribute("particular", repo.findByObjectId("particular"));
+            //model.addAttribute("employee", particular);
+            /*List l = new ArrayList();
             for(byte[] getByte : particular.getFile()){
                 l.add(FileUploader.generateBase64Image(getByte));
             }
-            model.addAttribute("images", l);
+            model.addAttribute("images", l);*/
 
         } catch (Exception ex) {
             //System.out.println(ex.getMessage());

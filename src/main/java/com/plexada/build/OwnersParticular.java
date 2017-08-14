@@ -24,7 +24,7 @@ public class OwnersParticular{
     @NotEmpty
     private String position;
     @NotEmpty @Email
-    private String email;
+    private String email2;
     @NotEmpty
     private String modeOfId;
     //@NotEmpty
@@ -93,17 +93,17 @@ public class OwnersParticular{
     }
 
     /**
-     * @return the email
+     * @return the email2
      */
-    public String getEmail() {
-        return email;
+    public String getEmail2() {
+        return email2;
     }
 
     /**
-     * @param email the email to set
+     * @param email2 the email2 to set
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail2(String email2) {
+        this.email2 = email2;
     }
 
     /**
