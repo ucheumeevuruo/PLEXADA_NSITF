@@ -26,7 +26,7 @@ public class LoginService {
     }
     
     public LoginModel login(LoginModel user) {
-        String SQL = "select username, password, id from users where username = ? and password = ?";
+        String SQL = "select * from users where username = ? and password = ?";
         List<LoginModel> login = jdbcTemplateObject.query(SQL, 
            new Object[]{user.getUsername(), user.getPassword()}, new LoginMapper());
         System.out.println(SQL);    

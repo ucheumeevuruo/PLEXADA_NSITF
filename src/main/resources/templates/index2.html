@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
+
+</head>
+
+<body>
+    <div class="container">
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+    </div>
+    
+    <form method="post" th:action="@{/account/}" th:object="${employee}" id="registration-form">
+	
+    <div class="field-border col-md-1 col-lg-1">
+    </div>
+	
+    <div class="field-border col-md-5 col-lg-5">
+        <div class="panel panel-default">
+            <div class="panel-heading">Company Details</div>
+		
+            <div class="panel-body">
+		<!-- <form method="post" th:action="@{/account/}" th:object="${employee}" id="registration-form"> -->
+                    <div class="form-group form-inline">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="CompName">
+                            <span class="asteriskField">
+                            *
+                            </span>
+                            Company's Name 
+                        </label>
+                        <input type="text" th:field="*{company}" id="company" class="form-control col-md-6 col-lg-6" />
+                        <label th:if="${#fields.hasErrors('company')}" th:errors="*{company}" id="company-error" class="error" for="company">Company Error.</label>
+                    </div>
+					
+                    <div class="form-group form-inline">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="IncorporationNumber">
+                            Incorporation Number
+                            <span class="asteriskField">
+                                         *
+                            </span>
+                        </label>
+                        <input type="text" th:field="*{incNumber}" class="form-control col-md-6 col-lg-6" id="inc" />
+                        <label th:if="${#fields.hasErrors('incNumber')}" th:errors="*{incNumber}" id="inc-error" class="error" for="inc">Company Error.</label>
+                    </div>
+					 
+                    <div class="form-group form-inline">
+                        <label class="control-label col-md-6 col-lg-6" for="TINNumber">
+                            TIN Number
+                        </label>
+                        <input type="text" th:field="*{tinNum}" class="form-control col-md-6 col-lg-6" name="tin_num" id="tin_num" />
+                        <label th:if="${#fields.hasErrors('tinNum')}" th:errors="*{tinNum}" id="tin_num" class="error" for="tin_num">Company Error.</label>
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="Year">
+                            Year of incorporation
+                            <span class="asteriskField">
+                               *
+                            </span>
+                        </label>
+                        <select class="form-control col-md-6 col-lg-6" id="incYear" th:field="*{incYear}" placeholder="YYYY">
+                            <option selected="selected" value="">Select an option</option>
+                            <option th:each="i:${#numbers.sequence(1900, 2030)}" th:text="${i}" th:value="${i}">Year</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-inline" id="Email">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="email">
+                            Email
+                            <span class="asteriskField">
+                                *
+                            </span>
+                        </label>
+                        <input type="email" th:field="*{email}" class="form-control col-md-6 col-lg-6" id="email" />
+                        <label th:if="${#fields.hasErrors('email')}" th:errors="*{email}" id="email" class="error" for="email">Company Error.</label>
+                    </div>
+
+                    <div class="form-group form-inline" id="MobileN">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="phone_number">
+                            Mobile Number
+                            <span class="asteriskField">
+                                *
+                            </span>
+                        </label>
+                        <input type="text" th:field="*{phoneNumber}" class="form-control col-md-6 col-lg-6" id="phoneNumber" />
+                        <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" id="phoneNumber" class="error" for="phone_number">Company Error.</label>
+                    </div>
+
+                    <div class="form-group form-inline" id="State">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="State">
+                            State
+                            <span class="asteriskField">
+                                *
+                            </span>
+                        </label>
+                        <select class="select form-control col-md-6 col-lg-6" id="state" th:field="*{state}">
+                            <option selected="selected" value="">Select an option</option>
+                            <option th:each="state : ${states}" th:text="${state.name}" th:value="${state.id}">State</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group form-inline" id="lga">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="lga">
+                            Local Government
+                            <span class="asteriskField">
+                                *
+                            </span>
+                        </label>
+                        <select class="select form-control col-md-6 col-lg-6" id="province" th:field="*{province}" th:attr="data-name=*{province}">
+                            <option selected="selected" value="">Select an option</option>
+                            <option th:each="province : ${locals}" th:text="${province.name}" th:value="${province.id}">LGA</option>
+                        </select>
+                    </div>
+					 
+                    <div class="form-group form-inline" id="Region">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="Region">
+                            Region
+                            <span class="asteriskField">
+                                *
+                            </span>
+                        </label>
+                        <select class="select form-control col-md-6 col-lg-6" id="region" th:field="*{region}" th:value="*{region}">
+                            <option selected="selected" value="">Select an option</option>
+                            <option th:each="region : ${regions}" th:text="${region.name}" th:value="${region.id}">Region</option>
+                        </select>
+                    </div>
+				
+                    <div class="form-group form-inline">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="branch">
+                            Branch
+                            <span class="asteriskField">
+                                *
+                            </span>
+                        </label>
+                        <select class="select form-control col-md-6 col-lg-6" id="branch" th:field="*{branch}" th:value="*{branch}">
+                            <option selected="selected" value="">Select an option</option>
+                            <option th:each="branch : ${branch}" th:text="${branch.name}" th:value="${branch.id}">Branch</option>
+                        </select>
+                    </div>
+					
+
+                    <br />
+                    <div class="form-group col-md-12 col-lg-12" >
+                        <p id="Address"> Address 
+                            <span class="asteriskField">
+                                *
+                            </span> 
+                        </p>
+                    </div> 
+
+                    <div class="form-group form-inline">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="house_no">
+                            House/Block No
+                        </label>
+                        <input type="number" th:field="*{houseNo}" class="form-control col-md-6 col-lg-6" id="houseNo" min="1" />
+                        <label th:if="${#fields.hasErrors('houseNo')}" th:errors="*{houseNo}" id="house_no" class="error" for="house_no">Company Error.</label>
+                    </div>
+
+                    <div class="form-group form-inline">
+                        <label class="control-label requiredField col-md-6 col-lg-6" for="street_name">
+                            Street Name
+                            <span class="asteriskField">
+                                *
+                            </span>
+                        </label>
+                        <input type="text" th:field="*{streetName}" class="form-control col-md-6 col-lg-6" id="streetName" />
+                        <label th:if="${#fields.hasErrors('streetName')}" th:errors="*{streetName}" id="streetName" class="error" for="street_name">Company Error.</label>
+                    </div>
+                    
+                    <br />
+                    <div class="form-group form-inline">
+                    <label class="control-label requiredField col-md-6 col-lg-6" for="Emoulment">
+                        Total Staff Emolument ('&#8358;')
+                        <span class="text-danger">
+                            *
+                        </span>
+                    </label>
+                    <input th:field="*{staffEmulment}" class="form-control currency col-md-6 col-lg-6" id="staffEmulment" type="number" min="100" />
+                </div>
+                    
+                <!-- </form> -->
+            </div>
+	</div>
+    </div>
+
+	
+    <div class="col-lg-5 col-md-5 col-md-offset-0">
+        <!-- <form method="post" th:action="@{/account/}" th:object="${employee}" id="registration-form"> -->
+            <fieldset>
+                <legend class="">
+                    Particulars
+                </legend>
+                
+
+                <p class="comp-title col-md-12 col-lg-12"> 
+                    BUSINESS SECTOR 
+                </p> <br />
+
+                <div class="form-group form-inline">
+                    <label class="control-label requiredField col-md-6 col-lg-6">
+                        Class of Business
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="radio ">
+                            <label>
+                                <input type="radio" th:field="*{type}" id="type" value="Enterprise venture" />
+                                Enterprise venture
+                            </label>
+                        </div> <br />
+                        <div class="radio">
+                            <label>
+                                <input type="radio" th:field="*{type}" id="type" value="Partnership" />
+                                Partnership
+                            </label>
+                        </div> <br />
+                        <div class="radio">
+                            <label>
+                                <input type="radio" th:field="*{type}" id="type" value="MDA"/>
+                                MDA
+                            </label>
+                        </div> <br />
+                        <div class="radio">
+                            <label>
+                                <input type="radio" th:field="*{type}" id="type" value="Public Sector" />
+                                Public Sector
+                            </label>
+                        </div> <br />
+                        <div class="radio">
+                            <label>
+                                <input type="radio" th:field="*{type}" id="type" value="PLC" />
+                                PLC
+                            </label>
+                        </div><br />
+                        <div class="radio">
+                            <label>
+                                <input type="radio" th:field="*{type}" id="type" value="LTD" />
+                                LTD
+                            </label>
+                        </div> <br />
+                    </div>
+                </div>
+                <div class="form-group form-inline">
+                    <label class="control-label requiredField col-md-6 col-lg-6" for="select">
+                        Industry
+                        <span class="asteriskField">
+                            *
+                        </span>
+                    </label>
+                    
+                    <div class="col-md-6 col-lg-6">
+                    <select class="select form-control " id="sector" th:field="*{sector}" multiple="true">
+                        <option value="Construction">Construction</option>
+                        <option value="MDAs">MDAs</option>
+                        <option value="Manufacturing">Manufacturing</option>
+                        <option value="Banking and finance">Banking and finance</option>
+                        <option value="Mining">Mining</option>
+                        <option value="Aviation">Aviation</option>
+                        <option value="Telecom">Telecom</option>
+                        <option value="Energy">Energy</option>
+                        <option value="Agriculture">Agriculture</option>
+                        <option value="Oil and Gas">Oil and Gas</option>
+                        <option value="Information Technology">Information Technology</option>
+                        <option value="Technology">Technology</option>
+                    </select>
+                    <span class="help-block" id="hint_select">
+                     Press Ctrl for multiple select
+                    </span>
+                    </div>
+                </div>
+
+                <div class="form-group form-inline">
+                    <label class="control-label col-md-6 col-lg-6" for="name">
+                        Others please specify
+                    </label>
+                    <div class="col-md-6 col-lg-6">
+                    <input type="text" th:field="*{otherSector}" id="otherSector" class="form-control " />
+                    <span class="help-block" id="hint_name">
+                        Separate with comma. e.g, item1, item2
+                    </span>
+                    </div>
+                </div>
+
+                <div class="form-group form-inline" id="Ownerf">
+                    <label class="control-label col-md-6 col-lg-6" for="name">
+                        Owner's First Name
+                    </label>
+                    <input type="text" th:field="*{firstName}" id="firstName" class="form-control col-md-6 col-lg-6" />
+                    <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" id="firstName-error" class="error" for="name"></label>
+                </div>
+                <!-- ./form-group -->
+                <div class="form-group form-inline" id="Ownerl">
+                    <label class="control-label col-md-6 col-lg-6" for="lastName">
+                        Owner's Last Name
+                    </label>
+                    <input type="text" th:field="*{lastName}" id="lastName" class="form-control col-md-6 col-lg-6" />
+                    <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" id="lastName-error" class="error" for="lastName"></label>
+                </div>
+                <!-- ./form-group -->
+
+                <div class="form-group form-inline" id="Ownerp">
+                    <label class="control-label col-md-6 col-lg-6" for="text">
+                        Position
+                    </label>
+                    <input type="text" th:field="*{position}" id="position" class="form-control col-md-6 col-lg-6" />
+                    <label th:if="${#fields.hasErrors('position')}" th:errors="*{position}" id="position-error" class="error" for="position"></label>
+                </div>
+
+                <!-- ./form-group -->
+                <div class="form-group form-inline" id="Ownere">
+                    <label class="control-label requiredField col-md-6 col-lg-6" for="email">
+                        Email
+                    </label>
+                    <input type="email" th:field="*{email2}" id="email" class="form-control col-md-6 col-lg-6" />
+                    <label th:if="${#fields.hasErrors('email2')}" th:errors="*{email2}" id="email-error" class="error" for="email"></label>
+                </div>
+
+                <!-- ./form-group -->
+                <div class="form-group form-inline" id="ModeID">
+                    <label class="control-label col-md-6 col-lg-6" for="select">
+                        Mode of Identification
+                    </label>
+                    <select class="select form-control col-md-6 col-lg-6" id="modeOfId" th:field="*{modeOfId}">
+                        <option value=""> </option>
+                        <option value="license"> Driver License </option>
+                        <option value="national"> National ID </option>
+                        <option value="passport"> International Passport </option>
+                    </select>
+                    <label th:if="${#fields.hasErrors('modeOfId')}" th:errors="*{modeOfId}" id="modeOfId-error" class="error" for="modeOfId"></label>
+                </div>
+
+                <div class="row license box hidden" id="license">
+                    <div class="form-group col-xs-6">
+                        <label class="control-label requiredField indentify" for="licenseNumber">
+                            Specify Driver's License Number
+                        </label>
+                        <input class="form-control" th:field="*{licenseNumber}" id="licenseNumber" name="licenseNumber" type="text" />
+                        <label th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}" id="licenseNumber-error" class="error" for="licenseNumber"></label>
+                    </div>
+                    <div class="form-group col-xs-6" >
+                        <label class="control-label requiredField" for="expiryDate">
+                            <span class="asteriskField">
+                                *
+                            </span>
+                            Expiry Date
+                        </label>
+                        <input class="form-control form_date" th:field="*{expiryDate}" id="expiryDate" type="text" />
+                        <label th:if="${#fields.hasErrors('expiryDate')}" th:errors="*{expiryDate}" id="expiryDate-error" class="error" for="expiryDate"></label>
+                    </div>
+                </div>     
+
+                <!-- ./form-group -->
+                <div class="form-group form-inline">
+                    <label class="control-label col-md-6 col-lg-6" for="phoneNumber">
+                        Mobile Number
+                    </label>
+                    <input type="text" th:field="*{phoneNumber2}" id="tel" class="form-control col-md-6 col-lg-6" />
+                    <label th:if="${#fields.hasErrors('phoneNumber2')}" th:errors="*{phoneNumber2}" id="phoneNumber-error" class="error" for="phoneNumber"></label>
+                </div>
+
+            </fieldset>
+        <!-- </form> -->
+        <!-- ./form -->
+    </div>
+    
+    <br /> <br /> <br />
+    <div class="container col-lg-11 col-md-11 downb">
+        <div class="form-group ">
+            <div id="downb" class="pull-right">
+                <button class="btn btn-primary btn-lg" name="Register" type="submit">
+                    Register
+                </button>
+            </div>
+        </div>
+    </div>
+        
+    </form>
+    <!-- ./col -->
+    <div class="footer row ">
+        <div class="container-fluid">
+            © 2015 Copyright: <a href="nsitf.gov.ng"> National Social Insurance Trust Fund </a>
+        </div>
+    </div>
+	
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover({
+            });
+        });
+         $(function(){
+         $('.form_date').datepicker();
+            $('#expiryDate').datepicker({ minDate : new Date() });
+          });
+    </script>
+	
+
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script> -->
+</body>
+
+</html>

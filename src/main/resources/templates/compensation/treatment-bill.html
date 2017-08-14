@@ -37,7 +37,7 @@
                     <label class="control-label requiredField" for="dateSustained">
                         Date injury/disease/death was sustained/diagnosed/occurred
                     </label>
-                    <input class="form-control" th:field="*{dateSustained}" id="dateSustained" name="dateSustained" type="date"/>
+                    <input class="form-control form_date" th:field="*{dateSustained}" id="dateSustained" name="dateSustained" type="date"/>
                     <label th:if="${#fields.hasErrors('dateSustained')}" th:errors="*{dateSustained}" id="dateSustained-error" class="error" for="dateSustained"></label>
                 </div>
 			 
@@ -49,7 +49,7 @@
                         <label class="control-label requiredField" for="date1">
                             Date
                         </label>
-                        <input class="form-control" th:field="*{date1}" id="date1" name="date1" placeholder="MM/DD/YYYY" type="date"/>
+                        <input class="form-control form_date" th:field="*{date1}" id="date1" name="date1" placeholder="MM/DD/YYYY" type="text"/>
                         <label th:if="${#fields.hasErrors('date1')}" th:errors="*{date1}" id="date1-error" class="error" for="date1"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -106,7 +106,7 @@
                         <label class="control-label requiredField" for="date3">
                             Date
                         </label>
-                        <input class="form-control" th:field="*{date3}" id="date3" name="date3" placeholder="MM/DD/YYYY" type="date"/>
+                        <input class="form-control form_date" th:field="*{date3}" id="date3" name="date3" placeholder="MM/DD/YYYY" type="text"/>
                         <label th:if="${#fields.hasErrors('date3')}" th:errors="*{date3}" id="date3-error" class="error" for="date3"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -134,7 +134,7 @@
                         <label class="control-label requiredField" for="date4">
                             Date
                         </label>
-                        <input class="form-control" th:field="*{date4}" id="date4" name="date4" placeholder="MM/DD/YYYY" type="date"/>
+                        <input class="form-control form_date" th:field="*{date4}" id="date4" name="date4" placeholder="MM/DD/YYYY" type="text"/>
                         <label th:if="${#fields.hasErrors('date4')}" th:errors="*{date4}" id="date4-error" class="error" for="date4"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">
@@ -162,7 +162,7 @@
                         <label class="control-label requiredField" for="date5">
                             Date
                         </label>
-                        <input class="form-control" th:field="*{date5}" id="date5" name="date5" placeholder="MM/DD/YYYY" type="date"/>
+                        <input class="form-control form_date" th:field="*{date5}" id="date5" name="date5" placeholder="MM/DD/YYYY" type="text"/>
                         <label th:if="${#fields.hasErrors('date5')}" th:errors="*{date5}" id="date5-error" class="error" for="date5"></label>
                     </div>
                     <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-6">

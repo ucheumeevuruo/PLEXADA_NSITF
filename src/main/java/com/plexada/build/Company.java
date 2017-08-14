@@ -18,8 +18,7 @@ import org.hibernate.validator.constraints.NotEmpty;
 //@Entity
 //@Table(name="USER")  
 public class Company implements Address{
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
+    
     private String id;
     @NotEmpty
     private String company;
@@ -46,8 +45,32 @@ public class Company implements Address{
     private String streetName;
     private String city;
     private String country;
+    @NotEmpty
+    private String staffEmulment;
+    @NotEmpty
+    private String type;
+    @NotEmpty
+    private String sector;
+    private String otherSector;
+    @NotEmpty
+    private String firstName;
+    @NotEmpty
+    private String lastName;
+    @NotEmpty
+    private String position;
+    @NotEmpty @Email
+    private String email2;
+    @NotEmpty
+    private String modeOfId;
+    //@NotEmpty
+    private String licenseNumber;
+    //@NotEmpty
+    private String expiryDate;
+    @NotEmpty
+    private String phoneNumber2;
     
     
+
     /**
      * @return the id
      */
@@ -258,8 +281,177 @@ public class Company implements Address{
         this.country = country;
     }
 
-    
+    /**
+     * @return the staffEmulment
+     */
+    public String getStaffEmulment() {
+        return staffEmulment;
+    }
 
+    /**
+     * @param staffEmulment the staffEmulment to set
+     */
+    public void setStaffEmulment(String staffEmulment) {
+        this.staffEmulment = staffEmulment;
+    }
+
+    /**
+     * @return the type
+     */
+    public String getType() {
+        return type;
+    }
+
+    /**
+     * @param type the type to set
+     */
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    /**
+     * @return the sector
+     */
+    public String getSector() {
+        return sector;
+    }
+
+    /**
+     * @param sector the sector to set
+     */
+    public void setSector(String sector) {
+        this.sector = sector;
+    }
+
+    /**
+     * @return the otherSector
+     */
+    public String getOtherSector() {
+        return otherSector;
+    }
+
+    /**
+     * @param otherSector the otherSector to set
+     */
+    public void setOtherSector(String otherSector) {
+        this.otherSector = otherSector;
+    }
+    
+    /**
+     * @return the firstName
+     */
+    public String getfirstName() {
+        return firstName;
+    }
+    
+    /**
+     * @param firstName the firstName to set
+     */
+    public void setfirstName(String firstName) {
+        this.firstName = firstName;
+    }
+    
+    /**
+     * @return the lastName
+     */
+    public String getlastName() {
+        return lastName;
+    }
+    
+    /**
+     * @param lastName the lastName to set
+     */
+    public void setlastName(String lastName) {
+        this.lastName = lastName;
+    }
+    
+    /**
+     * @return the position
+     */
+    public String getposition() {
+        return position;
+    }
+    
+    /**
+     * @param position the position to set
+     */
+    public void setposition(String position) {
+        this.position = position;
+    }
+    
+     /**
+     * @return the email2
+     */
+    public String getEmail2() {
+        return email2;
+    }
+
+    /**
+     * @param email2 the email2 to set
+     */
+    public void setEmail2(String email2) {
+        this.email2 = email2;
+    }
+    
+      /**
+     * @return the modeOfId
+     */
+    public String getmodeOfId() {
+        return modeOfId;
+    }
+
+    /**
+     * @param modeOfId the modeOfId to set
+     */
+    public void setmodeOfId(String modeOfId) {
+        this.modeOfId = modeOfId;
+    }
+    
+     /**
+     * @return the licenseNumber
+     */
+    public String getlicenseNumber() {
+        return licenseNumber;
+    }
+
+    /**
+     * @param licenseNumber the licenseNumber to set
+     */
+    public void setlicenseNumber(String licenseNumber) {
+        this.licenseNumber = licenseNumber;
+    } 
+    
+    /**
+     * @return the expiryDate
+     */
+    public String getexpiryDate() {
+        return expiryDate;
+    }
+
+    /**
+     * @param expiryDate the expiryDate to set
+     */
+    public void setexpiryDate(String expiryDate) {
+        this.expiryDate = expiryDate;
+    } 
+    
+    /**
+     * @return the phoneNumber2
+     */
+    public String getphoneNumber2() {
+        return phoneNumber2;
+    }
+
+    /**
+     * @param phoneNumber2 the phoneNumber2 to set
+     */
+    public void setphoneNumber2(String phoneNumber2) {
+        this.phoneNumber2 = phoneNumber2;
+    }
+    
+    //@Id
+    //@GeneratedValue(strategy = GenerationType.AUTO)
+  
     
     
 }

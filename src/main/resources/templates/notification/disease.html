@@ -102,7 +102,7 @@
                         </span>
                         Date Employee reported the disease
                     </label>
-                    <input class="form-control" th:field="*{reportDate}" id="reportDate" name="reportDate" type="date"/>
+                    <input class="form-control form_date" th:field="*{reportDate}" id="reportDate" name="reportDate" type="text"/>
                     <label th:if="${#fields.hasErrors('reportDate')}" th:errors="*{reportDate}" id="reportDate-error" class="error" for="reportDate"></label>
                 </div>
 			 
@@ -114,7 +114,7 @@
                             </span>
                             Time Employee Reported Disease (hh:mm:(AM/PM))
                         </label>
-                        <input class="form-control " th:field="*{reportTime}" id="reportTime" name="reportTime" type="time"/>
+                        <input class="form-control form_time" th:field="*{reportTime}" id="reportTime" name="reportTime" type="text"/>
                         <label th:if="${#fields.hasErrors('reportTime')}" th:errors="*{reportTime}" id="reportTime-error" class="error" for="reportTime"></label>
                     </div>
                 </div>
@@ -126,7 +126,7 @@
                         </span>
                         Date Disease was Diagnosed
                     </label>
-                    <input class="form-control" th:field="*{diagnosisDate}" id="diagnosisDate" name="diagnosisDate" type="date"/>
+                    <input class="form-control form_date" th:field="*{diagnosisDate}" id="diagnosisDate" name="diagnosisDate" type="text"/>
                     <label th:if="${#fields.hasErrors('diagnosisDate')}" th:errors="*{diagnosisDate}" id="diagnosisDate-error" class="error" for="diagnosisDate"></label>
                 </div>
 			 
@@ -148,7 +148,7 @@
                         </span>
                         Date on which employee ceased work due to injury/occupational disease
                     </label>
-                    <input class="form-control" th:field="*{ceaseDate}" id="ceaseDate" name="ceaseDate" type="date"/>
+                    <input class="form-control form_date" th:field="*{ceaseDate}" id="ceaseDate" name="ceaseDate" type="text"/>
                     <label th:if="${#fields.hasErrors('ceaseDate')}" th:errors="*{ceaseDate}" id="ceaseDate-error" class="error" for="ceaseDate"></label>
                 </div>
 			 
@@ -159,7 +159,7 @@
                         </span>
                         Date on which the employee resumed work?
                     </label>
-                    <input class="form-control" th:field="*{resumeDate}" id="resumeDate" name="resumeDate" type="date"/>
+                    <input class="form-control form_date" th:field="*{resumeDate}" id="resumeDate" name="resumeDate" type="text"/>
                     <label th:if="${#fields.hasErrors('resumeDate')}" th:errors="*{resumeDate}" id="resumeDate-error" class="error" for="resumeDate"></label>
                 </div>
 			 
@@ -313,7 +313,7 @@
                         </span>
                         Date of Birth
                     </label>
-                    <input class="form-control " th:field="*{dDob}" id="dDob" name="dDob" type="date"/>
+                    <input class="form-control form_date" th:field="*{dDob}" id="dDob" name="dDob" type="text"/>
                     <label th:if="${#fields.hasErrors('dDob')}" th:errors="*{dDob}" id="dDob-error" class="error" for="dDob"></label>
                 </div>
                 
@@ -352,7 +352,7 @@
                     <label class="control-label " for="dDob2">
                      Date of Birth
                     </label>
-                    <input class="form-control" th:field="*{dDob2}" id="dDob2" name="dDob2" type="date"/>
+                    <input class="form-control form_date" th:field="*{dDob2}" id="dDob2" name="dDob2" type="text"/>
                     <label th:if="${#fields.hasErrors('dDob2')}" th:errors="*{dDob2}" id="dDob2-error" class="error" for="dDob2"></label>
                 </div>
                 
@@ -389,7 +389,7 @@
                     <label class="control-label " for="dDob3">
                         Date of Birth
                     </label>
-                    <input class="form-control" th:field="*{dDob3}" id="dDob3" name="dDob3" type="date"/>
+                    <input class="form-control form_date" th:field="*{dDob3}" id="dDob3" name="dDob3" type="text"/>
                     <label th:if="${#fields.hasErrors('dDob3')}" th:errors="*{dDob3}" id="dDob3-error" class="error" for="dDob3"></label>
                 </div>
                 	
@@ -426,7 +426,7 @@
                     <label class="control-label " for="dDob4">
                         Date of Birth
                     </label>
-                    <input class="form-control" th:field="*{dDob4}" id="dDob4" name="dDob4" type="date"/>
+                    <input class="form-control form_date" th:field="*{dDob4}" id="dDob4" name="dDob4" type="text"/>
                     <label th:if="${#fields.hasErrors('dDob4')}" th:errors="*{dDob4}" id="dDob4-error" class="error" for="dDob4"></label>
                 </div> 
                 <br />
@@ -440,5 +440,6 @@
             </form>
         </div>
     </div>
+ 
 </body>
 </html>

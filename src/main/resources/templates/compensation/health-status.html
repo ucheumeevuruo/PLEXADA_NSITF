@@ -46,14 +46,14 @@
                     <label class="control-label requiredField" for="dateOfInjury">
                         Date on which the injury/disease/death was reported to the Employer
                     </label>
-                    <input class="form-control" th:field="*{dateOfInjury}" id="dateOfInjury" name="dateOfInjury" type="date"/>
+                    <input class="form-control form_date" th:field="*{dateOfInjury}" id="dateOfInjury" name="dateOfInjury" type="text"/>
                     <label th:if="${#fields.hasErrors('dateOfInjury')}" th:errors="*{dateOfInjury}" id="dateOfInjury-error" class="error" for="dateOfInjury"></label>
                 </div>
                 <div class="form-group ">
                     <label class="control-label requiredField" for="dateOfTreat">
                         Date of first treatment
                     </label>
-                    <input class="form-control" th:field="*{dateOfTreat}" id="dateOfTreat" name="dateOfTreat" type="date"/>
+                    <input class="form-control form_date" th:field="*{dateOfTreat}" id="dateOfTreat" name="dateOfTreat" type="text"/>
                     <label th:if="${#fields.hasErrors('dateOfTreat')}" th:errors="*{dateOfTreat}" id="dateOfTreat-error" class="error" for="dateOfTreat"></label>
                 </div>
                 <br />
@@ -155,6 +155,8 @@
             </form>
         </div>
     </div>
+    
+   
 </body>
 
 </html>

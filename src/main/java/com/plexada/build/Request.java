@@ -20,23 +20,8 @@ public class Request {
         return new Company();
     }
     
-    public Emulment emulment()
-    {
-        return new Emulment();
-    }
-    
-    public Sector sector()
-    {
-        return new Sector();
-    }
-    
     public OwnersParticular particular()
     {
         return new OwnersParticular();
-    }
-    
-    public Employee employee()
-    {
-        return new Employee();
     }
 }

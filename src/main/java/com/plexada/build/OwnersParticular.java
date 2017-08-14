@@ -5,14 +5,18 @@
  */
 package com.plexada.build;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 /**
  *
  * @author SAP Training
  */
 public class OwnersParticular{
+
     @NotEmpty
     private String firstName;
     @NotEmpty
@@ -20,7 +24,7 @@ public class OwnersParticular{
     @NotEmpty
     private String position;
     @NotEmpty @Email
-    private String email;
+    private String email2;
     @NotEmpty
     private String modeOfId;
     //@NotEmpty
@@ -29,10 +33,26 @@ public class OwnersParticular{
     private String expiryDate;
     @NotEmpty
     private String phoneNumber;
+    @NotEmpty
+    private String ownersFirstName;
+    @NotEmpty
+    private String ownersOtherName;
+    @NotEmpty
+    private String ownersPosition;
+    @NotEmpty
+    private String staffID;
+    //@NotEmpty    
+    private MultipartFile stamp;
+    @NotEmpty
+    private String agreement;
+    private List<byte[]> file = new ArrayList();
 
+    
     /**
      * @return the firstName
      */
+    
+    
     public String getFirstName() {
         return firstName;
     }
@@ -73,17 +93,17 @@ public class OwnersParticular{
     }
 
     /**
-     * @return the email
+     * @return the email2
      */
-    public String getEmail() {
-        return email;
+    public String getEmail2() {
+        return email2;
     }
 
     /**
-     * @param email the email to set
+     * @param email2 the email2 to set
      */
-    public void setEmail(String email) {
-        this.email = email;
+    public void setEmail2(String email2) {
+        this.email2 = email2;
     }
 
     /**
@@ -128,8 +148,6 @@ public class OwnersParticular{
         this.expiryDate = expiryDate;
     }
 
-    
-
     /**
      * @return the phoneNumber
      */
@@ -142,6 +160,98 @@ public class OwnersParticular{
      */
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    /**
+     * @return the ownersFirstName
+     */
+    public String getOwnersFirstName() {
+        return ownersFirstName;
+    }
+
+    /**
+     * @param ownersFirstName the ownersFirstName to set
+     */
+    public void setOwnersFirstName(String ownersFirstName) {
+        this.ownersFirstName = ownersFirstName;
+    }
+
+    /**
+     * @return the ownersOtherName
+     */
+    public String getOwnersOtherName() {
+        return ownersOtherName;
+    }
+
+    /**
+     * @param ownersOtherName the ownersOtherName to set
+     */
+    public void setOwnersOtherName(String ownersOtherName) {
+        this.ownersOtherName = ownersOtherName;
+    }
+
+    /**
+     * @return the ownersPosition
+     */
+    public String getOwnersPosition() {
+        return ownersPosition;
+    }
+
+    /**
+     * @param ownersPosition the ownersPosition to set
+     */
+    public void setOwnersPosition(String ownersPosition) {
+        this.ownersPosition = ownersPosition;
+    }
+
+    /**
+     * @return the staffID
+     */
+    public String getStaffID() {
+        return staffID;
+    }
+
+    /**
+     * @param staffID the staffID to set
+     */
+    public void setStaffID(String staffID) {
+        this.staffID = staffID;
+    }
+
+    /**
+     * @return the stamp
+     */
+    public MultipartFile getStamp() {
+        return stamp;
+    }
+
+    /**
+     * @param stamp the stamp to set
+     */
+    public void setStamp(MultipartFile stamp) {
+        this.stamp = stamp;
+    }
+
+    /**
+     * @return the agreement
+     */
+    public String getAgreement() {
+        return agreement;
+    }
+
+    /**
+     * @param agreement the agreement to set
+     */
+    public void setAgreement(String agreement) {
+        this.agreement = agreement;
+    }
+    
+    public List<byte[]> getFile(){
+        return this.file;
+    }
+    
+    public void setFile(List<byte[]> file){
+        this.file = file;
     }
 }
 

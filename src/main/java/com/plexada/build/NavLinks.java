@@ -18,11 +18,16 @@ public class NavLinks {
     
     public List<Link> registrationSidebarLinks(){
         list =  new ArrayList();
+        link = new Link();
         link.setHref("/account/");
-        link.setValue("Particulars for business (for MDAs, public and private companies)");
+        link.setValue("Particulars for business (for MDAs, public and private companies), Total Emolument & Business sector categories");
         list.add(link);
         link = new Link();
         link.setHref("/account/second-page");
+        link.setValue("Particulars of owner(s) of organization (for  partnership & sole proprietorship) & Declaration by employer or authorized person");
+        list.add(link);
+        link = new Link();
+        /*link.setHref("/account/second-page");
         link.setValue("Total Emolument");
         list.add(link);
         link = new Link();
@@ -37,7 +42,7 @@ public class NavLinks {
         link.setHref("/account/fifth-page");
         link.setValue("Declaration by employer or authorized person");
         list.add(link);
-        link = new Link();
+        link = new Link();*/
         link.setHref("/account/preview");
         link.setValue("Preview Registration");
         list.add(link);
@@ -100,21 +105,36 @@ public class NavLinks {
         return list;
     }
     
-    public static List<Link> ECSLoginSidebarLinks(){
+    public static List<Link> LoginSidebarLinks(){
         list = new ArrayList();
+        link = new Link();
         link.setHref("/ecs/login");
         link.setValue("Login");
         list.add(link);
         return list;
     }
     
-    public static List<Link> ECSHomeSidebarLinks(){
+    public static List<Link> HomeSidebarLinks(){
         list =  new ArrayList();
-        link.setHref("/ecs/home");
-        link.setValue("Home");
+        link = new Link();
+        link.setHref("/home");
+        link.setValue("HOME");
+        list.add(link);
+        link = new Link();
+        link.setHref("/account");
+        link.setValue("REGISTER");
+        list.add(link);
+        link = new Link();
+        link.setHref("/home/registered");
+        link.setValue("REGISTERED EMPLOYERS");
+        list.add(link);       
+        link = new Link();
+        link.setHref("/home/search");
+        link.setValue("SEARCH");
         list.add(link);
         return list;
     }
+    
     /*
      Employer and Employee Details
 

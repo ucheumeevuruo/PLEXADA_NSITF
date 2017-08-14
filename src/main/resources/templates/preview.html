@@ -2,12 +2,19 @@
 <html>
 
 <head>
+    
     <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
+    
 </head>
 <body>
 <div class="container">
     <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+    <div class="col-md-3 col-lg-3 col-xs-12"> </div>
     <div class="col-md-6 col-sm-6 col-xs-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">PREVIEW</div>
+		
+            <div class="panel-body">
         <form method="post" th:action="@{/account/save}">
             <table class="table table-condensed">
                 <thead class="navbar navbar-default">
@@ -74,7 +81,7 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td class="text-uppercase" th:text="${emulment.staffEmulment}"></td>
+                        <td class="text-uppercase" th:text="${company.staffEmulment}"></td>
                     </tr>
                 </tbody>
             </table> 
@@ -89,55 +96,31 @@
                 <tbody>
                     <tr>
                         <th class="text-uppercase">class of business</th>
-                        <td class="text-uppercase" th:text="${sector.type}"></td>
+                        <td class="text-uppercase" th:text="${company.type}"></td>
                     </tr>
-                    <tr th:switch="${sector.otherSector != null}">
-                        <th class="text-uppercase">business sector categories</th>
-                        <td th:case="#{false}" class="text-uppercase" th:text="${sector.sector + ',' + sector.otherSector}"></td>
-                        <td th:case="#{true}" class="text-uppercase" th:text="${sector.sector}"></td>
-                    </tr>
-                </tbody>
-            </table> 
-            <table class="table table-condensed" th:if="${not #lists.isEmpty(particular.modeOfId)}">
-                <thead class="navbar navbar-default">
-                    <tr>
-                        <th colspan="2">
-                            Declaration by employer or authorized person
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th class="text-uppercase">name</th>
-                        <td class="text-uppercase" th:text="${employee.firstName + ' ' + employee.otherName}"></td>
-                    </tr>
-                    <tr>
-                        <th class="text-uppercase">position</th>
-                        <td class="text-uppercase" th:text="${employee.position}"></td>
-                    </tr>
-                    <tr>
-                        <th class="text-uppercase">Signature or thumb print</th>
-                        <td class="text-uppercase"><img th:src="@{'data:image/jpeg;base64,'+${images[0]}}" alt="image" class="img-thumbnail img-responsive" width="300px" /></td>
-                    </tr>
-                    <tr>
-                        <th class="text-uppercase">official stamp</th>
-                        <td class="text-uppercase"><img th:src="@{'data:image/jpeg;base64,'+${images[1]}}" alt="image" class="img-thumbnail img-responsive" width="300px" /></td>
+                    <tr th:switch="${company.otherSector != null}">
+                        <th class="text-uppercase">year of incorporation</th>
+                        <td th:case="#{false}" class="text-uppercase" th:text="${company.sector + ',' + company.otherSector}"></td>
+                        <td th:case="#{true}" class="text-uppercase" th:text="${company.sector}"></td>
                     </tr>
                 </tbody>
             </table> 
             
-            <div class="form-group">
-                <div id="Next" class="pull-right">
-                    <a class="btn btn-success" href="/account/fifth-page">
-                       Back 
-                    </a>
-                    <button class="btn btn-success" type="submit">
-                         Save
-                    </button>
+            <div class="form-group pull-right">
+                <div id="Next">
+                   <button class="btn btn-success" name="Next" type="submit">
+                        Save
+                   </button>
                 </div>
             </div>
         </form>
-    </div>
+            </div> </div> </div>
 </div>
+    
+    <div class="footer row ">
+        <div class="container-fluid">
+            © 2015 Copyright: <a href="nsitf.gov.ng"> National Social Insurance Trust Fund </a>
+        </div>
+    </div>
 </body>
 </html>

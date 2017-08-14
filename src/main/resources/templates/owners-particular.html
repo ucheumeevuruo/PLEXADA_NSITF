@@ -10,7 +10,13 @@
         <!-- col -->
         <div class="col-md-6 col-sm-6 col-xs-12">
             <!-- form -->
-            <form method="post" th:action="@{/account/fourth-page}" th:object="${particular}" id="registration-form">
+            <form method="post" action="" th:object="${particular}" id="registration-form" enctype="multipart/form-data">
+                
+                <p class="comp-title"> 
+                OWNERS PARTICULAR  
+                </p>
+                <br />
+            
                 <div class="row">
                 <div class="form-group col-md-6 col-sm-6 col-xs-12" id="Ownerf">
                     <label class="control-label" for="name">
@@ -76,7 +82,7 @@
                             </span>
                             Expiry Date
                         </label>
-                        <input class="form-control" th:field="*{expiryDate}" id="expiryDate" type="date" />
+                        <input class="form-control form_date" th:field="*{expiryDate}" id="expiryDate" type="text" />
                         <label th:if="${#fields.hasErrors('expiryDate')}" th:errors="*{expiryDate}" id="expiryDate-error" class="error" for="expiryDate"></label>
                     </div>
                 </div>     
@@ -89,10 +95,108 @@
                     <input type="text" th:field="*{phoneNumber}" id="tel" class="form-control" />
                     <label th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" id="phoneNumber-error" class="error" for="phoneNumber"></label>
                 </div>
+                
+                <br />
+                <p class="comp-title"> 
+                DECLARATION (by employer or authorized person)
+                </p>
+                <br />
+            
+                <div class="row">
+         <div class="form-group col-lg-6 col-md-6 col-sm-6" id="FName">
+          <label class="control-label requiredField" for="name">
+           First Name
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <input type="text" th:field="*{ownersFirstName}" id="first-name" class="form-control" />
+          <label th:if="${#fields.hasErrors('ownersFirstName')}" th:errors="*{ownersFirstName}" id="ownersFirstName-error" class="error" for="ownersFirstName"></label>
+         </div>
+         <div class="form-group col-lg-6 col-md-6 col-sm-6" id="OtherN">
+          <label class="control-label requiredField" for="name1">
+           Other Names
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <input type="text" th:field="*{ownersOtherName}" id="other-name" class="form-control" />
+          <label th:if="${#fields.hasErrors('ownersOtherName')}" th:errors="*{ownersOtherName}" id="ownersOtherName-error" class="error" for="ownersOtherName"></label>
+         </div>
+         </div>
+         
+         <div class="row">
+         <div class="form-group col-lg-6 col-md-6 col-sm-6" id="PSTN">
+          <label class="control-label requiredField" for="Position">
+           Position
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <input type="text" th:field="*{ownersPosition}" id="position" class="form-control" />
+          <label th:if="${#fields.hasErrors('ownersPosition')}" th:errors="*{ownersPosition}" id="ownersPosition-error" class="error" for="ownersPosition"></label>
+         </div>
+         <div class="form-group col-lg-6 col-md-6 col-sm-6" id="SID">
+          <label class="control-label requiredField" for="StaffID">
+           Staff ID
+           <span class="asteriskField">
+                *
+           </span>
+          </label>
+          <input type="text" th:field="*{staffID}" id="StaffID" class="form-control" />
+          <label th:if="${#fields.hasErrors('staffID')}" th:errors="*{staffID}" id="staffID-error" class="error" for="staffID"></label>
+         </div>
+         </div>    
+             
+         <div class="form-group">
+          <!-- <label class="control-label requiredField">
+           Check all that apply
+           <span class="asteriskField">
+                *
+           </span>
+          </label> -->
+          <div class="">
+          <div id="sign col-lg-6 col-md-6 col-sm-6">
+           Signature
+           <span class="asteriskField">
+                *
+           </span>
+            <input type="file" name="images" id="signature" />
+          <span class="help-block" id="hint_name">
+           *Minimum 200*200px <br /> *Maximum size 200kb <br /> *Supports only JPEG, PNG and GIF
+          </span>
+          </div>
+
+          <div id="offstamp col-lg-6 col-md-6 col-sm-6">
+          Official stamp
+           <span class="asteriskField">
+                *
+           </span>
+           <input type="file" name="images" id="stamp" />
+          <span class="help-block" id="hint_name">
+           *Minimum 200*200px <br /> *Maximum size 200kb <br /> *Supports only JPEG, PNG and GIF
+          </span>
+          </div>
+          </div>
+          <br />
+          <br />
+          <div class="">
+           <div class="checkbox">
+                <label>
+                    <input th:field="*{agreement}" type="checkbox" value="I agree" />
+                    I agree to NSITF 
+                    <a href="#" class="btn-link" data-trigger="focus" data-toggle="popover" placement="top" title="Terms and Conditions" data-content="I confirm that the information I have given is true to the best of my knowledge. I agree to indemnify NSITF for any loss arising from relying on the information I have provided and acknowledge that Penalty may be invoked in accordance with Section 65 of the Employees’ Compensation Act, 2010 where it is found that I have wilfully given incorrect information.">
+                        Terms and Conditions
+                    </a>
+                    and certify that the above particulars are correct
+                </label>
+           </div>
+          </div>
+        </div>
                 <!-- ./form-group -->
                 <div class="form-group">
                     <div id="downb" class="pull-right">
-                        <a class="btn btn-success" href="/account/third-page">
+                        <a class="btn btn-success" href="/account">
                             Back
                         </a>
                         <button class="btn btn-success" name="Next" type="submit">
@@ -106,5 +210,17 @@
         </div>
         <!-- ./col -->
     </div>
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('[data-toggle="popover"]').popover({
+            });
+        });
+         $(function(){
+         $('.form_date').datepicker();
+            $('#expiryDate').datepicker({ minDate : new Date() });
+          });
+    </script>
+    
+   
 </body>
 </html>
