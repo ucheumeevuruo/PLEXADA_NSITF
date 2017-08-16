@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    
+    <!--/*/ <th:block th:include="fragments/header_inc :: head"></th:block> /*/-->
+
+</head>
+
+<body>
+    <div class="container">
+        <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
+    </div>
+
+
+    <div class="field-border col-sm-offset-3 col-md-6 col-lg-offset-3 col-lg-6" id="upload-container">
+        <div class="panel panel-default">
+            <div class="panel-heading">EMPLOYEE LIST</div>
+		
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div id="emplist">
+                        Employee List
+                        <span class="asteriskField">
+                             *
+                        </span>
+                        <input type="file" name="list" id="employeelist" />
+                        <span class="help-block" id="hint_name">
+                        *Maximum size 200kb <br /> *Supports only CSV
+                        </span>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div id="downb" class="pull-right">
+                        <button class="btn btn-primary btn-lg" name="Upload" type="submit">
+                            Upload
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>

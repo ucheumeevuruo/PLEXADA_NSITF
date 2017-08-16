@@ -104,7 +104,27 @@
                         <td th:case="#{true}" class="text-uppercase" th:text="${company.sector}"></td>
                     </tr>
                 </tbody>
-            </table> 
+            </table>
+            
+            <table class="table table-condensed">
+                <thead class="navbar navbar-default">
+                    <tr>
+                        <th colspan="2">
+                            UPLOADS
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                       <th class="text-uppercase">Signature or thumb print</th>
+                        <td class="text-uppercase"><img th:src="@{'data:image/jpeg;base64,'+${images[0]}}" alt="image" class="img-thumbnail img-responsive" width="300px" /></td> 
+                    </tr>
+                    <tr>
+                        <th class="text-uppercase">official stamp</th>
+                        <td class="text-uppercase"><img th:src="@{'data:image/jpeg;base64,'+${images[1]}}" alt="image" class="img-thumbnail img-responsive" width="300px" /></td>
+                    </tr>
+                </tbody>
+            </table>
             
             <div class="form-group pull-right">
                 <div id="Next">

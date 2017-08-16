@@ -71,7 +71,12 @@ a.navbar-brand.navbar-link{
 	line-height: 30px;
 }
 
+upload-container {
+    padding-top: 10px;
+}
+
 .footer {
+        min-height: 10vh;
 	height: 50px;
 	clear: both;
 	text-align: center;
@@ -92,15 +97,14 @@ a.navbar-brand.navbar-link{
 	
 }*/
 
-fieldset
-	{
-		border: 1px solid #ddd !important;
-		margin: 0;
-		padding: 10px;       
-		position: relative;
-		border-radius:4px;
-		background-color:#f5f5f5;
-		padding-left:10px!important;
+fieldset {
+        border: 1px solid #ddd !important;
+        margin: 0;
+        padding: 10px;       
+        position: relative;
+        border-radius:4px;
+        background-color:#f5f5f5;
+        padding-left:10px!important;
 }
 
 legend

@@ -12,7 +12,7 @@
         <!--/*/ <th:block th:include="fragments/header_left_sidebar :: navbar"></th:block> /*/-->
     </div>
     
-    <form method="post" th:action="@{/account/}" th:object="${employee}" id="registration-form">
+    <form method="post" th:action="@{/account/}" th:object="${employee}" id="registration-form" enctype="multipart/form-data">
 	
     <div class="field-border col-md-1 col-lg-1">
     </div>
@@ -23,7 +23,8 @@
 		
             <div class="panel-body">
 		<!-- <form method="post" th:action="@{/account/}" th:object="${employee}" id="registration-form"> -->
-                    <div class="form-group form-inline">
+                <div class="form-horizontal">
+                    <div class="form-group form-inline ">
                         <label class="control-label requiredField col-md-6 col-lg-6" for="CompName">
                             <span class="asteriskField">
                             *
@@ -179,7 +180,7 @@
                     </label>
                     <input th:field="*{staffEmulment}" class="form-control currency col-md-6 col-lg-6" id="staffEmulment" type="number" min="100" />
                 </div>
-                    
+               </div>     
                 <!-- </form> -->
             </div>
 	</div>
@@ -197,7 +198,7 @@
                 <p class="comp-title col-md-12 col-lg-12"> 
                     BUSINESS SECTOR 
                 </p> <br />
-
+                <div class="form-horizontal">
                 <div class="form-group form-inline">
                     <label class="control-label requiredField col-md-6 col-lg-6">
                         Class of Business
@@ -333,25 +334,27 @@
                     <label th:if="${#fields.hasErrors('modeOfId')}" th:errors="*{modeOfId}" id="modeOfId-error" class="error" for="modeOfId"></label>
                 </div>
 
-                <div class="row license box hidden" id="license">
-                    <div class="form-group col-xs-6">
-                        <label class="control-label requiredField indentify" for="licenseNumber">
-                            Specify Driver's License Number
-                        </label>
-                        <input class="form-control" th:field="*{licenseNumber}" id="licenseNumber" name="licenseNumber" type="text" />
-                        <label th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}" id="licenseNumber-error" class="error" for="licenseNumber"></label>
-                    </div>
-                    <div class="form-group col-xs-6" >
-                        <label class="control-label requiredField" for="expiryDate">
-                            <span class="asteriskField">
-                                *
-                            </span>
-                            Expiry Date
-                        </label>
-                        <input class="form-control form_date" th:field="*{expiryDate}" id="expiryDate" type="text" />
-                        <label th:if="${#fields.hasErrors('expiryDate')}" th:errors="*{expiryDate}" id="expiryDate-error" class="error" for="expiryDate"></label>
-                    </div>
-                </div>     
+               
+                    <div class="form-group form-inline row license box hidden col-lg-12 col-md-12" id="license">
+                        <div class="col-lg-6 col-md-6 col-xs-6">
+                            <label class="control-label requiredField indentify" for="licenseNumber">
+                                Driver's License Number
+                            </label>
+                            <input class="form-control" th:field="*{licenseNumber}" id="licenseNumber" name="licenseNumber" type="text" />
+                            <label th:if="${#fields.hasErrors('licenseNumber')}" th:errors="*{licenseNumber}" id="licenseNumber-error" class="error" for="licenseNumber"></label>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-xs-6" >
+                            <label class="control-label requiredField" for="expiryDate">
+                                <span class="asteriskField">
+                                    *
+                                </span>
+                                Expiry Date
+                            </label>
+                            <input class="form-control form_date" th:field="*{expiryDate}" id="expiryDate" type="text" />
+                            <label th:if="${#fields.hasErrors('expiryDate')}" th:errors="*{expiryDate}" id="expiryDate-error" class="error" for="expiryDate"></label>
+                        </div>
+                    </div> 
+                
 
                 <!-- ./form-group -->
                 <div class="form-group form-inline">
@@ -361,12 +364,45 @@
                     <input type="text" th:field="*{phoneNumber2}" id="tel" class="form-control col-md-6 col-lg-6" />
                     <label th:if="${#fields.hasErrors('phoneNumber2')}" th:errors="*{phoneNumber2}" id="phoneNumber-error" class="error" for="phoneNumber"></label>
                 </div>
+                </div>
 
             </fieldset>
         <!-- </form> -->
         <!-- ./form -->
     </div>
     
+    <div class="field-border col-sm-offset-1 col-md-10 col-lg-offset-1 col-lg-10" id="upload-container">
+        <div class="panel panel-default">
+            <div class="panel-heading">FILE UPLOAD</div>
+		
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div id="sign" class="col-lg-6 col-md-6 col-sm-6">
+                        Signature
+                        <span class="asteriskField">
+                             *
+                        </span>
+                        <input type="file" name="images" id="images" />
+                        <span class="help-block" id="hint_name">
+                         *Minimum 200*200px <br /> *Maximum size 200kb <br /> *Supports only JPEG, PNG and GIF
+                        </span>
+                    </div>
+
+                    <div id="offstamp col-lg-6 col-md-6 col-sm-6">
+                        Official stamp
+                        <span class="asteriskField">
+                             *
+                        </span>
+                        <input type="file" name="images" id="images" />
+                        <span class="help-block" id="hint_name">
+                         *Minimum 200*200px <br /> *Maximum size 200kb <br /> *Supports only JPEG, PNG and GIF
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+                
     <br /> <br /> <br />
     <div class="container col-lg-11 col-md-11 downb">
         <div class="form-group ">
@@ -380,7 +416,7 @@
         
     </form>
     <!-- ./col -->
-    <div class="footer row ">
+    <div class="footer row">
         <div class="container-fluid">
             © 2015 Copyright: <a href="nsitf.gov.ng"> National Social Insurance Trust Fund </a>
         </div>

@@ -81,11 +81,11 @@ $(document).ready(function(){
                 $(".box").addClass("hidden");
             }else{
                 if($(this).val() === "license"){
-                    $(".box label.indentify").text("Specify Driver's License Number");
+                    $(".box label.indentify").text("Driver's License Number");
                 }else if($(this).val() === "national"){
-                    $(".box label.indentify").text("Specify National ID Number");
+                    $(".box label.indentify").text("National ID Number");
                 }else if($(this).val() === "passport"){
-                    $(".box label.indentify").text("Specify International Passport Number");
+                    $(".box label.indentify").text("International Passport Number");
                 }
                 $(".box").removeClass("hidden");
             }

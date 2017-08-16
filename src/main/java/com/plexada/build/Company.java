@@ -6,8 +6,11 @@
 package com.plexada.build;
 
 import com.plexada.model.impl.Address;
+import java.util.ArrayList;
+import java.util.List;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
+import org.springframework.web.multipart.MultipartFile;
 
 //import com.journaldev.spring.form.validator.Phone;
 
@@ -17,7 +20,7 @@ import org.hibernate.validator.constraints.NotEmpty;
  */
 //@Entity
 //@Table(name="USER")  
-public class Company implements Address{
+public class Company{
     
     private String id;
     @NotEmpty
@@ -68,6 +71,8 @@ public class Company implements Address{
     private String expiryDate;
     @NotEmpty
     private String phoneNumber2;
+    private MultipartFile images;
+    private List<byte[]> file = new ArrayList();
     
     
 
@@ -449,6 +454,27 @@ public class Company implements Address{
         this.phoneNumber2 = phoneNumber2;
     }
     
+    /**
+     * @return the images
+     */
+    public MultipartFile getImages() {
+        return images;
+    }
+
+    /**
+     * @param images the stamp to set
+     */
+    public void setImages(MultipartFile images) {
+        this.images = images;
+    }
+    
+     public List<byte[]> getFile(){
+        return this.file;
+    }
+    
+    public void setFile(List<byte[]> file){
+        this.file = file;
+    }
     //@Id
     //@GeneratedValue(strategy = GenerationType.AUTO)
   
