@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.plexada.model;
+package com.plexada.domain;
 
 import com.plexada.build.Customer;
 import java.sql.ResultSet;

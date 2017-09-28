@@ -6,7 +6,7 @@
 package com.plexada.services;
 
 import com.plexada.doa.BranchMapper;
-import com.plexada.model.Branch;
+import com.plexada.domain.Branch;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;

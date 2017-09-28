@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.plexada.model;
+package com.plexada.domain;
 
 /**
  *
  * @author SAP Training
  */
-public class States {
+public class Regions {
     private Integer id;
     private String name;
     
@@ -40,4 +40,6 @@ public class States {
     public void setName(String name) {
         this.name = name;
     }
+    
+    
 }

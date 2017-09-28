@@ -368,6 +368,11 @@
             <artifactId>SiebelJI_enu</artifactId>
             <version>1.1</version>
         </dependency>
+        <dependency>
+            <groupId>com.siebel</groupId>
+            <artifactId>NSITF_PROJECT</artifactId>
+            <version>1.0</version>
+        </dependency>
         <!--<dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
@@ -378,15 +383,6 @@
             <version>4.2.2.RELEASE</version>
             <type>jar</type>
         </dependency>-->
-        
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-        </dependency>
         <!--<dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-validator</artifactId>
@@ -403,11 +399,45 @@
             <version>1.4.7</version>
         </dependency>-->
         <dependency>
-            <groupId>com.0opslab</groupId>
-            <artifactId>0opslab-utils</artifactId>
-            <version>1.0.8</version>
+            <groupId>org.springframework.data</groupId>
+            <artifactId>spring-data-jpa</artifactId>
+            <version>1.11.3.RELEASE</version>
             <type>jar</type>
         </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-jpa</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-thymeleaf</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<!--WebJars-->
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>3.3.4</version>
+		</dependency>
+		<dependency>
+			<groupId>org.webjars</groupId>
+			<artifactId>jquery</artifactId>
+			<version>2.1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>com.h2database</groupId>
+			<artifactId>h2</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
     </dependencies>
 
     <build>
@@ -445,7 +475,7 @@
                             <wsdlFiles>
                                 <wsdlFile>http---siebel.com-CustomUI_NSITF Employer Insert_Update WF.WSDL.wsdl</wsdlFile>
                             </wsdlFiles>
-                            <packageName>com.plexada.webservice</packageName>
+                            <packageName>com.plexada.controller</packageName>
                             <vmArgs>
                                 <vmArg>-Djavax.xml.accessExternalSchema=all</vmArg>
                             </vmArgs>

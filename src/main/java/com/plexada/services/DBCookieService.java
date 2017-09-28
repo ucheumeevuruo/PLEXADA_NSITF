@@ -8,7 +8,7 @@ package com.plexada.services;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;
-import com.plexada.model.Cookie;
+import com.plexada.domain.Cookie;
 
 /**
  *

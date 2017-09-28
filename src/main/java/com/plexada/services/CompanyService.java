@@ -5,97 +5,51 @@
  */
 package com.plexada.services;
 
-import com.plexada.build.Company;
+import com.plexada.domain.Company;
 import com.plexada.build.OwnersParticular;
-import com.plexada.doa.StateMapper;
-import com.plexada.model.impl.Address;
-import java.sql.Date;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Map;
-import javax.sql.DataSource;
-import org.springframework.jdbc.core.JdbcTemplate;
+import com.siebel.customui.InsertUpdateCompany1Input;
+import com.siebel.customui.InsertUpdateCompany1Output;
+import com.siebel.customui.NSITFSpcEmployerSpcInsertUpdateSpcWF;
+import com.siebel.customui.NSITFSpcEmployerSpcInsertUpdateSpcWF_Service;
+import com.siebel.eai.SiebelBusinessServiceException;
+import com.siebel.xml.wsaccount.Account;
+import com.siebel.xml.wsaccount.ListOfSampleAccount;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author SAP Training
  */
+@Service
 public class CompanyService{
-    private DataSource dataSource;
-    private JdbcTemplate jdbcTemplateObject;
-    private static final String TABLE = "company";
-    private String SQL;
-    
-    public void setDataSource(DataSource dataSource) {
-        this.dataSource = dataSource;
-        this.jdbcTemplateObject = new JdbcTemplate(this.dataSource);
-    }
-
-    public void insert(Company company, OwnersParticular particular){
-        SQL = "insert into " + TABLE + "(id, name, rc_number, email, mobile_number, state, province, region, branch, block_no, street_address, position,owner) values (AUTO_INCREMENT.NEXTVAL,?,?,?,?,?,?,?,?,?,?,?,?)";
-        jdbcTemplateObject.update( SQL, 
-            company.getCompany(), 
-            company.getIncNumber(), 
-            company.getEmail(), 
-            company.getPhoneNumber(), 
-            company.getState(), 
-            company.getProvince(),
-            company.getRegion(),
-            company.getBranch(),
-            company.getHouseNo(),
-            company.getStreetName(),
-            particular.getPosition(),
-            (particular.getFirstName() + " " + particular.getLastName())
-        );
-        System.out.println(SQL);
-    }
-    
-    public Boolean update(Company company, OwnersParticular particular){
-        Boolean returns = false;
-        SQL = "UPDATE TABLE SET NAME = ?, RC_NUMBER = ?, EMAIL = ?, MOBILE_NUMBER = ?, STATE = ?, PROVINCE = ?, REGION = ?, BRANCH = ?, BLOCK_NO = ?, STREET_ADDRESS = ?, POSITION = ?, OWNER = ? WHERE ID = ?";
-        int updateSql = jdbcTemplateObject.update(SQL, 
-            company.getCompany(), 
-            company.getIncNumber(), 
-            company.getEmail(), 
-            company.getPhoneNumber(), 
-            company.getState(), 
-            company.getProvince(),
-            company.getRegion(),
-            company.getBranch(),
-            company.getHouseNo(),
-            company.getStreetName(),
-            particular.getPosition(),
-            particular.getLastName()
-        );
-        if(updateSql > 0){
-            returns = true;
+    public void insert(Company company) throws SiebelBusinessServiceException{
+        
+        try { // Call Web Service Operation
+            NSITFSpcEmployerSpcInsertUpdateSpcWF_Service service = new NSITFSpcEmployerSpcInsertUpdateSpcWF_Service();
+            NSITFSpcEmployerSpcInsertUpdateSpcWF port = service.getNSITFSpcEmployerSpcInsertUpdateSpcWF();
+            // TODO initialize WS operation arguments here
+            Account a = new Account();
+            a.setName(company.getCompany());
+            a.setIncorporationNo(company.getIncNumber());
+            a.setCSN(company.getTinNum());
+            a.setEmployerEmailAddress(company.getEmail());
+            a.setMobilePhoneNumber(company.getPhoneNumber());
+            a.setYearIncorporated(company.getIncYear());
+            a.setLocation(company.getHouseNo() + company.getStreetName());
+            a.setOwnersFirstName(company.getfirstName());
+            a.setOwnersLastName(company.getlastName());
+            a.setOwnersIdExpiryDate(company.getexpiryDate());
+            a.setOwnersPhoneNum(company.getphoneNumber2());
+            a.setOwnersPhoneNum(company.getphoneNumber2());
+            InsertUpdateCompany1Input insert = new InsertUpdateCompany1Input();
+            ListOfSampleAccount acc = insert.getListOfSampleAccount();
+            acc.setAccount(a);
+            // TODO process result here
+            InsertUpdateCompany1Output result = port.insertUpdateCompany1(insert);
+            System.out.println("Result = "+result);
+        } catch (Exception ex) {
+            // TODO handle custom exceptions here
+            throw new SiebelBusinessServiceException("CONN_EXCPT", ex.getMessage());
         }
-        return returns;
     }
-    
-    public List<Map<String, Object>> findByObjectId(String Id) {
-        Id = "%" + Id + "%";
-        SQL = "select * from " + TABLE + " WHERE RC_NUMBER LIKE ? OR NAME LIKE ?";
-        List<Map<String, Object>> address = jdbcTemplateObject.query(SQL, 
-           new Object[]{Id, Id}, new CompanyMapper());
-        System.out.println(SQL);    
-        return address;
-    }
-
-    //@Override
-    public List<Map<String, Object>> findById(String Id) {
-        SQL = "select * from " + TABLE + " WHERE USER_ID = ?";
-        List<Map<String, Object>> address = jdbcTemplateObject.query(SQL, 
-           new Object[]{Id}, new CompanyMapper());
-        System.out.println(SQL);    
-        return address;
-    }
-
-    public int findTotalCustomer() {
-        SQL = "select count(state_id) from states";
-        List <Address> address = jdbcTemplateObject.query(SQL, new StateMapper());
-        System.out.println(SQL);
-        return address.size();
-    }
-    
 }

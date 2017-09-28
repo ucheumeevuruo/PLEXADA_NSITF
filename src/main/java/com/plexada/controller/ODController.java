@@ -11,7 +11,7 @@ import com.plexada.build.HashAlgorithm;
 import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
 import com.plexada.doa.JsonDBRepository;
-import com.plexada.model.Cookie;
+import com.plexada.domain.Cookie;
 import com.plexada.model.registration.Accident;
 import com.plexada.model.registration.Disease;
 import com.plexada.model.registration.ClaimEmployee;

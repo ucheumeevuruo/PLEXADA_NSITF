@@ -5,6 +5,8 @@
  */
 package com.plexada.build;
 
+import com.plexada.domain.Company;
+
 /**
  *
  * @author SAP Training

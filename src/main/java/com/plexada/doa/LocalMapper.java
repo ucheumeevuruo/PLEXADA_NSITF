@@ -5,7 +5,7 @@
  */
 package com.plexada.doa;
 
-import com.plexada.model.Locals;
+import com.plexada.domain.Locals;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;

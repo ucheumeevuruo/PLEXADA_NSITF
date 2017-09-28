@@ -6,16 +6,13 @@
 package com.plexada.controller;
 
 //import com.plexada.build.Emulment;
-import com.plexada.build.Company;
+import com.plexada.domain.Company;
 import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
 import com.plexada.siebel.service.CompanyService;
 import com.plexada.services.StateService;
-import com.plexadasi.connect.siebel.SiebelConnect;
 import com.siebel.data.SiebelException;
 import com.siebel.eai.SiebelBusinessServiceException;
-import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import javax.validation.Valid;
 import org.springframework.context.ApplicationContext;
@@ -28,7 +25,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *

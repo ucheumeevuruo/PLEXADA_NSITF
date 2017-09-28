@@ -12,7 +12,7 @@ import java.util.Map;
 import java.lang.reflect.Type;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-import com.plexada.model.Cookie;
+import com.plexada.domain.Cookie;
 import java.util.List;
 
 //import org.springframework.data.jpa.repository.CrudRepository;

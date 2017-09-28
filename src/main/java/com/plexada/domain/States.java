@@ -3,22 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.plexada.model;
-
-import javax.validation.constraints.NotNull;
+package com.plexada.domain;
 
 /**
  *
  * @author SAP Training
  */
-public class Branch {
-    @NotNull
+public class States {
     private Integer id;
-    @NotNull
-    private Integer regionId;
-    @NotNull
     private String name;
-
+    
     /**
      * @return the id
      */
@@ -34,20 +28,6 @@ public class Branch {
     }
 
     /**
-     * @return the regionId
-     */
-    public Integer getRegionId() {
-        return regionId;
-    }
-
-    /**
-     * @param regionId the regionId to set
-     */
-    public void setRegionId(Integer regionId) {
-        this.regionId = regionId;
-    }
-
-    /**
      * @return the name
      */
     public String getName() {
@@ -60,5 +40,4 @@ public class Branch {
     public void setName(String name) {
         this.name = name;
     }
-    
 }

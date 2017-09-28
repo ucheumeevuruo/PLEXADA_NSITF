@@ -5,7 +5,7 @@
  */
 package com.plexada.services;
 
-import com.plexada.build.Company;
+import com.plexada.domain.Company;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.MailException;
 import org.springframework.mail.SimpleMailMessage;

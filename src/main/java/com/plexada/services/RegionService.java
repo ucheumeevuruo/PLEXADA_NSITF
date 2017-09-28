@@ -6,7 +6,7 @@
 package com.plexada.services;
 
 import com.plexada.doa.RegionMapper;
-import com.plexada.model.Regions;
+import com.plexada.domain.Regions;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;

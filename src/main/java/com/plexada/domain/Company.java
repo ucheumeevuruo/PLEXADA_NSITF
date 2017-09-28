@@ -3,9 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.plexada.build;
+package com.plexada.domain;
 
-import com.plexada.model.impl.Address;
+import java.io.Serializable;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import org.hibernate.validator.constraints.Email;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -16,72 +20,98 @@ import org.hibernate.validator.constraints.NotEmpty;
  * @author SAP Training
  */
 //@Entity
-//@Table(name="USER")  
-public class Company implements Address{
+//@Table(name="USER") 
+@Entity
+public class Company implements Serializable{
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Integer id;
     
-    private String id;
     @NotEmpty
     private String company;
+    
     @NotEmpty
     private String incNumber;
-   // @NotNull
+    
     private String tinNum;
+    
     @NotEmpty
     private String incYear;
+    
     @NotEmpty @Email 
     private String email;
+    
     private String phoneNumber;
+    
     @NotEmpty
     private String state;
+    
     @NotEmpty
     private String province;
+    
     @NotEmpty
     private String region;
+    
     @NotEmpty
     private String branch;
+    
     @NotEmpty
     private String houseNo;
+    
     @NotEmpty
     private String streetName;
+    
     private String city;
+    
     private String country;
+    
     @NotEmpty
     private String staffEmulment;
+    
     @NotEmpty
     private String type;
+    
     @NotEmpty
     private String sector;
+    
     private String otherSector;
+    
     @NotEmpty
     private String firstName;
+    
     @NotEmpty
     private String lastName;
+    
     @NotEmpty
     private String position;
+    
     @NotEmpty @Email
     private String email2;
+    
     @NotEmpty
     private String modeOfId;
+    
     //@NotEmpty
     private String licenseNumber;
+    
     //@NotEmpty
     private String expiryDate;
+    
     @NotEmpty
     private String phoneNumber2;
-    
     
 
     /**
      * @return the id
      */
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
     /**
      * @param id the id to set
      */
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 
@@ -448,10 +478,4 @@ public class Company implements Address{
     public void setphoneNumber2(String phoneNumber2) {
         this.phoneNumber2 = phoneNumber2;
     }
-    
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.AUTO)
-  
-    
-    
 }

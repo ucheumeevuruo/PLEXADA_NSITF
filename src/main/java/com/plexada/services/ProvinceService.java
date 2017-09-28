@@ -6,7 +6,7 @@
 package com.plexada.services;
 
 import com.plexada.doa.LocalMapper;
-import com.plexada.model.Locals;
+import com.plexada.domain.Locals;
 import java.util.List;
 import java.util.Map;
 import javax.sql.DataSource;

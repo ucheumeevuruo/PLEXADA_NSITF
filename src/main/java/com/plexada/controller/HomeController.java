@@ -5,7 +5,7 @@
  */
 package com.plexada.controller;
 
-import com.plexada.build.Company;
+import com.plexada.domain.Company;
 import com.plexada.build.Link;
 import com.plexada.build.NavLinks;
 import com.plexada.services.StateService;

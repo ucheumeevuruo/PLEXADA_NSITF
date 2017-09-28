@@ -6,7 +6,7 @@
 package com.plexada.services;
 
 import com.plexada.doa.StateMapper;
-import com.plexada.model.States;
+import com.plexada.domain.States;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;

@@ -5,7 +5,7 @@
  */
 package com.plexada.services;
 
-import com.plexada.model.Cookie;
+import com.plexada.domain.Cookie;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import org.springframework.jdbc.core.RowMapper;

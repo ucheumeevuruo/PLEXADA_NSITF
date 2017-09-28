@@ -5,9 +5,9 @@
  */
 package com.plexada.services;
 
-import com.plexada.build.Company;
+import com.plexada.domain.Company;
 import com.plexada.build.Customer;
-import com.plexada.model.StudentMapper;
+import com.plexada.domain.StudentMapper;
 import java.util.List;
 import javax.sql.DataSource;
 import org.springframework.jdbc.core.JdbcTemplate;

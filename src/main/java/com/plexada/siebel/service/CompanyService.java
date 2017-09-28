@@ -6,7 +6,7 @@
 package com.plexada.siebel.service;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.plexada.build.Company;
+import com.plexada.domain.Company;
 import java.util.List;
 import java.util.Map;
 import com.siebel.data.SiebelBusComp;
@@ -74,7 +74,7 @@ public class CompanyService {
         List<Map<String, String>> list = doTrigger(sBusComp);
         List<Company> companies = new ArrayList();
         for(Map<String, String> map : list){
-            company.setId(map.get("id"));
+            company.setId(Integer.parseInt(map.get("id")));
             company.setCompany(map.get("company"));
             company.setEmail(map.get("email"));
             company.setIncNumber(map.get("incNumber"));

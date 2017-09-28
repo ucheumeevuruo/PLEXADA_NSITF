@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.plexada.configurations;
+package com.plexada.configuration;
 
 import org.h2.server.web.WebServlet;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;

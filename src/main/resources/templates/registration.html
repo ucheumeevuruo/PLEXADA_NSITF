@@ -122,7 +122,7 @@
                             </span>
                         </label>
                         <select class="select form-control col-md-6 col-lg-6" id="region" th:field="*{region}" th:value="*{region}">
-                            <option selected="selected" value="">Select an option</option>
+                            <option selected="selected" value="0">Select an option</option>
                             <option th:each="region : ${regions}" th:text="${region.name}" th:value="${region.id}">Region</option>
                         </select>
                     </div>
@@ -135,7 +135,7 @@
                             </span>
                         </label>
                         <select class="select form-control col-md-6 col-lg-6" id="branch" th:field="*{branch}" th:value="*{branch}">
-                            <option selected="selected" value="">Select an option</option>
+                            <option selected="selected" value="0">Select an option</option>
                             <option th:each="branch : ${branch}" th:text="${branch.name}" th:value="${branch.id}">Branch</option>
                         </select>
                     </div>
