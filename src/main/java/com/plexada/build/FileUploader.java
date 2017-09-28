@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import javax.imageio.ImageIO;
+//import javax.imageio.ListIO;
 import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.springframework.web.multipart.MultipartFile;
@@ -51,6 +52,13 @@ public class FileUploader {
             imageInByte = baos.toByteArray();
         }
         return imageInByte;
+        
+        /*byte[] listInByte;
+        try {ByteArrayOutputStream baos = new ByteArrayOutputStream()) {
+            ListIO.write(buffer, "csv", baos);
+            baos.flush();
+            listInByte = baos.toByteArray(); 
+        }*/
 
     }
 }

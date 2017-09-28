@@ -24,78 +24,97 @@
     </div>
 	
     <div class="container">	
-        <div class="col-lg-1 col-md-1 col-md-offset-0">
+        <div class="col-lg-3 col-md-3 col-md-offset-0">
         </div>
 		
         <div class="col-lg-5 col-md-5 col-md-offset-0">
-            <div class="panel panel-default">
-            <div class="panel-heading">LOGIN</div>
 		
-            <div class="panel-body">
-           
-                <form method="post" th:object="${vars}" action="">
-                    <div th:if="${error != null}" class="alert alert-danger">
-                        <p> Invalid Username and/or Password </p>
-                    </div>
-                    <div class="form-group" th:class="form-group">
-                        <label class="control-label " for="username">
-                           Username
-                        </label>
-                        <input class="form-control" id="username" th:field="*{username}" type="text"/>
-                    </div>
-                    <br /> 
-                    <div class="form-group" th:class="form-group">
-                        <label class="control-label " for="password">
-                           Password
-                        </label>
-                        <input class="form-control" id="Password" th:field="*{password}" type="text"/>
-                    </div>
-                    <span class="pull-right"> <a href="/ecs/reset"> <i> Forgot your password? </i> </a> </span> <br /><br />
-                    <div class="form-group pull-right">
-                        <button class="btn btn-success" name="submit" type="submit">
-                            Login
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        </div>
-		
-        <div class="col-lg-5 col-md-5 col-md-offset-0">
-            <div class="panel panel-default">
-            <div class="panel-heading">ACCESS REQUEST</div>
-		
-            <div class="panel-body">
-                <br />
-                <br />
-                <form method="post" th:object="${vars}" action="">
-                            <div>
-                    <label class="control-label " for="email">
-                            Email
-                                    </label>
-                                    <input class="form-control" id="email" name="email" type="email"/>
-                            </div>
-                            <br />
+            <!-- Nav tabs -->
+            <ul class="nav nav-tabs" role="tablist">
+                    <li role="presentation" class="active"><a href="#login" aria-controls="login" role="tab" data-toggle="tab">LOGIN</a></li>
+                    <li role="presentation"><a href="#access" aria-controls="access" role="tab" data-toggle="tab">ACCESS REQUEST</a></li>
+            </ul> 
 
-                    <div class="form-group pull-right">
-                        <button class="btn btn-success" name="submit" type="submit">
-                            Send Access Request
-                        </button>
-                    </div>
+            <!-- Tab panes -->
+            <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active" id="login">
                     <br />
-                </form>
+                    <form method="post" th:object="${vars}" action="">
+                        <div th:if="${error != null}" class="alert alert-danger">
+                            <p> Invalid Username and/or Password </p>
+                        </div>
+                        <div class="form-group" th:class="form-group">
+                            <label class="control-label " for="username">
+                               Username
+                            </label>
+                            <input class="form-control" id="username" th:field="*{username}" type="text"/>
+                        </div>
+                        <br /> 
+                        <div class="form-group" th:class="form-group">
+                            <label class="control-label " for="password">
+                               Password
+                            </label>
+                            <input class="form-control" id="Password" th:field="*{password}" type="text"/>
+                        </div>
+                        <span class="pull-right"> <a href="/ecs/reset"> <i> Forgot your password? </i> </a> </span> <br /><br />
+                        <div class="form-group pull-right">
+                            <button class="btn btn-success" name="submit" type="submit">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div role="tabpanel" class="tab-pane" id="access">
+                    <br />
+                    <form method="post" th:object="${vars}" action="">
+                        <div>
+                            <label class="control-label " for="email">
+                                Email
+                            </label>
+                            <input class="form-control" id="email" name="email" type="email"/>
+                        </div>
+                        <br />
+
+                        <div class="form-group pull-right">
+                            <button class="btn btn-success" name="submit" type="submit">
+                                Send Access Request
+                            </button>
+                        </div>
+                        
+                    </form>
+                </div>
             </div>
-            </div>
+            <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
+                        <br />
         </div>
     </div>
+
+    <script>
+            $('#myTabs a').click(function (e) {
+              e.preventDefault()
+              $(this).tab('show')
+            })
+    </script>
+
+	
+     
     
-    <div class="footer row ">
+    <div class="footer row fixed-bottom">
         <div class="container-fluid">
             © 2015 Copyright: <a href="nsitf.gov.ng"> National Social Insurance Trust Fund </a>
         </div>
     </div>
      
 </body>
-	
-				
+					
 </html>			
